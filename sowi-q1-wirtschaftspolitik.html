@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abitur-Trainer Sozialwissenschaften – Q1 GK (Abitur 2028)</title>
+<style>
+  :root{
+    --ink:#1a1a1a; --muted:#595959; --line:#d9d9d9; --soft:#f2f2f2; --page:#ececec;
+    --ok:#2e7d32; --okbg:#edf7ee; --no:#b3261e; --nobg:#fcecea; --mark:#d08a00;
+    --mum:#b5655f; --dad:#4f7396;
+  }
+  *{box-sizing:border-box;-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--page);color:var(--ink);
+    font-family:Calibri,Carlito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:18px;line-height:1.55}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 16px 80px}
+
+  header.top{background:var(--ink);color:#fff;padding:24px 16px 20px}
+  header.top .inner{max-width:1000px;margin:0 auto}
+  header.top .kick{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#bfbfbf;font-weight:700}
+  header.top h1{margin:4px 0 4px;font-size:28px;line-height:1.2}
+  header.top p{margin:0;color:#d9d9d9;font-size:16px}
+  .idbar{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
+  .idbar label{flex:1 1 200px;font-size:13px;color:#bfbfbf}
+  .idbar input{width:100%;margin-top:4px;padding:9px 10px;border:0;border-radius:6px;font-size:16px;font-family:inherit}
+
+  .bar{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 6px rgba(0,0,0,.06)}
+  .bar .inner{max-width:1000px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .bar a{color:var(--ink);text-decoration:none;font-weight:700;font-size:15px;padding:5px 9px;border-radius:6px}
+  .bar a:hover{background:var(--soft)}
+  .prog{flex:1 1 160px;min-width:140px;display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted);margin-left:8px}
+  .prog .track{flex:1;height:9px;background:#e0e0e0;border-radius:5px;overflow:hidden}
+  .prog .fill{height:100%;width:0;background:var(--ink);transition:width .3s}
+
+  section.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:24px 26px;margin:22px 0}
+  h2{margin:0 0 14px;font-size:24px;line-height:1.25}
+  h2 .kicker{display:block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:4px}
+  h3{margin:26px 0 8px;font-size:19px}
+  h3 .afb{font-size:13px;color:var(--muted);font-weight:400;margin-left:6px}
+  p{margin:0 0 12px}
+  ol,ul{margin:0 0 12px;padding-left:22px}
+  li{margin-bottom:6px}
+
+  .info{background:var(--soft);border-left:6px solid var(--ink);padding:14px 18px;margin:12px 0 18px}
+  .info h4{margin:0 0 8px;font-size:15px;letter-spacing:.1em;text-transform:uppercase}
+  .info p:last-child,.info ul:last-child{margin-bottom:0}
+  .merke{border:2px solid var(--ink);padding:12px 16px;margin:14px 0 18px}
+  .merke b.l{display:block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+  .merke p:last-child{margin-bottom:0}
+  .ziel{color:var(--muted);font-size:16px;margin-bottom:16px}
+
+  figure{margin:14px 0 18px;text-align:center}
+  figure svg{max-width:100%;height:auto}
+  figcaption{font-size:14px;color:var(--muted);font-style:italic;margin-top:4px}
+
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 0}
+  button{font:inherit;font-size:15px;font-weight:700;border-radius:7px;padding:9px 15px;
+    border:2px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer}
+  button:hover{background:var(--soft)}
+  button.primary{background:var(--ink);color:#fff}
+  button.primary:hover{background:#3a3a3a}
+  button:disabled{opacity:.35;cursor:not-allowed}
+
+  .reveal{display:none;margin-top:14px;padding:12px 16px}
+  .reveal.on{display:block}
+  .reveal.tip{border:2px dashed #8c8c8c}
+  .reveal.sol{background:var(--soft);border-left:6px solid var(--ink)}
+  .reveal h4{margin:0 0 6px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .reveal p:last-child,.reveal ul:last-child{margin-bottom:0}
+
+  select{font:inherit;font-size:16px;padding:5px 8px;border:1.5px solid #bdbdbd;border-radius:6px;background:#fff;max-width:100%}
+  .ok>select,select.ok{border-color:var(--ok);background:var(--okbg)}
+  .no>select,select.no{border-color:var(--no);background:var(--nobg)}
+  .feedback{font-weight:700;margin:8px 0 0;min-height:1em}
+  .feedback.good{color:var(--ok)} .feedback.bad{color:var(--no)}
+
+  table.q{border-collapse:collapse;width:100%;margin:8px 0 12px;font-size:17px}
+  table.q th,table.q td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:middle}
+  table.q th{background:var(--soft);font-size:14px}
+  table.q td.ok{background:var(--okbg)} table.q td.no{background:var(--nobg)}
+  .item{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:8px 0;border-bottom:1px solid #ececec}
+  .item .t{flex:1 1 380px}
+
+  .lt{line-height:2.3}
+  .lt span.slot{display:inline-block}
+
+  /* Kombinierer */
+  .komb{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
+  .komb .p{border:1.5px solid var(--line);border-radius:8px;padding:10px 12px}
+  .komb .p b{display:block;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+  .komb .p.m b{color:var(--mum)} .komb .p.v b{color:var(--dad)}
+  .komb button.al{min-width:56px;font-size:20px}
+  .komb button.al.on{background:var(--ink);color:#fff}
+  .kout{background:var(--soft);padding:12px 16px;font-size:17px}
+  .kout .big{font-size:28px;font-weight:700;letter-spacing:.05em}
+  @media (max-width:600px){.komb{grid-template-columns:1fr}}
+
+  /* Punnett */
+  table.pun{border-collapse:collapse;margin:10px 0 12px;font-size:18px}
+  table.pun td,table.pun th{border:2px solid var(--ink);width:120px;height:58px;text-align:center;vertical-align:middle;padding:4px}
+  table.pun th{background:var(--soft);font-weight:700}
+  table.pun th.corner{font-size:13px;font-weight:400;color:var(--muted);line-height:1.25}
+  table.pun .mg{color:var(--mum)} table.pun .vg{color:var(--dad)}
+  .pundemo td{font-size:22px;font-weight:700}
+  .pundemo td.h{color:transparent}
+  .eltern{font-size:19px;margin:6px 0}
+  .eltern .mum{color:var(--mum);font-weight:700} .eltern .dad{color:var(--dad);font-weight:700}
+
+  /* Stammbaum */
+  .ped .pp{cursor:default}
+  .ped.click .pp{cursor:pointer}
+  .ped .ring{display:none}
+  .ped .pp.sel .ring{display:inline}
+  .legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px 18px;margin:10px 0 16px;font-size:16px}
+  .legend div{display:flex;align-items:center;gap:10px}
+
+  textarea{width:100%;border:1.5px solid #bdbdbd;border-radius:6px;padding:9px 11px;font:inherit;font-size:17px;resize:vertical}
+  .check{list-style:none;padding:0}
+  .check li{display:flex;gap:11px;align-items:flex-start;margin-bottom:10px}
+  .check input{width:22px;height:22px;margin-top:3px;flex:0 0 22px}
+  .status{font-size:15px;color:var(--muted)}
+  .status li{margin-bottom:3px}
+  .done-tag{font-weight:700;color:var(--ok)}
+  .open-tag{font-weight:700;color:var(--muted)}
+
+  table.spick{border-collapse:collapse;width:100%;font-size:16px}
+  table.spick td{border-bottom:1px solid var(--line);padding:7px 8px;vertical-align:top}
+  table.spick td:first-child{font-weight:700;white-space:nowrap;width:28%}
+
+  @media (max-width:620px){section.card{padding:18px 15px} header.top h1{font-size:23px}
+    table.pun td,table.pun th{width:86px;height:50px}}
+
+  #ergebnisblatt{display:none}
+  .savebox{border:2px solid var(--ink);border-radius:8px;padding:14px 16px;margin-top:16px;background:#fff}
+  .savebox h4{margin:0 0 6px}
+  .savebox p{margin:0 0 8px;font-size:15px}
+  .savebox .btns{margin-top:6px}
+  .savemsg{font-size:15px;font-weight:700;margin-top:8px;min-height:1em}
+  .savemsg.good{color:var(--ok)} .savemsg.bad{color:#b3261e}
+  .warnbox{border:2px solid #b3261e;color:#b3261e;border-radius:8px;padding:10px 14px;margin-top:12px;font-weight:700;display:none}
+  @media print{
+    body{background:#fff;font-size:11pt}
+    body>*{display:none !important}
+    #ergebnisblatt{display:block !important}
+    #ergebnisblatt h1{font-size:16pt;margin:0 0 2mm}
+    #ergebnisblatt h2{font-size:12pt;margin:6mm 0 1mm}
+    #ergebnisblatt .a{margin:0 0 3mm;padding-left:3mm;border-left:2px solid #999}
+    @page{margin:16mm}
+  }
+</style>
+<style>
+  .fok{display:inline-block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;border:1.5px solid var(--ink);padding:2px 7px;margin-left:8px;vertical-align:middle}
+  .teil{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:40px 0 -8px}
+  .lock{background:#fafafa;border:2px dashed #bdbdbd;color:var(--muted)}
+  .lock h2{color:var(--muted)}
+  .sample{background:#fff;border:1.5px solid var(--line);padding:12px 16px;font-style:italic;margin:10px 0 14px}
+  .bau{font-size:16px}
+  .bau li{margin-bottom:4px}
+  table.q td.c{width:42%}
+  .ztext{border:1.5px solid var(--line);padding:12px 14px;margin:8px 0 18px;font-size:17px;line-height:1.75;overflow-x:auto}
+  .zl{display:flex;gap:14px;white-space:nowrap}
+  .zl .nr{flex:0 0 22px;text-align:right;color:var(--muted);font-size:14px}
+  .fld2{margin-bottom:12px}
+  .fld2 label{display:block;font-weight:700;font-size:15px;margin-bottom:4px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <div class="kick">Sozialwissenschaften · Q1 Grundkurs · Abitur 2028</div>
+    <h1>Abitur-Trainer: Handwerk und Wirtschaftspolitik</h1>
+    <p>Selbstlernmodul zum Wiederholen und Üben · Teil A: Abitur-Handwerk · Teil B: Inhaltsfeld 4 Wirtschaftspolitik · weitere Inhaltsfelder folgen</p>
+    <div class="idbar">
+      <label>Dein Name<input type="text" id="f_name" data-save placeholder="Vorname Nachname"></label>
+      <label>Kurs<input type="text" id="f_kurs" data-save placeholder="z. B. Q1 SW GK"></label>
+    </div>
+  </div>
+</header>
+
+<nav class="bar">
+  <div class="inner">
+    <a href="#start">Start</a>
+    <a href="#a1">A Handwerk</a>
+    <a href="#a5">A5 Analyse</a>
+    <a href="#a6">A6 Urteil</a>
+    <a href="#b1">B1 BIP</a>
+    <a href="#b2">B2 Konjunktur</a>
+    <a href="#b3">B3 Ziele</a>
+    <a href="#b4">B4 Inflation</a>
+    <a href="#b5">B5 Konzepte</a>
+    <a href="#b6">B6 Instrumente</a>
+    <a href="#ende">Abschluss</a>
+    <div class="prog"><span id="progtext">0</span><div class="track"><div class="fill" id="progfill"></div></div></div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ====================== START ====================== -->
+<section class="card" id="start">
+  <h2><span class="kicker">So arbeitest du</span>Worum es geht</h2>
+  <p>Dieses Modul begleitet dich bis zum Abitur. <strong>Teil A</strong> trainiert das Handwerk, das du in jeder Abituraufgabe brauchst: Operatoren, Textwiedergabe, Statistikauswertung und kriteriengeleitetes Urteilen. <strong>Teil B</strong> wiederholt das Inhaltsfeld <strong>Wirtschaftspolitik</strong> aus der Q1. Die Inhaltsfelder Europäische Union, soziale Ungleichheit und Globalisierung kommen dazu, sobald wir sie im Unterricht behandelt haben.</p>
+  <div class="info">
+    <h4>So funktioniert es</h4>
+    <ul>
+      <li>Du musst nicht alles am Stück bearbeiten. Nimm dir eine Station vor, lies den Infokasten und bearbeite die Aufgaben.</li>
+      <li>Klicke auf <strong>Prüfen</strong>: Grün heißt richtig, rot heißt: noch einmal überlegen. Den <strong>Tipp</strong> kannst du jederzeit öffnen, die <strong>Lösung</strong> erst, nachdem du selbst geprüft hast.</li>
+      <li>Aufgaben mit dem Kästchen <span class="fok" style="margin-left:0">Fokus 2028</span> gehören zu den Fokussierungen, die das Schulministerium für dein Abitur festgelegt hat. Die solltest du besonders sicher beherrschen.</li>
+      <li>Dein Browser merkt sich deine Antworten automatisch, aber nur, wenn du die Datei immer vom selben Ort und im selben Browser öffnest. <strong>Sicherer:</strong> Am Ende jeder Sitzung auf „Speicherstand als Datei sichern“ klicken und die Datei aufheben. Am Ende kannst du außerdem ein Ergebnisblatt drucken oder als PDF sichern.</li>
+    </ul>
+  </div>
+  <div class="warnbox" id="warnbox">Achtung: Dein Browser speichert hier gerade nicht automatisch (z. B. im privaten Fenster, in einer Vorschau oder auf dem Tablet). Sichere deine Antworten deshalb unbedingt über „Speicherstand als Datei sichern“.</div>
+  <div class="savebox">
+    <h4>Speicherstand sichern</h4>
+    <p>Sichere deine Antworten am Ende jeder Sitzung als Datei. Mit „Speicherstand laden“ machst du an jedem Gerät und in jedem Browser weiter, auch auf dem Tablet.</p>
+    <div class="btns">
+      <button type="button" class="primary" onclick="exportStand()">Speicherstand als Datei sichern</button>
+      <button type="button" onclick="importStand()">Speicherstand laden</button>
+    </div>
+    <div class="savemsg" id="savemsg1"></div>
+  </div>
+</section>
+
+<p class="teil">Teil A</p>
+
+<!-- ====================== A1 ====================== -->
+<section class="card" id="a1">
+  <h2><span class="kicker">Station A1</span>So ist das Abitur aufgebaut</h2>
+  <div class="info">
+    <h4>Die wichtigsten Fakten</h4>
+    <ul>
+      <li>Die schriftliche Prüfung in Sozialwissenschaften dauert im Grundkurs <strong>240 Minuten</strong>, einschließlich der Zeit zum Auswählen.</li>
+      <li>Du bekommst <strong>drei Aufgaben</strong> und wählst <strong>eine</strong> davon aus. Jede der drei Teildisziplinen – Politikwissenschaft, Soziologie, Wirtschaftswissenschaft – steht dabei einmal im Mittelpunkt.</li>
+      <li>Jede Aufgabe geht über ein Inhaltsfeld hinaus und <strong>verknüpft es mit einem anderen</strong>. Eine Aufgabe zur Wirtschaftspolitik kann also z. B. auch die EZB (EU) oder soziale Ungleichheit berühren.</li>
+      <li>Grundlage ist meist ein <strong>Text</strong>, oft ergänzt durch eine <strong>Statistik</strong> oder Grafik.</li>
+      <li>Jede Aufgabe hat drei Teilaufgaben, die den drei <strong>Anforderungsbereichen</strong> folgen:</li>
+    </ul>
+    <table class="q">
+      <tr><th>Teilaufgabe</th><th>Anforderungsbereich</th><th>Was du tust</th></tr>
+      <tr><td>1</td><td>AFB I – Reproduktion</td><td>Text oder Sachverhalt strukturiert wiedergeben, darstellen, beschreiben</td></tr>
+      <tr><td>2</td><td>AFB II – Reorganisation und Transfer</td><td>analysieren, erklären, erläutern, einordnen – oft mit Fachwissen oder einer Theorie</td></tr>
+      <tr><td>3</td><td>AFB III – Reflexion und Problemlösung</td><td>erörtern, beurteilen, bewerten, Stellung nehmen – oder gestalten (z. B. Rede, Gutachten)</td></tr>
+    </table>
+  </div>
+
+  <h3>Die Operatoren</h3>
+  <p>Der Operator am Anfang jeder Teilaufgabe sagt dir genau, was du tun sollst. Wer den Operator nicht beachtet, verschenkt Punkte – zum Beispiel, wenn er bei „beschreiben“ schon bewertet oder bei „erörtern“ nur eine Seite darstellt. Die wichtigsten Operatoren aus der offiziellen Liste:</p>
+  <table class="q">
+    <tr><th>Operator</th><th>AFB</th><th>Was er verlangt</th></tr>
+    <tr><td><strong>nennen</strong></td><td>I</td><td>Kenntnisse knapp und ohne Kommentar aufzählen</td></tr>
+    <tr><td><strong>beschreiben / darstellen</strong></td><td>I</td><td>das Wesentliche in sinnvoller Reihenfolge mit Fachsprache wiedergeben</td></tr>
+    <tr><td><strong>herausarbeiten / ermitteln</strong></td><td>II</td><td>aus dem Material Sachverhalte herausfinden – auch wenn sie dort nicht wörtlich stehen – und Zusammenhänge herstellen</td></tr>
+    <tr><td><strong>analysieren</strong></td><td>II</td><td>Material nach Kriterien oder Aspekten erschließen und Zusammenhänge sichtbar machen</td></tr>
+    <tr><td><strong>erklären</strong></td><td>II</td><td>einen Sachverhalt in einen Zusammenhang (Theorie, Modell, Regel) einordnen und deuten</td></tr>
+    <tr><td><strong>erläutern</strong></td><td>II</td><td>wie erklären, aber zusätzlich mit Beispielen und weiteren Informationen veranschaulichen</td></tr>
+    <tr><td><strong>beurteilen</strong></td><td>III</td><td>mit Kriterien zu einem begründeten <em>Sachurteil</em> kommen</td></tr>
+    <tr><td><strong>bewerten / Stellung nehmen</strong></td><td>III</td><td>wie beurteilen, aber zusätzlich die eigenen Wertmaßstäbe offenlegen → begründetes <em>Werturteil</em></td></tr>
+    <tr><td><strong>erörtern</strong></td><td>III</td><td>eine Problemfrage kontrovers, also mit Pro und Contra, durchdenken und zu einem abschließenden Urteil kommen</td></tr>
+    <tr><td><strong>entwickeln / gestalten</strong></td><td>III</td><td>eine eigene Lösung, Gegenposition oder ein Produkt (z. B. Rede, Gutachten, Leserbrief) erstellen</td></tr>
+  </table>
+
+  <div class="task" data-task="h1">
+    <h3>Aufgabe A1.1 – Welcher Anforderungsbereich? <span class="afb">AFB I</span></h3>
+    <div class="item"><span class="t">nennen</span><select id="h1_1" data-save data-opts="I|II|III" data-ans="I"></select></div>
+    <div class="item"><span class="t">erörtern</span><select id="h1_2" data-save data-opts="I|II|III" data-ans="III"></select></div>
+    <div class="item"><span class="t">herausarbeiten</span><select id="h1_3" data-save data-opts="I|II|III" data-ans="II"></select></div>
+    <div class="item"><span class="t">darstellen</span><select id="h1_4" data-save data-opts="I|II|III" data-ans="I"></select></div>
+    <div class="item"><span class="t">bewerten</span><select id="h1_5" data-save data-opts="I|II|III" data-ans="III"></select></div>
+    <div class="item"><span class="t">erklären</span><select id="h1_6" data-save data-opts="I|II|III" data-ans="II"></select></div>
+    <div class="item"><span class="t">entwickeln</span><select id="h1_7" data-save data-opts="I|II|III" data-ans="III"></select></div>
+    <div class="item"><span class="t">analysieren</span><select id="h1_8" data-save data-opts="I|II|III" data-ans="II"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Faustregel: Gibst du nur wieder, was du weißt oder was im Text steht? → I. Verarbeitest du Material mit Fachwissen weiter? → II. Kommst du zu einem Urteil oder einem eigenen Produkt? → III.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>nennen I · erörtern III · herausarbeiten II · darstellen I · bewerten III · erklären II · entwickeln III · analysieren II</p></div>
+  </div>
+
+  <div class="task" data-task="h2">
+    <h3>Aufgabe A1.2 – Feine Unterschiede <span class="afb">AFB I</span></h3>
+    <p>Welcher Operator passt zur Beschreibung?</p>
+    <div class="item"><span class="t">Mit Kriterien zu einem Sachurteil kommen, ohne die eigenen Wertmaßstäbe offenzulegen</span><select id="h2_1" data-save data-opts="beurteilen|bewerten|erörtern|erklären|erläutern|gestalten" data-ans="beurteilen"></select></div>
+    <div class="item"><span class="t">Ein Urteil fällen und dabei die eigenen Wertmaßstäbe reflektieren</span><select id="h2_2" data-save data-opts="beurteilen|bewerten|erörtern|erklären|erläutern|gestalten" data-ans="bewerten"></select></div>
+    <div class="item"><span class="t">Pro- und Contra-Argumente abwägen und zu einem abschließenden Urteil kommen</span><select id="h2_3" data-save data-opts="beurteilen|bewerten|erörtern|erklären|erläutern|gestalten" data-ans="erörtern"></select></div>
+    <div class="item"><span class="t">Einen Sachverhalt mithilfe einer Theorie oder eines Modells verständlich machen</span><select id="h2_4" data-save data-opts="beurteilen|bewerten|erörtern|erklären|erläutern|gestalten" data-ans="erklären"></select></div>
+    <div class="item"><span class="t">Wie oben, aber zusätzlich mit Beispielen veranschaulichen</span><select id="h2_5" data-save data-opts="beurteilen|bewerten|erörtern|erklären|erläutern|gestalten" data-ans="erläutern"></select></div>
+    <div class="item"><span class="t">Eine Rede oder ein Gutachten zu einer Frage verfassen</span><select id="h2_6" data-save data-opts="beurteilen|bewerten|erörtern|erklären|erläutern|gestalten" data-ans="gestalten"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Der Unterschied zwischen beurteilen und bewerten ist ein Klassiker: Beim Sachurteil zählt nur, ob etwas gemessen an Kriterien funktioniert. Beim Werturteil kommen deine eigenen Werte (z. B. Gerechtigkeit, Freiheit) ausdrücklich ins Spiel.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>beurteilen · bewerten · erörtern · erklären · erläutern · gestalten</p></div>
+  </div>
+</section>
+
+<!-- ====================== A2 ====================== -->
+<section class="card" id="a2">
+  <h2><span class="kicker">Station A2</span>Teilaufgabe 1: einen Text wiedergeben</h2>
+  <div class="info">
+    <h4>So gehst du vor</h4>
+    <ul>
+      <li><strong>Einleitungssatz:</strong> Autor/in, Titel, Quelle, Erscheinungsdatum, Textsorte (z. B. Kommentar, Interview), Thema und Kernthese.</li>
+      <li><strong>Hauptteil:</strong> die Argumentation in sinnvollen Schritten wiedergeben, nicht Absatz für Absatz nacherzählen. Benenne die Funktion der Schritte: These, Argument, Beleg, Gegenargument, Schlussfolgerung.</li>
+      <li><strong>Belege:</strong> Jede Aussage mit Zeilenangabe belegen (Z. 12 / Z. 12 f. / Z. 12 ff.).</li>
+      <li><strong>Indirekte Rede:</strong> Gib die Aussagen im Konjunktiv I wieder („Der Autor behauptet, die Schuldenbremse <em>sei</em> …“). Lange wörtliche Zitate vermeiden.</li>
+      <li><strong>Keine eigene Wertung</strong> – die gehört erst in Teilaufgabe 3.</li>
+    </ul>
+  </div>
+  <div class="merke"><b class="l">Konjunktiv I</b><p>Er bildet sich vom Infinitivstamm: er sei, er habe, er werde, er müsse, er könne, er fordere. Ist der Konjunktiv I gleich dem Indikativ (z. B. „sie fordern“), nimmst du den Konjunktiv II („sie forderten“) oder „würden“.</p></div>
+
+  <div class="task" data-task="h3">
+    <h3>Aufgabe A2.1 – Konjunktiv-Training <span class="afb">AFB I</span></h3>
+    <p class="lt">Die Autorin behauptet, die Schuldenbremse
+      <span class="slot"><select id="h3_1" data-save data-opts="verhindert|verhindere|verhinderte" data-ans="verhindere"></select></span> dringend nötige Investitionen.
+      Der Staat
+      <span class="slot"><select id="h3_2" data-save data-opts="ist|sei|wäre" data-ans="sei"></select></span> verpflichtet, die Infrastruktur zu erhalten.
+      Kritiker
+      <span class="slot"><select id="h3_3" data-save data-opts="haben|hätten|habe" data-ans="hätten"></select></span> zwar recht, dass Schulden künftige Haushalte belasten.
+      Dennoch
+      <span class="slot"><select id="h3_4" data-save data-opts="muss|müsse|müsste" data-ans="müsse"></select></span> die Regel reformiert werden.
+      Andernfalls
+      <span class="slot"><select id="h3_5" data-save data-opts="wird|werde|würde" data-ans="werde"></select></span> Deutschland als Standort an Attraktivität verlieren.</p>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Bei „Kritiker“ (Plural) lautet der Konjunktiv I „sie haben“ – der ist vom Indikativ nicht zu unterscheiden. Dann musst du auf den Konjunktiv II ausweichen.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>verhindere · sei · hätten (Konj. I „haben“ = Indikativ, deshalb Konj. II) · müsse · werde</p></div>
+  </div>
+
+  <div class="task" data-task="h4">
+    <h3>Aufgabe A2.2 – Prüfe die Einleitung <span class="afb">AFB II</span></h3>
+    <p>Ein Mitschüler hat diese Einleitung geschrieben. Was ist enthalten, was fehlt?</p>
+    <div class="sample">„In dem Text geht es um die Schuldenbremse. Der Autor Lukas Brenner findet sie schlecht, weil sie Investitionen verhindert, und meint, dass man sie abschaffen sollte.“</div>
+    <div class="item"><span class="t">Autor</span><select id="h4_1" data-save data-opts="enthalten|fehlt" data-ans="enthalten"></select></div>
+    <div class="item"><span class="t">Titel</span><select id="h4_2" data-save data-opts="enthalten|fehlt" data-ans="fehlt"></select></div>
+    <div class="item"><span class="t">Quelle und Erscheinungsdatum</span><select id="h4_3" data-save data-opts="enthalten|fehlt" data-ans="fehlt"></select></div>
+    <div class="item"><span class="t">Textsorte</span><select id="h4_4" data-save data-opts="enthalten|fehlt" data-ans="fehlt"></select></div>
+    <div class="item"><span class="t">Thema</span><select id="h4_5" data-save data-opts="enthalten|fehlt" data-ans="enthalten"></select></div>
+    <div class="item"><span class="t">Kernthese in indirekter Rede (Konjunktiv)</span><select id="h4_6" data-save data-opts="enthalten|fehlt" data-ans="fehlt"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Die Position des Autors ist zwar erkennbar – aber steht sie im Konjunktiv? Und klingt „findet sie schlecht“ nach Fachsprache?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Enthalten sind nur Autor und Thema. Es fehlen Titel, Quelle, Datum und Textsorte. Die Position steht im Indikativ und ist umgangssprachlich formuliert.</p>
+      <p><strong>Besser:</strong> „In seinem Kommentar ‚Die Bremse muss weg‘, erschienen am … in der …, setzt sich Lukas Brenner mit der Schuldenbremse auseinander. Er vertritt die These, die Regel verhindere notwendige öffentliche Investitionen und solle daher abgeschafft werden.“</p></div>
+  </div>
+</section>
+
+<!-- ====================== A3 ====================== -->
+<section class="card" id="a3">
+  <h2><span class="kicker">Station A3</span>Teilaufgabe 2: Statistiken auswerten</h2>
+  <div class="info">
+    <h4>Das Auswertungsschema</h4>
+    <ol>
+      <li><strong>Formales:</strong> Titel, Quelle, Erhebungszeitraum, Einheit (Prozent? absolute Zahlen? Indexwerte?), Darstellungsform.</li>
+      <li><strong>Beschreiben:</strong> Höchst- und Tiefstwerte, Trends, Brüche – immer mit Zahlen belegen.</li>
+      <li><strong>Erklären:</strong> Ursachen mit Fachwissen deuten. Was steht <em>nicht</em> in der Grafik, sondern ist dein Vorwissen? Kennzeichne das.</li>
+      <li><strong>Grenzen:</strong> Was kann die Statistik nicht zeigen? Korrelation ist keine Kausalität.</li>
+    </ol>
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 640 300" width="640" role="img" aria-label="Balkendiagramm Inflationsrate Deutschland 2020 bis 2025">
+      <g font-family="Calibri,Carlito,Arial,sans-serif" fill="#1a1a1a">
+        <text x="280" y="22" text-anchor="middle" font-size="16" font-weight="bold">Inflationsrate in Deutschland (Jahresdurchschnitt, in %)</text>
+        <line x1="60" y1="250" x2="540" y2="250" stroke="#1a1a1a" stroke-width="1.5"/>
+        <g font-size="12" fill="#595959" text-anchor="end">
+          <text x="52" y="254">0</text><text x="52" y="204">2</text><text x="52" y="154">4</text><text x="52" y="104">6</text><text x="52" y="54">8</text>
+        </g>
+        <g stroke="#e0e0e0"><line x1="60" y1="200" x2="540" y2="200"/><line x1="60" y1="150" x2="540" y2="150"/><line x1="60" y1="100" x2="540" y2="100"/><line x1="60" y1="50" x2="540" y2="50"/></g>
+        <g fill="#7f7f7f">
+          <rect x="80" y="237.5" width="50" height="12.5"/>
+          <rect x="160" y="172.5" width="50" height="77.5"/>
+          <rect x="240" y="77.5" width="50" height="172.5"/>
+          <rect x="320" y="102.5" width="50" height="147.5"/>
+          <rect x="400" y="195" width="50" height="55"/>
+          <rect x="480" y="195" width="50" height="55"/>
+        </g>
+        <line x1="60" y1="200" x2="540" y2="200" stroke="#1a1a1a" stroke-width="1.5" stroke-dasharray="6 4"/>
+        <text x="546" y="204" font-size="13">EZB-Ziel: 2 %</text>
+        <g font-size="14" font-weight="bold" text-anchor="middle">
+          <text x="105" y="231">0,5</text><text x="185" y="166">3,1</text><text x="265" y="71">6,9</text><text x="345" y="96">5,9</text><text x="425" y="189">2,2</text><text x="505" y="189">2,2</text>
+        </g>
+        <g font-size="14" text-anchor="middle">
+          <text x="105" y="270">2020</text><text x="185" y="270">2021</text><text x="265" y="270">2022</text><text x="345" y="270">2023</text><text x="425" y="270">2024</text><text x="505" y="270">2025</text>
+        </g>
+      </g>
+    </svg>
+    <figcaption>Abb. 1: Veränderung des Verbraucherpreisindex gegenüber dem Vorjahr. Daten: Statistisches Bundesamt (Destatis), Pressemitteilungen vom 16.01.2025 und 16.01.2026; eigene Darstellung.</figcaption>
+  </figure>
+
+  <div class="task" data-task="h5">
+    <h3>Aufgabe A3.1 – Was sagt die Grafik wirklich? <span class="afb">AFB II</span></h3>
+    <p>Prüfe jede Aussage: Ist sie durch die Grafik gedeckt?</p>
+    <div class="item"><span class="t">2022 erreichte die Inflationsrate ihren höchsten Wert im dargestellten Zeitraum.</span><select id="h5_1" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">2023 sind die Preise in Deutschland gesunken.</span><select id="h5_2" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">Von 2021 bis 2023 lag die Inflationsrate über dem Zielwert der EZB.</span><select id="h5_3" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">2024 und 2025 war das Preisniveau gleich hoch.</span><select id="h5_4" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">Die Grafik beweist, dass die Energiekrise die hohe Inflation verursacht hat.</span><select id="h5_5" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Achtung, Falle: Die Grafik zeigt nicht das Preisniveau, sondern seine <em>Veränderung</em> gegenüber dem Vorjahr. Eine sinkende Inflationsrate heißt nur: Die Preise steigen langsamer.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><ul>
+      <li>richtig – 6,9 %.</li>
+      <li>falsch – die Preise sind 2023 um 5,9 % <em>gestiegen</em>, nur langsamer als 2022.</li>
+      <li>richtig – 3,1 %, 6,9 % und 5,9 % liegen alle über 2 %.</li>
+      <li>falsch – das Preisniveau ist in beiden Jahren um je 2,2 % gestiegen, 2025 also höher als 2024. Gleich ist nur die <em>Rate</em>.</li>
+      <li>falsch – Ursachen zeigt die Grafik nicht. Dass stark steigende Energiepreise nach dem russischen Angriff auf die Ukraine eine wichtige Rolle spielten, ist Vorwissen und muss als solches gekennzeichnet werden.</li></ul></div>
+  </div>
+</section>
+
+<!-- ====================== A4 ====================== -->
+<section class="card" id="a4">
+  <h2><span class="kicker">Station A4</span>Teilaufgabe 3: kriteriengeleitet urteilen</h2>
+  <div class="info">
+    <h4>Sachurteil und Werturteil</h4>
+    <p>Ein gutes Urteil in Teilaufgabe 3 ist kein Bauchgefühl, sondern stützt sich auf <strong>Kriterien</strong>. Die beiden wichtigsten:</p>
+    <ul>
+      <li><strong>Effizienz:</strong> Erreicht eine Maßnahme ihr Ziel? Steht der Nutzen in einem guten Verhältnis zu den Kosten? Welche Neben- und Folgewirkungen hat sie?</li>
+      <li><strong>Legitimität:</strong> Ist die Maßnahme rechtlich und demokratisch gerechtfertigt? Ist sie gerecht – auch gegenüber künftigen Generationen? Wird sie von den Betroffenen akzeptiert?</li>
+    </ul>
+    <p>Daneben gibt es weitere Kriterien wie Nachhaltigkeit oder Freiheit. Wichtig ist auch die Unterscheidung zwischen <strong>positiven</strong> (beschreibenden, überprüfbaren) und <strong>normativen</strong> (wertenden, vorschreibenden) Aussagen. Normative Aussagen erkennst du oft an Wörtern wie „sollte“, „muss“, „gerecht“, „besser“.</p>
+  </div>
+
+  <div class="task" data-task="h6">
+    <h3>Aufgabe A4.1 – Positiv oder normativ? <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">Die Arbeitslosenquote ist im letzten Jahr gestiegen.</span><select id="h6_1" data-save data-opts="positiv|normativ" data-ans="positiv"></select></div>
+    <div class="item"><span class="t">Der Staat sollte in der Krise mehr Geld ausgeben.</span><select id="h6_2" data-save data-opts="positiv|normativ" data-ans="normativ"></select></div>
+    <div class="item"><span class="t">Eine Erhöhung des Leitzinses verteuert Kredite.</span><select id="h6_3" data-save data-opts="positiv|normativ" data-ans="positiv"></select></div>
+    <div class="item"><span class="t">Es ist ungerecht, dass Sparer unter der Inflation leiden.</span><select id="h6_4" data-save data-opts="positiv|normativ" data-ans="normativ"></select></div>
+    <div class="item"><span class="t">Der Bund darf sich strukturell mit höchstens 0,35 % des BIP neu verschulden.</span><select id="h6_5" data-save data-opts="positiv|normativ" data-ans="positiv"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Frage dich: Kann man die Aussage mit Daten oder Gesetzestexten überprüfen? Dann ist sie positiv – auch wenn sie falsch sein sollte.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>positiv · normativ · positiv · normativ · positiv</p></div>
+  </div>
+
+  <div class="task" data-task="h7">
+    <h3>Aufgabe A4.2 – Effizienz oder Legitimität? <span class="afb">AFB II</span> <span class="fok">Fokus 2028</span></h3>
+    <p>Argumente aus der Debatte um die Schuldenbremse. Welches Kriterium spricht das Argument an?</p>
+    <div class="item"><span class="t">Kreditfinanzierte Investitionen in Schienen und Schulen steigern das künftige Wachstum.</span><select id="h7_1" data-save data-opts="Effizienz|Legitimität" data-ans="Effizienz"></select></div>
+    <div class="item"><span class="t">Künftige Generationen müssen Schulden zurückzahlen, über die sie nicht mitentscheiden konnten.</span><select id="h7_2" data-save data-opts="Effizienz|Legitimität" data-ans="Legitimität"></select></div>
+    <div class="item"><span class="t">Die Regel steht im Grundgesetz und wurde mit Zwei-Drittel-Mehrheit beschlossen.</span><select id="h7_3" data-save data-opts="Effizienz|Legitimität" data-ans="Legitimität"></select></div>
+    <div class="item"><span class="t">Hohe Zinsausgaben engen den finanziellen Spielraum künftiger Haushalte ein.</span><select id="h7_4" data-save data-opts="Effizienz|Legitimität" data-ans="Effizienz"></select></div>
+    <div class="item"><span class="t">Wenn der Staat im Abschwung spart, verstärkt er die Krise.</span><select id="h7_5" data-save data-opts="Effizienz|Legitimität" data-ans="Effizienz"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Geht es darum, ob etwas <em>wirkt</em> und sich <em>lohnt</em>? → Effizienz. Geht es darum, ob etwas <em>rechtmäßig</em>, <em>demokratisch</em> oder <em>gerecht</em> ist? → Legitimität.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Effizienz · Legitimität (Generationengerechtigkeit) · Legitimität (Rechtmäßigkeit, demokratische Entscheidung) · Effizienz · Effizienz</p></div>
+  </div>
+
+  <div class="task" data-task="h8" data-free="1">
+    <h3>Aufgabe A4.3 – Ein Kurzurteil schreiben <span class="afb">AFB III</span> <span class="fok">Fokus 2028</span></h3>
+    <p><strong>Beurteile</strong> die Forderung, die Schuldenbremse abzuschaffen. Nutze die Kriterien Effizienz und Legitimität (ca. 8–12 Sätze).</p>
+    <ul class="bau">
+      <li><em>Einstieg:</em> „Zu beurteilen ist die Forderung, … Dazu ziehe ich die Kriterien … heran.“</li>
+      <li><em>Effizienz:</em> „Für eine Abschaffung spricht unter dem Aspekt der Effizienz, dass … Dagegen lässt sich einwenden, dass …“</li>
+      <li><em>Legitimität:</em> „Unter dem Gesichtspunkt der Legitimität ist zu berücksichtigen, dass …“</li>
+      <li><em>Gewichtung und Fazit:</em> „Wägt man beide Kriterien gegeneinander ab, überwiegt …, weil … Daher halte ich die Forderung für (eher) …“</li>
+    </ul>
+    <textarea id="h8_txt" data-save rows="9" placeholder="Dein Urteil …"></textarea>
+    <div class="btns"><button type="button" class="primary" data-freebtn>Mit Erwartungen vergleichen</button></div>
+    <div class="feedback"></div>
+    <div class="reveal sol"><h4>Das sollte dein Urteil enthalten</h4><ul>
+      <li>klare Nennung der Kriterien und der Urteilsfrage</li>
+      <li><strong>Effizienz pro Abschaffung:</strong> Investitionsstau (Infrastruktur, Bildung, Klimaschutz); kreditfinanzierte Investitionen können sich durch höheres Wachstum selbst tragen; Spielraum für antizyklische Politik</li>
+      <li><strong>Effizienz contra:</strong> steigende Zinslast; Gefahr, dass Kredite für Konsum statt Investitionen genutzt werden; Glaubwürdigkeit an den Finanzmärkten; seit 2025 gibt es bereits Ausnahmen (Verteidigung, Sondervermögen Infrastruktur)</li>
+      <li><strong>Legitimität:</strong> Generationengerechtigkeit (Schulden belasten Spätere – aber auch marode Infrastruktur belastet sie); Verfassungsrang und Zwei-Drittel-Mehrheit; Budgetrecht des Parlaments wird eingeschränkt</li>
+      <li>eine <strong>Gewichtung</strong> der Argumente und ein eindeutiges Fazit – auch ein differenziertes Urteil („Reform statt Abschaffung“) ist möglich, muss aber begründet sein</li></ul>
+      <p>Prüfe: Hast du beide Seiten dargestellt? Hast du ausdrücklich gewichtet? Ist dein Fazit eine Antwort auf die Frage?</p></div>
+  </div>
+</section>
+
+<!-- ====================== A5 ====================== -->
+<section class="card" id="a5">
+  <h2><span class="kicker">Station A5 · Werkstatt</span>Eine Textanalyse schreiben</h2>
+  <p class="ziel">Ziel: Du kannst die Argumentation eines Textes strukturiert analysieren, sprachliche Mittel funktional deuten und Intention, Adressaten und Position bestimmen.</p>
+  <div class="info">
+    <h4>Aufbau einer Textanalyse</h4>
+    <ol>
+      <li><strong>Einleitung:</strong> Autor/in, Titel, Quelle, Datum, Textsorte, Thema, Kernthese (Konjunktiv).</li>
+      <li><strong>Argumentationsgang:</strong> Gliedere den Text in Sinnabschnitte und benenne jeweils deren <em>Funktion</em> – z. B. Problemaufriss, These, Argument, Beleg/Beispiel, Einräumung eines Gegenarguments, Entkräftung, Forderung. Belege alles mit Zeilenangaben.</li>
+      <li><strong>Sprache:</strong> Nenne auffällige sprachliche Mittel nur zusammen mit ihrer <em>Wirkung</em> – „In Z. 1 verwendet die Autorin eine Metapher“ allein bringt keine Punkte.</li>
+      <li><strong>Intention und Adressaten:</strong> Wovon will der Text wen überzeugen?</li>
+      <li><strong>Einordnung:</strong> Welcher Position oder Theorie entspricht der Text (z. B. nachfrage- oder angebotsorientiert)? Welche Interessen und Perspektiven blendet er aus?</li>
+    </ol>
+    <p><strong>Verben für die Redewiedergabe</strong> – sie zeigen gleichzeitig die Funktion: <em>stellt fest, behauptet, vertritt die These, begründet, belegt, veranschaulicht, räumt ein, wendet ein, entkräftet, kritisiert, fordert, folgert, appelliert</em>. Vermeide das ewige „sagt“.</p>
+  </div>
+
+  <h3>Der Übungstext</h3>
+  <p class="status">Fiktiver Kommentar, zu Übungszwecken verfasst: Miriam Kessler, „Der Bremsklotz“, Gastkommentar.</p>
+  <div class="ztext">
+    <div class="zl"><span class="nr"></span><span>Deutschland fährt auf Verschleiß. Brücken werden gesperrt, Züge kommen zu spät,</span></div>
+    <div class="zl"><span class="nr"></span><span>und in vielen Schulen regnet es durch. Den Investitionsstau allein in den</span></div>
+    <div class="zl"><span class="nr"></span><span>Kommunen beziffern Fachleute auf einen dreistelligen Milliardenbetrag. Wie</span></div>
+    <div class="zl"><span class="nr"></span><span>konnte es so weit kommen? Ein wichtiger Grund ist die Schuldenbremse. Sie</span></div>
+    <div class="zl"><span class="nr">5</span><span>erlaubt dem Bund nur eine minimale Neuverschuldung – und gespart wird zuerst</span></div>
+    <div class="zl"><span class="nr"></span><span>dort, wo es kurzfristig nicht wehtut: bei den Investitionen. Was als Bremse für</span></div>
+    <div class="zl"><span class="nr"></span><span>Schulden gedacht war, ist längst zum Bremsklotz für die Zukunft geworden.</span></div>
+    <div class="zl"><span class="nr"></span><span>Natürlich haben die Befürworter einen Punkt: Schulden müssen verzinst werden,</span></div>
+    <div class="zl"><span class="nr"></span><span>und niemand will kommenden Generationen einen Berg von Verbindlichkeiten</span></div>
+    <div class="zl"><span class="nr">10</span><span>hinterlassen. Aber erben unsere Kinder etwa keine maroden Brücken? Eine</span></div>
+    <div class="zl"><span class="nr"></span><span>Investition in Schienen oder Glasfaser ist keine Last, sondern ein Vermögen,</span></div>
+    <div class="zl"><span class="nr"></span><span>das noch in Jahrzehnten Erträge bringt. Jedes Unternehmen finanziert seine</span></div>
+    <div class="zl"><span class="nr"></span><span>Investitionen selbstverständlich auch mit Krediten – warum nicht der Staat?</span></div>
+    <div class="zl"><span class="nr"></span><span>Die Reform von 2025 war ein erster Schritt. Doch ein Sondervermögen auf Zeit</span></div>
+    <div class="zl"><span class="nr">15</span><span>löst das Grundproblem nicht. Wir brauchen eine goldene Regel: Kredite für</span></div>
+    <div class="zl"><span class="nr"></span><span>Investitionen erlauben, für laufende Ausgaben nicht. Denn wer heute an der</span></div>
+    <div class="zl"><span class="nr"></span><span>Zukunft spart, zahlt morgen doppelt.</span></div>
+  </div>
+
+  <div class="task" data-task="a51">
+    <h3>Aufgabe A5.1 – Den Argumentationsgang gliedern <span class="afb">AFB II</span></h3>
+    <p>Bestimme die Funktion jedes Sinnabschnitts.</p>
+    <div class="item"><span class="t">Z. 1–3 („Deutschland fährt … Milliardenbetrag.“)</span><select id="a51_1" data-save data-opts="Problemaufriss mit Beispielen|These mit Begründung|Einräumung eines Gegenarguments|Entkräftung des Gegenarguments|Forderung und Schlussfolgerung" data-ans="Problemaufriss mit Beispielen"></select></div>
+    <div class="item"><span class="t">Z. 3–7 („Wie konnte … Zukunft geworden.“)</span><select id="a51_2" data-save data-opts="Problemaufriss mit Beispielen|These mit Begründung|Einräumung eines Gegenarguments|Entkräftung des Gegenarguments|Forderung und Schlussfolgerung" data-ans="These mit Begründung"></select></div>
+    <div class="item"><span class="t">Z. 8–10 („Natürlich haben … hinterlassen.“)</span><select id="a51_3" data-save data-opts="Problemaufriss mit Beispielen|These mit Begründung|Einräumung eines Gegenarguments|Entkräftung des Gegenarguments|Forderung und Schlussfolgerung" data-ans="Einräumung eines Gegenarguments"></select></div>
+    <div class="item"><span class="t">Z. 10–13 („Aber erben … der Staat?“)</span><select id="a51_4" data-save data-opts="Problemaufriss mit Beispielen|These mit Begründung|Einräumung eines Gegenarguments|Entkräftung des Gegenarguments|Forderung und Schlussfolgerung" data-ans="Entkräftung des Gegenarguments"></select></div>
+    <div class="item"><span class="t">Z. 14–17 („Die Reform … doppelt.“)</span><select id="a51_5" data-save data-opts="Problemaufriss mit Beispielen|These mit Begründung|Einräumung eines Gegenarguments|Entkräftung des Gegenarguments|Forderung und Schlussfolgerung" data-ans="Forderung und Schlussfolgerung"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Signalwörter helfen: „Natürlich … einen Punkt“ räumt etwas ein, „Aber“ leitet die Gegenrede ein, „Wir brauchen“ formuliert eine Forderung.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Problemaufriss mit Beispielen · These mit Begründung (Schuldenbremse als Ursache) · Einräumung eines Gegenarguments (Zinsen, Generationen) · Entkräftung (Investitionen als Vermögen, Vergleich mit Unternehmen) · Forderung und Schlussfolgerung (goldene Regel)</p></div>
+  </div>
+
+  <div class="task" data-task="a52">
+    <h3>Aufgabe A5.2 – Sprachliche Mittel und ihre Wirkung <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">„Deutschland fährt auf Verschleiß“ (Z. 1)</span><select id="a52_1" data-save data-opts="Metapher|rhetorische Frage|Antithese|Vergleich" data-ans="Metapher"></select></div>
+    <div class="item"><span class="t">„Wie konnte es so weit kommen?“ (Z. 3 f.)</span><select id="a52_2" data-save data-opts="Metapher|rhetorische Frage|Antithese|Vergleich" data-ans="rhetorische Frage"></select></div>
+    <div class="item"><span class="t">„Jedes Unternehmen finanziert seine Investitionen … auch mit Krediten“ (Z. 12 f.)</span><select id="a52_3" data-save data-opts="Metapher|rhetorische Frage|Antithese|Vergleich" data-ans="Vergleich"></select></div>
+    <div class="item"><span class="t">„wer heute an der Zukunft spart, zahlt morgen doppelt“ (Z. 16 f.)</span><select id="a52_4" data-save data-opts="Metapher|rhetorische Frage|Antithese|Vergleich" data-ans="Antithese"></select></div>
+    <div class="item"><span class="t">Welche Wirkung hat das Wortspiel „Bremse … Bremsklotz“ (Z. 6 f.)?</span><select id="a52_5" data-save data-opts="Es verdreht den Namen der Regel ins Negative und lässt sie als Hindernis erscheinen.|Es erklärt sachlich, wie die Schuldenbremse funktioniert.|Es zeigt, dass die Autorin die Schuldenbremse unterstützt." data-ans="Es verdreht den Namen der Regel ins Negative und lässt sie als Hindernis erscheinen."></select></div>
+    <div class="item"><span class="t">Welche Wirkung hat „unsere Kinder“ (Z. 10)?</span><select id="a52_6" data-save data-opts="Es schafft Nähe und appelliert an die Verantwortung der Leser.|Es belegt die These mit statistischen Daten.|Es grenzt die Autorin von den Lesern ab." data-ans="Es schafft Nähe und appelliert an die Verantwortung der Leser."></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Eine Antithese stellt Gegensätze gegenüber (heute – morgen, sparen – zahlen). Bei einem Vergleich wird der Staat mit etwas anderem gleichgesetzt.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Metapher (Bild vom abgenutzten Fahrzeug, macht den Verfall anschaulich) · rhetorische Frage (lenkt auf die Antwort der Autorin hin) · Vergleich (Staat wie ein Unternehmen – macht die Forderung plausibel, blendet aber Unterschiede aus) · Antithese (einprägsame Pointe am Schluss) · Umdeutung des Begriffs ins Negative · emotionaler Appell, Wir-Bezug</p></div>
+  </div>
+
+  <div class="task" data-task="a53">
+    <h3>Aufgabe A5.3 – Intention, Adressaten, Einordnung <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">Textsorte</span><select id="a53_1" data-save data-opts="Bericht|Kommentar|Interview|Gesetzestext" data-ans="Kommentar"></select></div>
+    <div class="item"><span class="t">Intention</span><select id="a53_2" data-save data-opts="die Leser sachlich über die Funktionsweise der Schuldenbremse informieren|die Leser davon überzeugen, die Schuldenbremse durch eine goldene Regel zu ersetzen|die Leser davon überzeugen, die Schuldenbremse zu verschärfen" data-ans="die Leser davon überzeugen, die Schuldenbremse durch eine goldene Regel zu ersetzen"></select></div>
+    <div class="item"><span class="t">Adressaten</span><select id="a53_3" data-save data-opts="politisch interessierte Zeitungsleser und Entscheidungsträger in der Politik|ausschließlich Wirtschaftswissenschaftler|Kinder und Jugendliche" data-ans="politisch interessierte Zeitungsleser und Entscheidungsträger in der Politik"></select></div>
+    <div class="item"><span class="t">Wirtschaftspolitische Einordnung</span><select id="a53_4" data-save data-opts="eher nachfrageorientiert (keynesianisch)|eher angebotsorientiert (monetaristisch)" data-ans="eher nachfrageorientiert (keynesianisch)"></select></div>
+    <div class="item"><span class="t">Was blendet der Text weitgehend aus?</span><select id="a53_5" data-save data-opts="die Gefahr, dass „Investitionen“ weit ausgelegt und Kredite für anderes genutzt werden|den Zustand der Infrastruktur|die Reform von 2025" data-ans="die Gefahr, dass „Investitionen“ weit ausgelegt und Kredite für anderes genutzt werden"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Die Forderung steht am Ende (Z. 15 f.). Fragt die Autorin nach mehr oder weniger Spielraum für staatliche Kredite?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Kommentar · Überzeugung für eine goldene Regel · politisch interessierte Leser und Entscheidungsträger · eher nachfrageorientiert: der Staat soll kreditfinanziert investieren · ausgeblendet werden u. a. die Abgrenzungsprobleme beim Investitionsbegriff, steigende Zinslasten und die Frage, ob mehr Geld auch schneller verbaut werden kann (Planungs- und Fachkräfteengpässe).</p></div>
+  </div>
+
+  <div class="task" data-task="a55" data-free="1">
+    <h3>Aufgabe A5.4 – Schreib jetzt deine Analyse <span class="afb">AFB II</span></h3>
+    <p><strong>Analysiere</strong> den Kommentar im Hinblick auf Position, Argumentation und Intention der Autorin. Nutze deine Ergebnisse aus A5.1 bis A5.3.</p>
+    <ul class="bau">
+      <li>„In ihrem Kommentar ‚…‘ setzt sich … mit der Frage auseinander, ob … Sie vertritt die These, …“</li>
+      <li>„Zunächst entwirft die Autorin … (Z. …). Anschließend behauptet sie, … und begründet dies damit, dass …“</li>
+      <li>„In Z. … räumt sie ein, dass … Diesen Einwand entkräftet sie, indem sie …“</li>
+      <li>„Unterstützt wird die Argumentation durch … (Z. …), wodurch …“</li>
+      <li>„Abschließend fordert sie … Intention des Kommentars ist es, … Die Position lässt sich … zuordnen, weil …“</li>
+    </ul>
+    <textarea id="a55_txt" data-save rows="12" placeholder="Deine Analyse …"></textarea>
+    <div class="btns"><button type="button" class="primary" data-freebtn>Mit Musteranalyse vergleichen</button></div>
+    <div class="feedback"></div>
+    <div class="reveal sol"><h4>Musteranalyse (eine mögliche Lösung)</h4>
+      <p>In ihrem Gastkommentar „Der Bremsklotz“ setzt sich Miriam Kessler mit der Schuldenbremse auseinander. Sie vertritt die These, die Regel sei mitverantwortlich für den Investitionsstau in Deutschland und müsse durch eine goldene Regel ersetzt werden.</p>
+      <p>Zu Beginn entwirft die Autorin ein düsteres Bild des Zustands der Infrastruktur, das sie mit Beispielen wie gesperrten Brücken und unpünktlichen Zügen veranschaulicht (Z. 1–3). Die metaphorische Feststellung, Deutschland fahre „auf Verschleiß“ (Z. 1), macht den Verfall anschaulich. Mit einer rhetorischen Frage (Z. 3 f.) leitet sie zu ihrer These über: Die Schuldenbremse erlaube nur minimale Neuverschuldung, weshalb zuerst bei Investitionen gespart werde (Z. 4–6). Durch das Wortspiel „Bremse“ – „Bremsklotz“ (Z. 6 f.) deutet sie den Namen der Regel ins Negative um.</p>
+      <p>Anschließend räumt Kessler ein, dass Schulden Zinsen kosten und künftige Generationen belasten könnten (Z. 8–10). Diesen Einwand entkräftet sie, indem sie mit einer weiteren rhetorischen Frage darauf verweist, dass auch eine marode Infrastruktur ein Erbe sei (Z. 10). Investitionen seien kein Ballast, sondern ein Vermögen (Z. 11 f.). Der Vergleich mit Unternehmen, die ebenfalls kreditfinanziert investierten (Z. 12 f.), soll ihre Forderung plausibel machen, blendet aber die Unterschiede zwischen Staat und Unternehmen aus.</p>
+      <p>Abschließend würdigt sie die Reform von 2025 als ersten Schritt, hält ein befristetes Sondervermögen aber für unzureichend und fordert eine goldene Regel (Z. 14–16). Die Antithese im Schlusssatz (Z. 16 f.) bündelt ihre Position einprägsam.</p>
+      <p>Intention des Kommentars ist es, politisch interessierte Leser und Entscheidungsträger von einer Reform der Schuldenbremse zu überzeugen; der Wir-Bezug („unsere Kinder“, Z. 10) appelliert an ihre Verantwortung. Die Position ist eher nachfrageorientiert, da sie dem Staat eine aktive, kreditfinanzierte Investitionsrolle zuschreibt. Ausgeblendet werden etwa die Gefahr, dass der Investitionsbegriff weit ausgelegt wird, sowie steigende Zinslasten.</p></div>
+  </div>
+</section>
+
+<!-- ====================== A6 ====================== -->
+<section class="card" id="a6">
+  <h2><span class="kicker">Station A6 · Werkstatt</span>Ein politisches Urteil formulieren</h2>
+  <p class="ziel">Ziel: Du kannst zu einer politischen oder wirtschaftspolitischen Streitfrage ein kriteriengeleitetes, gewichtetes und begründetes Urteil schreiben.</p>
+  <div class="info">
+    <h4>Aufbau eines Urteils</h4>
+    <ol>
+      <li><strong>Urteilsfrage präzisieren:</strong> Worüber genau wird geurteilt? Ggf. Begriffe klären.</li>
+      <li><strong>Kriterien nennen:</strong> mindestens <strong>Effizienz</strong> und <strong>Legitimität</strong>; je nach Frage auch Nachhaltigkeit, Gerechtigkeit, Freiheit oder Sicherheit.</li>
+      <li><strong>Pro und Contra je Kriterium:</strong> Argumente mit Fachwissen begründen (Theorie, Daten, Beispiele) – nicht nur behaupten.</li>
+      <li><strong>Perspektiven:</strong> Wer ist betroffen? Unternehmen, Beschäftigte, Arbeitslose, Staat, künftige Generationen …</li>
+      <li><strong>Gewichtung:</strong> Welche Argumente wiegen schwerer – und warum? Das ist der Kern des Urteils.</li>
+      <li><strong>Fazit:</strong> eine klare Antwort auf die Frage. Ein differenziertes Urteil („ja, aber nur unter Bedingung …“) ist erlaubt, ein „Es kommt darauf an“ ohne Festlegung nicht.</li>
+    </ol>
+    <p><strong>Sachurteil oder Werturteil?</strong> Bei „beurteilen“ reicht ein Sachurteil anhand von Kriterien. Bei „bewerten“ oder „Stellung nehmen“ legst du zusätzlich deine Wertmaßstäbe offen: „Weil mir … wichtiger ist als …, halte ich …“</p>
+    <p><strong>Typische Fehler:</strong> nur eine Seite darstellen · Argumente aufzählen, ohne zu gewichten · Fazit beantwortet die Frage nicht · Behauptungen ohne Begründung · Wiederholung der Textanalyse statt eigener Argumente.</p>
+  </div>
+  <p><strong>Urteilsfrage für diese Werkstatt:</strong> Sollte der Staat in der nächsten Rezession ein kreditfinanziertes Konjunkturprogramm auflegen?</p>
+
+  <div class="task" data-task="u1">
+    <h3>Aufgabe A6.1 – Argumente sortieren <span class="afb">AFB II</span></h3>
+    <p>Bestimme für jedes Argument, ob es für oder gegen das Konjunkturprogramm spricht und welches Kriterium es anspricht.</p>
+    <table class="q">
+      <tr><th>Argument</th><th>Richtung</th><th>Kriterium</th></tr>
+      <tr><td class="c">Das Programm stützt die Nachfrage und kann über den Multiplikator Arbeitsplätze sichern.</td><td><select id="u1_1a" data-save data-opts="pro|contra" data-ans="pro"></select></td><td><select id="u1_1b" data-save data-opts="Effizienz|Legitimität" data-ans="Effizienz"></select></td></tr>
+      <tr><td class="c">Bis das Programm wirkt, ist die Rezession womöglich vorbei.</td><td><select id="u1_2a" data-save data-opts="pro|contra" data-ans="contra"></select></td><td><select id="u1_2b" data-save data-opts="Effizienz|Legitimität" data-ans="Effizienz"></select></td></tr>
+      <tr><td class="c">Der Sozialstaat ist verpflichtet, Menschen vor unverschuldeter Arbeitslosigkeit zu schützen.</td><td><select id="u1_3a" data-save data-opts="pro|contra" data-ans="pro"></select></td><td><select id="u1_3b" data-save data-opts="Effizienz|Legitimität" data-ans="Legitimität"></select></td></tr>
+      <tr><td class="c">Die Kredite müssen künftige Generationen zurückzahlen, die nicht mitentscheiden konnten.</td><td><select id="u1_4a" data-save data-opts="pro|contra" data-ans="contra"></select></td><td><select id="u1_4b" data-save data-opts="Effizienz|Legitimität" data-ans="Legitimität"></select></td></tr>
+      <tr><td class="c">Höhere Staatsschulden können die Zinsen steigen lassen und private Investitionen verdrängen.</td><td><select id="u1_5a" data-save data-opts="pro|contra" data-ans="contra"></select></td><td><select id="u1_5b" data-save data-opts="Effizienz|Legitimität" data-ans="Effizienz"></select></td></tr>
+      <tr><td class="c">Die Konjunkturkomponente der Schuldenbremse erlaubt in Rezessionen ausdrücklich zusätzliche Kredite.</td><td><select id="u1_6a" data-save data-opts="pro|contra" data-ans="pro"></select></td><td><select id="u1_6b" data-save data-opts="Effizienz|Legitimität" data-ans="Legitimität"></select></td></tr>
+      <tr><td class="c">Ein Programm, das vor allem Neuwagenkäufe fördert, begünstigt Wohlhabende.</td><td><select id="u1_7a" data-save data-opts="pro|contra" data-ans="contra"></select></td><td><select id="u1_7b" data-save data-opts="Effizienz|Legitimität" data-ans="Legitimität"></select></td></tr>
+      <tr><td class="c">Vorgezogene Investitionen in Schienen und Schulen nützen auch noch nach der Krise.</td><td><select id="u1_8a" data-save data-opts="pro|contra" data-ans="pro"></select></td><td><select id="u1_8b" data-save data-opts="Effizienz|Legitimität" data-ans="Effizienz"></select></td></tr>
+    </table>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Effizienz fragt: Wirkt es, und lohnt es sich? Legitimität fragt: Ist es rechtmäßig, demokratisch und gerecht?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>pro/Effizienz · contra/Effizienz (Time lags) · pro/Legitimität (Sozialstaatsprinzip) · contra/Legitimität (Generationengerechtigkeit) · contra/Effizienz (crowding out) · pro/Legitimität (verfassungskonform) · contra/Legitimität (Verteilungsgerechtigkeit) · pro/Effizienz</p></div>
+  </div>
+
+  <div class="task" data-task="u2">
+    <h3>Aufgabe A6.2 – Welcher Satz ist besser? <span class="afb">AFB III</span></h3>
+    <div class="item"><span class="t"><strong>Einstieg</strong><br>A: „Ich finde Konjunkturprogramme gut, weil sie helfen.“<br>B: „Zu beurteilen ist, ob ein kreditfinanziertes Programm in der Rezession sinnvoll ist. Als Kriterien ziehe ich Effizienz und Legitimität heran.“</span><select id="u2_1" data-save data-opts="A|B" data-ans="B"></select></div>
+    <div class="item"><span class="t"><strong>Argument</strong><br>A: „Ein Programm kann Arbeitsplätze sichern, da es über den Multiplikator die Nachfrage um ein Vielfaches des eingesetzten Betrags erhöht.“<br>B: „Ein Programm ist gut für die Wirtschaft.“</span><select id="u2_2" data-save data-opts="A|B" data-ans="A"></select></div>
+    <div class="item"><span class="t"><strong>Gewichtung</strong><br>A: „Es gibt also Argumente dafür und dagegen.“<br>B: „Schwerer wiegt für mich die Gefahr dauerhafter Arbeitslosigkeit, weil sie Einkommen und Qualifikationen langfristig zerstört; die Zinslast ist demgegenüber begrenzt.“</span><select id="u2_3" data-save data-opts="A|B" data-ans="B"></select></div>
+    <div class="item"><span class="t"><strong>Werturteil</strong><br>A: „Weil mir soziale Sicherheit wichtiger ist als ein ausgeglichener Haushalt, halte ich …“<br>B: „Jeder weiß doch, dass Schulden schlecht sind.“</span><select id="u2_4" data-save data-opts="A|B" data-ans="A"></select></div>
+    <div class="item"><span class="t"><strong>Fazit</strong><br>A: „Abschließend lässt sich sagen, dass es eine schwierige Frage ist.“<br>B: „Ein befristetes, auf Investitionen ausgerichtetes Programm halte ich deshalb für richtig – vorausgesetzt, die Kredite werden im Aufschwung zurückgeführt.“</span><select id="u2_5" data-save data-opts="A|B" data-ans="B"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Ein guter Satz ist konkret, begründet, benutzt Fachbegriffe – und legt sich fest.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>B (Frage und Kriterien) · A (begründet mit Fachwissen) · B (echte Gewichtung mit Begründung) · A (Wertmaßstab offengelegt) · B (klare, bedingte Antwort)</p></div>
+  </div>
+
+  <div class="task" data-task="u3" data-build="1">
+    <h3>Aufgabe A6.3 – Der Urteilsbaukasten <span class="afb">AFB III</span></h3>
+    <p>Fülle die Bausteine aus – kurz und in ganzen Sätzen. Mit dem Knopf unten setzt du sie zu einem zusammenhängenden Urteil zusammen, das du dann noch überarbeiten kannst.</p>
+    <div class="fld2"><label>1 · Urteilsfrage und Kriterien</label><textarea id="u3_1" data-save rows="2" placeholder="Zu beurteilen ist, ob … Als Kriterien ziehe ich … heran."></textarea></div>
+    <div class="fld2"><label>2 · Effizienz – was spricht dafür?</label><textarea id="u3_2" data-save rows="2" placeholder="Unter dem Aspekt der Effizienz spricht für …, dass …"></textarea></div>
+    <div class="fld2"><label>3 · Effizienz – was spricht dagegen?</label><textarea id="u3_3" data-save rows="2" placeholder="Dagegen lässt sich einwenden, dass …"></textarea></div>
+    <div class="fld2"><label>4 · Legitimität – was spricht dafür?</label><textarea id="u3_4" data-save rows="2" placeholder="Unter dem Gesichtspunkt der Legitimität ist zu berücksichtigen, dass …"></textarea></div>
+    <div class="fld2"><label>5 · Legitimität – was spricht dagegen?</label><textarea id="u3_5" data-save rows="2" placeholder="Kritisch ist allerdings, dass …"></textarea></div>
+    <div class="fld2"><label>6 · Gewichtung</label><textarea id="u3_6" data-save rows="2" placeholder="Wägt man die Argumente ab, wiegt … schwerer, weil …"></textarea></div>
+    <div class="fld2"><label>7 · Fazit</label><textarea id="u3_7" data-save rows="2" placeholder="Insgesamt halte ich … daher für …, sofern …"></textarea></div>
+    <div class="btns"><button type="button" class="primary" id="u3_build">Zu einem Urteil zusammensetzen</button></div>
+    <div class="feedback" id="u3_fb"></div>
+    <div id="u3_outwrap" style="display:none">
+      <h3>Dein Urteil – jetzt überarbeiten</h3>
+      <textarea id="u3_out" data-save rows="14"></textarea>
+      <h3>Prüfe dein Urteil</h3>
+      <ul class="check">
+        <li><input type="checkbox" id="u3_c1"><label for="u3_c1">Die Urteilsfrage und mindestens zwei Kriterien sind ausdrücklich genannt.</label></li>
+        <li><input type="checkbox" id="u3_c2"><label for="u3_c2">Zu jedem Kriterium gibt es Pro- und Contra-Argumente.</label></li>
+        <li><input type="checkbox" id="u3_c3"><label for="u3_c3">Jedes Argument ist mit Fachwissen begründet (z. B. Multiplikator, Time lags, Schuldenbremse).</label></li>
+        <li><input type="checkbox" id="u3_c4"><label for="u3_c4">Ich habe ausdrücklich gewichtet und gesagt, warum.</label></li>
+        <li><input type="checkbox" id="u3_c5"><label for="u3_c5">Das Fazit beantwortet die Frage eindeutig (ggf. mit Bedingungen).</label></li>
+      </ul>
+      <div class="btns"><button type="button" id="u3_solbtn">Musterurteil anzeigen</button></div>
+      <div class="reveal sol" id="u3_sol"><h4>Musterurteil (eine mögliche Lösung)</h4>
+        <p>Zu beurteilen ist, ob der Staat in der nächsten Rezession ein kreditfinanziertes Konjunkturprogramm auflegen sollte. Als Kriterien ziehe ich Effizienz und Legitimität heran.</p>
+        <p>Unter dem Aspekt der Effizienz spricht für ein Programm, dass es die eingebrochene Nachfrage stützt. Nach Keynes kann der Multiplikatoreffekt bewirken, dass die Wirtschaftsleistung um mehr als den eingesetzten Betrag steigt; Entlassungen werden vermieden. Werden vor allem Investitionen in Schienen oder Schulen vorgezogen, wirkt das Programm zudem über die Krise hinaus. Dagegen lässt sich einwenden, dass Programme wegen der Erkennungs-, Entscheidungs- und Wirkungsverzögerung oft zu spät kommen und dann prozyklisch wirken. Außerdem können steigende Staatsschulden die Zinsen erhöhen und private Investitionen verdrängen.</p>
+        <p>Unter dem Gesichtspunkt der Legitimität ist zu berücksichtigen, dass der Sozialstaat Verantwortung für Menschen trägt, die unverschuldet arbeitslos werden. Zudem erlaubt die Konjunkturkomponente der Schuldenbremse in Rezessionen ausdrücklich zusätzliche Kredite – ein Programm wäre also verfassungskonform. Kritisch ist allerdings, dass künftige Generationen die Schulden tragen und dass Programme wie eine Kaufprämie für Neuwagen vor allem Wohlhabende begünstigen können.</p>
+        <p>Wägt man die Argumente ab, wiegt die Gefahr anhaltender Arbeitslosigkeit für mich schwerer, weil sie Einkommen, Qualifikationen und Steuereinnahmen dauerhaft schädigt. Dem Time-lag-Problem lässt sich begegnen, indem man auf schnell umsetzbare Maßnahmen wie Kurzarbeit setzt und Programme befristet. Die Zinslast ist begrenzt, wenn die Kredite im Aufschwung zurückgeführt werden.</p>
+        <p>Insgesamt halte ich ein kreditfinanziertes Konjunkturprogramm daher für richtig, sofern es befristet ist, auf Investitionen und zielgenaue Hilfen statt auf breite Konsumprämien setzt und die Schulden im Aufschwung getilgt werden.</p></div>
+    </div>
+  </div>
+</section>
+
+<p class="teil">Teil B · Inhaltsfeld 4: Wirtschaftspolitik</p>
+
+<!-- ====================== B1 ====================== -->
+<section class="card" id="b1">
+  <h2><span class="kicker">Station B1</span>Das Bruttoinlandsprodukt und der Wohlstand</h2>
+  <div class="info">
+    <h4>Das Wichtigste</h4>
+    <p>Das <strong>Bruttoinlandsprodukt (BIP)</strong> ist der Wert aller Waren und Dienstleistungen, die in einem Jahr im Inland produziert werden – abzüglich der Vorleistungen. Man kann es auf drei Wegen berechnen:</p>
+    <ul>
+      <li><strong>Entstehungsrechnung:</strong> In welchen Wirtschaftsbereichen wurde der Wert erzeugt?</li>
+      <li><strong>Verwendungsrechnung:</strong> Wofür wurde es verwendet? Konsum + Investitionen + Staatsausgaben + Außenbeitrag (Exporte − Importe).</li>
+      <li><strong>Verteilungsrechnung:</strong> Wem fließen die Einkommen zu? Arbeitnehmerentgelte sowie Unternehmens- und Vermögenseinkommen.</li>
+    </ul>
+    <p>Das <strong>nominale</strong> BIP wird in aktuellen Preisen gemessen, das <strong>reale</strong> BIP ist um die Preisentwicklung bereinigt. Nur das reale BIP zeigt echtes Wachstum.</p>
+    <p><strong>Kritik am BIP als Wohlstandsmaß:</strong> Es erfasst keine unbezahlte Arbeit (Hausarbeit, Ehrenamt), nicht die Verteilung, keine Umweltschäden und keine Lebensqualität. Defensivkosten – z. B. die Reparatur nach einem Unfall – erhöhen das BIP sogar. Alternativen sind z. B. der <strong>HDI</strong> (Lebenserwartung, Bildung, Einkommen) und der <strong>Nationale Wohlfahrtsindex (NWI)</strong>, der u. a. Hausarbeit hinzurechnet und Umweltschäden abzieht.</p>
+  </div>
+
+  <div class="task" data-task="w1">
+    <h3>Aufgabe B1.1 – BIP-Check <span class="afb">AFB I</span></h3>
+    <div class="item"><span class="t">„Die privaten Konsumausgaben machen gut die Hälfte des BIP aus.“ – Zu welcher Rechnung gehört diese Aussage?</span><select id="w1_1" data-save data-opts="Entstehungsrechnung|Verwendungsrechnung|Verteilungsrechnung" data-ans="Verwendungsrechnung"></select></div>
+    <div class="item"><span class="t">„Das Produzierende Gewerbe trägt rund ein Viertel zur Bruttowertschöpfung bei.“</span><select id="w1_2" data-save data-opts="Entstehungsrechnung|Verwendungsrechnung|Verteilungsrechnung" data-ans="Entstehungsrechnung"></select></div>
+    <div class="item"><span class="t">„Die Lohnquote ist gestiegen.“</span><select id="w1_3" data-save data-opts="Entstehungsrechnung|Verwendungsrechnung|Verteilungsrechnung" data-ans="Verteilungsrechnung"></select></div>
+    <div class="item"><span class="t">Das nominale BIP steigt um 5 %, die Preise steigen um 5 %. Wie stark ist das reale Wachstum?</span><select id="w1_4" data-save data-opts="0 %|5 %|10 %" data-ans="0 %"></select></div>
+    <div class="item"><span class="t">Ein Verkehrsunfall mit anschließender Reparatur kann das BIP erhöhen.</span><select id="w1_5" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Welcher Indikator berücksichtigt Lebenserwartung, Bildung und Einkommen?</span><select id="w1_6" data-save data-opts="HDI|NWI|BIP pro Kopf" data-ans="HDI"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Entstehung = <em>wo</em> produziert? Verwendung = <em>wofür</em> ausgegeben? Verteilung = <em>an wen</em> geht das Einkommen? Beim realen Wachstum ziehst du die Preissteigerung (näherungsweise) vom nominalen Wachstum ab.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Verwendungsrechnung · Entstehungsrechnung · Verteilungsrechnung · 0 % (nur die Preise sind gestiegen) · richtig (Defensivkosten) · HDI</p></div>
+  </div>
+</section>
+
+<!-- ====================== B2 ====================== -->
+<section class="card" id="b2">
+  <h2><span class="kicker">Station B2</span>Konjunktur und Konjunkturindikatoren</h2>
+  <div class="info">
+    <h4>Das Wichtigste</h4>
+    <p><strong>Konjunktur</strong> meint die kurz- bis mittelfristigen Schwankungen der wirtschaftlichen Aktivität um den langfristigen Wachstumstrend (das Wachstum des <strong>Produktionspotenzials</strong>). Ein Zyklus hat vier Phasen:</p>
+    <ul>
+      <li><strong>Aufschwung (Expansion):</strong> Nachfrage und Produktion steigen, Unternehmen investieren, die Arbeitslosigkeit beginnt zu sinken.</li>
+      <li><strong>Hochkonjunktur (Boom):</strong> Kapazitäten sind voll ausgelastet, Preise und Löhne steigen kräftig, kaum Arbeitslosigkeit.</li>
+      <li><strong>Abschwung (Rezession):</strong> Nachfrage und Investitionen gehen zurück, Lager füllen sich, Kurzarbeit nimmt zu. Von einer Rezession spricht man meist, wenn das reale BIP zwei Quartale in Folge schrumpft.</li>
+      <li><strong>Tiefphase (Depression):</strong> geringe Auslastung, hohe Arbeitslosigkeit, schwache Preisentwicklung, pessimistische Erwartungen.</li>
+    </ul>
+    <p><strong>Konjunkturindikatoren</strong> zeigen, wo die Wirtschaft steht. <strong>Frühindikatoren</strong> laufen der Entwicklung voraus (Erwartungen, Aufträge), <strong>Präsenzindikatoren</strong> zeigen die aktuelle Lage (Produktion, Auslastung), <strong>Spätindikatoren</strong> reagieren erst verzögert (Arbeitsmarkt, Preise).</p>
+  </div>
+
+  <div class="task" data-task="w2">
+    <h3>Aufgabe B2.1 – Welche Phase? <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">Die Fabriken arbeiten an der Kapazitätsgrenze, Fachkräfte sind kaum zu finden, die Gewerkschaften setzen hohe Lohnabschlüsse durch.</span><select id="w2_1" data-save data-opts="Aufschwung|Hochkonjunktur|Abschwung|Tiefphase" data-ans="Hochkonjunktur"></select></div>
+    <div class="item"><span class="t">Nach langer Flaute melden Unternehmen wieder mehr Aufträge und stellen vorsichtig neue Leute ein.</span><select id="w2_2" data-save data-opts="Aufschwung|Hochkonjunktur|Abschwung|Tiefphase" data-ans="Aufschwung"></select></div>
+    <div class="item"><span class="t">Die Lager füllen sich, Investitionen werden verschoben, die ersten Betriebe melden Kurzarbeit an.</span><select id="w2_3" data-save data-opts="Aufschwung|Hochkonjunktur|Abschwung|Tiefphase" data-ans="Abschwung"></select></div>
+    <div class="item"><span class="t">Die Arbeitslosigkeit ist hoch, die Preise stagnieren, Haushalte und Unternehmen erwarten keine Besserung.</span><select id="w2_4" data-save data-opts="Aufschwung|Hochkonjunktur|Abschwung|Tiefphase" data-ans="Tiefphase"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Achte auf die Richtung: Wird es besser oder schlechter? Und auf das Niveau: Ist die Auslastung hoch oder niedrig?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Hochkonjunktur · Aufschwung · Abschwung · Tiefphase</p></div>
+  </div>
+
+  <div class="task" data-task="w3">
+    <h3>Aufgabe B2.2 – Früh, präsent oder spät? <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">ifo-Geschäftsklimaindex (Erwartungen der Unternehmen)</span><select id="w3_1" data-save data-opts="Frühindikator|Präsenzindikator|Spätindikator" data-ans="Frühindikator"></select></div>
+    <div class="item"><span class="t">Auftragseingänge in der Industrie</span><select id="w3_2" data-save data-opts="Frühindikator|Präsenzindikator|Spätindikator" data-ans="Frühindikator"></select></div>
+    <div class="item"><span class="t">Industrieproduktion</span><select id="w3_3" data-save data-opts="Frühindikator|Präsenzindikator|Spätindikator" data-ans="Präsenzindikator"></select></div>
+    <div class="item"><span class="t">Kapazitätsauslastung</span><select id="w3_4" data-save data-opts="Frühindikator|Präsenzindikator|Spätindikator" data-ans="Präsenzindikator"></select></div>
+    <div class="item"><span class="t">Arbeitslosenquote</span><select id="w3_5" data-save data-opts="Frühindikator|Präsenzindikator|Spätindikator" data-ans="Spätindikator"></select></div>
+    <div class="item"><span class="t">Inflationsrate</span><select id="w3_6" data-save data-opts="Frühindikator|Präsenzindikator|Spätindikator" data-ans="Spätindikator"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Stell dir die Reihenfolge vor: Erst ändern sich Erwartungen und Bestellungen, dann wird mehr oder weniger produziert – und erst danach stellen Unternehmen ein oder entlassen, und die Preise passen sich an.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Früh: ifo-Index, Auftragseingänge · Präsenz: Produktion, Kapazitätsauslastung · Spät: Arbeitslosenquote, Inflationsrate</p></div>
+  </div>
+</section>
+
+<!-- ====================== B3 ====================== -->
+<section class="card" id="b3">
+  <h2><span class="kicker">Station B3</span>Die Ziele der Wirtschaftspolitik</h2>
+  <div class="info">
+    <h4>Das Wichtigste</h4>
+    <p>Das <strong>Stabilitäts- und Wachstumsgesetz</strong> von 1967 verpflichtet Bund und Länder, gleichzeitig zu vier Zielen beizutragen – dem <strong>magischen Viereck</strong>:</p>
+    <ul>
+      <li>Stabilität des Preisniveaus</li>
+      <li>hoher Beschäftigungsstand</li>
+      <li>außenwirtschaftliches Gleichgewicht</li>
+      <li>stetiges und angemessenes Wirtschaftswachstum</li>
+    </ul>
+    <p>„Magisch“ heißt das Viereck, weil sich nicht alle Ziele gleichzeitig vollständig erreichen lassen. Damit man die Ziele überprüfen kann, müssen sie <strong>operationalisiert</strong>, also mit messbaren Indikatoren verbunden werden. Oft wird das Viereck zum <strong>magischen Sechseck</strong> erweitert: um eine gerechte Einkommens- und Vermögensverteilung und den Schutz der Umwelt.</p>
+    <p><strong>Zielbeziehungen:</strong> Ziele können sich gegenseitig fördern (<strong>Zielharmonie</strong>), behindern (<strong>Zielkonflikt</strong>) oder nicht beeinflussen (<strong>Zielneutralität</strong>).</p>
+    <p><strong>Phillips-Kurve:</strong> Der Ökonom A. W. Phillips stellte 1958 für Großbritannien einen umgekehrten Zusammenhang zwischen Lohnsteigerungen und Arbeitslosigkeit fest. Später wurde daraus der Zielkonflikt zwischen Inflation und Arbeitslosigkeit. Bundeskanzler Helmut Schmidt soll 1972 gesagt haben, ihm seien 5 % Inflation lieber als 5 % Arbeitslosigkeit. In den 1970er-Jahren kam es jedoch zur <strong>Stagflation</strong>: hohe Inflation <em>und</em> hohe Arbeitslosigkeit. Milton Friedman argumentierte, der Zusammenhang gelte höchstens kurzfristig. Langfristig passten sich die Erwartungen an, und mehr Inflation senke die Arbeitslosigkeit nicht dauerhaft.</p>
+  </div>
+
+  <div class="task" data-task="w4">
+    <h3>Aufgabe B3.1 – Ziel und Indikator <span class="afb">AFB I</span></h3>
+    <div class="item"><span class="t">Stabilität des Preisniveaus</span><select id="w4_1" data-save data-opts="Inflationsrate (Verbraucherpreisindex)|Arbeitslosenquote|Außenbeitrag bzw. Leistungsbilanzsaldo in % des BIP|Veränderungsrate des realen BIP" data-ans="Inflationsrate (Verbraucherpreisindex)"></select></div>
+    <div class="item"><span class="t">hoher Beschäftigungsstand</span><select id="w4_2" data-save data-opts="Inflationsrate (Verbraucherpreisindex)|Arbeitslosenquote|Außenbeitrag bzw. Leistungsbilanzsaldo in % des BIP|Veränderungsrate des realen BIP" data-ans="Arbeitslosenquote"></select></div>
+    <div class="item"><span class="t">außenwirtschaftliches Gleichgewicht</span><select id="w4_3" data-save data-opts="Inflationsrate (Verbraucherpreisindex)|Arbeitslosenquote|Außenbeitrag bzw. Leistungsbilanzsaldo in % des BIP|Veränderungsrate des realen BIP" data-ans="Außenbeitrag bzw. Leistungsbilanzsaldo in % des BIP"></select></div>
+    <div class="item"><span class="t">stetiges und angemessenes Wachstum</span><select id="w4_4" data-save data-opts="Inflationsrate (Verbraucherpreisindex)|Arbeitslosenquote|Außenbeitrag bzw. Leistungsbilanzsaldo in % des BIP|Veränderungsrate des realen BIP" data-ans="Veränderungsrate des realen BIP"></select></div>
+    <div class="item"><span class="t">Ein höheres Wachstum führt zu mehr Beschäftigung. – Welche Zielbeziehung?</span><select id="w4_5" data-save data-opts="Zielharmonie|Zielkonflikt|Zielneutralität" data-ans="Zielharmonie"></select></div>
+    <div class="item"><span class="t">Mehr Wachstum durch mehr Produktion erhöht den Ressourcenverbrauch. – Welche Zielbeziehung?</span><select id="w4_6" data-save data-opts="Zielharmonie|Zielkonflikt|Zielneutralität" data-ans="Zielkonflikt"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Das außenwirtschaftliche Gleichgewicht misst man nicht an Exporten allein, sondern an der Differenz zwischen Exporten und Importen bzw. am Saldo der Leistungsbilanz – im Verhältnis zur Größe der Volkswirtschaft.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Inflationsrate · Arbeitslosenquote · Außenbeitrag bzw. Leistungsbilanzsaldo in % des BIP · Veränderungsrate des realen BIP · Zielharmonie · Zielkonflikt (Wachstum vs. Umweltschutz im magischen Sechseck)</p></div>
+  </div>
+
+  <div class="task" data-task="w5">
+    <h3>Aufgabe B3.2 – Die Phillips-Kurve <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">Die ursprüngliche Phillips-Kurve beschreibt einen beobachteten Zusammenhang zwischen Lohnsteigerungen und Arbeitslosigkeit.</span><select id="w5_1" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Das Schmidt-Zitat drückt die Hoffnung aus, man könne Arbeitslosigkeit durch etwas mehr Inflation verringern.</span><select id="w5_2" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Die Stagflation der 1970er-Jahre bestätigte die Phillips-Kurve.</span><select id="w5_3" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">Nach Friedman lässt sich die Arbeitslosigkeit durch dauerhaft höhere Inflation dauerhaft senken.</span><select id="w5_4" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Stagflation bedeutet: beides zugleich hoch. Passt das zu einem „Entweder-oder“?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>richtig · richtig · falsch (Inflation und Arbeitslosigkeit stiegen gleichzeitig – das widerspricht dem Zielkonflikt) · falsch (nach Friedman wirkt der Effekt nur kurzfristig, weil sich die Inflationserwartungen anpassen)</p></div>
+  </div>
+</section>
+
+<!-- ====================== B4 ====================== -->
+<section class="card" id="b4">
+  <h2><span class="kicker">Station B4</span>Inflation und Arbeitslosigkeit</h2>
+  <div class="info">
+    <h4>Inflation</h4>
+    <p>Die Inflationsrate misst, wie stark die Preise eines <strong>Warenkorbs</strong> typischer Güter gegenüber dem Vorjahr gestiegen sind (Verbraucherpreisindex). Die Güter werden nach ihrem Anteil an den Ausgaben gewichtet. Problem: Der Warenkorb ist ein Durchschnitt – die „gefühlte“ Inflation einzelner Haushalte kann deutlich abweichen.</p>
+    <p><strong>Ursachen:</strong></p>
+    <ul>
+      <li><strong>nachfragebedingt:</strong> Die Gesamtnachfrage ist größer als das Angebot (z. B. in der Hochkonjunktur).</li>
+      <li><strong>angebotsbedingt (Kostendruck):</strong> Produktionskosten steigen und werden auf die Preise umgelegt – z. B. Energie, Rohstoffe oder Löhne (Lohn-Preis-Spirale).</li>
+      <li><strong>geldmengenbedingt:</strong> Die Geldmenge wächst stärker als die Gütermenge.</li>
+    </ul>
+    <p><strong>Folgen:</strong> Inflation senkt die Kaufkraft und verteilt um: Sparer und Gläubiger verlieren, Schuldner mit festen Zinsen gewinnen. Wer ein festes Einkommen hat, verliert real, solange Löhne und Renten nicht angepasst werden. Besonders betroffen sind Haushalte mit geringem Einkommen, weil sie einen großen Teil für Lebensmittel und Energie ausgeben. <strong>Deflation</strong>, also dauerhaft sinkende Preise, ist ebenfalls gefährlich: Haushalte warten mit Käufen ab, Unternehmen investieren weniger – es droht eine Abwärtsspirale.</p>
+    <h4 style="margin-top:14px">Arbeitslosigkeit</h4>
+    <ul>
+      <li><strong>friktionell:</strong> kurze Übergangszeit beim Wechsel zwischen zwei Stellen</li>
+      <li><strong>saisonal:</strong> jahreszeitlich bedingt (z. B. Bau, Tourismus)</li>
+      <li><strong>konjunkturell:</strong> durch zu geringe gesamtwirtschaftliche Nachfrage im Abschwung</li>
+      <li><strong>strukturell:</strong> durch den Wandel der Wirtschaftsstruktur; Qualifikationen, Branchen oder Regionen passen nicht mehr zu den offenen Stellen (Mismatch)</li>
+    </ul>
+  </div>
+
+  <div class="task" data-task="w6">
+    <h3>Aufgabe B4.1 – Ursachen und Folgen der Inflation <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">Nach dem russischen Angriff auf die Ukraine steigen die Gas- und Ölpreise stark; Unternehmen geben die Kosten weiter.</span><select id="w6_1" data-save data-opts="nachfragebedingt|angebotsbedingt|geldmengenbedingt" data-ans="angebotsbedingt"></select></div>
+    <div class="item"><span class="t">Im Boom wollen Haushalte, Unternehmen und Staat mehr kaufen, als die Wirtschaft produzieren kann.</span><select id="w6_2" data-save data-opts="nachfragebedingt|angebotsbedingt|geldmengenbedingt" data-ans="nachfragebedingt"></select></div>
+    <div class="item"><span class="t">Die Zentralbank weitet die Geldmenge stark aus, ohne dass mehr produziert wird.</span><select id="w6_3" data-save data-opts="nachfragebedingt|angebotsbedingt|geldmengenbedingt" data-ans="geldmengenbedingt"></select></div>
+    <div class="item"><span class="t">Eine Familie hat 20 000 € auf dem Sparbuch mit 0,5 % Zinsen; die Inflation beträgt 6 %.</span><select id="w6_4" data-save data-opts="gewinnt|verliert|nicht betroffen" data-ans="verliert"></select></div>
+    <div class="item"><span class="t">Ein Unternehmen hat einen Kredit mit festem Zinssatz von 2 % aufgenommen; die Inflation beträgt 6 %.</span><select id="w6_5" data-save data-opts="gewinnt|verliert|nicht betroffen" data-ans="gewinnt"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Vergleiche Zinssatz und Inflationsrate: Ist der Zins niedriger als die Inflation, ist der reale Zins negativ. Gut für den, der zurückzahlt – schlecht für den, der Geld angelegt hat.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>angebotsbedingt · nachfragebedingt · geldmengenbedingt · verliert (realer Zins ca. −5,5 %) · gewinnt (die Schuld verliert real an Wert)</p></div>
+  </div>
+
+  <div class="task" data-task="w7">
+    <h3>Aufgabe B4.2 – Welche Arbeitslosigkeit? <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">Ein Maurer ist im Januar arbeitslos, weil bei Frost nicht gebaut werden kann.</span><select id="w7_1" data-save data-opts="friktionell|saisonal|konjunkturell|strukturell" data-ans="saisonal"></select></div>
+    <div class="item"><span class="t">Eine Bürokauffrau hat gekündigt und beginnt in sechs Wochen eine neue Stelle.</span><select id="w7_2" data-save data-opts="friktionell|saisonal|konjunkturell|strukturell" data-ans="friktionell"></select></div>
+    <div class="item"><span class="t">Ein Automobilzulieferer für Verbrennermotoren schließt; die Beschäftigten finden in der Region keine passende Stelle.</span><select id="w7_3" data-save data-opts="friktionell|saisonal|konjunkturell|strukturell" data-ans="strukturell"></select></div>
+    <div class="item"><span class="t">In einer Rezession sinkt die Nachfrage in fast allen Branchen, Unternehmen entlassen Personal.</span><select id="w7_4" data-save data-opts="friktionell|saisonal|konjunkturell|strukturell" data-ans="konjunkturell"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Frage nach der Dauer und nach der Ursache: kurzer Übergang? Jahreszeit? Gesamtwirtschaftliche Flaute? Oder dauerhafter Wandel einer Branche?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>saisonal · friktionell · strukturell · konjunkturell</p></div>
+  </div>
+</section>
+
+<!-- ====================== B5 ====================== -->
+<section class="card" id="b5">
+  <h2><span class="kicker">Station B5</span>Wirtschaftspolitische Konzeptionen: Keynes und Friedman <span class="fok">Fokus 2028</span></h2>
+  <p class="ziel">Leitfrage: Soll der Staat die Konjunktur aktiv steuern – oder vor allem verlässliche Rahmenbedingungen setzen? Hinter dieser Frage stehen zwei Denkschulen, die du im Abitur theoriegeleitet vergleichen, auf Texte anwenden und beurteilen können musst.</p>
+
+  <div class="info">
+    <h4>1 · John Maynard Keynes – nachfrageorientierte Wirtschaftspolitik</h4>
+    <p><strong>Hintergrund:</strong> In der Weltwirtschaftskrise ab 1929 stieg die Arbeitslosigkeit in vielen Ländern dramatisch. Die klassische Theorie erwartete, dass sich die Märkte von selbst erholen – doch die Krise hielt jahrelang an. Der britische Ökonom John Maynard Keynes entwickelte daraufhin in seiner „Allgemeinen Theorie der Beschäftigung, des Zinses und des Geldes“ (1936) eine neue Erklärung.</p>
+    <ul>
+      <li><strong>Die Nachfrage bestimmt die Produktion:</strong> Unternehmen produzieren nur so viel, wie sie absetzen können. Entscheidend ist die gesamtwirtschaftliche Nachfrage aus Konsum, Investitionen, Staatsausgaben und Außenbeitrag. Sinkt sie, wird weniger produziert und entlassen.</li>
+      <li><strong>Unterbeschäftigungsgleichgewicht:</strong> Eine Volkswirtschaft kann dauerhaft bei hoher Arbeitslosigkeit verharren. Es gibt keinen Mechanismus, der sie automatisch zur Vollbeschäftigung zurückführt.</li>
+      <li><strong>Lohnsenkungen helfen nicht:</strong> Löhne sind für Unternehmen Kosten, für Haushalte aber Einkommen. Sinken sie, sinkt auch die Nachfrage – die Krise verschärft sich. Außerdem lassen sich Löhne kaum senken (Lohnstarrheit nach unten).</li>
+      <li><strong>Erwartungen:</strong> In der Krise sind Unternehmen pessimistisch. Selbst sehr niedrige Zinsen bringen sie dann kaum zum Investieren, die Geldpolitik verliert an Wirkung.</li>
+      <li><strong>Sparparadoxon:</strong> Wenn in der Krise alle Haushalte mehr sparen, sinken Nachfrage und Einkommen. Am Ende wird insgesamt nicht mehr gespart – aber alle sind ärmer.</li>
+    </ul>
+    <p><strong>Folgerung:</strong> Der Staat muss die Nachfragelücke schließen – mit <strong>antizyklischer Fiskalpolitik</strong>. Im Abschwung erhöht er die Ausgaben oder senkt Steuern und finanziert das über Kredite (<strong>deficit spending</strong>). Im Boom bremst er die Überhitzung, spart und tilgt die Schulden.</p>
+    <p><strong>Der Multiplikator:</strong> Eine zusätzliche Staatsausgabe wird für andere zu Einkommen, das sie zum Teil wieder ausgeben – und so weiter. Der Multiplikator <strong>k = 1 / (1 − c)</strong> gibt an, wie stark das BIP höchstens steigt. Dabei ist <strong>c</strong> die marginale Konsumquote: der Anteil eines zusätzlichen Euros, der konsumiert wird. Bei c = 0,8 ist k = 5 – aus 10 Mrd. € Staatsausgaben können theoretisch bis zu 50 Mrd. € zusätzliches BIP werden. In der Realität ist der Effekt kleiner, weil ein Teil des Einkommens gespart, als Steuer abgeführt oder für Importe ausgegeben wird.</p>
+    <p><strong>Beispiele aus Deutschland:</strong> das Stabilitäts- und Wachstumsgesetz von 1967 („Globalsteuerung“ unter Wirtschaftsminister Karl Schiller), die Konjunkturpakete in der Finanzkrise 2008/09 (u. a. „Abwrackprämie“, ausgeweitete Kurzarbeit, öffentliche Investitionen) und die befristete Senkung der Mehrwertsteuer in der Corona-Krise 2020.</p>
+  </div>
+
+  <div class="info">
+    <h4>2 · Milton Friedman – Monetarismus und Angebotspolitik</h4>
+    <p><strong>Hintergrund:</strong> In den 1970er-Jahren kam es nach den Ölpreiskrisen zur <strong>Stagflation</strong>: hohe Inflation und hohe Arbeitslosigkeit zugleich. Mehr Staatsausgaben halfen nicht, die Schulden stiegen. Der US-Ökonom Milton Friedman (Nobelpreis 1976) wurde zum wichtigsten Vertreter des <strong>Monetarismus</strong>. Er knüpfte an die klassische und neoklassische Tradition an.</p>
+    <ul>
+      <li><strong>Märkte sind stabil:</strong> Preise, Löhne und Zinsen passen sich an und sorgen für Ausgleich. Nach der Neoklassik schafft sich jedes Angebot seine Nachfrage (Saysches Theorem). Größere Störungen gehen meist vom Staat aus, z. B. von einer unstetigen, kurzatmigen Politik.</li>
+      <li><strong>Quantitätstheorie des Geldes:</strong> M · V = P · Y (Geldmenge · Umlaufgeschwindigkeit = Preisniveau · reales BIP). Wächst die Geldmenge schneller als die Produktion, steigen die Preise. Friedman: Inflation sei immer und überall ein monetäres Phänomen.</li>
+      <li><strong>Geldmengenregel:</strong> Die Zentralbank soll keine Konjunktur machen, sondern die Geldmenge stetig und nach einer festen Regel ungefähr im Tempo des Produktionspotenzials wachsen lassen. Die Deutsche Bundesbank veröffentlichte ab 1975 Geldmengenziele.</li>
+      <li><strong>Natürliche Arbeitslosenquote:</strong> Wie hoch die Arbeitslosigkeit langfristig ist, hängt von Strukturen ab: Regeln am Arbeitsmarkt, Qualifikation, Mobilität. Mehr Nachfrage senkt sie nur kurzfristig. Sobald sich die Erwartungen anpassen, bleibt nur höhere Inflation – die Phillips-Kurve ist langfristig senkrecht.</li>
+    </ul>
+    <p><strong>Kritik an keynesianischer Politik:</strong></p>
+    <ul>
+      <li><strong>Time lags:</strong> Bis eine Krise erkannt ist (Erkennungsverzögerung), ein Programm beschlossen ist (Entscheidungsverzögerung) und es wirkt (Wirkungsverzögerung), hat sich die Lage oft schon gedreht. Das Programm wirkt dann <strong>prozyklisch</strong> und heizt den Aufschwung zusätzlich an.</li>
+      <li><strong>Crowding out:</strong> Leiht sich der Staat viel Geld, können die Zinsen steigen, und private Investitionen werden verdrängt.</li>
+      <li><strong>Staatsverschuldung:</strong> Im Abschwung wird gerne ausgegeben, im Boom aber selten gespart. Die Schulden wachsen von Krise zu Krise, die Zinslasten engen künftige Haushalte ein.</li>
+    </ul>
+    <p><strong>Angebotsorientierte Wirtschaftspolitik</strong> folgert daraus: Der Staat soll die Bedingungen für die Anbieter verbessern – Steuern und Abgaben senken, Bürokratie abbauen, den Arbeitsmarkt flexibilisieren, den Haushalt konsolidieren und Wettbewerb sichern. Dann investieren Unternehmen, und Wachstum und Beschäftigung folgen langfristig.</p>
+    <p><strong>Beispiele aus Deutschland:</strong> die Geldmengensteuerung der Bundesbank ab 1975, die Arbeitsmarktreformen der „Agenda 2010“ (ab 2003, u. a. Hartz-Reformen) und Senkungen der Unternehmenssteuern. Auch die Schuldenbremse von 2009 steht für das Ziel solider Staatsfinanzen.</p>
+  </div>
+
+  <div class="info">
+    <h4>3 · Der Vergleich auf einen Blick</h4>
+    <table class="q">
+      <tr><th></th><th>nachfrageorientiert (Keynes)</th><th>angebotsorientiert (Friedman, Neoklassik)</th></tr>
+      <tr><td><strong>Entstehung</strong></td><td>Antwort auf die Weltwirtschaftskrise der 1930er</td><td>Antwort auf die Stagflation der 1970er</td></tr>
+      <tr><td><strong>Bild vom Markt</strong></td><td>instabil, findet nicht von allein zur Vollbeschäftigung</td><td>grundsätzlich stabil, reguliert sich selbst</td></tr>
+      <tr><td><strong>Ursache von Krisen</strong></td><td>zu geringe gesamtwirtschaftliche Nachfrage</td><td>schlechte Angebotsbedingungen, unstetige Politik</td></tr>
+      <tr><td><strong>Rolle des Staates</strong></td><td>aktiv, antizyklisch steuern</td><td>zurückhaltend, verlässliche Regeln setzen</td></tr>
+      <tr><td><strong>Fiskalpolitik</strong></td><td>deficit spending im Abschwung, Tilgung im Boom</td><td>ausgeglichener Haushalt, Steuern senken</td></tr>
+      <tr><td><strong>Geldpolitik</strong></td><td>unterstützend, in der Krise aber oft wirkungslos</td><td>zentral: Geldmengenregel, Preisstabilität</td></tr>
+      <tr><td><strong>Löhne</strong></td><td>als Nachfrage wichtig, Lohnsenkungen schaden</td><td>als Kosten wichtig, Lohnzurückhaltung schafft Arbeitsplätze</td></tr>
+      <tr><td><strong>Zeithorizont</strong></td><td>kurzfristig: die Krise jetzt bekämpfen</td><td>langfristig: Wachstumsbedingungen verbessern</td></tr>
+      <tr><td><strong>Hauptkritik</strong></td><td>Time lags, Staatsverschuldung, crowding out</td><td>Nachfrageschwäche wird übersehen, Ungleichheit kann wachsen, Gewinne werden nicht zwingend investiert</td></tr>
+    </table>
+    <p>In der Praxis mischen die meisten Regierungen Elemente beider Ansätze (<strong>Policy-Mix</strong>). Im Abitur musst du deshalb oft herausarbeiten, welcher Logik eine konkrete Forderung folgt – auch wenn der Text die Theorie gar nicht nennt.</p>
+  </div>
+
+  <div class="task" data-task="w12">
+    <h3>Aufgabe B5.1 – Keynes verstehen <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">Wenn in einer Krise alle Haushalte mehr sparen, steigt die gesamtwirtschaftliche Ersparnis zuverlässig an.</span><select id="w12_1" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">Nach Keynes sind Lohnsenkungen in der Krise ein gutes Mittel gegen Arbeitslosigkeit.</span><select id="w12_2" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">Eine Volkswirtschaft kann nach Keynes dauerhaft bei hoher Arbeitslosigkeit verharren.</span><select id="w12_3" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Im Boom soll der Staat nach Keynes zusätzliche Kredite aufnehmen.</span><select id="w12_4" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">Das Stabilitäts- und Wachstumsgesetz von 1967 ist keynesianisch geprägt.</span><select id="w12_5" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Denk an die doppelte Rolle von Ausgaben: Was der eine ausgibt, ist für den anderen Einkommen. Und „antizyklisch“ heißt: immer gegen die aktuelle Konjunkturrichtung.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>falsch (Sparparadoxon: Nachfrage und Einkommen sinken, die Ersparnis insgesamt steigt nicht) · falsch (Löhne sind auch Nachfrage) · richtig (Unterbeschäftigungsgleichgewicht) · falsch (im Boom sparen und Schulden tilgen) · richtig</p></div>
+  </div>
+
+  <div class="task" data-task="w13">
+    <h3>Aufgabe B5.2 – Den Multiplikator berechnen <span class="afb">AFB II</span></h3>
+    <p>Die marginale Konsumquote beträgt c = 0,75. Der Staat legt ein Investitionsprogramm über 20 Mrd. € auf.</p>
+    <div class="item"><span class="t">Wie groß ist der Multiplikator k = 1 / (1 − c)?</span><select id="w13_1" data-save data-opts="1,33|4|7,5|15" data-ans="4"></select></div>
+    <div class="item"><span class="t">Um wie viel kann das BIP theoretisch höchstens steigen?</span><select id="w13_2" data-save data-opts="20 Mrd. €|26,6 Mrd. €|80 Mrd. €|150 Mrd. €" data-ans="80 Mrd. €"></select></div>
+    <div class="item"><span class="t">Die Haushalte sparen mehr, c sinkt auf 0,5. Der Multiplikator wird …</span><select id="w13_3" data-save data-opts="größer|kleiner|bleibt gleich" data-ans="kleiner"></select></div>
+    <div class="item"><span class="t">Warum ist der tatsächliche Effekt meist kleiner als berechnet?</span><select id="w13_4" data-save data-opts="Weil Teile des Einkommens gespart, versteuert oder für Importe ausgegeben werden.|Weil der Staat das Geld später zurückfordert.|Weil der Multiplikator nur im Boom wirkt." data-ans="Weil Teile des Einkommens gespart, versteuert oder für Importe ausgegeben werden."></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>1 − 0,75 = 0,25. Und 1 / 0,25 = ? Den BIP-Effekt bekommst du, wenn du die Staatsausgabe mit dem Multiplikator malnimmst.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>k = 1 / 0,25 = <strong>4</strong> · 20 Mrd. € · 4 = <strong>80 Mrd. €</strong> · bei c = 0,5 ist k = 2, also <strong>kleiner</strong> · Sickerverluste durch Ersparnis, Steuern und Importe</p></div>
+  </div>
+
+  <div class="task" data-task="w14">
+    <h3>Aufgabe B5.3 – Friedman verstehen <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">Die Geldmenge wächst um 10 %, die Umlaufgeschwindigkeit bleibt gleich, das reale BIP wächst um 2 %. Um wie viel steigt das Preisniveau ungefähr?</span><select id="w14_1" data-save data-opts="2 %|8 %|10 %|12 %" data-ans="8 %"></select></div>
+    <div class="item"><span class="t">Friedman fordert, dass die Zentralbank die Geldmenge je nach Konjunkturlage kräftig erhöht oder senkt.</span><select id="w14_2" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">Nach Friedman kann mehr Nachfrage die Arbeitslosigkeit nur kurzfristig unter die natürliche Quote senken.</span><select id="w14_3" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Die natürliche Arbeitslosenquote senkt man nach dieser Sicht vor allem durch …</span><select id="w14_4" data-save data-opts="Konjunkturprogramme|Reformen am Arbeitsmarkt und bessere Qualifikation|höhere Inflation" data-ans="Reformen am Arbeitsmarkt und bessere Qualifikation"></select></div>
+    <div class="item"><span class="t">Welche historische Erfahrung stärkte Friedmans Position?</span><select id="w14_5" data-save data-opts="die Weltwirtschaftskrise der 1930er|die Stagflation der 1970er|die Finanzkrise 2008/09" data-ans="die Stagflation der 1970er"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Bei der Quantitätsgleichung gilt näherungsweise: Wachstum von M + Wachstum von V = Wachstum von P + Wachstum von Y.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>8 % (10 % + 0 % = P + 2 %) · falsch (feste, stetige Geldmengenregel statt Feinsteuerung) · richtig · Reformen am Arbeitsmarkt und bessere Qualifikation · die Stagflation der 1970er</p></div>
+  </div>
+
+  <div class="task" data-task="w15">
+    <h3>Aufgabe B5.4 – Das Time-lag-Problem <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">Die Statistiker melden erst im Mai, dass das BIP seit Oktober schrumpft.</span><select id="w15_1" data-save data-opts="Erkennungsverzögerung|Entscheidungsverzögerung|Wirkungsverzögerung" data-ans="Erkennungsverzögerung"></select></div>
+    <div class="item"><span class="t">Regierung, Bundestag und Bundesrat streiten monatelang über das Konjunkturpaket.</span><select id="w15_2" data-save data-opts="Erkennungsverzögerung|Entscheidungsverzögerung|Wirkungsverzögerung" data-ans="Entscheidungsverzögerung"></select></div>
+    <div class="item"><span class="t">Die beschlossenen Bauprojekte beginnen erst, nachdem Planung und Ausschreibung abgeschlossen sind.</span><select id="w15_3" data-save data-opts="Erkennungsverzögerung|Entscheidungsverzögerung|Wirkungsverzögerung" data-ans="Wirkungsverzögerung"></select></div>
+    <div class="item"><span class="t">Das Programm wirkt erst, als die Wirtschaft schon wieder boomt. Es wirkt dann …</span><select id="w15_4" data-save data-opts="antizyklisch|prozyklisch|neutral" data-ans="prozyklisch"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Die drei Verzögerungen kommen in einer festen Reihenfolge: erst erkennen, dann entscheiden, dann wirken.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Erkennungsverzögerung · Entscheidungsverzögerung · Wirkungsverzögerung · prozyklisch – es verstärkt den Boom, statt die Krise zu dämpfen. Das ist ein zentrales Argument der Monetaristen gegen aktive Konjunkturpolitik.</p></div>
+  </div>
+
+  <div class="task" data-task="w16">
+    <h3>Aufgabe B5.5 – Welcher Logik folgt die Maßnahme? <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">„Abwrackprämie“ für den Kauf eines Neuwagens (2009)</span><select id="w16_1" data-save data-opts="nachfrageorientiert|angebotsorientiert" data-ans="nachfrageorientiert"></select></div>
+    <div class="item"><span class="t">Hartz-Reformen im Rahmen der „Agenda 2010“ (ab 2003)</span><select id="w16_2" data-save data-opts="nachfrageorientiert|angebotsorientiert" data-ans="angebotsorientiert"></select></div>
+    <div class="item"><span class="t">Befristete Senkung der Mehrwertsteuer in der Corona-Krise (2020)</span><select id="w16_3" data-save data-opts="nachfrageorientiert|angebotsorientiert" data-ans="nachfrageorientiert"></select></div>
+    <div class="item"><span class="t">Die Bundesbank veröffentlicht ein Ziel für das Geldmengenwachstum (ab 1975)</span><select id="w16_4" data-save data-opts="nachfrageorientiert|angebotsorientiert" data-ans="angebotsorientiert"></select></div>
+    <div class="item"><span class="t">Senkung der Körperschaftsteuer und schnellere Genehmigungsverfahren für Unternehmen</span><select id="w16_5" data-save data-opts="nachfrageorientiert|angebotsorientiert" data-ans="angebotsorientiert"></select></div>
+    <div class="item"><span class="t">Ausweitung des Kurzarbeitergeldes, damit Beschäftigte ihr Einkommen behalten</span><select id="w16_6" data-save data-opts="nachfrageorientiert|angebotsorientiert" data-ans="nachfrageorientiert"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Vorsicht bei der Mehrwertsteuer: Steuersenkung klingt angebotsorientiert. Aber wen soll sie hier zum Kaufen bringen – und wie lange?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>nachfrageorientiert (Konsum ankurbeln) · angebotsorientiert (Arbeitsmarkt flexibilisieren) · nachfrageorientiert (befristet, damit Haushalte Käufe vorziehen) · angebotsorientiert (Monetarismus, Geldmengenregel) · angebotsorientiert (Kosten senken, Bürokratie abbauen) · nachfrageorientiert (Einkommen und damit Nachfrage stabilisieren)</p></div>
+  </div>
+
+<div class="task" data-task="w8">
+    <h3>Aufgabe B5.6 – Wer sagt das? <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">„In der Krise muss der Staat einspringen, wenn private Haushalte und Unternehmen zu wenig nachfragen.“</span><select id="w8_1" data-save data-opts="nachfrageorientiert|angebotsorientiert" data-ans="nachfrageorientiert"></select></div>
+    <div class="item"><span class="t">„Senkt die Unternehmenssteuern, dann wird wieder investiert und eingestellt.“</span><select id="w8_2" data-save data-opts="nachfrageorientiert|angebotsorientiert" data-ans="angebotsorientiert"></select></div>
+    <div class="item"><span class="t">„Konjunkturprogramme kommen meist zu spät und verpuffen.“</span><select id="w8_3" data-save data-opts="nachfrageorientiert|angebotsorientiert" data-ans="angebotsorientiert"></select></div>
+    <div class="item"><span class="t">„Jeder Euro, den der Staat investiert, erzeugt durch den Multiplikator mehr als einen Euro Wirtschaftsleistung.“</span><select id="w8_4" data-save data-opts="nachfrageorientiert|angebotsorientiert" data-ans="nachfrageorientiert"></select></div>
+    <div class="item"><span class="t">„Die Zentralbank soll die Geldmenge nach einer festen Regel wachsen lassen, statt die Konjunktur zu steuern.“</span><select id="w8_5" data-save data-opts="nachfrageorientiert|angebotsorientiert" data-ans="angebotsorientiert"></select></div>
+    <div class="item"><span class="t">„Im Abschwung zu sparen ist falsch – das verschärft die Krise.“</span><select id="w8_6" data-save data-opts="nachfrageorientiert|angebotsorientiert" data-ans="nachfrageorientiert"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Wer setzt bei der <em>Nachfrage</em> an (Staat gibt Geld aus, stützt Konsum)? Wer bei den Bedingungen für die <em>Anbieter</em> (Kosten, Steuern, Regeln, Verlässlichkeit)?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>nachfrageorientiert · angebotsorientiert · angebotsorientiert (Kritik an Konjunkturprogrammen) · nachfrageorientiert · angebotsorientiert (Monetarismus) · nachfrageorientiert</p></div>
+  </div>
+
+  <div class="info">
+    <h4>4 · Staatsverschuldung und Schuldenbremse</h4>
+    <p>Am Umgang mit Staatsschulden zeigt sich der Unterschied der beiden Konzeptionen besonders deutlich: Für Keynesianer sind Kredite in der Krise ein notwendiges Instrument. Angebotsorientierte Ökonomen sehen in wachsenden Schulden eine Gefahr für Zinsen, Vertrauen und künftige Generationen.</p>
+    <p>Seit 2009 steht die Schuldenbremse im Grundgesetz (Art. 109 und 115). Der Bund darf sich strukturell, also unabhängig von der Konjunktur, jährlich mit höchstens <strong>0,35 % des BIP</strong> neu verschulden. Eine <strong>Konjunkturkomponente</strong> erlaubt im Abschwung zusätzliche Kredite, die im Aufschwung zurückgeführt werden. In Notsituationen wie Naturkatastrophen oder schweren Krisen kann der Bundestag Ausnahmen beschließen.</p>
+    <p>Im März 2025 wurde das Grundgesetz geändert: Verteidigungsausgaben über 1 % des BIP sind von der Schuldenbremse ausgenommen. Die Länder dürfen sich zusammen strukturell mit 0,35 % des BIP verschulden, vorher war ihnen das nicht erlaubt. Zudem gibt es ein kreditfinanziertes <strong>Sondervermögen</strong> von 500 Mrd. € für Infrastruktur und Klimaneutralität mit einer Laufzeit von zwölf Jahren.</p>
+  </div>
+
+  <div class="task" data-task="w9">
+    <h3>Aufgabe B5.7 – Schuldenbremse: Fakten-Check <span class="afb">AFB I</span> <span class="fok">Fokus 2028</span></h3>
+    <div class="item"><span class="t">Der Bund darf sich strukturell mit höchstens 0,35 % des BIP pro Jahr neu verschulden.</span><select id="w9_1" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Die Länder dürfen sich auch nach 2025 überhaupt nicht strukturell verschulden.</span><select id="w9_2" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">Im Abschwung erlaubt die Konjunkturkomponente zusätzliche Kredite.</span><select id="w9_3" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Verteidigungsausgaben über 1 % des BIP werden nicht auf die Schuldenbremse angerechnet.</span><select id="w9_4" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Die Schuldenbremse ist ein einfaches Gesetz, das der Bundestag mit einfacher Mehrheit ändern kann.</span><select id="w9_5" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">Ein Keynesianer würde eine starre Schuldenbremse eher kritisch sehen.</span><select id="w9_6" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Lies den Abschnitt zur Reform von 2025 noch einmal genau. Und: Wo steht die Schuldenbremse – und was braucht man, um das zu ändern?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>richtig · falsch (seit 2025 zusammen 0,35 % des BIP) · richtig · richtig · falsch (sie steht im Grundgesetz, für eine Änderung braucht es eine Zwei-Drittel-Mehrheit in Bundestag und Bundesrat) · richtig (sie schränkt antizyklisches deficit spending ein)</p></div>
+  </div>
+
+  <div class="task" data-task="v2" data-free="1">
+    <h3>Aufgabe B5.8 – Abi-Probe: einen Text theoriegeleitet einordnen <span class="afb">AFB II</span></h3>
+    <p class="status">Fiktiver Gastkommentar, zu Übungszwecken verfasst.</p>
+    <div class="sample">„Schluss mit dem Konjunkturaktivismus! Wann immer die Wirtschaft schwächelt, ruft die Politik nach neuen Ausgabenprogrammen. Doch die Bilanz ist ernüchternd: Bis ein Programm beschlossen ist und das Geld fließt, hat sich die Konjunktur oft längst erholt. Zurück bleiben höhere Schulden, für die unsere Kinder Zinsen zahlen. Statt immer neuer Strohfeuer brauchen Unternehmen Verlässlichkeit: niedrigere Steuern, schnellere Genehmigungen und einen Arbeitsmarkt, der Einstellungen nicht bestraft. Investiert wird dort, wo es sich lohnt – nicht dort, wo der Staat Prämien verteilt. Und die Zentralbank sollte sich auf ihre Kernaufgabe besinnen: die Geldmenge im Griff zu behalten, damit die Inflation nicht erneut außer Kontrolle gerät.“</div>
+    <p><strong>Ordne</strong> die Position des Kommentars in die wirtschaftspolitischen Konzeptionen <strong>ein</strong>. Belege deine Einordnung am Text und benenne, welche Aspekte der Gegenposition ausgeblendet werden.</p>
+    <textarea id="v2_txt" data-save rows="9" placeholder="Deine Einordnung …"></textarea>
+    <div class="btns"><button type="button" class="primary" data-freebtn>Mit Erwartungen vergleichen</button></div>
+    <div class="feedback"></div>
+    <div class="reveal sol"><h4>Das sollte deine Einordnung enthalten</h4><ul>
+      <li><strong>Einordnung:</strong> angebotsorientierte bzw. monetaristische Position (Friedman, Neoklassik)</li>
+      <li><strong>Kritik an Nachfragepolitik:</strong> „Strohfeuer“, Programme kommen zu spät → Time-lag-Argument, Gefahr prozyklischer Wirkung</li>
+      <li><strong>Staatsverschuldung:</strong> Zinslast für „unsere Kinder“ → Argument der Generationengerechtigkeit, Plädoyer für Haushaltsdisziplin</li>
+      <li><strong>Forderungen:</strong> Steuersenkung, Bürokratieabbau, flexibler Arbeitsmarkt → klassische Instrumente der Angebotspolitik; Investitionen hängen von Renditeerwartungen und Rahmenbedingungen ab, nicht von staatlichen Prämien</li>
+      <li><strong>Geldpolitik:</strong> „Geldmenge im Griff behalten“ → Quantitätstheorie, Geldmengenregel, Inflation als monetäres Phänomen</li>
+      <li><strong>Staatsbild:</strong> Der Staat soll verlässliche Regeln setzen, nicht steuern.</li>
+      <li><strong>Ausgeblendet:</strong> Nachfrageschwäche als Krisenursache, Multiplikatoreffekt, Sparparadoxon, soziale Folgen von Krisen, positive Wirkungen kreditfinanzierter Investitionen (z. B. in Infrastruktur), Erfolge wie Kurzarbeit 2009</li>
+      <li><strong>Form:</strong> Aussagen in indirekter Rede, mit Belegen aus dem Text; Fachbegriffe korrekt verwendet</li></ul></div>
+  </div>
+</section>
+
+<!-- ====================== B6 ====================== -->
+<section class="card" id="b6">
+  <h2><span class="kicker">Station B6</span>Instrumente, Träger und Außenwirtschaft</h2>
+  <div class="info">
+    <h4>Bereiche und Träger der Wirtschaftspolitik</h4>
+    <ul>
+      <li><strong>Geldpolitik:</strong> Die <strong>Europäische Zentralbank (EZB)</strong> ist für den gesamten Euroraum zuständig und unabhängig. Ihr vorrangiges Ziel ist Preisstabilität (mittelfristig 2 % Inflation). Ihr wichtigstes Instrument sind die Leitzinsen. Deutschland kann seine Geldpolitik also nicht mehr allein bestimmen.</li>
+      <li><strong>Fiskalpolitik:</strong> Bundesregierung und Bundestag steuern über Staatsausgaben, Steuern und Kredite.</li>
+      <li><strong>Steuern:</strong> <em>Direkte</em> Steuern zahlt der Steuerpflichtige selbst (Einkommen-/Lohnsteuer, Körperschaftsteuer). <em>Indirekte</em> Steuern werden über den Preis an die Verbraucher weitergegeben (Umsatzsteuer, Energiesteuer). Die aufkommensstärksten Steuern sind Lohn- und Einkommensteuer sowie Umsatzsteuer.</li>
+      <li><strong>Lohn- bzw. Tarifpolitik:</strong> Gewerkschaften und Arbeitgeberverbände handeln Tarifverträge aus (Tarifautonomie).</li>
+      <li><strong>Wettbewerbspolitik:</strong> Das Bundeskartellamt verhindert Kartelle und den Missbrauch von Marktmacht.</li>
+      <li><strong>Arbeitsmarktpolitik:</strong> Die Bundesagentur für Arbeit vermittelt, qualifiziert und zahlt z. B. Kurzarbeitergeld.</li>
+    </ul>
+    <h4 style="margin-top:14px">Freihandel und Protektionismus <span class="fok">Fokus 2028</span></h4>
+    <p>Nach David Ricardos Theorie der <strong>komparativen Kostenvorteile</strong> profitieren zwei Länder vom Handel, wenn sich jedes auf die Güter spezialisiert, die es <em>vergleichsweise</em> günstig herstellen kann – selbst wenn ein Land alles billiger produziert. <strong>Protektionismus</strong> schützt die heimische Wirtschaft vor ausländischer Konkurrenz. Dazu dienen <strong>tarifäre</strong> Handelshemmnisse (Zölle) und <strong>nichttarifäre</strong> (Importquoten, Subventionen für heimische Anbieter, technische Normen, Bürokratie).</p>
+    <p><strong>Argumente für Protektionismus:</strong> Schutz junger Industrien („Erziehungszoll“ nach Friedrich List), Schutz von Arbeitsplätzen, Versorgungssicherheit und Unabhängigkeit bei strategischen Gütern, Reaktion auf unfaire Praktiken anderer Staaten. <strong>Argumente dagegen:</strong> höhere Preise für Verbraucher und Unternehmen, weniger Wettbewerb und Innovation, Gefahr von Gegenzöllen und Handelskriegen – für ein exportstarkes Land wie Deutschland besonders riskant.</p>
+  </div>
+
+  <div class="task" data-task="w10">
+    <h3>Aufgabe B6.1 – Wer ist zuständig? <span class="afb">AFB I</span></h3>
+    <div class="item"><span class="t">Erhöhung der Leitzinsen, um die Inflation zu senken</span><select id="w10_1" data-save data-opts="EZB|Bundesregierung und Bundestag|Gewerkschaften und Arbeitgeberverbände|Bundeskartellamt|Bundesagentur für Arbeit" data-ans="EZB"></select></div>
+    <div class="item"><span class="t">Konjunkturprogramm mit öffentlichen Investitionen</span><select id="w10_2" data-save data-opts="EZB|Bundesregierung und Bundestag|Gewerkschaften und Arbeitgeberverbände|Bundeskartellamt|Bundesagentur für Arbeit" data-ans="Bundesregierung und Bundestag"></select></div>
+    <div class="item"><span class="t">Abschluss eines neuen Tarifvertrags in der Metallindustrie</span><select id="w10_3" data-save data-opts="EZB|Bundesregierung und Bundestag|Gewerkschaften und Arbeitgeberverbände|Bundeskartellamt|Bundesagentur für Arbeit" data-ans="Gewerkschaften und Arbeitgeberverbände"></select></div>
+    <div class="item"><span class="t">Untersagung einer Preisabsprache zwischen Zementherstellern</span><select id="w10_4" data-save data-opts="EZB|Bundesregierung und Bundestag|Gewerkschaften und Arbeitgeberverbände|Bundeskartellamt|Bundesagentur für Arbeit" data-ans="Bundeskartellamt"></select></div>
+    <div class="item"><span class="t">Auszahlung von Kurzarbeitergeld</span><select id="w10_5" data-save data-opts="EZB|Bundesregierung und Bundestag|Gewerkschaften und Arbeitgeberverbände|Bundeskartellamt|Bundesagentur für Arbeit" data-ans="Bundesagentur für Arbeit"></select></div>
+    <div class="item"><span class="t">Die Umsatzsteuer ist eine …</span><select id="w10_6" data-save data-opts="direkte Steuer|indirekte Steuer" data-ans="indirekte Steuer"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Die Bundesregierung kann die Zinsen nicht festlegen und keine Löhne bestimmen – dafür gibt es eigene, unabhängige Akteure.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>EZB (Geldpolitik) · Bundesregierung und Bundestag (Fiskalpolitik) · Gewerkschaften und Arbeitgeberverbände (Tarifautonomie) · Bundeskartellamt (Wettbewerbspolitik) · Bundesagentur für Arbeit (Arbeitsmarktpolitik) · indirekte Steuer</p></div>
+  </div>
+
+  <div class="task" data-task="w11">
+    <h3>Aufgabe B6.2 – Freihandel oder Protektionismus? <span class="afb">AFB II</span> <span class="fok">Fokus 2028</span></h3>
+    <div class="item"><span class="t">Ein Staat erhebt 25 % Zoll auf importierte Autos.</span><select id="w11_1" data-save data-opts="tarifäres Handelshemmnis|nichttarifäres Handelshemmnis" data-ans="tarifäres Handelshemmnis"></select></div>
+    <div class="item"><span class="t">Ein Staat erlaubt nur noch 10 000 Tonnen Stahlimporte pro Jahr.</span><select id="w11_2" data-save data-opts="tarifäres Handelshemmnis|nichttarifäres Handelshemmnis" data-ans="nichttarifäres Handelshemmnis"></select></div>
+    <div class="item"><span class="t">Ein Staat zahlt heimischen Solarmodulherstellern hohe Subventionen.</span><select id="w11_3" data-save data-opts="tarifäres Handelshemmnis|nichttarifäres Handelshemmnis" data-ans="nichttarifäres Handelshemmnis"></select></div>
+    <div class="item"><span class="t">„Wir dürfen bei Medikamenten und Chips nicht von einzelnen Ländern abhängig sein.“</span><select id="w11_4" data-save data-opts="spricht für Protektionismus|spricht für Freihandel" data-ans="spricht für Protektionismus"></select></div>
+    <div class="item"><span class="t">„Gegenzölle treffen gerade die exportstarke deutsche Industrie.“</span><select id="w11_5" data-save data-opts="spricht für Protektionismus|spricht für Freihandel" data-ans="spricht für Freihandel"></select></div>
+    <div class="item"><span class="t">„Durch Spezialisierung können beide Länder mehr Güter konsumieren als ohne Handel.“</span><select id="w11_6" data-save data-opts="spricht für Protektionismus|spricht für Freihandel" data-ans="spricht für Freihandel"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>„Tarif“ kommt hier vom englischen <em>tariff</em> = Zoll. Alles, was den Handel behindert, aber kein Zoll ist, ist nichttarifär.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>tarifär · nichttarifär (Quote) · nichttarifär (Subvention) · Protektionismus (Versorgungssicherheit) · Freihandel (Gefahr von Handelskonflikten) · Freihandel (komparative Kostenvorteile nach Ricardo)</p></div>
+  </div>
+</section>
+
+<!-- ====================== VERNETZUNG ====================== -->
+<section class="card" id="vernetzung">
+  <h2><span class="kicker">Abi-Probe</span>Inhaltsfelder vernetzen</h2>
+  <p>Im Abitur wird jede Aufgabe mit einem zweiten Inhaltsfeld verknüpft. Hier kannst du das üben.</p>
+  <div class="task" data-task="v1" data-free="1">
+    <h3>Aufgabe V1 – Inflation als Gerechtigkeitsfrage <span class="afb">AFB II</span></h3>
+    <p><strong>Erläutere</strong>, warum die Bundesregierung im Kampf gegen eine hohe Inflation nur begrenzte Möglichkeiten hat und warum Inflation die soziale Ungleichheit verschärfen kann. Beziehe dich auf die Rolle der EZB und auf unterschiedliche Haushalte.</p>
+    <textarea id="v1_txt" data-save rows="8" placeholder="Deine Erläuterung …"></textarea>
+    <div class="btns"><button type="button" class="primary" data-freebtn>Mit Erwartungen vergleichen</button></div>
+    <div class="feedback"></div>
+    <div class="reveal sol"><h4>Das sollte deine Antwort enthalten</h4><ul>
+      <li><strong>Geldpolitik liegt bei der EZB:</strong> Sie ist unabhängig und entscheidet für den ganzen Euroraum. Die Leitzinsen kann die Bundesregierung nicht beeinflussen. Ein Zinsniveau, das für den Euroraum insgesamt passt, passt nicht unbedingt zur Lage in Deutschland.</li>
+      <li><strong>Nationaler Spielraum:</strong> nur Fiskal- und Steuerpolitik, z. B. Entlastungspakete. Diese können die Inflation aber sogar anheizen, weil sie die Nachfrage stützen, und sie sind durch die Schuldenbremse begrenzt.</li>
+      <li><strong>Bei angebotsbedingter Inflation</strong> (Energiepreise) wirken Zinserhöhungen nur indirekt, über eine Dämpfung der Nachfrage.</li>
+      <li><strong>Ungleichheit (Vernetzung mit Inhaltsfeld 6):</strong> Haushalte mit geringem Einkommen geben einen größeren Anteil für Energie und Lebensmittel aus und haben kaum Rücklagen. Vermögende besitzen eher Sachwerte (Immobilien, Aktien), die ihren Wert halten. Transferempfänger und Rentner verlieren real, solange Leistungen nicht angepasst werden.</li>
+      <li>Ein Beispiel bzw. ein Bezug zu den Jahren 2022/23 macht deine Erläuterung stärker.</li></ul></div>
+  </div>
+</section>
+
+<!-- ====================== FOLGT ====================== -->
+<section class="card lock" id="folgt">
+  <h2><span class="kicker">Folgt im Laufe der Q1 und Q2</span>Weitere Inhaltsfelder</h2>
+  <ul>
+    <li><strong>Inhaltsfeld 5: Europäische Union</strong> – Fokussierung 2028: Integrationsmodelle (Föderalismus, Intergouvernementalismus, Funktionalismus)</li>
+    <li><strong>Inhaltsfeld 6: Soziale Ungleichheit, sozialer Wandel und soziale Sicherung</strong> – Fokussierung 2028: Schichten-, Lagen- und Milieumodelle</li>
+    <li><strong>Inhaltsfeld 7: Globale Strukturen und Prozesse</strong> – Fokussierung 2028: Realismus und Institutionalismus</li>
+  </ul>
+  <p>Diese Stationen werden ergänzt, sobald wir die Themen im Unterricht behandelt haben.</p>
+</section>
+
+<!-- ====================== ABSCHLUSS ====================== -->
+<section class="card" id="ende">
+  <h2><span class="kicker">Abschluss</span>Selbstcheck und Ergebnisblatt</h2>
+  <h3>Selbstcheck – kreuze an, was du sicher kannst</h3>
+  <ul class="check">
+    <li><input type="checkbox" id="sc1" data-save><label for="sc1">Ich erkenne an den Operatoren, was in einer Teilaufgabe verlangt ist, und kenne den Unterschied zwischen beurteilen, bewerten und erörtern.</label></li>
+    <li><input type="checkbox" id="sc2" data-save><label for="sc2">Ich kann einen Text mit vollständiger Einleitung, Zeilenbelegen und im Konjunktiv wiedergeben.</label></li>
+    <li><input type="checkbox" id="sc3" data-save><label for="sc3">Ich kann eine Statistik nach dem Schema auswerten und tappe nicht in die Falle „Rate ≠ Niveau“.</label></li>
+    <li><input type="checkbox" id="sc4" data-save><label for="sc4">Ich kann ein Urteil anhand von Effizienz und Legitimität begründen und gewichten.</label></li>
+    <li><input type="checkbox" id="sc9" data-save><label for="sc9">Ich kann einen Text analysieren: Argumentationsgang mit Funktionen, sprachliche Mittel mit Wirkung, Intention, Adressaten und Einordnung.</label></li>
+    <li><input type="checkbox" id="sc10" data-save><label for="sc10">Ich kann ein politisches Urteil schreiben, das Kriterien nennt, beide Seiten begründet, gewichtet und sich festlegt.</label></li>
+    <li><input type="checkbox" id="sc5" data-save><label for="sc5">Ich kann BIP, Konjunkturzyklus, Indikatoren und das magische Viereck erklären.</label></li>
+    <li><input type="checkbox" id="sc6" data-save><label for="sc6">Ich kann Ursachen und Folgen von Inflation sowie Arten von Arbeitslosigkeit erläutern und kenne die Phillips-Kurve.</label></li>
+    <li><input type="checkbox" id="sc7" data-save><label for="sc7">Ich kann die Konzeptionen von Keynes und Friedman mit ihren theoretischen Grundlagen (Multiplikator, Sparparadoxon, Quantitätstheorie, natürliche Arbeitslosenquote) erklären, vergleichen, auf Texte anwenden und die Schuldenbremse beurteilen.</label></li>
+    <li><input type="checkbox" id="sc8" data-save><label for="sc8">Ich kann Argumente für Freihandel und Protektionismus darstellen und kenne die Träger der Wirtschaftspolitik.</label></li>
+  </ul>
+  <h3>Dein Stand</h3>
+  <ul class="status" id="statusliste"></ul>
+  <div class="btns">
+    <button type="button" class="primary" onclick="druck()">Ergebnisblatt drucken / als PDF sichern</button>
+    <button type="button" onclick="loeschen()">Alle Antworten löschen</button>
+  </div>
+
+  <div class="savebox">
+    <h4>Speicherstand sichern</h4>
+    <p>Sichere deine Antworten am Ende jeder Sitzung als Datei. Mit „Speicherstand laden“ machst du an jedem Gerät und in jedem Browser weiter, auch auf dem Tablet.</p>
+    <div class="btns">
+      <button type="button" class="primary" onclick="exportStand()">Speicherstand als Datei sichern</button>
+      <button type="button" onclick="importStand()">Speicherstand laden</button>
+    </div>
+    <div class="savemsg" id="savemsg2"></div>
+  </div>
+  <p class="status" style="margin-top:8px">Automatisch werden deine Antworten nur in diesem Browser auf diesem Gerät gespeichert. Die Speicherdatei funktioniert überall.</p>
+  <p class="status">Quellen: Ministerium für Schule und Bildung NRW, Abiturvorgaben 2028 Sozialwissenschaften und Operatorenübersicht Sozialwissenschaften (abitur.nrw); Statistisches Bundesamt; Bundesministerium der Finanzen, Monatsbericht April 2025.</p>
+</section>
+
+</div>
+
+<div id="ergebnisblatt"></div>
+<input type="file" id="importfile" accept=".json,.txt,application/json" style="display:none">
+
+<script>
+(function(){
+  "use strict";
+  var KEY = "abitrainer_sowi_q1_2028_v1";
+  var TASKS = [
+    ["h1","A1.1 Anforderungsbereiche"],["h2","A1.2 Operatoren unterscheiden"],
+    ["h3","A2.1 Konjunktiv"],["h4","A2.2 Einleitung prüfen"],
+    ["h5","A3.1 Statistik auswerten"],
+    ["h6","A4.1 Positiv/normativ"],["h7","A4.2 Effizienz/Legitimität"],["h8","A4.3 Kurzurteil Schuldenbremse"],
+    ["a51","A5.1 Argumentationsgang"],["a52","A5.2 Sprachliche Mittel"],["a53","A5.3 Intention und Einordnung"],["a55","A5.4 Textanalyse schreiben"],
+    ["u1","A6.1 Argumente sortieren"],["u2","A6.2 Bessere Urteilssätze"],["u3","A6.3 Urteilsbaukasten"],
+    ["w1","B1.1 BIP"],["w2","B2.1 Konjunkturphasen"],["w3","B2.2 Indikatoren"],
+    ["w4","B3.1 Ziele und Indikatoren"],["w5","B3.2 Phillips-Kurve"],
+    ["w6","B4.1 Inflation"],["w7","B4.2 Arbeitslosigkeit"],
+    ["w12","B5.1 Keynes"],["w13","B5.2 Multiplikator"],["w14","B5.3 Friedman"],["w15","B5.4 Time lags"],["w16","B5.5 Maßnahmen zuordnen"],["w8","B5.6 Wer sagt das?"],["w9","B5.7 Schuldenbremse"],["v2","B5.8 Abi-Probe Texteinordnung"],
+    ["w10","B6.1 Träger"],["w11","B6.2 Freihandel/Protektionismus"],
+    ["v1","V1 Vernetzung Inflation"]
+  ];
+  var done = {};
+  var $ = function(id){ return document.getElementById(id); };
+  var qa = function(sel, root){ return [].slice.call((root || document).querySelectorAll(sel)); };
+
+  qa("select[data-opts]").forEach(function(s){
+    var o = document.createElement("option"); o.value = ""; o.textContent = "– wählen –"; s.appendChild(o);
+    s.getAttribute("data-opts").split("|").forEach(function(v){
+      var op = document.createElement("option"); op.value = v; op.textContent = v; s.appendChild(op);
+    });
+  });
+
+  function sichern(){
+    var d = {f:{}, done:done};
+    qa("[data-save]").forEach(function(el){ d.f[el.id] = el.type === "checkbox" ? el.checked : el.value; });
+    try { localStorage.setItem(KEY, JSON.stringify(d)); } catch(e){}
+  }
+  function standHolen(){
+    var d = {f:{}, done:done};
+    qa("[data-save]").forEach(function(el){ d.f[el.id] = el.type === "checkbox" ? el.checked : el.value; });
+    return d;
+  }
+  function standAnwenden(d){
+    Object.keys(d.f || {}).forEach(function(id){
+      var el = $(id); if(!el) return;
+      if(el.type === "checkbox") el.checked = !!d.f[id]; else el.value = d.f[id];
+    });
+    done = d.done || {};
+  }
+  function savemsg(good, txt){
+    ["savemsg1","savemsg2"].forEach(function(id){ var m = $(id); if(m){ m.className = "savemsg " + (good ? "good" : "bad"); m.textContent = txt; } });
+  }
+  window.exportStand = function(){
+    var d = standHolen();
+    var paket = {app: KEY, gesichert: new Date().toISOString(), daten: d};
+    var jetzt = new Date(), z = function(n){ return (n < 10 ? "0" : "") + n; };
+    var name = "Sowi_Trainer_Speicherstand_" + jetzt.getFullYear() + "-" + z(jetzt.getMonth()+1) + "-" + z(jetzt.getDate()) + "_" + z(jetzt.getHours()) + "-" + z(jetzt.getMinutes()) + ".json";
+    try {
+      var blob = new Blob([JSON.stringify(paket)], {type: "application/json"});
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a"); a.href = url; a.download = name;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+      savemsg(true, "Gesichert als „" + name + "“ (meist im Ordner „Downloads“). Bewahre die Datei gut auf.");
+    } catch(e){
+      savemsg(false, "Das Sichern hat nicht geklappt. Nutze stattdessen „Ergebnisblatt drucken / als PDF sichern“.");
+    }
+  };
+  window.importStand = function(){ var i = $("importfile"); i.value = ""; i.click(); };
+  function importDatei(file){
+    if(!file) return;
+    var r = new FileReader();
+    r.onload = function(){
+      var p = null;
+      try { p = JSON.parse(r.result); } catch(e){ p = null; }
+      if(!p || p.app !== KEY || !p.daten){ savemsg(false, "Diese Datei ist kein Speicherstand für diesen Trainer."); return; }
+      var hatAntworten = qa("[data-save]").some(function(el){ return el.type === "checkbox" ? el.checked : el.value.trim() !== ""; });
+      if(hatAntworten && !confirm("Der Speicherstand ersetzt deine aktuellen Antworten auf dieser Seite. Fortfahren?")) return;
+      qa("[data-save]").forEach(function(el){ if(el.type === "checkbox") el.checked = false; else el.value = ""; });
+      standAnwenden(p.daten); sichern(); u3Zeigen(); fortschritt();
+      var t = p.gesichert ? new Date(p.gesichert) : null;
+      savemsg(true, "Speicherstand geladen" + (t && !isNaN(t) ? " (gesichert am " + t.toLocaleDateString("de-DE") + " um " + t.toLocaleTimeString("de-DE", {hour:"2-digit", minute:"2-digit"}) + " Uhr)" : "") + ". Du kannst weitermachen.");
+    };
+    r.onerror = function(){ savemsg(false, "Die Datei konnte nicht gelesen werden."); };
+    r.readAsText(file);
+  }
+  $("importfile").addEventListener("change", function(){ importDatei(this.files && this.files[0]); });
+  (function(){
+    var ok = false;
+    try { localStorage.setItem(KEY + "_test", "1"); ok = localStorage.getItem(KEY + "_test") === "1"; localStorage.removeItem(KEY + "_test"); } catch(e){ ok = false; }
+    if(!ok) $("warnbox").style.display = "block";
+  })();
+  function laden(){
+    var d = null;
+    try { d = JSON.parse(localStorage.getItem(KEY) || "null"); } catch(e){ d = null; }
+    if(!d) return;
+    Object.keys(d.f || {}).forEach(function(id){
+      var el = $(id); if(!el) return;
+      if(el.type === "checkbox") el.checked = !!d.f[id]; else el.value = d.f[id];
+    });
+    done = d.done || {};
+  }
+  document.addEventListener("input", function(e){ if(e.target.hasAttribute && e.target.hasAttribute("data-save")) sichern(); });
+  document.addEventListener("change", function(e){
+    if(e.target.tagName === "SELECT"){ e.target.parentNode.classList.remove("ok","no"); e.target.classList.remove("ok","no"); }
+    if(e.target.hasAttribute && e.target.hasAttribute("data-save")) sichern();
+  });
+
+  function setDone(t){ done[t] = true; fortschritt(); sichern(); }
+  function fortschritt(){
+    var n = TASKS.filter(function(t){ return done[t[0]]; }).length;
+    $("progtext").textContent = n + " von " + TASKS.length;
+    $("progfill").style.width = Math.round(n / TASKS.length * 100) + "%";
+    $("statusliste").innerHTML = TASKS.map(function(t){
+      return "<li>" + t[1] + ": " + (done[t[0]] ? '<span class="done-tag">gelöst</span>' : '<span class="open-tag">noch offen</span>') + "</li>";
+    }).join("");
+  }
+  function fb(el, good, txt){ el.className = "feedback " + (good ? "good" : "bad"); el.textContent = txt; }
+  function mark(sel, good){
+    var p = sel.parentNode;
+    var tgt = (p.tagName === "TD" || p.classList.contains("slot")) ? p : sel;
+    tgt.classList.remove("ok","no"); tgt.classList.add(good ? "ok" : "no");
+  }
+
+  qa(".task").forEach(function(task){
+    var t = task.getAttribute("data-task");
+    var tipBtn = task.querySelector("[data-tipbtn]"), tip = task.querySelector(".reveal.tip");
+    if(tipBtn && tip) tipBtn.addEventListener("click", function(){ tip.classList.toggle("on"); });
+    var solBtn = task.querySelector("[data-solbtn]"), sol = task.querySelector(".reveal.sol");
+    if(solBtn && sol) solBtn.addEventListener("click", function(){ sol.classList.toggle("on"); });
+    var f = task.querySelector(".feedback");
+    var chk = task.querySelector("[data-check]");
+    if(chk) chk.addEventListener("click", function(){
+      var sels = qa("select[data-ans]", task), right = 0;
+      sels.forEach(function(s){ var g = s.value === s.getAttribute("data-ans"); if(g) right++; mark(s, g); });
+      if(right === sels.length){ fb(f, true, "Alles richtig – stark!"); setDone(t); }
+      else fb(f, false, right + " von " + sels.length + " richtig. Überprüfe die rot markierten Felder.");
+      if(solBtn) solBtn.disabled = false;
+    });
+    var fr = task.querySelector("[data-freebtn]");
+    if(fr) fr.addEventListener("click", function(){
+      var ta = task.querySelector("textarea");
+      if(ta.value.trim().length < 150){ fb(f, false, "Schreib zuerst deinen eigenen Text (mindestens einige Sätze) – dann kannst du vergleichen."); return; }
+      sol.classList.add("on");
+      fb(f, true, "Vergleiche deinen Text Punkt für Punkt mit den Erwartungen und ergänze, was fehlt.");
+      setDone(t);
+    });
+  });
+
+
+  /* Urteilsbaukasten */
+  function u3Zeigen(){ if($("u3_out").value.trim()) $("u3_outwrap").style.display = "block"; }
+  $("u3_build").addEventListener("click", function(){
+    var teile = [1,2,3,4,5,6,7].map(function(i){ return $("u3_" + i).value.trim(); });
+    var leer = teile.filter(function(t){ return !t; }).length;
+    if(leer > 1){ fb($("u3_fb"), false, "Fülle zuerst alle Bausteine aus (" + leer + " sind noch leer)."); return; }
+    var absaetze = [teile[0], [teile[1], teile[2]].join(" ").trim(), [teile[3], teile[4]].join(" ").trim(), teile[5], teile[6]].filter(function(t){ return t; });
+    var neu = absaetze.join("\n\n");
+    if($("u3_out").value.trim() && !confirm("Dein bisher zusammengesetztes Urteil wird überschrieben. Fortfahren?")) return;
+    $("u3_out").value = neu;
+    $("u3_outwrap").style.display = "block";
+    fb($("u3_fb"), true, "Fertig! Überarbeite jetzt die Übergänge zwischen den Absätzen und prüfe dein Urteil mit der Checkliste.");
+    setDone("u3");
+  });
+  $("u3_solbtn").addEventListener("click", function(){ $("u3_sol").classList.toggle("on"); });
+
+  function esc(s){ return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+  function blattBauen(){
+    var n = $("f_name").value || "ohne Namen", k = $("f_kurs").value || "";
+    var h = "<h1>Abitur-Trainer Sozialwissenschaften – Handwerk und Wirtschaftspolitik</h1><div>" + esc(n) + (k ? " · " + esc(k) : "") + " · " + new Date().toLocaleDateString("de-DE") + "</div>";
+    var gel = TASKS.filter(function(t){ return done[t[0]]; }).length;
+    h += "<h2>Aufgaben (" + gel + " von " + TASKS.length + " gelöst)</h2>";
+    TASKS.forEach(function(t){ h += '<div class="a">' + t[1] + ": " + (done[t[0]] ? "gelöst" : "noch offen") + "</div>"; });
+    h += "<h2>A4.3 – mein Kurzurteil zur Schuldenbremse</h2><div class=\"a\">" + (esc($("h8_txt").value.trim()) || "– nicht bearbeitet –") + "</div>";
+    h += "<h2>A5.4 – meine Textanalyse</h2><div class=\"a\">" + (esc($("a55_txt").value.trim()) || "– nicht bearbeitet –") + "</div>";
+    h += "<h2>A6.3 – mein Urteil</h2><div class=\"a\">" + (esc($("u3_out").value.trim()).replace(/\n/g,"<br>") || "– nicht bearbeitet –") + "</div>";
+    h += "<h2>B5.8 – meine Texteinordnung</h2><div class=\"a\">" + (esc($("v2_txt").value.trim()) || "– nicht bearbeitet –") + "</div>";
+    h += "<h2>V1 – meine Erläuterung</h2><div class=\"a\">" + (esc($("v1_txt").value.trim()) || "– nicht bearbeitet –") + "</div>";
+    h += "<h2>Selbstcheck</h2>";
+    qa(".check li").forEach(function(li){
+      h += '<div class="a">' + (li.querySelector("input").checked ? "☑ " : "☐ ") + esc(li.querySelector("label").textContent) + "</div>";
+    });
+    $("ergebnisblatt").innerHTML = h;
+  }
+  window.druck = function(){ blattBauen(); window.print(); };
+  window.addEventListener("beforeprint", blattBauen);
+  window.loeschen = function(){
+    if(!confirm("Wirklich alle deine Antworten löschen? Das lässt sich nicht rückgängig machen.")) return;
+    try { localStorage.removeItem(KEY); } catch(e){}
+    qa("[data-save]").forEach(function(el){ if(el.type === "checkbox") el.checked = false; else el.value = ""; });
+    qa(".ok,.no").forEach(function(el){ el.classList.remove("ok","no"); });
+    qa(".feedback").forEach(function(el){ el.textContent = ""; });
+    qa(".reveal").forEach(function(el){ el.classList.remove("on"); });
+    done = {}; $("u3_outwrap").style.display = "none"; fortschritt();
+  };
+
+  laden(); u3Zeigen(); fortschritt();
+})();
+</script>
+</body>
+</html>

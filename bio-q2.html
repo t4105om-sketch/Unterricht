@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abitur-Trainer Biologie – Q2 GK (Abitur 2027)</title>
+<style>
+  :root{
+    --ink:#1a1a1a; --muted:#595959; --line:#d9d9d9; --soft:#f2f2f2; --page:#ececec;
+    --ok:#2e7d32; --okbg:#edf7ee; --no:#b3261e; --nobg:#fcecea; --mark:#d08a00;
+    --mum:#b5655f; --dad:#4f7396;
+  }
+  *{box-sizing:border-box;-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--page);color:var(--ink);
+    font-family:Calibri,Carlito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:18px;line-height:1.55}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 16px 80px}
+
+  header.top{background:var(--ink);color:#fff;padding:24px 16px 20px}
+  header.top .inner{max-width:1000px;margin:0 auto}
+  header.top .kick{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#bfbfbf;font-weight:700}
+  header.top h1{margin:4px 0 4px;font-size:28px;line-height:1.2}
+  header.top p{margin:0;color:#d9d9d9;font-size:16px}
+  .idbar{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
+  .idbar label{flex:1 1 200px;font-size:13px;color:#bfbfbf}
+  .idbar input{width:100%;margin-top:4px;padding:9px 10px;border:0;border-radius:6px;font-size:16px;font-family:inherit}
+
+  .bar{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 6px rgba(0,0,0,.06)}
+  .bar .inner{max-width:1000px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .bar a{color:var(--ink);text-decoration:none;font-weight:700;font-size:15px;padding:5px 9px;border-radius:6px}
+  .bar a:hover{background:var(--soft)}
+  .prog{flex:1 1 160px;min-width:140px;display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted);margin-left:8px}
+  .prog .track{flex:1;height:9px;background:#e0e0e0;border-radius:5px;overflow:hidden}
+  .prog .fill{height:100%;width:0;background:var(--ink);transition:width .3s}
+
+  section.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:24px 26px;margin:22px 0}
+  h2{margin:0 0 14px;font-size:24px;line-height:1.25}
+  h2 .kicker{display:block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:4px}
+  h3{margin:26px 0 8px;font-size:19px}
+  h3 .afb{font-size:13px;color:var(--muted);font-weight:400;margin-left:6px}
+  p{margin:0 0 12px}
+  ol,ul{margin:0 0 12px;padding-left:22px}
+  li{margin-bottom:6px}
+
+  .info{background:var(--soft);border-left:6px solid var(--ink);padding:14px 18px;margin:12px 0 18px}
+  .info h4{margin:0 0 8px;font-size:15px;letter-spacing:.1em;text-transform:uppercase}
+  .info p:last-child,.info ul:last-child{margin-bottom:0}
+  .merke{border:2px solid var(--ink);padding:12px 16px;margin:14px 0 18px}
+  .merke b.l{display:block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+  .merke p:last-child{margin-bottom:0}
+  .ziel{color:var(--muted);font-size:16px;margin-bottom:16px}
+
+  figure{margin:14px 0 18px;text-align:center}
+  figure svg{max-width:100%;height:auto}
+  figcaption{font-size:14px;color:var(--muted);font-style:italic;margin-top:4px}
+
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 0}
+  button{font:inherit;font-size:15px;font-weight:700;border-radius:7px;padding:9px 15px;
+    border:2px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer}
+  button:hover{background:var(--soft)}
+  button.primary{background:var(--ink);color:#fff}
+  button.primary:hover{background:#3a3a3a}
+  button:disabled{opacity:.35;cursor:not-allowed}
+
+  .reveal{display:none;margin-top:14px;padding:12px 16px}
+  .reveal.on{display:block}
+  .reveal.tip{border:2px dashed #8c8c8c}
+  .reveal.sol{background:var(--soft);border-left:6px solid var(--ink)}
+  .reveal h4{margin:0 0 6px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .reveal p:last-child,.reveal ul:last-child{margin-bottom:0}
+
+  select{font:inherit;font-size:16px;padding:5px 8px;border:1.5px solid #bdbdbd;border-radius:6px;background:#fff;max-width:100%}
+  .ok>select,select.ok{border-color:var(--ok);background:var(--okbg)}
+  .no>select,select.no{border-color:var(--no);background:var(--nobg)}
+  .feedback{font-weight:700;margin:8px 0 0;min-height:1em}
+  .feedback.good{color:var(--ok)} .feedback.bad{color:var(--no)}
+
+  table.q{border-collapse:collapse;width:100%;margin:8px 0 12px;font-size:17px}
+  table.q th,table.q td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:middle}
+  table.q th{background:var(--soft);font-size:14px}
+  table.q td.ok{background:var(--okbg)} table.q td.no{background:var(--nobg)}
+  .item{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:8px 0;border-bottom:1px solid #ececec}
+  .item .t{flex:1 1 380px}
+
+  .lt{line-height:2.3}
+  .lt span.slot{display:inline-block}
+
+  /* Kombinierer */
+  .komb{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
+  .komb .p{border:1.5px solid var(--line);border-radius:8px;padding:10px 12px}
+  .komb .p b{display:block;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+  .komb .p.m b{color:var(--mum)} .komb .p.v b{color:var(--dad)}
+  .komb button.al{min-width:56px;font-size:20px}
+  .komb button.al.on{background:var(--ink);color:#fff}
+  .kout{background:var(--soft);padding:12px 16px;font-size:17px}
+  .kout .big{font-size:28px;font-weight:700;letter-spacing:.05em}
+  @media (max-width:600px){.komb{grid-template-columns:1fr}}
+
+  /* Punnett */
+  table.pun{border-collapse:collapse;margin:10px 0 12px;font-size:18px}
+  table.pun td,table.pun th{border:2px solid var(--ink);width:120px;height:58px;text-align:center;vertical-align:middle;padding:4px}
+  table.pun th{background:var(--soft);font-weight:700}
+  table.pun th.corner{font-size:13px;font-weight:400;color:var(--muted);line-height:1.25}
+  table.pun .mg{color:var(--mum)} table.pun .vg{color:var(--dad)}
+  .pundemo td{font-size:22px;font-weight:700}
+  .pundemo td.h{color:transparent}
+  .eltern{font-size:19px;margin:6px 0}
+  .eltern .mum{color:var(--mum);font-weight:700} .eltern .dad{color:var(--dad);font-weight:700}
+
+  /* Stammbaum */
+  .ped .pp{cursor:default}
+  .ped.click .pp{cursor:pointer}
+  .ped .ring{display:none}
+  .ped .pp.sel .ring{display:inline}
+  .legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px 18px;margin:10px 0 16px;font-size:16px}
+  .legend div{display:flex;align-items:center;gap:10px}
+
+  textarea{width:100%;border:1.5px solid #bdbdbd;border-radius:6px;padding:9px 11px;font:inherit;font-size:17px;resize:vertical}
+  .check{list-style:none;padding:0}
+  .check li{display:flex;gap:11px;align-items:flex-start;margin-bottom:10px}
+  .check input{width:22px;height:22px;margin-top:3px;flex:0 0 22px}
+  .status{font-size:15px;color:var(--muted)}
+  .status li{margin-bottom:3px}
+  .done-tag{font-weight:700;color:var(--ok)}
+  .open-tag{font-weight:700;color:var(--muted)}
+
+  table.spick{border-collapse:collapse;width:100%;font-size:16px}
+  table.spick td{border-bottom:1px solid var(--line);padding:7px 8px;vertical-align:top}
+  table.spick td:first-child{font-weight:700;white-space:nowrap;width:28%}
+
+  @media (max-width:620px){section.card{padding:18px 15px} header.top h1{font-size:23px}
+    table.pun td,table.pun th{width:86px;height:50px}}
+
+  #ergebnisblatt{display:none}
+  .savebox{border:2px solid var(--ink);border-radius:8px;padding:14px 16px;margin-top:16px;background:#fff}
+  .savebox h4{margin:0 0 6px}
+  .savebox p{margin:0 0 8px;font-size:15px}
+  .savebox .btns{margin-top:6px}
+  .savemsg{font-size:15px;font-weight:700;margin-top:8px;min-height:1em}
+  .savemsg.good{color:var(--ok)} .savemsg.bad{color:#b3261e}
+  .warnbox{border:2px solid #b3261e;color:#b3261e;border-radius:8px;padding:10px 14px;margin-top:12px;font-weight:700;display:none}
+  @media print{
+    body{background:#fff;font-size:11pt}
+    body>*{display:none !important}
+    #ergebnisblatt{display:block !important}
+    #ergebnisblatt h1{font-size:16pt;margin:0 0 2mm}
+    #ergebnisblatt h2{font-size:12pt;margin:6mm 0 1mm}
+    #ergebnisblatt .a{margin:0 0 3mm;padding-left:3mm;border-left:2px solid #999}
+    @page{margin:16mm}
+  }
+</style>
+<style>
+  .fok{display:inline-block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;border:1.5px solid var(--ink);padding:2px 7px;margin-left:8px;vertical-align:middle}
+  .teil{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:40px 0 -8px}
+  .lock{background:#fafafa;border:2px dashed #bdbdbd;color:var(--muted)}
+  .lock h2{color:var(--muted)}
+  .sample{background:#fff;border:1.5px solid var(--line);padding:12px 16px;font-style:italic;margin:10px 0 14px}
+  .bau{font-size:16px}
+  .bau li{margin-bottom:4px}
+  table.q td.c{width:42%}
+  .ztext{border:1.5px solid var(--line);padding:12px 14px;margin:8px 0 18px;font-size:17px;line-height:1.75;overflow-x:auto}
+  .zl{display:flex;gap:14px;white-space:nowrap}
+  .zl .nr{flex:0 0 22px;text-align:right;color:var(--muted);font-size:14px}
+  .fld2{margin-bottom:12px}
+  .fld2 label{display:block;font-weight:700;font-size:15px;margin-bottom:4px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="inner">
+    <div class="kick">Biologie · Q2 Grundkurs · Abitur 2027</div>
+    <h1>Abitur-Trainer Biologie</h1>
+    <p>Selbstlernmodul zum Wiederholen und Üben · Teil A: Abitur-Handwerk · Teil B: Neurobiologie, Stoffwechselphysiologie, Ökologie, Genetik · Evolution folgt</p>
+    <div class="idbar">
+      <label>Dein Name<input type="text" id="f_name" data-save placeholder="Vorname Nachname"></label>
+      <label>Kurs<input type="text" id="f_kurs" data-save placeholder="z. B. Q2 BI GK"></label>
+    </div>
+  </div>
+</header>
+
+<nav class="bar">
+  <div class="inner">
+    <a href="#start">Start</a>
+    <a href="#a1">A Handwerk</a>
+    <a href="#a5">A5 Modelle</a>
+    <a href="#b1">B1 Neuro</a>
+    <a href="#b2">B2 Stoffwechsel</a>
+    <a href="#b3">B3 Ökologie</a>
+    <a href="#b4">B4 Genetik</a>
+    <a href="#vernetzung">Vernetzung</a>
+    <a href="#ende">Abschluss</a>
+    <div class="prog"><span id="progtext">0</span><div class="track"><div class="fill" id="progfill"></div></div></div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ====================== START ====================== -->
+<section class="card" id="start">
+  <h2><span class="kicker">So arbeitest du</span>Worum es geht</h2>
+  <p>Dieses Modul begleitet dich bis zum Abitur. In <strong>Teil A</strong> trainierst du das Handwerk, das jede Abituraufgabe verlangt: Operatoren, Diagramme auswerten, Experimente planen und deuten, ethisch bewerten. In <strong>Teil B</strong> wiederholst du die vier Inhaltsfelder der Qualifikationsphase. Die Evolution kommt dazu, sobald wir sie im Unterricht behandelt haben.</p>
+  <div class="info">
+    <h4>So funktioniert es</h4>
+    <ul>
+      <li>Du musst nicht alles am Stück bearbeiten. Nimm dir eine Station vor, lies den Infokasten und bearbeite die Aufgaben.</li>
+      <li>Klicke auf <strong>Prüfen</strong>: Grün heißt richtig, rot heißt: noch einmal überlegen. Den <strong>Tipp</strong> kannst du jederzeit öffnen, die <strong>Lösung</strong> erst, nachdem du selbst geprüft hast.</li>
+      <li>Aufgaben mit dem Kästchen <span class="fok" style="margin-left:0">KLP</span> decken Kompetenzerwartungen des Kernlehrplans ab, die über die reinen Fachinhalte hinausgehen – z. B. Hypothesen entwickeln, Daten analysieren oder bewerten.</li>
+      <li>Die Infokästen fassen nur das Wichtigste zusammen. Wenn dir dort etwas fremd vorkommt, schlag es in deinen Unterlagen nach.</li>
+      <li>Dein Browser merkt sich deine Antworten automatisch, aber nur, wenn du die Datei immer vom selben Ort und im selben Browser öffnest. <strong>Sicherer:</strong> Am Ende jeder Sitzung auf „Speicherstand als Datei sichern“ klicken und die Datei aufheben. Am Ende kannst du außerdem ein Ergebnisblatt drucken oder als PDF sichern.</li>
+    </ul>
+  </div>
+  <div class="warnbox" id="warnbox">Achtung: Dein Browser speichert hier gerade nicht automatisch (z. B. im privaten Fenster, in einer Vorschau oder auf dem Tablet). Sichere deine Antworten deshalb unbedingt über „Speicherstand als Datei sichern“.</div>
+  <div class="savebox">
+    <h4>Speicherstand sichern</h4>
+    <p>Sichere deine Antworten am Ende jeder Sitzung als Datei. Mit „Speicherstand laden“ machst du an jedem Gerät und in jedem Browser weiter, auch auf dem Tablet.</p>
+    <div class="btns">
+      <button type="button" class="primary" onclick="exportStand()">Speicherstand als Datei sichern</button>
+      <button type="button" onclick="importStand()">Speicherstand laden</button>
+    </div>
+    <div class="savemsg" id="savemsg1"></div>
+  </div>
+</section>
+
+<p class="teil">Teil A · Abitur-Handwerk</p>
+
+<!-- ====================== A1 ====================== -->
+<section class="card" id="a1">
+  <h2><span class="kicker">Station A1</span>So ist das Abitur aufgebaut – und was die Operatoren verlangen</h2>
+  <div class="info">
+    <h4>Die wichtigsten Fakten</h4>
+    <ul>
+      <li>Die Prüfung dauert im Grundkurs <strong>255 Minuten</strong>, einschließlich der Zeit zum Auswählen.</li>
+      <li>Du bekommst <strong>vier Aufgaben</strong> und wählst <strong>drei</strong> davon aus.</li>
+      <li>Hilfsmittel: ein Wörterbuch zur deutschen Rechtschreibung und dein Taschenrechner.</li>
+      <li>Alle Aufgaben sind <strong>materialgebunden</strong>: Texte, Abbildungen, Diagramme, Tabellen und Versuchsbeschreibungen. Dein Fachwissen wendest du auf <em>neue</em> Beispiele an – oft verknüpft die Aufgabe dabei zwei Inhaltsfelder.</li>
+    </ul>
+  </div>
+  <h3>Die wichtigsten Operatoren</h3>
+  <p>Der Operator sagt dir genau, was du tun sollst. Achtung: Ein Operator ist nicht fest an einen Anforderungsbereich gebunden – „erklären“ kann je nach Material leichter oder anspruchsvoller sein.</p>
+  <table class="q">
+    <tr><th>Operator</th><th>Was er verlangt</th></tr>
+    <tr><td><strong>nennen / angeben</strong></td><td>Begriffe, Daten oder Sachverhalte ohne Erläuterung aufzählen</td></tr>
+    <tr><td><strong>beschreiben</strong></td><td>einen Sachverhalt oder ein Diagramm strukturiert und fachsprachlich wiedergeben – noch ohne Ursachen</td></tr>
+    <tr><td><strong>erklären</strong></td><td>einen Sachverhalt auf Ursachen, Gesetzmäßigkeiten oder Modelle zurückführen</td></tr>
+    <tr><td><strong>erläutern</strong></td><td>wie erklären, aber zusätzlich mit Beispielen oder weiteren Informationen veranschaulichen</td></tr>
+    <tr><td><strong>auswerten</strong></td><td>Daten oder Beobachtungen in einen Zusammenhang stellen und daraus Schlussfolgerungen ziehen</td></tr>
+    <tr><td><strong>deuten</strong></td><td>Ergebnisse oder Beobachtungen in einen biologischen Erklärungszusammenhang bringen</td></tr>
+    <tr><td><strong>analysieren</strong></td><td>wichtige Bestandteile, Eigenschaften oder Zusammenhänge auf eine Fragestellung hin herausarbeiten</td></tr>
+    <tr><td><strong>Hypothesen aufstellen</strong></td><td>eine fachlich begründete Vermutung über einen unbekannten Sachverhalt formulieren</td></tr>
+    <tr><td><strong>ableiten</strong></td><td>aus Daten oder Erkenntnissen sachgerechte Schlüsse ziehen</td></tr>
+    <tr><td><strong>beurteilen</strong></td><td>ein <em>Sachurteil</em> mithilfe fachlicher Kriterien begründen</td></tr>
+    <tr><td><strong>bewerten</strong></td><td>ein <em>Werturteil</em> unter Berücksichtigung gesellschaftlicher Werte und Normen begründen</td></tr>
+    <tr><td><strong>diskutieren / erörtern</strong></td><td>Argumente für und gegen eine These gegenüberstellen, abwägen und zu einem Ergebnis kommen</td></tr>
+  </table>
+
+  <div class="task" data-task="h1">
+    <h3>Aufgabe A1.1 – Welcher Operator ist gemeint? <span class="afb">AFB I</span></h3>
+    <div class="item"><span class="t">„Gib den Verlauf der Kurve mit Fachbegriffen und Zahlenwerten wieder – ohne Begründung.“</span><select id="h1_1" data-save data-opts="beschreiben|erklären|deuten|beurteilen|bewerten|Hypothese aufstellen" data-ans="beschreiben"></select></div>
+    <div class="item"><span class="t">„Führe den Kurvenverlauf auf die Vorgänge an der Membran zurück.“</span><select id="h1_2" data-save data-opts="beschreiben|erklären|deuten|beurteilen|bewerten|Hypothese aufstellen" data-ans="erklären"></select></div>
+    <div class="item"><span class="t">„Formuliere eine begründete Vermutung, warum die Mutante weniger Sauerstoff verbraucht.“</span><select id="h1_3" data-save data-opts="beschreiben|erklären|deuten|beurteilen|bewerten|Hypothese aufstellen" data-ans="Hypothese aufstellen"></select></div>
+    <div class="item"><span class="t">„Prüfe anhand fachlicher Kriterien, ob das Modell die Beobachtungen hinreichend erklärt.“</span><select id="h1_4" data-save data-opts="beschreiben|erklären|deuten|beurteilen|bewerten|Hypothese aufstellen" data-ans="beurteilen"></select></div>
+    <div class="item"><span class="t">„Nimm unter Einbezug ethischer Werte Stellung, ob ein Gentest für alle Neugeborenen eingeführt werden sollte.“</span><select id="h1_5" data-save data-opts="beschreiben|erklären|deuten|beurteilen|bewerten|Hypothese aufstellen" data-ans="bewerten"></select></div>
+    <div class="item"><span class="t">„Bringe die Versuchsergebnisse in einen biologischen Erklärungszusammenhang.“</span><select id="h1_6" data-save data-opts="beschreiben|erklären|deuten|beurteilen|bewerten|Hypothese aufstellen" data-ans="deuten"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Klassischer Fehler: Bei „beschreiben“ schon erklären – oder bei „erklären“ nur beschreiben. Und: Beurteilen = Sachurteil mit fachlichen Kriterien, bewerten = Werturteil mit Werten und Normen.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>beschreiben · erklären · Hypothese aufstellen · beurteilen · bewerten · deuten</p></div>
+  </div>
+</section>
+
+<!-- ====================== A2 ====================== -->
+<section class="card" id="a2">
+  <h2><span class="kicker">Station A2</span>Diagramme beschreiben und auswerten</h2>
+  <div class="info">
+    <h4>So gehst du vor</h4>
+    <ol>
+      <li><strong>Formales:</strong> Was ist auf den Achsen aufgetragen (Größe, Einheit)? Welche Kurven gibt es, und worin unterscheiden sich die Versuchsbedingungen?</li>
+      <li><strong>Beschreiben:</strong> Verlauf in Abschnitten wiedergeben – Anstieg, Plateau, Maximum, Schnittpunkte – immer mit Werten. Kurven miteinander vergleichen.</li>
+      <li><strong>Auswerten / deuten:</strong> Den Verlauf mit Fachwissen erklären. Welcher Faktor begrenzt in welchem Abschnitt?</li>
+      <li><strong>Gültigkeit:</strong> Was zeigt das Diagramm nicht? Gelten die Ergebnisse auch unter anderen Bedingungen?</li>
+    </ol>
+    <p><strong>Limitierender Faktor:</strong> Ein Prozess, der von mehreren Faktoren abhängt, wird von dem Faktor begrenzt, der am stärksten im Mangel ist. Nur wenn man diesen Faktor erhöht, steigt die Rate.</p>
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 600 300" width="600" role="img" aria-label="Fotosyntheserate in Abhängigkeit von der Lichtintensität bei zwei CO2-Konzentrationen">
+      <g font-family="Calibri,Carlito,Arial,sans-serif" fill="#1a1a1a">
+        <line x1="70" y1="40" x2="70" y2="255" stroke="#1a1a1a" stroke-width="1.5"/>
+        <line x1="70" y1="216.7" x2="540" y2="216.7" stroke="#1a1a1a" stroke-width="1.5"/>
+        <text x="300" y="290" text-anchor="middle" font-size="14">Lichtintensität (relative Einheiten)</text>
+        <text x="20" y="150" text-anchor="middle" font-size="14" transform="rotate(-90 20 150)">O₂-Abgabe (rel. Einheiten)</text>
+        <text x="62" y="221" text-anchor="end" font-size="12" fill="#595959">0</text>
+        <path d="M70.0,241.7 L74.5,233.2 L79.0,225.2 L83.5,217.6 L88.0,210.4 L92.5,203.6 L97.0,197.2 L101.5,191.1 L106.0,185.3 L110.5,179.8 L115.0,174.7 L119.5,169.8 L124.0,165.2 L128.5,160.8 L133.0,156.6 L137.5,152.7 L142.0,149.0 L146.5,145.5 L151.0,142.2 L155.5,139.0 L160.0,136.0 L164.5,133.2 L169.0,130.5 L173.5,128.0 L178.0,125.6 L182.5,123.4 L187.0,121.2 L191.5,119.2 L196.0,117.3 L200.5,115.5 L205.0,113.7 L209.5,112.1 L214.0,110.6 L218.5,109.1 L223.0,107.7 L227.5,106.4 L232.0,105.2 L236.5,104.0 L241.0,102.9 L245.5,101.9 L250.0,100.9 L254.5,99.9 L259.0,99.0 L263.5,98.2 L268.0,97.4 L272.5,96.7 L277.0,95.9 L281.5,95.3 L286.0,94.6 L290.5,94.0 L295.0,93.5 L299.5,92.9 L304.0,92.4 L308.5,91.9 L313.0,91.5 L317.5,91.0 L322.0,90.6 L326.5,90.2 L331.0,89.9 L335.5,89.5 L340.0,89.2 L344.5,88.9 L349.0,88.6 L353.5,88.3 L358.0,88.0 L362.5,87.8 L367.0,87.5 L371.5,87.3 L376.0,87.1 L380.5,86.9 L385.0,86.7 L389.5,86.5 L394.0,86.4 L398.5,86.2 L403.0,86.0 L407.5,85.9 L412.0,85.8 L416.5,85.6 L421.0,85.5 L425.5,85.4 L430.0,85.3 L434.5,85.2 L439.0,85.1 L443.5,85.0 L448.0,84.9 L452.5,84.8 L457.0,84.7 L461.5,84.7 L466.0,84.6 L470.5,84.5 L475.0,84.5 L479.5,84.4 L484.0,84.3 L488.5,84.3 L493.0,84.2 L497.5,84.2 L502.0,84.1 L506.5,84.1 L511.0,84.1 L515.5,84.0 L520.0,84.0" fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
+        <path d="M70.0,241.7 L74.5,233.8 L79.0,226.6 L83.5,220.0 L88.0,214.0 L92.5,208.4 L97.0,203.4 L101.5,198.8 L106.0,194.6 L110.5,190.8 L115.0,187.3 L119.5,184.1 L124.0,181.1 L128.5,178.5 L133.0,176.0 L137.5,173.8 L142.0,171.7 L146.5,169.8 L151.0,168.1 L155.5,166.6 L160.0,165.2 L164.5,163.8 L169.0,162.7 L173.5,161.6 L178.0,160.6 L182.5,159.7 L187.0,158.8 L191.5,158.1 L196.0,157.4 L200.5,156.7 L205.0,156.2 L209.5,155.6 L214.0,155.1 L218.5,154.7 L223.0,154.3 L227.5,153.9 L232.0,153.6 L236.5,153.3 L241.0,153.0 L245.5,152.7 L250.0,152.5 L254.5,152.3 L259.0,152.1 L263.5,151.9 L268.0,151.7 L272.5,151.6 L277.0,151.5 L281.5,151.3 L286.0,151.2 L290.5,151.1 L295.0,151.0 L299.5,150.9 L304.0,150.9 L308.5,150.8 L313.0,150.7 L317.5,150.6 L322.0,150.6 L326.5,150.5 L331.0,150.5 L335.5,150.5 L340.0,150.4 L344.5,150.4 L349.0,150.3 L353.5,150.3 L358.0,150.3 L362.5,150.3 L367.0,150.2 L371.5,150.2 L376.0,150.2 L380.5,150.2 L385.0,150.2 L389.5,150.2 L394.0,150.1 L398.5,150.1 L403.0,150.1 L407.5,150.1 L412.0,150.1 L416.5,150.1 L421.0,150.1 L425.5,150.1 L430.0,150.1 L434.5,150.1 L439.0,150.1 L443.5,150.1 L448.0,150.0 L452.5,150.0 L457.0,150.0 L461.5,150.0 L466.0,150.0 L470.5,150.0 L475.0,150.0 L479.5,150.0 L484.0,150.0 L488.5,150.0 L493.0,150.0 L497.5,150.0 L502.0,150.0 L506.5,150.0 L511.0,150.0 L515.5,150.0 L520.0,150.0" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-dasharray="7 5"/>
+        <text x="525" y="76" text-anchor="end" font-size="13">hohe CO₂-Konzentration</text>
+        <text x="525" y="168" text-anchor="end" font-size="13">niedrige CO₂-Konzentration</text>
+        <text x="80" y="245" font-size="12" fill="#595959">negative Werte: O₂-Aufnahme</text>
+      </g>
+    </svg>
+    <figcaption>Abb. 1: Netto-Sauerstoffabgabe einer Wasserpflanze bei steigender Lichtintensität und zwei CO₂-Konzentrationen (schematisch, konstante Temperatur).</figcaption>
+  </figure>
+
+  <div class="task" data-task="h2">
+    <h3>Aufgabe A2.1 – Was zeigt das Diagramm? <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">Bei geringer Lichtintensität verlaufen beide Kurven fast gleich – hier ist das Licht der limitierende Faktor.</span><select id="h2_1" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Im Plateaubereich begrenzt die CO₂-Konzentration die Fotosyntheserate.</span><select id="h2_2" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Ohne Licht gibt die Pflanze Sauerstoff ab.</span><select id="h2_3" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">Dort, wo die Kurven die x-Achse schneiden, bildet die Fotosynthese genauso viel O₂, wie die Zellatmung verbraucht (Lichtkompensationspunkt).</span><select id="h2_4" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Bei hoher CO₂-Konzentration steigt die Rate auch bei sehr hoher Lichtintensität immer weiter an.</span><select id="h2_5" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Die y-Achse zeigt die <em>Netto</em>-Abgabe: Fotosynthese minus Zellatmung. Und überlege für jeden Abschnitt: Was würde passieren, wenn man nur das Licht – oder nur das CO₂ – erhöht?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>richtig · richtig (mehr CO₂ → höheres Plateau) · falsch (im Dunkeln nur Zellatmung, also O₂-Aufnahme) · richtig · falsch (die Kurve erreicht ein Plateau; dann begrenzt ein anderer Faktor, z. B. CO₂, Temperatur oder die Enzymmenge im Calvin-Zyklus)</p></div>
+  </div>
+</section>
+
+<!-- ====================== A3 ====================== -->
+<section class="card" id="a3">
+  <h2><span class="kicker">Station A3</span>Experimente planen und auswerten</h2>
+  <div class="info">
+    <h4>Der Weg der Erkenntnisgewinnung</h4>
+    <ol>
+      <li><strong>Fragestellung</strong> formulieren</li>
+      <li><strong>Hypothese</strong> aufstellen – am besten als „Je …, desto …, weil …“ mit fachlicher Begründung</li>
+      <li><strong>Experiment planen:</strong> Die <strong>unabhängige Variable</strong> veränderst du gezielt, die <strong>abhängige Variable</strong> misst du, alle anderen Bedingungen hältst du konstant (<strong>Kontrollvariablen</strong>). Ein <strong>Kontrollansatz</strong> zeigt, was ohne den untersuchten Faktor passiert. <strong>Wiederholungen</strong> machen das Ergebnis zuverlässiger.</li>
+      <li><strong>Durchführen und auswerten</strong></li>
+      <li><strong>Hypothese prüfen:</strong> Bestätigt – oder widerlegt? Fehlerquellen benennen.</li>
+    </ol>
+  </div>
+  <div class="sample">Versuch: Ein Spross der Wasserpest wird in ein Becherglas mit Wasser gestellt, dem etwas Natriumhydrogencarbonat (CO₂-Quelle) zugesetzt ist. Eine Lampe wird nacheinander in 10, 20, 30 und 40 cm Abstand aufgestellt. Gezählt wird jeweils, wie viele Gasbläschen pro Minute aus der Schnittstelle des Sprosses aufsteigen.</div>
+
+  <div class="task" data-task="h3">
+    <h3>Aufgabe A3.1 – Den Versuch durchschauen <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">Unabhängige Variable</span><select id="h3_1" data-save data-opts="Abstand der Lampe (Lichtintensität)|Anzahl der Gasbläschen pro Minute|Menge an Natriumhydrogencarbonat" data-ans="Abstand der Lampe (Lichtintensität)"></select></div>
+    <div class="item"><span class="t">Abhängige Variable</span><select id="h3_2" data-save data-opts="Abstand der Lampe (Lichtintensität)|Anzahl der Gasbläschen pro Minute|Menge an Natriumhydrogencarbonat" data-ans="Anzahl der Gasbläschen pro Minute"></select></div>
+    <div class="item"><span class="t">Welche Störgröße ist bei diesem Aufbau besonders wahrscheinlich?</span><select id="h3_3" data-save data-opts="Die Lampe erwärmt das Wasser unterschiedlich stark.|Die Pflanze ist grün.|Das Becherglas ist durchsichtig." data-ans="Die Lampe erwärmt das Wasser unterschiedlich stark."></select></div>
+    <div class="item"><span class="t">Welche Maßnahme behebt diese Störgröße?</span><select id="h3_4" data-save data-opts="ein Wasserbad oder eine Wärmeschutzscheibe zwischen Lampe und Glas|eine hellere Lampe|mehr Natriumhydrogencarbonat" data-ans="ein Wasserbad oder eine Wärmeschutzscheibe zwischen Lampe und Glas"></select></div>
+    <div class="item"><span class="t">Welche Hypothese ist am besten formuliert?</span><select id="h3_5" data-save data-opts="Licht ist wichtig für Pflanzen.|Je näher die Lampe, desto mehr Bläschen.|Je höher die Lichtintensität, desto mehr O₂-Bläschen gibt die Wasserpest ab, weil mehr Licht die Lichtreaktion antreibt, in der O₂ aus Wasser freigesetzt wird." data-ans="Je höher die Lichtintensität, desto mehr O₂-Bläschen gibt die Wasserpest ab, weil mehr Licht die Lichtreaktion antreibt, in der O₂ aus Wasser freigesetzt wird."></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Die unabhängige Variable ist das, was die Experimentierenden aktiv verändern. Eine gute Hypothese nennt den Zusammenhang <em>und</em> begründet ihn biologisch.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Abstand der Lampe · Bläschen pro Minute · Erwärmung durch die Lampe – Temperatur beeinflusst die enzymatischen Reaktionen · Wasserbad oder Wärmeschutz · die dritte Hypothese: Zusammenhang plus fachliche Begründung. Zusätzlich sinnvoll: mehrere Messungen je Abstand und eine Eingewöhnungszeit nach jedem Umstellen.</p></div>
+  </div>
+</section>
+
+<!-- ====================== A4 ====================== -->
+<section class="card" id="a4">
+  <h2><span class="kicker">Station A4</span>Ethisch bewerten</h2>
+  <div class="info">
+    <h4>So kommst du zu einem begründeten Urteil</h4>
+    <ol>
+      <li><strong>Sachverhalt klären:</strong> Was ist biologisch-medizinisch möglich, welche Risiken gibt es? (Sachaussagen)</li>
+      <li><strong>Handlungsoptionen</strong> benennen: Was könnte man tun – oder lassen?</li>
+      <li><strong>Werte und Normen</strong> zuordnen: z. B. Menschenwürde, Gesundheit und Nichtschaden, Fürsorge, Selbstbestimmung, Gerechtigkeit, Verantwortung für künftige Generationen.</li>
+      <li><strong>Argumente</strong> für und gegen jede Option mit den Werten verknüpfen. Perspektiven einbeziehen: Betroffene, Eltern, Ärzte, Gesellschaft.</li>
+      <li><strong>Gewichten und urteilen:</strong> Welcher Wert hat für dich Vorrang – und warum? Ein Urteil muss sich festlegen.</li>
+      <li><strong>Folgen reflektieren:</strong> Was wäre die Konsequenz deiner Entscheidung?</li>
+    </ol>
+    <p>Trenne sauber zwischen <strong>Sachaussagen</strong> (überprüfbar: „CRISPR/Cas kann ungewollte Mutationen verursachen“) und <strong>Werturteilen</strong> („Man darf nicht über das Erbgut Ungeborener bestimmen“).</p>
+  </div>
+  <p><strong>Fallbeispiel:</strong> Mit der Genschere CRISPR/Cas lassen sich DNA-Abschnitte gezielt verändern. Bei einer <strong>Keimbahntherapie</strong> würde das Erbgut von Embryonen verändert – die Veränderung würde an alle Nachkommen vererbt. 2018 gab ein chinesischer Forscher bekannt, das Erbgut von Embryonen verändert zu haben; er wurde dafür international scharf kritisiert und in China verurteilt. In Deutschland ist die Keimbahnveränderung durch das Embryonenschutzgesetz verboten.</p>
+
+  <div class="task" data-task="h4">
+    <h3>Aufgabe A4.1 – Sachaussage oder Werturteil? <span class="afb">AFB II</span></h3>
+    <table class="q">
+      <tr><th>Aussage</th><th>Art</th><th>Welcher Wert steckt dahinter?</th></tr>
+      <tr><td class="c">Bei CRISPR/Cas kann es zu ungewollten Veränderungen an anderen Stellen des Genoms kommen.</td><td><select id="h4_1a" data-save data-opts="Sachaussage|Werturteil" data-ans="Sachaussage"></select></td><td><select id="h4_1b" data-save data-opts="– (keine Wertung)|Selbstbestimmung|Nichtschaden und Fürsorge|Gerechtigkeit" data-ans="– (keine Wertung)"></select></td></tr>
+      <tr><td class="c">Niemand darf über das Erbgut künftiger Menschen entscheiden, die selbst nicht zustimmen können.</td><td><select id="h4_2a" data-save data-opts="Sachaussage|Werturteil" data-ans="Werturteil"></select></td><td><select id="h4_2b" data-save data-opts="– (keine Wertung)|Selbstbestimmung|Nichtschaden und Fürsorge|Gerechtigkeit" data-ans="Selbstbestimmung"></select></td></tr>
+      <tr><td class="c">Eltern sollten ihrem Kind schweres Leid durch eine Erbkrankheit ersparen dürfen.</td><td><select id="h4_3a" data-save data-opts="Sachaussage|Werturteil" data-ans="Werturteil"></select></td><td><select id="h4_3b" data-save data-opts="– (keine Wertung)|Selbstbestimmung|Nichtschaden und Fürsorge|Gerechtigkeit" data-ans="Nichtschaden und Fürsorge"></select></td></tr>
+      <tr><td class="c">Es wäre unfair, wenn sich nur wohlhabende Familien solche Eingriffe leisten könnten.</td><td><select id="h4_4a" data-save data-opts="Sachaussage|Werturteil" data-ans="Werturteil"></select></td><td><select id="h4_4b" data-save data-opts="– (keine Wertung)|Selbstbestimmung|Nichtschaden und Fürsorge|Gerechtigkeit" data-ans="Gerechtigkeit"></select></td></tr>
+      <tr><td class="c">Bei einer somatischen Gentherapie werden nur Körperzellen verändert; die Veränderung wird nicht vererbt.</td><td><select id="h4_5a" data-save data-opts="Sachaussage|Werturteil" data-ans="Sachaussage"></select></td><td><select id="h4_5b" data-save data-opts="– (keine Wertung)|Selbstbestimmung|Nichtschaden und Fürsorge|Gerechtigkeit" data-ans="– (keine Wertung)"></select></td></tr>
+    </table>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Signalwörter für Werturteile: „darf“, „sollte“, „unfair“, „gerecht“. Sachaussagen lassen sich mit Studien oder Fakten überprüfen.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Sachaussage · Werturteil/Selbstbestimmung · Werturteil/Nichtschaden und Fürsorge · Werturteil/Gerechtigkeit · Sachaussage</p></div>
+  </div>
+
+  <div class="task" data-task="h5" data-free="1">
+    <h3>Aufgabe A4.2 – Ein ethisches Urteil schreiben <span class="afb">AFB III</span></h3>
+    <p><strong>Bewerte</strong>, ob Eingriffe in die menschliche Keimbahn zur Verhinderung schwerer Erbkrankheiten erlaubt werden sollten (ca. 10–15 Sätze).</p>
+    <ul class="bau">
+      <li><em>Sachverhalt:</em> „Bei einer Keimbahntherapie wird … Im Unterschied zur somatischen Gentherapie …“</li>
+      <li><em>Optionen:</em> „Denkbar sind ein vollständiges Verbot, eine Zulassung unter strengen Auflagen oder …“</li>
+      <li><em>Pro:</em> „Für eine Zulassung spricht unter dem Wert der Fürsorge, dass …“</li>
+      <li><em>Contra:</em> „Dagegen lässt sich mit Blick auf die Selbstbestimmung künftiger Generationen einwenden, dass …“</li>
+      <li><em>Urteil:</em> „Für mich wiegt … schwerer als …, weil … Deshalb halte ich …“</li>
+    </ul>
+    <textarea id="h5_txt" data-save rows="10" placeholder="Dein Urteil …"></textarea>
+    <div class="btns"><button type="button" class="primary" data-freebtn>Mit Erwartungen vergleichen</button></div>
+    <div class="feedback"></div>
+    <div class="reveal sol"><h4>Das sollte dein Urteil enthalten</h4><ul>
+      <li><strong>Sachklärung:</strong> Keimbahn vs. somatische Gentherapie; Veränderung wird vererbt; Risiken wie ungewollte Veränderungen (Off-Target-Effekte) und Mosaikbildung; Langzeitfolgen unbekannt; Alternativen wie Präimplantationsdiagnostik</li>
+      <li><strong>Pro:</strong> Leid durch schwere Erbkrankheiten verhindern (Fürsorge, Nichtschaden); Krankheit wird auch für künftige Generationen ausgeschlossen; Fortpflanzungsfreiheit der Eltern</li>
+      <li><strong>Contra:</strong> unkalkulierbare Risiken für Menschen, die nicht zustimmen können (Nichtschaden, Selbstbestimmung); Gefahr des Übergangs zur „Verbesserung“ gesunder Eigenschaften (Dammbruchargument); Gerechtigkeit, wenn nur Wohlhabende Zugang haben; Menschenwürde und Haltung gegenüber Menschen mit Behinderung</li>
+      <li><strong>Gewichtung</strong> der Werte mit Begründung und ein klares Urteil – z. B. Verbot, solange die Risiken nicht beherrschbar sind, oder enge Zulassung für schwerste Krankheiten ohne Alternativen</li>
+      <li>Reflexion der <strong>Folgen</strong> des eigenen Urteils</li></ul></div>
+  </div>
+</section>
+
+<!-- ====================== A5 ====================== -->
+<section class="card" id="a5">
+  <h2><span class="kicker">Station A5</span>Modelle und Basiskonzepte</h2>
+  <div class="info">
+    <h4>Modelle kritisch nutzen</h4>
+    <p>Schemata, Kurven und Modelle (z. B. Synapsenschema, Code-Sonne, Schlüssel-Schloss-Modell) <strong>vereinfachen</strong> die Wirklichkeit, um einen Aspekt verständlich zu machen. Im Abitur sollst du sie nicht nur nutzen, sondern auch ihre <strong>Grenzen</strong> benennen: Was zeigt das Modell – und was nicht (Größenverhältnisse, zeitlicher Ablauf, Dynamik, Ausnahmen)?</p><p><strong>Basiskonzepte</strong> verbinden die Inhaltsfelder. Sie helfen dir, Neues einzuordnen und Inhaltsfelder zu vernetzen:</p><ul><li><strong>Struktur und Funktion</strong> – z. B. Oberflächenvergrößerung, Kompartimentierung, Schlüssel-Schloss-Prinzip</li><li><strong>Stoff- und Energieumwandlung</strong> – z. B. energetische Kopplung über ATP, Stoffkreisläufe</li><li><strong>Information und Kommunikation</strong> – z. B. Codierung an Synapsen und bei der Proteinbiosynthese</li><li><strong>Steuerung und Regelung</strong> – z. B. positive und negative Rückkopplung</li><li><strong>Individuelle und evolutive Entwicklung</strong> – z. B. Zelldifferenzierung, Angepasstheit, Selektion</li></ul>
+  </div>
+
+  <div class="task" data-task="h6">
+    <h3>Aufgabe A5.1 – Welches Basiskonzept? <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">Die gefaltete innere Mitochondrienmembran (Cristae) bietet viel Platz für die Atmungskette.</span><select id="h6_1" data-save data-opts="Struktur und Funktion|Stoff- und Energieumwandlung|Information und Kommunikation|Steuerung und Regelung|Individuelle und evolutive Entwicklung" data-ans="Struktur und Funktion"></select></div>
+    <div class="item"><span class="t">Na⁺-Einstrom depolarisiert die Membran, dadurch öffnen sich weitere Na⁺-Kanäle (positive Rückkopplung).</span><select id="h6_2" data-save data-opts="Struktur und Funktion|Stoff- und Energieumwandlung|Information und Kommunikation|Steuerung und Regelung|Individuelle und evolutive Entwicklung" data-ans="Steuerung und Regelung"></select></div>
+    <div class="item"><span class="t">Die Reizstärke wird in die Frequenz von Aktionspotenzialen übersetzt.</span><select id="h6_3" data-save data-opts="Struktur und Funktion|Stoff- und Energieumwandlung|Information und Kommunikation|Steuerung und Regelung|Individuelle und evolutive Entwicklung" data-ans="Information und Kommunikation"></select></div>
+    <div class="item"><span class="t">Die Spaltung von ATP liefert die Energie für energieaufwendige Reaktionen.</span><select id="h6_4" data-save data-opts="Struktur und Funktion|Stoff- und Energieumwandlung|Information und Kommunikation|Steuerung und Regelung|Individuelle und evolutive Entwicklung" data-ans="Stoff- und Energieumwandlung"></select></div>
+    <div class="item"><span class="t">Arten, die an extreme Standorte angepasst sind, haben dort einen Selektionsvorteil.</span><select id="h6_5" data-save data-opts="Struktur und Funktion|Stoff- und Energieumwandlung|Information und Kommunikation|Steuerung und Regelung|Individuelle und evolutive Entwicklung" data-ans="Individuelle und evolutive Entwicklung"></select></div>
+    <div class="item"><span class="t">Ein Schema der Synapse zeigt Vesikel, Spalt und Rezeptoren. Was kann es <em>nicht</em> zeigen?</span><select id="h6_6" data-save data-opts="die Lage der Strukturen zueinander|den zeitlichen Ablauf und die echten Größenverhältnisse|dass Transmitter an Rezeptoren binden" data-ans="den zeitlichen Ablauf und die echten Größenverhältnisse"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Frage dich jeweils: Geht es um Bau und Leistung (Struktur), um Stoffe und Energie, um Signale und Codes, um Rückkopplung – oder um Anpassung und Entwicklung?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Struktur und Funktion (Oberflächenvergrößerung) · Steuerung und Regelung · Information und Kommunikation · Stoff- und Energieumwandlung (energetische Kopplung) · Individuelle und evolutive Entwicklung · den zeitlichen Ablauf und die echten Größenverhältnisse – ein statisches Schema bildet keine Dynamik ab.</p></div>
+  </div>
+
+</section>
+
+<p class="teil">Teil B · Inhaltsfelder</p>
+
+<!-- ====================== B1 NEURO ====================== -->
+<section class="card" id="b1">
+  <h2><span class="kicker">Station B1</span>Neurobiologie: Erregung und Synapse</h2>
+  <div class="info">
+    <h4>Ruhepotenzial</h4>
+    <p>An der Membran einer ruhenden Nervenzelle misst man eine Spannung von etwa <strong>−70 mV</strong> (innen negativ). Sie entsteht, weil Ionen ungleich verteilt sind – innen viel K⁺ und große, negativ geladene Proteine (Anionen), außen viel Na⁺ und Cl⁻ – und weil die Membran in Ruhe vor allem für <strong>K⁺</strong> durchlässig ist (offene Kaliumkanäle). K⁺ strömt dem Konzentrationsgefälle folgend aus, bis die entstehende Ladung weiteren Ausstrom bremst. Die <strong>Natrium-Kalium-Pumpe</strong> erhält die Ungleichverteilung unter ATP-Verbrauch: Sie befördert 3 Na⁺ hinaus und 2 K⁺ hinein.</p>
+    <h4 style="margin-top:12px">Aktionspotenzial</h4>
+    <p>Wird die Membran bis zum <strong>Schwellenwert</strong> (etwa −50 mV) depolarisiert, öffnen sich spannungsgesteuerte <strong>Na⁺-Kanäle</strong>: Na⁺ strömt ein, das Potenzial steigt bis etwa +30 mV (<strong>Depolarisation</strong>). Dann schließen die Na⁺-Kanäle, spannungsgesteuerte <strong>K⁺-Kanäle</strong> öffnen, K⁺ strömt aus (<strong>Repolarisation</strong>). Weil sie verzögert schließen, wird das Potenzial kurz negativer als in Ruhe (<strong>Hyperpolarisation</strong>). Aktionspotenziale folgen dem <strong>Alles-oder-Nichts-Prinzip</strong>; die Reizstärke wird über die Frequenz verschlüsselt. Während der <strong>Refraktärzeit</strong> ist kein neues AP möglich – deshalb läuft die Erregung nur in eine Richtung.</p>
+    <p><strong>Erregungsleitung:</strong> Bei marklosen Axonen kontinuierlich, bei markhaltigen <strong>saltatorisch</strong>: Die Erregung „springt“ von Schnürring zu Schnürring – das ist viel schneller und energiesparender.</p>
+    <p><strong>Messung:</strong> Eine Mikroelektrode im Axon und eine Bezugselektrode außen; die Spannung wird mit einem Oszilloskop bzw. einem Messverstärker aufgezeichnet.</p>
+    <h4 style="margin-top:12px">Erregende chemische Synapse</h4>
+    <p>Erreicht ein AP das Endknöpfchen, öffnen sich spannungsgesteuerte <strong>Ca²⁺-Kanäle</strong>. Ca²⁺ strömt ein und bewirkt, dass Vesikel mit dem Transmitter (z. B. <strong>Acetylcholin</strong>) mit der Membran verschmelzen. Der Transmitter diffundiert durch den synaptischen Spalt und bindet an Rezeptoren der postsynaptischen Membran; ligandengesteuerte Na⁺-Kanäle öffnen sich, es entsteht ein <strong>erregendes postsynaptisches Potenzial (EPSP)</strong>. Das Enzym <strong>Acetylcholinesterase</strong> spaltet den Transmitter, die Spaltprodukte werden wieder aufgenommen. An der <strong>neuromuskulären Synapse</strong> (motorische Endplatte) löst die Erregung die Muskelkontraktion aus.</p>
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 560 300" width="560" role="img" aria-label="Verlauf eines Aktionspotenzials mit nummerierten Abschnitten">
+      <g font-family="Calibri,Carlito,Arial,sans-serif" fill="#1a1a1a">
+        <line x1="60" y1="30" x2="60" y2="275" stroke="#1a1a1a" stroke-width="1.5"/>
+        <line x1="60" y1="275" x2="520" y2="275" stroke="#1a1a1a" stroke-width="1.5"/>
+        <g font-size="12" fill="#595959" text-anchor="end">
+          <text x="54" y="62">+30</text><text x="54" y="116">0</text><text x="54" y="206">−50</text><text x="54" y="242">−70</text>
+        </g>
+        <line x1="60" y1="112" x2="520" y2="112" stroke="#e0e0e0"/>
+        <line x1="60" y1="202" x2="520" y2="202" stroke="#1a1a1a" stroke-dasharray="6 4"/>
+        <path d="M60,238 L150,238 Q170,236 178,202 C190,120 196,60 206,58 C216,56 226,150 240,238 C246,252 252,256 262,256 C285,256 300,240 330,238 L520,238" fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
+        <text x="290" y="296" text-anchor="middle" font-size="14">Zeit (ms)</text>
+        <text x="18" y="150" text-anchor="middle" font-size="14" transform="rotate(-90 18 150)">Membranpotenzial (mV)</text>
+        <g font-size="14" font-weight="bold">
+          <circle cx="110" cy="222" r="11" fill="#fff" stroke="#1a1a1a"/><text x="110" y="227" text-anchor="middle">1</text>
+          <circle cx="168" cy="120" r="11" fill="#fff" stroke="#1a1a1a"/><text x="168" y="125" text-anchor="middle">2</text>
+          <circle cx="246" cy="140" r="11" fill="#fff" stroke="#1a1a1a"/><text x="246" y="145" text-anchor="middle">3</text>
+          <circle cx="262" cy="270" r="0" fill="none"/>
+          <circle cx="290" cy="262" r="11" fill="#fff" stroke="#1a1a1a"/><text x="290" y="267" text-anchor="middle">4</text>
+          <circle cx="500" cy="190" r="11" fill="#fff" stroke="#1a1a1a"/><text x="500" y="195" text-anchor="middle">5</text>
+        </g>
+      </g>
+    </svg>
+    <figcaption>Abb. 2: Verlauf eines Aktionspotenzials (schematisch). Die gestrichelte Linie markiert eine wichtige Spannung.</figcaption>
+  </figure>
+
+  <div class="task" data-task="n1">
+    <h3>Aufgabe B1.1 – Das Aktionspotenzial <span class="afb">AFB I–II</span></h3>
+    <div class="item"><span class="t">Abschnitt 1</span><select id="n1_1" data-save data-opts="Ruhepotenzial|Depolarisation|Repolarisation|Hyperpolarisation|Schwellenwert" data-ans="Ruhepotenzial"></select></div>
+    <div class="item"><span class="t">Abschnitt 2</span><select id="n1_2" data-save data-opts="Ruhepotenzial|Depolarisation|Repolarisation|Hyperpolarisation|Schwellenwert" data-ans="Depolarisation"></select></div>
+    <div class="item"><span class="t">Abschnitt 3</span><select id="n1_3" data-save data-opts="Ruhepotenzial|Depolarisation|Repolarisation|Hyperpolarisation|Schwellenwert" data-ans="Repolarisation"></select></div>
+    <div class="item"><span class="t">Abschnitt 4</span><select id="n1_4" data-save data-opts="Ruhepotenzial|Depolarisation|Repolarisation|Hyperpolarisation|Schwellenwert" data-ans="Hyperpolarisation"></select></div>
+    <div class="item"><span class="t">Linie 5</span><select id="n1_5" data-save data-opts="Ruhepotenzial|Depolarisation|Repolarisation|Hyperpolarisation|Schwellenwert" data-ans="Schwellenwert"></select></div>
+    <div class="item"><span class="t">In welchem Abschnitt strömen Na⁺-Ionen durch spannungsgesteuerte Kanäle ein?</span><select id="n1_6" data-save data-opts="1|2|3|4" data-ans="2"></select></div>
+    <div class="item"><span class="t">In welchem Abschnitt strömen K⁺-Ionen aus, während die Na⁺-Kanäle bereits geschlossen sind?</span><select id="n1_7" data-save data-opts="1|2|3|4" data-ans="3"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Die gestrichelte Linie liegt bei etwa −50 mV. Was muss erreicht werden, damit überhaupt ein AP entsteht?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>1 Ruhepotenzial · 2 Depolarisation (Na⁺-Einstrom) · 3 Repolarisation (K⁺-Ausstrom) · 4 Hyperpolarisation (K⁺-Kanäle schließen verzögert) · 5 Schwellenwert</p></div>
+  </div>
+
+  <div class="task" data-task="n2">
+    <h3>Aufgabe B1.2 – Ruhepotenzial und Erregungsleitung <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">In Ruhe ist die Membran vor allem für Na⁺ gut durchlässig.</span><select id="n2_1" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">Die Na⁺-K⁺-Pumpe verbraucht ATP und befördert 3 Na⁺ nach außen und 2 K⁺ nach innen.</span><select id="n2_2" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Ein stärkerer Reiz erzeugt ein höheres Aktionspotenzial.</span><select id="n2_3" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">Die Refraktärzeit sorgt dafür, dass die Erregung nicht zurückläuft.</span><select id="n2_4" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Bei markhaltigen Axonen entstehen Aktionspotenziale nur an den Ranvierschen Schnürringen.</span><select id="n2_5" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Erinnere dich an das Alles-oder-Nichts-Prinzip: Wie wird die Reizstärke dann überhaupt weitergegeben?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>falsch (vor allem für K⁺) · richtig · falsch (Alles-oder-Nichts; ein stärkerer Reiz erhöht die AP-Frequenz) · richtig · richtig (dazwischen isoliert die Myelinscheide)</p></div>
+  </div>
+
+  <div class="task" data-task="n3">
+    <h3>Aufgabe B1.3 – Die Synapse in der richtigen Reihenfolge <span class="afb">AFB I</span></h3>
+    <p>Bringe die Schritte in die richtige Reihenfolge (1 = zuerst).</p>
+    <div class="item"><span class="t">Acetylcholin bindet an Rezeptoren, ligandengesteuerte Na⁺-Kanäle öffnen sich.</span><select id="n3_1" data-save data-opts="1|2|3|4|5|6" data-ans="4"></select></div>
+    <div class="item"><span class="t">Ein Aktionspotenzial erreicht das Endknöpfchen.</span><select id="n3_2" data-save data-opts="1|2|3|4|5|6" data-ans="1"></select></div>
+    <div class="item"><span class="t">Acetylcholinesterase spaltet den Transmitter.</span><select id="n3_3" data-save data-opts="1|2|3|4|5|6" data-ans="6"></select></div>
+    <div class="item"><span class="t">Vesikel verschmelzen mit der Membran, Acetylcholin gelangt in den synaptischen Spalt.</span><select id="n3_4" data-save data-opts="1|2|3|4|5|6" data-ans="3"></select></div>
+    <div class="item"><span class="t">Die postsynaptische Membran wird depolarisiert (EPSP).</span><select id="n3_5" data-save data-opts="1|2|3|4|5|6" data-ans="5"></select></div>
+    <div class="item"><span class="t">Spannungsgesteuerte Ca²⁺-Kanäle öffnen sich, Ca²⁺ strömt ein.</span><select id="n3_6" data-save data-opts="1|2|3|4|5|6" data-ans="2"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Elektrisch – chemisch – elektrisch: Erst kommt die Erregung an, dann wird ein Stoff freigesetzt, dann entsteht auf der anderen Seite wieder ein Potenzial.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>1 AP erreicht Endknöpfchen · 2 Ca²⁺-Einstrom · 3 Exocytose · 4 Bindung an Rezeptoren · 5 EPSP · 6 Spaltung durch Acetylcholinesterase</p></div>
+  </div>
+
+  <div class="task" data-task="n4">
+    <h3>Aufgabe B1.4 – Stoffeinwirkung an der Synapse <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">Curare (Pfeilgift) bindet an die ACh-Rezeptoren der motorischen Endplatte, ohne die Kanäle zu öffnen.</span><select id="n4_1" data-save data-opts="schlaffe Lähmung|Dauerkontraktion und Krämpfe" data-ans="schlaffe Lähmung"></select></div>
+    <div class="item"><span class="t">Das Insektizid E 605 (Parathion) hemmt die Acetylcholinesterase.</span><select id="n4_2" data-save data-opts="schlaffe Lähmung|Dauerkontraktion und Krämpfe" data-ans="Dauerkontraktion und Krämpfe"></select></div>
+    <div class="item"><span class="t">Botulinumtoxin verhindert die Ausschüttung von Acetylcholin.</span><select id="n4_3" data-save data-opts="schlaffe Lähmung|Dauerkontraktion und Krämpfe" data-ans="schlaffe Lähmung"></select></div>
+    <div class="item"><span class="t">Wie nennt man einen Stoff wie Curare, der den Rezeptor besetzt, ohne ihn zu aktivieren?</span><select id="n4_4" data-save data-opts="Agonist|Antagonist|Enzym" data-ans="Antagonist"></select></div>
+    <div class="item"><span class="t">Nikotin bindet an bestimmte ACh-Rezeptoren und öffnet die Kanäle. Es ist ein …</span><select id="n4_5" data-save data-opts="Agonist|Antagonist|Enzym" data-ans="Agonist"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Frage immer: Kommt am Muskel noch ein Signal an – oder hört das Signal gar nicht mehr auf?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>schlaffe Lähmung (kein EPSP) · Dauerkontraktion und Krämpfe (ACh wird nicht abgebaut, Dauererregung) · schlaffe Lähmung (kein Transmitter) · Antagonist · Agonist</p></div>
+  </div>
+  <div class="info">
+    <h4>Bau eines Neurons und Messung</h4>
+    <ul><li><strong>Dendriten</strong> nehmen Signale anderer Zellen auf; im <strong>Zellkörper</strong> (Soma) laufen sie zusammen.</li><li>Am <strong>Axonhügel</strong> werden die eingehenden Potenziale verrechnet; wird der Schwellenwert überschritten, entsteht hier ein Aktionspotenzial.</li><li>Das <strong>Axon</strong> leitet die Erregung weiter; bei Wirbeltieren ist es oft von einer <strong>Myelinscheide</strong> (Schwann-Zellen) umhüllt, unterbrochen von <strong>Ranvierschen Schnürringen</strong>.</li><li>An den <strong>Endknöpfchen</strong> wird die Erregung über Synapsen weitergegeben.</li></ul><p><strong>Potenzialmessung:</strong> Man misst die Spannung zwischen einer Mikroelektrode im Zellinneren und einer Bezugselektrode außen. Sobald die Mikroelektrode die Membran durchsticht, springt die Anzeige von 0 auf etwa −70 mV. Mit Stoffen, die gezielt Kanäle oder Pumpen blockieren, kann man prüfen, welche Moleküle für welchen Teil der Kurve verantwortlich sind.</p>
+  </div>
+
+  <div class="task" data-task="n5">
+    <h3>Aufgabe B1.5 – Bau, Messung und Hypothesen <span class="afb">AFB II</span> <span class="fok">KLP</span></h3>
+    <div class="item"><span class="t">Wo entsteht in der Regel das Aktionspotenzial?</span><select id="n5_1" data-save data-opts="an den Dendriten|am Axonhügel|an den Endknöpfchen" data-ans="am Axonhügel"></select></div>
+    <div class="item"><span class="t">Was zeigt das Messgerät, bevor die Mikroelektrode die Membran durchsticht?</span><select id="n5_2" data-save data-opts="0 mV|−70 mV|+30 mV" data-ans="0 mV"></select></div>
+    <div class="item"><span class="t">Hypothese: Erhöht man die K⁺-Konzentration außerhalb des Axons stark, dann wird das Ruhepotenzial …</span><select id="n5_3" data-save data-opts="negativer (Hyperpolarisation)|weniger negativ (Depolarisation)|nicht verändert" data-ans="weniger negativ (Depolarisation)"></select></div>
+    <div class="item"><span class="t">Ouabain hemmt die Na⁺-K⁺-Pumpe. Was passiert mit dem Ruhepotenzial?</span><select id="n5_4" data-save data-opts="Es bricht sofort zusammen.|Es wird langsam schwächer, weil sich die Ionengradienten allmählich ausgleichen.|Es wird stärker." data-ans="Es wird langsam schwächer, weil sich die Ionengradienten allmählich ausgleichen."></select></div>
+    <div class="item"><span class="t">Tetrodotoxin (Kugelfischgift) blockiert spannungsgesteuerte Na⁺-Kanäle. Welche Messung erwartest du nach einem überschwelligen Reiz?</span><select id="n5_5" data-save data-opts="normales Ruhepotenzial, aber kein Aktionspotenzial|kein Ruhepotenzial mehr|ein besonders hohes Aktionspotenzial" data-ans="normales Ruhepotenzial, aber kein Aktionspotenzial"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Beim K⁺: Das Ruhepotenzial entsteht durch K⁺-Ausstrom entlang des Konzentrationsgefälles. Was passiert mit dem Gefälle, wenn außen mehr K⁺ ist? Bei Ouabain: Die Pumpe hält die Gradienten aufrecht, sie erzeugt das Potenzial aber nicht direkt.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>am Axonhügel · 0 mV (beide Elektroden außen) · weniger negativ – das Konzentrationsgefälle für K⁺ wird kleiner, es strömt weniger K⁺ aus · langsam schwächer – ohne Pumpe gleichen sich die Gradienten durch Leckströme allmählich aus · normales Ruhepotenzial, aber kein AP – die Na⁺-Kanäle für die Depolarisation sind blockiert.</p></div>
+  </div>
+
+  <div class="task" data-task="n6">
+    <h3>Aufgabe B1.6 – Kontinuierlich oder saltatorisch? Ein kriteriengeleiteter Vergleich <span class="afb">AFB II</span> <span class="fok">KLP</span></h3>
+    <p>Ordne jedem Kriterium die passende Erregungsleitung zu.</p>
+    <div class="item"><span class="t">höhere Leitungsgeschwindigkeit bei gleichem Axondurchmesser</span><select id="n6_1" data-save data-opts="kontinuierlich|saltatorisch" data-ans="saltatorisch"></select></div>
+    <div class="item"><span class="t">Aktionspotenziale entstehen an jeder Stelle der Axonmembran</span><select id="n6_2" data-save data-opts="kontinuierlich|saltatorisch" data-ans="kontinuierlich"></select></div>
+    <div class="item"><span class="t">geringerer Energiebedarf, weil weniger Ionen zurückgepumpt werden müssen</span><select id="n6_3" data-save data-opts="kontinuierlich|saltatorisch" data-ans="saltatorisch"></select></div>
+    <div class="item"><span class="t">typisch für marklose Axone, z. B. bei vielen Wirbellosen</span><select id="n6_4" data-save data-opts="kontinuierlich|saltatorisch" data-ans="kontinuierlich"></select></div>
+    <div class="item"><span class="t">Schnelle Leitung ist hier nur über einen sehr großen Axondurchmesser möglich (z. B. Riesenaxon des Tintenfischs).</span><select id="n6_5" data-save data-opts="kontinuierlich|saltatorisch" data-ans="kontinuierlich"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Bei der saltatorischen Leitung ist der Ionenaustausch auf die Schnürringe beschränkt. Was bedeutet das für Zeit und Energie?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>saltatorisch · kontinuierlich · saltatorisch · kontinuierlich · kontinuierlich. Folgerung: Die Myelinisierung erlaubt schnelle Leitung bei dünnen Axonen – Platz und Energie werden gespart.</p></div>
+  </div>
+
+  <div class="task" data-task="n7">
+    <h3>Aufgabe B1.7 – Schmerzmittel bewerten: erst die Fakten <span class="afb">AFB II–III</span> <span class="fok">KLP</span></h3>
+    <p>Für eine Stellungnahme zum Einsatz von Schmerzmitteln brauchst du zuerst sichere Sachaussagen.</p>
+    <div class="item"><span class="t">Lokalanästhetika wie Lidocain blockieren spannungsgesteuerte Na⁺-Kanäle; in den betroffenen Nervenfasern entstehen keine Aktionspotenziale.</span><select id="n7_1" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Opioide wie Morphin wirken an spezifischen Rezeptoren im Nervensystem und hemmen die Schmerzweiterleitung.</span><select id="n7_2" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Opioide sind unbedenklich, weil sie keine Abhängigkeit erzeugen können.</span><select id="n7_3" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">„Starke Schmerzmittel sollten nur nach ärztlicher Abwägung eingesetzt werden.“ – Das ist eine …</span><select id="n7_4" data-save data-opts="Sachaussage|normative Aussage (Werturteil)" data-ans="normative Aussage (Werturteil)"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Denk an die Opioidkrise in den USA: Welche Risiken haben starke Schmerzmittel neben der Wirkung?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>richtig · richtig · falsch – Opioide können abhängig machen und in hoher Dosis die Atmung lähmen · normative Aussage. Für die Stellungnahme wägst du Schmerzlinderung (Lebensqualität, Fürsorge) gegen Risiken (Abhängigkeit, Nebenwirkungen, Missbrauch) ab.</p></div>
+  </div>
+
+</section>
+
+<!-- ====================== B2 STOFFWECHSEL ====================== -->
+<section class="card" id="b2">
+  <h2><span class="kicker">Station B2</span>Stoffwechselphysiologie: Fotosynthese und Zellatmung</h2>
+  <div class="info">
+    <h4>Fotosynthese – aufbauender Stoffwechsel</h4>
+    <p>Ort ist der <strong>Chloroplast</strong>. In der <strong>Primärreaktion</strong> (lichtabhängige Reaktion) an der <strong>Thylakoidmembran</strong> absorbieren Chlorophylle Lichtenergie. Wasser wird gespalten (Fotolyse) – dabei entsteht der <strong>Sauerstoff</strong>. Über eine Elektronentransportkette werden <strong>NADPH+H⁺</strong> und – chemiosmotisch – <strong>ATP</strong> gebildet. In der <strong>Sekundärreaktion</strong>, dem <strong>Calvin-Zyklus</strong> im <strong>Stroma</strong>, wird CO₂ in drei Phasen zu Zucker aufgebaut: <strong>Fixierung</strong> (das Enzym RuBisCO bindet CO₂ an Ribulose-1,5-bisphosphat), <strong>Reduktion</strong> (mit ATP und NADPH+H⁺) und <strong>Regeneration</strong> des Akzeptors.</p>
+    <p><strong>Absorptions- und Wirkungsspektrum:</strong> Chlorophyll absorbiert vor allem blaues und rotes Licht, grünes kaum (deshalb sehen Blätter grün aus). Das Wirkungsspektrum zeigt, bei welchen Wellenlängen die Fotosynthese wie stark abläuft. Blattfarbstoffe kann man durch <strong>Dünnschichtchromatografie</strong> trennen: Sie wandern je nach Löslichkeit im Laufmittel und Haftung an der Trägerschicht unterschiedlich weit.</p>
+    <h4 style="margin-top:12px">Zellatmung – abbauender Stoffwechsel</h4>
+    <table class="q">
+      <tr><th>Teilschritt</th><th>Ort</th><th>Bilanz pro Glucose (vereinfacht)</th></tr>
+      <tr><td>Glykolyse</td><td>Cytoplasma</td><td>Glucose → 2 Pyruvat; netto 2 ATP, 2 NADH+H⁺</td></tr>
+      <tr><td>oxidative Decarboxylierung</td><td>Mitochondrienmatrix</td><td>2 Pyruvat → 2 Acetyl-CoA; 2 CO₂, 2 NADH+H⁺</td></tr>
+      <tr><td>Tricarbonsäurezyklus (Citratzyklus)</td><td>Mitochondrienmatrix</td><td>4 CO₂, 6 NADH+H⁺, 2 FADH₂, 2 ATP</td></tr>
+      <tr><td>Atmungskette</td><td>innere Mitochondrienmembran</td><td>Elektronen auf O₂ → H₂O; Protonengradient; ATP-Synthase bildet den größten Teil des ATP</td></tr>
+    </table>
+    <p>Insgesamt entstehen pro Glucose rund <strong>30 ATP</strong>. Ohne Sauerstoff als Endakzeptor stoppt die Atmungskette.</p>
+    <h4 style="margin-top:12px">Gemeinsame Prinzipien</h4>
+    <ul>
+      <li><strong>Chemiosmotische ATP-Bildung:</strong> In beiden Organellen bauen Elektronentransportketten einen <strong>Protonengradienten</strong> auf (Chloroplast: in den Thylakoidinnenraum; Mitochondrium: in den Intermembranraum). Die Protonen strömen durch die <strong>ATP-Synthase</strong> zurück, die dabei ATP bildet.</li>
+      <li><strong>Redoxreaktionen und Energieumwandlung:</strong> NADH+H⁺, NADPH+H⁺ und FADH₂ übertragen Elektronen; ATP ist die universelle Energiewährung. Bei jeder Umwandlung wird ein Teil der Energie als Wärme entwertet.</li>
+      <li><strong>Regulation auf Enzymebene:</strong> Schlüsselenzyme werden z. B. <strong>allosterisch</strong> reguliert – ein Effektor bindet nicht am aktiven Zentrum, sondern an einer anderen Stelle und verändert die Form des Enzyms. So hemmt ein hoher ATP-Gehalt die Phosphofructokinase in der Glykolyse.</li>
+    </ul>
+  </div>
+
+  <div class="task" data-task="s1">
+    <h3>Aufgabe B2.1 – Wo läuft das ab? <span class="afb">AFB I</span></h3>
+    <div class="item"><span class="t">Glykolyse</span><select id="s1_1" data-save data-opts="Cytoplasma|Mitochondrienmatrix|innere Mitochondrienmembran|Thylakoidmembran|Stroma" data-ans="Cytoplasma"></select></div>
+    <div class="item"><span class="t">Tricarbonsäurezyklus</span><select id="s1_2" data-save data-opts="Cytoplasma|Mitochondrienmatrix|innere Mitochondrienmembran|Thylakoidmembran|Stroma" data-ans="Mitochondrienmatrix"></select></div>
+    <div class="item"><span class="t">Atmungskette</span><select id="s1_3" data-save data-opts="Cytoplasma|Mitochondrienmatrix|innere Mitochondrienmembran|Thylakoidmembran|Stroma" data-ans="innere Mitochondrienmembran"></select></div>
+    <div class="item"><span class="t">Fotolyse des Wassers und Elektronentransport der Fotosynthese</span><select id="s1_4" data-save data-opts="Cytoplasma|Mitochondrienmatrix|innere Mitochondrienmembran|Thylakoidmembran|Stroma" data-ans="Thylakoidmembran"></select></div>
+    <div class="item"><span class="t">Calvin-Zyklus</span><select id="s1_5" data-save data-opts="Cytoplasma|Mitochondrienmatrix|innere Mitochondrienmembran|Thylakoidmembran|Stroma" data-ans="Stroma"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Merkhilfe: Wo Elektronen über eine Kette weitergegeben werden, braucht es eine Membran – nur so kann ein Protonengradient entstehen.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Cytoplasma · Mitochondrienmatrix · innere Mitochondrienmembran · Thylakoidmembran · Stroma</p></div>
+  </div>
+
+  <div class="task" data-task="s2">
+    <h3>Aufgabe B2.2 – Stoff- und Energiebilanz <span class="afb">AFB I–II</span></h3>
+    <div class="item"><span class="t">Woher stammt der Sauerstoff, den Pflanzen bei der Fotosynthese abgeben?</span><select id="s2_1" data-save data-opts="aus dem CO₂|aus dem Wasser|aus der Glucose" data-ans="aus dem Wasser"></select></div>
+    <div class="item"><span class="t">Welche Produkte der Primärreaktion braucht der Calvin-Zyklus?</span><select id="s2_2" data-save data-opts="ATP und NADPH+H⁺|O₂ und Glucose|CO₂ und H₂O" data-ans="ATP und NADPH+H⁺"></select></div>
+    <div class="item"><span class="t">In welcher Phase des Calvin-Zyklus wird CO₂ gebunden?</span><select id="s2_3" data-save data-opts="Fixierung|Reduktion|Regeneration" data-ans="Fixierung"></select></div>
+    <div class="item"><span class="t">Wie viel ATP gewinnt die Glykolyse netto pro Glucose?</span><select id="s2_4" data-save data-opts="2|4|30" data-ans="2"></select></div>
+    <div class="item"><span class="t">In welchen Teilschritten der Zellatmung entsteht CO₂?</span><select id="s2_5" data-save data-opts="Glykolyse und Atmungskette|oxidative Decarboxylierung und Tricarbonsäurezyklus|nur in der Atmungskette" data-ans="oxidative Decarboxylierung und Tricarbonsäurezyklus"></select></div>
+    <div class="item"><span class="t">Was ist der letzte Elektronenakzeptor der Atmungskette?</span><select id="s2_6" data-save data-opts="NAD⁺|O₂|ATP" data-ans="O₂"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Beim Sauerstoff hilft ein Gedanke an die Fotolyse. Beim CO₂: In welchen Schritten werden Kohlenstoffatome abgespalten?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>aus dem Wasser · ATP und NADPH+H⁺ · Fixierung · 2 · oxidative Decarboxylierung und Tricarbonsäurezyklus · O₂ (es wird zu Wasser reduziert)</p></div>
+  </div>
+
+  <div class="task" data-task="s3">
+    <h3>Aufgabe B2.3 – Prinzipien des Stoffwechsels <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">Die ATP-Synthase nutzt sowohl in Mitochondrien als auch in Chloroplasten einen Protonengradienten.</span><select id="s3_1" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Im Chloroplasten werden die Protonen ins Stroma gepumpt.</span><select id="s3_2" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">Grünes Licht wird von Chlorophyll besonders stark absorbiert.</span><select id="s3_3" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">Ein allosterischer Hemmstoff bindet am aktiven Zentrum des Enzyms.</span><select id="s3_4" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">Ein hoher ATP-Gehalt der Zelle bremst die Glykolyse.</span><select id="s3_5" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Bei jeder Energieumwandlung geht ein Teil der Energie als Wärme „verloren“ (Energieentwertung).</span><select id="s3_6" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Die ATP-Synthase des Chloroplasten ragt mit ihrem Kopf ins Stroma, wo das ATP für den Calvin-Zyklus gebraucht wird. Von wo nach wo fließen die Protonen dann durch sie hindurch?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>richtig · falsch (in den Thylakoidinnenraum; zurück ins Stroma strömen sie durch die ATP-Synthase) · falsch (grün wird kaum absorbiert, sondern reflektiert) · falsch (an einer anderen Stelle – dem allosterischen Zentrum) · richtig (Endprodukthemmung der Phosphofructokinase) · richtig</p></div>
+  </div>
+  <div class="info">
+    <h4>Funktionale Angepasstheiten und Kompartimente</h4>
+    <ul><li><strong>Blatt:</strong> Eine wachsartige <strong>Kutikula</strong> und die Epidermis schützen vor Verdunstung. Im <strong>Palisadengewebe</strong> liegen die meisten Chloroplasten – hier läuft der Großteil der Fotosynthese. Das <strong>Schwammgewebe</strong> mit großen Zwischenräumen (Interzellularen) ermöglicht den Gasaustausch, der über regulierbare <strong>Spaltöffnungen</strong> erfolgt. <strong>Leitbündel</strong> transportieren Wasser und Assimilate.</li><li><strong>Chloroplast:</strong> Doppelmembran; die gestapelten <strong>Thylakoide</strong> bieten große Fläche für die Pigmente und die Primärreaktion; im <strong>Stroma</strong> läuft der Calvin-Zyklus.</li><li><strong>Mitochondrium:</strong> Doppelmembran; die innere Membran ist zu <strong>Cristae</strong> gefaltet (große Fläche für die Atmungskette); der schmale <strong>Intermembranraum</strong> ermöglicht einen steilen Protonengradienten; in der <strong>Matrix</strong> laufen oxidative Decarboxylierung und Tricarbonsäurezyklus.</li><li><strong>Kompartimentierung</strong> erlaubt, dass gegenläufige Prozesse gleichzeitig in einer Zelle ablaufen. Dafür müssen Stoffe über Transportproteine zwischen den Kompartimenten wandern: Pyruvat gelangt aus dem Cytoplasma in die Matrix, ATP verlässt das Mitochondrium im Austausch gegen ADP, Zucker-Zwischenprodukte (Triosephosphat) werden aus dem Chloroplasten ins Cytoplasma exportiert.</li><li><strong>ATP-ADP-System:</strong> ATP wird ständig gespalten und neu gebildet. Die Spaltung liefert Energie für energieaufwendige Reaktionen (<strong>energetische Kopplung</strong>).</li><li><strong>Chromatografie:</strong> Der R<sub>f</sub>-Wert = Laufstrecke des Farbstoffs ÷ Laufstrecke der Laufmittelfront. Neben Chlorophyll a und b findet man Carotinoide. Diese <strong>akzessorischen Pigmente</strong> absorbieren auch im blaugrünen Bereich und geben die Energie an Chlorophyll weiter – deshalb ist das Wirkungsspektrum breiter als das Absorptionsspektrum von Chlorophyll allein.</li></ul>
+  </div>
+
+  <div class="task" data-task="s4">
+    <h3>Aufgabe B2.4 – Struktur und Funktion auf mehreren Systemebenen <span class="afb">AFB II</span> <span class="fok">KLP</span></h3>
+    <div class="item"><span class="t">Palisadengewebe</span><select id="s4_1" data-save data-opts="Hauptort der Fotosynthese, viele Chloroplasten|Gasaustausch über Interzellularen|Verdunstungsschutz|Oberfläche für die Atmungskette" data-ans="Hauptort der Fotosynthese, viele Chloroplasten"></select></div>
+    <div class="item"><span class="t">Schwammgewebe</span><select id="s4_2" data-save data-opts="Hauptort der Fotosynthese, viele Chloroplasten|Gasaustausch über Interzellularen|Verdunstungsschutz|Oberfläche für die Atmungskette" data-ans="Gasaustausch über Interzellularen"></select></div>
+    <div class="item"><span class="t">Kutikula</span><select id="s4_3" data-save data-opts="Hauptort der Fotosynthese, viele Chloroplasten|Gasaustausch über Interzellularen|Verdunstungsschutz|Oberfläche für die Atmungskette" data-ans="Verdunstungsschutz"></select></div>
+    <div class="item"><span class="t">Cristae</span><select id="s4_4" data-save data-opts="Hauptort der Fotosynthese, viele Chloroplasten|Gasaustausch über Interzellularen|Verdunstungsschutz|Oberfläche für die Atmungskette" data-ans="Oberfläche für die Atmungskette"></select></div>
+    <div class="item"><span class="t">Wie gelangt das ATP, das in der Matrix gebildet wird, ins Cytoplasma, wo es gebraucht wird?</span><select id="s4_5" data-save data-opts="ATP diffundiert frei durch beide Membranen.|Ein Transportprotein tauscht ATP aus der Matrix gegen ADP aus dem Cytoplasma.|ATP wird im Cytoplasma neu gebildet." data-ans="Ein Transportprotein tauscht ATP aus der Matrix gegen ADP aus dem Cytoplasma."></select></div>
+    <div class="item"><span class="t">Ein Farbstoff wandert 3,6 cm, die Laufmittelfront 9,0 cm. R<sub>f</sub>-Wert?</span><select id="s4_6" data-save data-opts="0,25|0,4|2,5" data-ans="0,4"></select></div>
+    <div class="item"><span class="t">Warum zeigt das Wirkungsspektrum der Fotosynthese auch bei etwa 480 nm noch hohe Werte, obwohl Chlorophyll a dort wenig absorbiert?</span><select id="s4_7" data-save data-opts="weil Carotinoide dort absorbieren und die Energie weiterleiten|weil grünes Licht besonders energiereich ist|weil die Messung fehlerhaft ist" data-ans="weil Carotinoide dort absorbieren und die Energie weiterleiten"></select></div>
+    <div class="item"><span class="t">Mit steigender Temperatur nimmt die Fotosyntheserate zunächst zu, oberhalb eines Optimums aber stark ab. Hauptgrund für den Abfall:</span><select id="s4_8" data-save data-opts="Enzyme wie RuBisCO werden zunehmend inaktiviert bzw. denaturiert.|Das Licht wird schwächer.|Das Chlorophyll wird grün." data-ans="Enzyme wie RuBisCO werden zunehmend inaktiviert bzw. denaturiert."></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Beim R<sub>f</sub>-Wert teilst du die kleinere durch die größere Strecke – das Ergebnis liegt immer zwischen 0 und 1.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Fotosynthese · Gasaustausch · Verdunstungsschutz · Atmungskette · ATP-ADP-Austausch über ein Transportprotein (Kompartimentierung) · 3,6 ÷ 9,0 = 0,4 · akzessorische Pigmente (Carotinoide) · Enzyme des Calvin-Zyklus verlieren oberhalb des Optimums ihre Funktion.</p></div>
+  </div>
+
+  <div class="task" data-task="s5">
+    <h3>Aufgabe B2.5 – Nahrungsergänzung kritisch prüfen <span class="afb">AFB II–III</span> <span class="fok">KLP</span></h3>
+    <div class="sample">Werbeversprechen: „Mit Coenzym-Q10-Kapseln läuft deine Zellatmung auf Hochtouren – mehr ATP, mehr Energie im Alltag!“ (Coenzym Q10 ist ein Elektronenüberträger der Atmungskette.)</div>
+    <div class="item"><span class="t">Der menschliche Körper kann Coenzym Q10 selbst herstellen.</span><select id="s5_1" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Mehr Q10 führt bei gesunden Menschen automatisch zu mehr ATP.</span><select id="s5_2" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">Die ATP-Bildung wird u. a. vom Angebot an ADP, NADH+H⁺ und O₂ bestimmt – sie richtet sich nach dem Bedarf.</span><select id="s5_3" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Welches Kriterium ist für eine Stellungnahme am wichtigsten?</span><select id="s5_4" data-save data-opts="ob das Produkt gut beworben wird|ob es belastbare Studien zur Wirkung bei Gesunden gibt|ob bekannte Sportler es nutzen" data-ans="ob es belastbare Studien zur Wirkung bei Gesunden gibt"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Erinnere dich an die Regulation: Wann arbeitet die ATP-Synthase überhaupt – und was passiert, wenn genug ATP da ist?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>richtig · falsch · richtig – die Zellatmung wird über den Energiebedarf reguliert, ein einzelner Überträger ist bei Gesunden in der Regel nicht der begrenzende Faktor · belastbare Studien. Ein Werbeversprechen ersetzt keinen Wirksamkeitsnachweis.</p></div>
+  </div>
+
+</section>
+
+<!-- ====================== B3 ÖKOLOGIE ====================== -->
+<section class="card" id="b3">
+  <h2><span class="kicker">Station B3</span>Ökologie</h2>
+  <div class="info">
+    <h4>Das Wichtigste</h4>
+    <ul>
+      <li><strong>Biotop und Biozönose:</strong> Der Lebensraum mit seinen <strong>abiotischen</strong> Faktoren (Temperatur, Licht, Wasser, pH …) und die Lebensgemeinschaft mit ihren <strong>biotischen</strong> Faktoren (Konkurrenten, Fressfeinde, Parasiten …) bilden zusammen das Ökosystem.</li>
+      <li><strong>Toleranzkurve:</strong> Sie zeigt, wie gut eine Art bei verschiedenen Ausprägungen eines Faktors gedeiht – mit Minimum, Optimum und Maximum. Der Bereich, in dem die Art existieren kann, ist ihre <strong>ökologische Potenz</strong> bezüglich dieses Faktors. Arten mit enger Toleranz heißen <strong>stenök</strong>, mit weiter Toleranz <strong>euryök</strong>. Unter Konkurrenz ist der tatsächlich besiedelte Bereich (<strong>ökologische Potenz</strong>) oft enger als der, in dem die Art allein gedeihen könnte (<strong>physiologische Potenz</strong>).</li>
+      <li><strong>Beziehungen:</strong> <strong>intra-</strong> und <strong>interspezifische Konkurrenz</strong> um Ressourcen; <strong>Parasitismus</strong> (einer profitiert auf Kosten des anderen); <strong>Symbiose</strong> (beide profitieren); <strong>Räuber-Beute-Beziehungen</strong>, bei denen die Populationsgrößen oft zeitversetzt schwanken.</li>
+      <li><strong>Ökologische Nische:</strong> kein Ort, sondern die Gesamtheit der Ansprüche und Wechselbeziehungen einer Art mit ihrer Umwelt. <strong>Konkurrenzausschlussprinzip:</strong> Zwei Arten mit gleicher Nische können nicht dauerhaft nebeneinander existieren.</li>
+      <li><strong>Stoffkreislauf und Energiefluss:</strong> Stoffe wie Kohlenstoff zirkulieren zwischen Produzenten, Konsumenten, Destruenten und der unbelebten Umwelt. Energie dagegen fließt nur in eine Richtung: Von einer Trophiestufe zur nächsten gelangen nur grob <strong>10 %</strong>, der Rest geht vor allem durch Zellatmung als Wärme verloren.</li>
+      <li><strong>Mensch und Ökosystem:</strong> Der natürliche Treibhauseffekt macht die Erde bewohnbar. Durch Verbrennung fossiler Energieträger, Entwaldung und Trockenlegung von Mooren steigt der Gehalt an CO₂ und anderen Treibhausgasen (z. B. Methan) – der Treibhauseffekt verstärkt sich. Ökosystemmanagement setzt auf Erhalt, Renaturierung und nachhaltige Nutzung, um die Biodiversität zu sichern.</li>
+      <li><strong>Bestimmungsschlüssel:</strong> Ein dichotomer Schlüssel bietet bei jedem Schritt genau zwei sich ausschließende Merkmale zur Auswahl.</li>
+    </ul>
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 560 300" width="560" role="img" aria-label="Toleranzkurve mit nummerierten Bereichen">
+      <g font-family="Calibri,Carlito,Arial,sans-serif" fill="#1a1a1a">
+        <line x1="50" y1="30" x2="50" y2="245" stroke="#1a1a1a" stroke-width="1.5"/>
+        <line x1="50" y1="245" x2="520" y2="245" stroke="#1a1a1a" stroke-width="1.5"/>
+        <path d="M60.0,239.9 L64.4,239.9 L68.8,239.9 L73.2,239.8 L77.6,239.8 L82.0,239.7 L86.4,239.6 L90.8,239.5 L95.2,239.4 L99.6,239.2 L104.0,238.9 L108.4,238.6 L112.8,238.3 L117.2,237.8 L121.6,237.2 L126.0,236.5 L130.4,235.7 L134.8,234.7 L139.2,233.4 L143.6,232.0 L148.0,230.3 L152.4,228.2 L156.8,225.9 L161.2,223.2 L165.6,220.1 L170.0,216.7 L174.4,212.7 L178.8,208.3 L183.2,203.5 L187.6,198.1 L192.0,192.3 L196.4,186.0 L200.8,179.3 L205.2,172.1 L209.6,164.6 L214.0,156.8 L218.4,148.8 L222.8,140.6 L227.2,132.4 L231.6,124.3 L236.0,116.3 L240.4,108.6 L244.8,101.3 L249.2,94.5 L253.6,88.4 L258.0,83.0 L262.4,78.4 L266.8,74.8 L271.2,72.1 L275.6,70.5 L280.0,70.0 L284.4,70.5 L288.8,72.1 L293.2,74.8 L297.6,78.4 L302.0,83.0 L306.4,88.4 L310.8,94.5 L315.2,101.3 L319.6,108.6 L324.0,116.3 L328.4,124.3 L332.8,132.4 L337.2,140.6 L341.6,148.8 L346.0,156.8 L350.4,164.6 L354.8,172.1 L359.2,179.3 L363.6,186.0 L368.0,192.3 L372.4,198.1 L376.8,203.5 L381.2,208.3 L385.6,212.7 L390.0,216.7 L394.4,220.1 L398.8,223.2 L403.2,225.9 L407.6,228.2 L412.0,230.3 L416.4,232.0 L420.8,233.4 L425.2,234.7 L429.6,235.7 L434.0,236.5 L438.4,237.2 L442.8,237.8 L447.2,238.3 L451.6,238.6 L456.0,238.9 L460.4,239.2 L464.8,239.4 L469.2,239.5 L473.6,239.6 L478.0,239.7 L482.4,239.8 L486.8,239.8 L491.2,239.9 L495.6,239.9 L500.0,239.9" fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
+        <line x1="126" y1="245" x2="126" y2="255" stroke="#1a1a1a" stroke-width="2"/>
+        <line x1="434" y1="245" x2="434" y2="255" stroke="#1a1a1a" stroke-width="2"/>
+        <line x1="280" y1="70" x2="280" y2="245" stroke="#1a1a1a" stroke-dasharray="5 4"/>
+        <line x1="126" y1="268" x2="434" y2="268" stroke="#1a1a1a" stroke-width="1.5"/>
+        <line x1="126" y1="262" x2="126" y2="274" stroke="#1a1a1a"/><line x1="434" y1="262" x2="434" y2="274" stroke="#1a1a1a"/>
+        <text x="290" y="294" text-anchor="middle" font-size="14">Temperatur</text>
+        <text x="18" y="140" text-anchor="middle" font-size="14" transform="rotate(-90 18 140)">Vitalität / Wachstum</text>
+        <g font-size="14" font-weight="bold">
+          <circle cx="126" cy="215" r="11" fill="#fff" stroke="#1a1a1a"/><text x="126" y="220" text-anchor="middle">1</text>
+          <circle cx="280" cy="48" r="11" fill="#fff" stroke="#1a1a1a"/><text x="280" y="53" text-anchor="middle">2</text>
+          <circle cx="434" cy="215" r="11" fill="#fff" stroke="#1a1a1a"/><text x="434" y="220" text-anchor="middle">3</text>
+          <circle cx="470" cy="268" r="11" fill="#fff" stroke="#1a1a1a"/><text x="470" y="273" text-anchor="middle">4</text>
+        </g>
+      </g>
+    </svg>
+    <figcaption>Abb. 3: Toleranzkurve einer Art bezüglich der Temperatur (schematisch).</figcaption>
+  </figure>
+
+  <div class="task" data-task="o1">
+    <h3>Aufgabe B3.1 – Die Toleranzkurve <span class="afb">AFB I–II</span></h3>
+    <div class="item"><span class="t">Markierung 1</span><select id="o1_1" data-save data-opts="Minimum|Optimum|Maximum|Toleranzbereich (ökologische Potenz)" data-ans="Minimum"></select></div>
+    <div class="item"><span class="t">Markierung 2</span><select id="o1_2" data-save data-opts="Minimum|Optimum|Maximum|Toleranzbereich (ökologische Potenz)" data-ans="Optimum"></select></div>
+    <div class="item"><span class="t">Markierung 3</span><select id="o1_3" data-save data-opts="Minimum|Optimum|Maximum|Toleranzbereich (ökologische Potenz)" data-ans="Maximum"></select></div>
+    <div class="item"><span class="t">Markierung 4</span><select id="o1_4" data-save data-opts="Minimum|Optimum|Maximum|Toleranzbereich (ökologische Potenz)" data-ans="Toleranzbereich (ökologische Potenz)"></select></div>
+    <div class="item"><span class="t">Eine Bachforelle lebt nur in kühlem, sauerstoffreichem Wasser. Sie ist bezüglich der Temperatur …</span><select id="o1_5" data-save data-opts="stenök|euryök" data-ans="stenök"></select></div>
+    <div class="item"><span class="t">Eine Pflanzenart wächst im Labor am besten bei pH 6, kommt in der Natur aber nur auf sauren Böden vor. Der wahrscheinlichste Grund ist …</span><select id="o1_6" data-save data-opts="Konkurrenz durch andere Arten|ein Messfehler im Labor|Mutationen" data-ans="Konkurrenz durch andere Arten"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Bei der letzten Frage geht es um den Unterschied zwischen physiologischer und ökologischer Potenz.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Minimum · Optimum · Maximum · Toleranzbereich · stenök · Konkurrenz: Die physiologische Potenz (im Labor) ist breiter als die ökologische (in der Natur), weil konkurrenzstärkere Arten die Pflanze von den günstigeren Standorten verdrängen.</p></div>
+  </div>
+
+  <div class="task" data-task="o2">
+    <h3>Aufgabe B3.2 – Welche Beziehung? <span class="afb">AFB I</span></h3>
+    <div class="item"><span class="t">Ein Bandwurm lebt im Darm eines Menschen und ernährt sich von dessen Nahrung.</span><select id="o2_1" data-save data-opts="Parasitismus|Symbiose|Räuber-Beute|intraspezifische Konkurrenz|interspezifische Konkurrenz" data-ans="Parasitismus"></select></div>
+    <div class="item"><span class="t">In einer Flechte versorgt eine Alge einen Pilz mit Zucker, der Pilz die Alge mit Wasser und Mineralstoffen.</span><select id="o2_2" data-save data-opts="Parasitismus|Symbiose|Räuber-Beute|intraspezifische Konkurrenz|interspezifische Konkurrenz" data-ans="Symbiose"></select></div>
+    <div class="item"><span class="t">Die Luchspopulation schwankt zeitversetzt zur Population der Schneeschuhhasen.</span><select id="o2_3" data-save data-opts="Parasitismus|Symbiose|Räuber-Beute|intraspezifische Konkurrenz|interspezifische Konkurrenz" data-ans="Räuber-Beute"></select></div>
+    <div class="item"><span class="t">Zwei Rotkehlchen-Männchen kämpfen um ein Revier.</span><select id="o2_4" data-save data-opts="Parasitismus|Symbiose|Räuber-Beute|intraspezifische Konkurrenz|interspezifische Konkurrenz" data-ans="intraspezifische Konkurrenz"></select></div>
+    <div class="item"><span class="t">Buchen beschatten den Waldboden so stark, dass lichtbedürftige Kräuter kaum wachsen.</span><select id="o2_5" data-save data-opts="Parasitismus|Symbiose|Räuber-Beute|intraspezifische Konkurrenz|interspezifische Konkurrenz" data-ans="interspezifische Konkurrenz"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>„intra“ = innerhalb derselben Art, „inter“ = zwischen verschiedenen Arten.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Parasitismus · Symbiose · Räuber-Beute · intraspezifische Konkurrenz · interspezifische Konkurrenz (um Licht)</p></div>
+  </div>
+
+  <div class="task" data-task="o3">
+    <h3>Aufgabe B3.3 – Kohlenstoff, Energie, Nische <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">Fotosynthese der Pflanzen</span><select id="o3_1" data-save data-opts="bindet CO₂|setzt CO₂ frei" data-ans="bindet CO₂"></select></div>
+    <div class="item"><span class="t">Trockenlegung eines Moores</span><select id="o3_2" data-save data-opts="bindet CO₂|setzt CO₂ frei" data-ans="setzt CO₂ frei"></select></div>
+    <div class="item"><span class="t">Zersetzung von Laub durch Destruenten</span><select id="o3_3" data-save data-opts="bindet CO₂|setzt CO₂ frei" data-ans="setzt CO₂ frei"></select></div>
+    <div class="item"><span class="t">Produzenten binden 20 000 kJ. Wie viel Energie steht den Sekundärkonsumenten ungefähr zur Verfügung?</span><select id="o3_4" data-save data-opts="20 000 kJ|2 000 kJ|200 kJ|20 kJ" data-ans="200 kJ"></select></div>
+    <div class="item"><span class="t">Die ökologische Nische einer Art ist …</span><select id="o3_5" data-save data-opts="der Ort, an dem sie lebt|die Gesamtheit ihrer Ansprüche und Wechselbeziehungen mit der Umwelt|ihre Stellung im Nahrungsnetz allein" data-ans="die Gesamtheit ihrer Ansprüche und Wechselbeziehungen mit der Umwelt"></select></div>
+    <div class="item"><span class="t">Energie wird im Ökosystem ähnlich wie Kohlenstoff im Kreislauf wiederverwendet.</span><select id="o3_6" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Die 10-%-Regel gilt pro Stufe: Produzenten → Primärkonsumenten → Sekundärkonsumenten sind zwei Schritte. Im Moor ist sehr viel Kohlenstoff gespeichert – was passiert, wenn Luft an den Torf kommt?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>bindet CO₂ · setzt CO₂ frei (Torf wird zersetzt) · setzt CO₂ frei (Zellatmung der Destruenten) · 200 kJ (20 000 → 2 000 → 200) · Gesamtheit der Ansprüche und Wechselbeziehungen · falsch – Energie fließt durch das Ökosystem und wird als Wärme abgegeben, Stoffe zirkulieren.</p></div>
+  </div>
+  <div class="info">
+    <h4>Arten bestimmen und Vorkommen begründen</h4>
+    <p>So könnte ein kleiner dichotomer Bestimmungsschlüssel für Gehölze aussehen:</p><ol><li>a) Blätter nadelförmig → weiter bei 2 · b) Blätter flächig (Laubblätter) → weiter bei 3</li><li>a) Nadeln einzeln, flach, unterseits mit zwei weißen Streifen → <strong>Weißtanne</strong> · b) Nadeln zu zweit an einem Kurztrieb → <strong>Waldkiefer</strong></li><li>a) Blatt aus mehreren Teilblättchen zusammengesetzt (gefiedert) → <strong>Esche</strong> · b) Blatt ungeteilt, mit gebuchtetem Rand → <strong>Eiche</strong></li></ol><p>Bei einer Untersuchung im Gelände misst man abiotische Faktoren (Licht, Temperatur, Bodenfeuchte, pH) und erfasst die Arten. <strong>Zeigerpflanzen</strong> verraten Standortbedingungen: Die Brennnessel zeigt stickstoffreiche Böden an, Torfmoose nasse, saure und nährstoffarme Standorte.</p><p><strong>Anthropogene Eingriffe</strong> wirken über Ursache-Wirkungs-Ketten: Starke Düngung gelangt in Gewässer → Algenwachstum (Eutrophierung) → abgestorbene Algen werden von Destruenten unter O₂-Verbrauch abgebaut → Sauerstoffmangel, Fischsterben. Entwässerte Moore setzen CO₂ frei; <strong>Wiedervernässung</strong> stoppt das und schafft Lebensraum für spezialisierte Arten. Begradigte Flüsse verlieren Auen und Strukturvielfalt; <strong>Renaturierung</strong> stellt sie teilweise wieder her.</p>
+  </div>
+
+  <div class="task" data-task="o4">
+    <h3>Aufgabe B3.4 – Bestimmen, begründen, Eingriffe analysieren <span class="afb">AFB II</span> <span class="fok">KLP</span></h3>
+    <div class="item"><span class="t">Zweig mit flachen Einzelnadeln, die unterseits zwei weiße Streifen tragen</span><select id="o4_1" data-save data-opts="Weißtanne|Waldkiefer|Esche|Eiche" data-ans="Weißtanne"></select></div>
+    <div class="item"><span class="t">Blatt mit neun Teilblättchen an einer gemeinsamen Achse</span><select id="o4_2" data-save data-opts="Weißtanne|Waldkiefer|Esche|Eiche" data-ans="Esche"></select></div>
+    <div class="item"><span class="t">An einem Bachufer unterhalb eines Ackers wachsen sehr viele Brennnesseln. Die wahrscheinlichste Erklärung:</span><select id="o4_3" data-save data-opts="Der Boden ist sehr sauer.|Dünger aus dem Acker gelangt in den Boden, er ist stickstoffreich.|Der Standort ist besonders schattig." data-ans="Dünger aus dem Acker gelangt in den Boden, er ist stickstoffreich."></select></div>
+    <div class="item"><span class="t">Warum führt Eutrophierung zu Sauerstoffmangel im Tiefenwasser eines Sees?</span><select id="o4_4" data-save data-opts="Algen verbrauchen nachts den gesamten Sauerstoff.|Destruenten bauen die abgestorbene Biomasse unter O₂-Verbrauch ab.|Dünger reagiert chemisch mit Sauerstoff." data-ans="Destruenten bauen die abgestorbene Biomasse unter O₂-Verbrauch ab."></select></div>
+    <div class="item"><span class="t">Welche Maßnahme stoppt die CO₂-Freisetzung aus einem entwässerten Moor am wirksamsten?</span><select id="o4_5" data-save data-opts="Wiedervernässung|Aufforstung mit Fichten|stärkere Düngung" data-ans="Wiedervernässung"></select></div>
+    <div class="item"><span class="t">Welche Folge des anthropogenen Treibhauseffekts betrifft unmittelbar die Verbreitung von Arten?</span><select id="o4_6" data-save data-opts="Verschiebung von Verbreitungsgebieten in kühlere Regionen bzw. Höhenlagen|Zunahme der Tageslänge|Abnahme der Erdanziehung" data-ans="Verschiebung von Verbreitungsgebieten in kühlere Regionen bzw. Höhenlagen"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Lies den Bestimmungsschlüssel Schritt für Schritt: Nadel oder Laubblatt? Dann das nächste Merkmalspaar. Bei der Eutrophierung: Wer verbraucht Sauerstoff, wenn viel Biomasse abstirbt?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Weißtanne (1a → 2a) · Esche (1b → 3a) · stickstoffreicher Boden durch Düngereintrag · Abbau der Biomasse durch Destruenten · Wiedervernässung · Arealverschiebung. Weitere Folgen: Extremwetter, Meeresspiegelanstieg, veränderte Konkurrenzverhältnisse.</p></div>
+  </div>
+
+  <div class="task" data-task="o5" data-free="1">
+    <h3>Aufgabe B3.5 – Biodiversitätsschutz oder Nutzung? Bewerten <span class="afb">AFB III</span></h3>
+    <p>Ein entwässertes Moor wird seit Jahrzehnten als Grünland für die Milchviehhaltung genutzt. Der Landkreis plant, es wiederzuvernässen. <strong>Bewerte</strong> das Vorhaben unter Nachhaltigkeitsaspekten (ca. 10–12 Sätze).</p>
+    <ul class="bau"><li><em>Sachlage:</em> „Entwässerte Moore … Bei einer Wiedervernässung …“</li><li><em>Handlungsoptionen:</em> „Möglich sind … , … oder ein Mittelweg wie …“</li><li><em>Kriterien:</em> ökologisch (Klima, Biodiversität, Wasserhaushalt), ökonomisch (Einkommen), sozial (Gerechtigkeit für Betroffene)</li><li><em>Urteil:</em> „Am stärksten gewichte ich …, weil … Daher …“</li></ul>
+    <textarea id="o5_txt" data-save rows="9" placeholder="Dein Text …"></textarea>
+    <div class="btns"><button type="button" class="primary" data-freebtn>Mit Erwartungen vergleichen</button></div>
+    <div class="feedback"></div>
+    <div class="reveal sol"><h4>Das sollte dein Text enthalten</h4><ul><li><strong>Fakten:</strong> Entwässerte Moore setzen durch Torfzersetzung dauerhaft CO₂ frei; nasse Moore speichern Kohlenstoff, halten Wasser zurück und bieten Lebensraum für spezialisierte, oft gefährdete Arten.</li><li><strong>Handlungsoptionen:</strong> Status quo, vollständige Wiedervernässung, Wiedervernässung mit angepasster Nutzung (Paludikultur, z. B. Schilf- oder Rohrkolbenanbau), Ausgleichszahlungen.</li><li><strong>Ökologische Nachhaltigkeit:</strong> Klimaschutz, Biodiversität, Wasserrückhalt.</li><li><strong>Ökonomisch/sozial:</strong> Einkommensverlust der Landwirte, Eigentum, Akzeptanz vor Ort, Entschädigung, regionale Wertschöpfung.</li><li><strong>Gewichtung</strong> der Kriterien mit Begründung und ein klares Urteil (z. B. Wiedervernässung mit Ausgleich und neuen Nutzungsformen).</li></ul></div>
+  </div>
+
+</section>
+
+<!-- ====================== B4 GENETIK ====================== -->
+<section class="card" id="b4">
+  <h2><span class="kicker">Station B4</span>Genetik</h2>
+  <div class="info">
+    <h4>Das Wichtigste</h4>
+    <ul>
+      <li><strong>DNA und Replikation:</strong> Die DNA ist eine Doppelhelix aus zwei antiparallelen Nukleotidsträngen; die Basen paaren komplementär (A–T, G–C). Bei der <strong>semikonservativen Replikation</strong> trennt die Helicase die Stränge, die DNA-Polymerase ergänzt an jedem alten Strang einen neuen (nur in 5'→3'-Richtung; der Folgestrang entsteht in Okazaki-Fragmenten). Das <strong>Meselson-Stahl-Experiment</strong> belegte diesen Mechanismus.</li>
+      <li><strong>Proteinbiosynthese:</strong> Bei der <strong>Transkription</strong> im Zellkern bildet die RNA-Polymerase am codogenen Strang eine mRNA. Bei Eukaryoten wird die prä-mRNA prozessiert: Introns werden herausgeschnitten (<strong>Spleißen</strong>). Bei der <strong>Translation</strong> an den Ribosomen bringen tRNAs passend zu den <strong>Codons</strong> (Basentripletts) die Aminosäuren. Der genetische Code ist universell und redundant (mehrere Codons für eine Aminosäure).</li>
+      <li><strong>Genregulation bei Eukaryoten:</strong> Fast alle Körperzellen enthalten dieselbe DNA, aber in jedem Zelltyp sind andere Gene aktiv (<strong>differenzielle Genaktivität</strong>). <strong>Transkriptionsfaktoren</strong> binden an Promotor- oder Enhancer-Bereiche und fördern oder hemmen die Bindung der RNA-Polymerase.</li>
+      <li><strong>Epigenetik:</strong> Methylgruppen an der DNA (vor allem an Cytosin in CG-Abfolgen) im Promotorbereich schalten Gene meist ab. Die Basensequenz bleibt dabei unverändert. Methylierungsmuster werden bei Zellteilungen weitergegeben und können von Umwelteinflüssen geprägt werden – ein Grund, warum sich eineiige Zwillinge im Lauf des Lebens unterscheiden.</li>
+      <li><strong>Genmutationen:</strong> <strong>stumme Mutation</strong> (Codon für dieselbe Aminosäure), <strong>Missense</strong> (andere Aminosäure), <strong>Nonsense</strong> (vorzeitiges Stoppcodon), <strong>Rasterschub</strong> durch Insertion oder Deletion einzelner Basen (alle folgenden Codons ändern sich).</li>
+      <li><strong>Genetik menschlicher Erkrankungen:</strong> Stammbaumanalyse (autosomal-dominant, autosomal-rezessiv, X-chromosomal-rezessiv – zur Wiederholung der Grundlagen gibt es das Modul „Genetik-Grundlagen auffrischen“), <strong>Gentest</strong> und genetische Beratung, <strong>Gentherapie</strong>: Bei der somatischen Gentherapie werden Körperzellen verändert, häufig mithilfe viraler Vektoren; die Veränderung wird nicht vererbt.</li>
+    </ul>
+  </div>
+
+  <div class="task" data-task="g1">
+    <h3>Aufgabe B4.1 – Das Meselson-Stahl-Experiment <span class="afb">AFB II</span></h3>
+    <p>Bakterien wachsen lange in einem Medium mit schwerem Stickstoff (¹⁵N) und werden dann in ein Medium mit leichtem Stickstoff (¹⁴N) überführt. Die DNA wird nach jeder Zellteilung durch Dichtegradientenzentrifugation untersucht.</p>
+    <div class="item"><span class="t">Ergebnis nach der 1. Generation in ¹⁴N</span><select id="g1_1" data-save data-opts="eine schwere und eine leichte Bande|nur eine mittlere Bande|eine mittlere und eine leichte Bande" data-ans="nur eine mittlere Bande"></select></div>
+    <div class="item"><span class="t">Ergebnis nach der 2. Generation in ¹⁴N</span><select id="g1_2" data-save data-opts="eine schwere und eine leichte Bande|nur eine mittlere Bande|eine mittlere und eine leichte Bande" data-ans="eine mittlere und eine leichte Bande"></select></div>
+    <div class="item"><span class="t">Welches Ergebnis hätte eine konservative Replikation nach der 1. Generation ergeben?</span><select id="g1_3" data-save data-opts="eine schwere und eine leichte Bande|nur eine mittlere Bande|eine mittlere und eine leichte Bande" data-ans="eine schwere und eine leichte Bande"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Zeichne dir die Doppelstränge auf: schwerer Strang dick, leichter dünn. Bei semikonservativer Replikation behält jede neue DNA einen alten Strang.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>nur eine mittlere Bande (alle DNA ist ¹⁵N/¹⁴N-Hybrid) · eine mittlere und eine leichte Bande (je zur Hälfte) · konservativ: eine schwere (alte DNA) und eine leichte Bande (komplett neue DNA) – genau das wurde nicht beobachtet.</p></div>
+  </div>
+
+  <div class="task" data-task="g2">
+    <h3>Aufgabe B4.2 – Code-Sonne und Mutationen <span class="afb">AFB II</span></h3>
+    <p>Ausschnitt aus der Codetabelle: AUG = Met (Start) · GCU, GCA = Ala · UGG = Trp · AAA, AAG = Lys · GAA = Glu · UAG, UGA = Stopp</p>
+    <p>Ausgangs-mRNA: <strong>5'-AUG GCU UGG AAA UAG-3'</strong></p>
+    <div class="item"><span class="t">Welche Aminosäuresequenz entsteht?</span><select id="g2_1" data-save data-opts="Met – Ala – Trp – Lys|Met – Ala – Trp – Glu|Met – Lys – Trp – Ala" data-ans="Met – Ala – Trp – Lys"></select></div>
+    <div class="item"><span class="t">Mutation: GCU → GCA</span><select id="g2_2" data-save data-opts="stumme Mutation|Missense-Mutation|Nonsense-Mutation|Rasterschubmutation" data-ans="stumme Mutation"></select></div>
+    <div class="item"><span class="t">Mutation: UGG → UGA</span><select id="g2_3" data-save data-opts="stumme Mutation|Missense-Mutation|Nonsense-Mutation|Rasterschubmutation" data-ans="Nonsense-Mutation"></select></div>
+    <div class="item"><span class="t">Mutation: AAA → GAA</span><select id="g2_4" data-save data-opts="stumme Mutation|Missense-Mutation|Nonsense-Mutation|Rasterschubmutation" data-ans="Missense-Mutation"></select></div>
+    <div class="item"><span class="t">Hinter AUG wird eine zusätzliche Base eingefügt.</span><select id="g2_5" data-save data-opts="stumme Mutation|Missense-Mutation|Nonsense-Mutation|Rasterschubmutation" data-ans="Rasterschubmutation"></select></div>
+    <div class="item"><span class="t">Welche Mutation hat in der Regel die schwersten Folgen für das Protein?</span><select id="g2_6" data-save data-opts="stumme Mutation|Rasterschubmutation am Anfang des Gens" data-ans="Rasterschubmutation am Anfang des Gens"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Übersetze erst die veränderte mRNA mit der Tabelle und vergleiche dann mit dem Original: gleiche Aminosäure, andere Aminosäure oder Stopp?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Met – Ala – Trp – Lys · stumm (GCA = Ala) · Nonsense (UGA = Stopp, verkürztes Protein) · Missense (Lys → Glu) · Rasterschub (alle folgenden Codons verschoben) · Rasterschub am Anfang: Die gesamte folgende Sequenz ist verändert, oft entsteht bald ein Stoppcodon.</p></div>
+  </div>
+
+  <div class="task" data-task="g3">
+    <h3>Aufgabe B4.3 – Genregulation, Epigenetik, Gentherapie <span class="afb">AFB II</span></h3>
+    <div class="item"><span class="t">Leber- und Hautzellen eines Menschen enthalten dieselben Gene, aber unterschiedliche Gene sind aktiv.</span><select id="g3_1" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Transkriptionsfaktoren sind Proteine, die an Promotor- oder Enhancer-Sequenzen binden.</span><select id="g3_2" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">DNA-Methylierung verändert die Basensequenz eines Gens.</span><select id="g3_3" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">Ein stark methylierter Promotor führt meist dazu, dass das Gen abgeschaltet ist.</span><select id="g3_4" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
+    <div class="item"><span class="t">Eineiige Zwillinge haben im Alter meist ähnlichere Methylierungsmuster als bei der Geburt.</span><select id="g3_5" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="item"><span class="t">Eine somatische Gentherapie wird an die Kinder des Patienten vererbt.</span><select id="g3_6" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Epigenetik heißt wörtlich „über der Genetik“: Es wird etwas an die DNA angehängt – die Buchstaben selbst bleiben gleich.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>richtig (differenzielle Genaktivität) · richtig · falsch · richtig · falsch (die Muster werden im Lauf des Lebens unterschiedlicher) · falsch (nur Körperzellen werden verändert, nicht die Keimzellen)</p></div>
+  </div>
+  <div class="task" data-task="g4">
+    <h3>Aufgabe B4.4 – Prokaryoten und Eukaryoten im Vergleich <span class="afb">AFB II</span> <span class="fok">KLP</span></h3>
+    <p>Ordne jedes Merkmal der Proteinbiosynthese zu.</p>
+    <div class="item"><span class="t">Transkription und Translation laufen räumlich getrennt ab (Zellkern / Cytoplasma).</span><select id="g4_1" data-save data-opts="Prokaryoten|Eukaryoten|beide" data-ans="Eukaryoten"></select></div>
+    <div class="item"><span class="t">Ribosomen können schon an der mRNA ansetzen, während sie noch transkribiert wird.</span><select id="g4_2" data-save data-opts="Prokaryoten|Eukaryoten|beide" data-ans="Prokaryoten"></select></div>
+    <div class="item"><span class="t">Die prä-mRNA wird gespleißt: Introns werden entfernt.</span><select id="g4_3" data-save data-opts="Prokaryoten|Eukaryoten|beide" data-ans="Eukaryoten"></select></div>
+    <div class="item"><span class="t">Der genetische Code ist derselbe.</span><select id="g4_4" data-save data-opts="Prokaryoten|Eukaryoten|beide" data-ans="beide"></select></div>
+    <div class="item"><span class="t">Mehrere Gene können gemeinsam auf einer mRNA abgelesen werden (Operon).</span><select id="g4_5" data-save data-opts="Prokaryoten|Eukaryoten|beide" data-ans="Prokaryoten"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Prokaryoten haben keinen Zellkern. Was bedeutet das für den Ort und die zeitliche Abfolge von Transkription und Translation?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Eukaryoten · Prokaryoten (Kopplung, kein Zellkern) · Eukaryoten · beide (universeller Code) · Prokaryoten. Die Kompartimentierung der Eukaryoten erlaubt zusätzliche Regulationsebenen, z. B. die Prozessierung der mRNA.</p></div>
+  </div>
+
+  <div class="task" data-task="g5">
+    <h3>Aufgabe B4.5 – Vom Stammbaum zur genetischen Beratung <span class="afb">AFB II</span> <span class="fok">KLP</span></h3>
+    <div class="sample">Lena ist gesund, ihre Eltern auch; zwei ihrer Geschwister haben Mukoviszidose (autosomal-rezessiv). Ihr Partner Tim ist laut Gentest gesunder Träger (Aa).</div>
+    <div class="item"><span class="t">Mit welcher Wahrscheinlichkeit ist Lena selbst Trägerin?</span><select id="g5_1" data-save data-opts="1/4|1/2|2/3|1" data-ans="2/3"></select></div>
+    <div class="item"><span class="t">Wie groß ist das Risiko, dass ein Kind von Lena und Tim erkrankt?</span><select id="g5_2" data-save data-opts="1/4|1/6|1/3|2/3" data-ans="1/6"></select></div>
+    <div class="item"><span class="t">Was könnte ein Gentest bei Lena klären?</span><select id="g5_3" data-save data-opts="ob sie selbst erkrankt|ob sie Trägerin ist – dann läge das Risiko bei 1/4, sonst bei 0|ob ihre Geschwister erkrankt sind" data-ans="ob sie Trägerin ist – dann läge das Risiko bei 1/4, sonst bei 0"></select></div>
+    <div class="item"><span class="t">Lena möchte das Ergebnis eines Tests lieber nicht wissen. Welcher Grundsatz der genetischen Beratung schützt diesen Wunsch?</span><select id="g5_4" data-save data-opts="Recht auf Nichtwissen|Schweigepflicht der Krankenkasse|Meldepflicht" data-ans="Recht auf Nichtwissen"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Lena ist gesund – also kann sie nicht aa sein. Von den drei verbleibenden Feldern im Kreuzungsschema Aa × Aa (AA, Aa, aA) sind wie viele Träger?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>2/3 (AA, Aa, aA – zwei von drei sind Träger) · 2/3 × 1/4 = 1/6 · Trägerstatus klären: als Trägerin 1/4, sonst 0 · Recht auf Nichtwissen. Genetische Beratung informiert ergebnisoffen; die Entscheidung trifft die ratsuchende Person.</p></div>
+  </div>
+
+  <div class="task" data-task="g6">
+    <h3>Aufgabe B4.6 – Profi-Stammbaum: Cousin und Cousine wünschen sich ein Kind <span class="afb">AFB II–III</span> <span class="fok">KLP</span></h3>
+    <div class="sample">Die Phenylketonurie (PKU) ist eine Stoffwechselkrankheit: Betroffene können die Aminosäure Phenylalanin nicht abbauen. Unbehandelt schädigt sie die Gehirnentwicklung; mit einer streng eiweißarmen Diät lässt sich das weitgehend verhindern. III-1 und III-2 sind Cousin und Cousine; sie möchten wissen, wie hoch das Risiko für ihr Kind (IV-1) ist. Die eingeheirateten Personen II-1 und II-5 stammen aus Familien ohne PKU – nimm an, dass sie keine Träger sind.</div>
+    <figure><svg class="ped" id="pedg6" width="560"></svg><figcaption>Abb.: Stammbaum der Familie (Doppellinie = Partnerschaft zwischen Verwandten; IV-1 = geplantes Kind).</figcaption></figure>
+    <div class="item"><span class="t">Welche Stelle zeigt, dass das Merkmal <strong>rezessiv</strong> ist?</span><select id="g6_1" data-save data-opts="I-1 × I-2 → II-3|II-4 × II-5 → III-2|II-1 × II-2 → III-1" data-ans="I-1 × I-2 → II-3"></select></div>
+    <div class="item"><span class="t">Welche Stelle schließt <strong>X-chromosomal-rezessiv</strong> aus?</span><select id="g6_2" data-save data-opts="II-3 ist erkrankt, ihr Vater I-1 ist gesund.|II-4 ist gesund, seine Mutter I-2 ist gesund.|III-1 ist gesund." data-ans="II-3 ist erkrankt, ihr Vater I-1 ist gesund."></select></div>
+    <div class="item"><span class="t">Erbgang</span><select id="g6_3" data-save data-opts="autosomal-dominant|autosomal-rezessiv|X-chromosomal-rezessiv" data-ans="autosomal-rezessiv"></select></div>
+    <div class="item"><span class="t">Mit welcher Wahrscheinlichkeit ist II-2 Trägerin?</span><select id="g6_4" data-save data-opts="1/2|1/3|2/3|1/4" data-ans="2/3"></select></div>
+    <div class="item"><span class="t">Mit welcher Wahrscheinlichkeit ist III-1 Träger?</span><select id="g6_5" data-save data-opts="1/2|1/3|2/3|1/4|1/6" data-ans="1/3"></select></div>
+    <div class="item"><span class="t">Wie hoch ist das Risiko, dass IV-1 an PKU erkrankt?</span><select id="g6_6" data-save data-opts="1/4|1/9|1/16|1/36" data-ans="1/36"></select></div>
+    <div class="item"><span class="t">Warum ist das Risiko bei Kindern verwandter Eltern erhöht?</span><select id="g6_7" data-save data-opts="Verwandtschaft erzeugt neue Mutationen.|Beide Partner können dasselbe seltene Allel von gemeinsamen Vorfahren geerbt haben.|Rezessive Allele werden bei Verwandten dominant." data-ans="Beide Partner können dasselbe seltene Allel von gemeinsamen Vorfahren geerbt haben."></select></div>
+    <div class="item"><span class="t">Angenommen, das erste Kind von III-1 und III-2 hätte PKU. Wie hoch wäre dann das Risiko für ein zweites Kind?</span><select id="g6_8" data-save data-opts="1/36|1/4|1/2|0" data-ans="1/4"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Rechne Schritt für Schritt von oben nach unten: (1) II-2 ist gesund – also nicht aa. Wie viele der verbleibenden Kombinationen aus Aa × Aa sind Träger? (2) Gibt II-2 ihr a mit welcher Wahrscheinlichkeit an III-1 weiter? (3) Für das Kind müssen <em>beide</em> Eltern Träger sein <em>und</em> beide ein a weitergeben. Unabhängige Wahrscheinlichkeiten werden multipliziert. Bei der letzten Frage: Was weiß man sicher, sobald ein Kind erkrankt ist?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4>
+      <p><strong>Erbgang:</strong> I-1 × I-2 → II-3: Gesunde Eltern haben eine erkrankte Tochter → rezessiv. Die erkrankte Tochter II-3 hat einen gesunden Vater I-1 → nicht X-chromosomal-rezessiv. Also <strong>autosomal-rezessiv</strong>; I-1 und I-2 sind beide Aa.</p>
+      <p><strong>II-2</strong> ist gesund (AA, Aa oder aA – nicht aa) → Trägerin mit <strong>2/3</strong>. Gleiches gilt für ihren Bruder II-4.</p>
+      <p><strong>III-1</strong>: Sein Vater II-1 ist AA. III-1 ist nur Träger, wenn II-2 Trägerin ist <em>und</em> das a weitergibt: 2/3 · 1/2 = <strong>1/3</strong>. Ebenso III-2: 1/3.</p>
+      <p><strong>IV-1</strong>: 1/3 · 1/3 · 1/4 = <strong>1/36</strong> (beide Träger, und beide geben a weiter).</p>
+      <p><strong>Verwandtenehe:</strong> Das seltene Allel kann über die gemeinsamen Großeltern I-1/I-2 in beide Familienzweige gelangt sein. Bei einem nicht verwandten Partner aus der Bevölkerung wäre die Wahrscheinlichkeit, ebenfalls Träger zu sein, viel kleiner.</p>
+      <p><strong>Zweites Kind:</strong> Ist ein Kind erkrankt, steht fest, dass beide Eltern Aa sind. Das Risiko für jedes weitere Kind beträgt dann <strong>1/4</strong> – unabhängig davon, wie viele Kinder schon erkrankt sind. Ein Trägertest bei III-1 und III-2 könnte die Unsicherheit von vornherein klären.</p></div>
+  </div>
+
+</section>
+
+<!-- ====================== VERNETZUNG ====================== -->
+<section class="card" id="vernetzung">
+  <h2><span class="kicker">Abi-Probe</span>Inhaltsfelder vernetzen</h2>
+  <p>Abituraufgaben verknüpfen oft zwei Inhaltsfelder. Hier kannst du das üben.</p>
+  <div class="task" data-task="v1" data-free="1">
+    <h3>Aufgabe V1 – Warum wirkt Cyanid so schnell? <span class="afb">AFB II</span></h3>
+    <div class="sample">Cyanid (das Anion der Blausäure) blockiert in der Atmungskette das letzte Enzym, das die Elektronen auf Sauerstoff überträgt. Bei einer Vergiftung versagen innerhalb kurzer Zeit vor allem Gehirn und Herz.</div>
+    <p><strong>Erkläre</strong> ausgehend von der Wirkung auf die Atmungskette, warum Nervenzellen bei einer Cyanidvergiftung ihre Funktion verlieren.</p>
+    <textarea id="v1_txt" data-save rows="8" placeholder="Deine Erklärung …"></textarea>
+    <div class="btns"><button type="button" class="primary" data-freebtn>Mit Erwartungen vergleichen</button></div>
+    <div class="feedback"></div>
+    <div class="reveal sol"><h4>Das sollte deine Erklärung enthalten</h4><ul>
+      <li><strong>Stoffwechsel:</strong> Die Elektronen können nicht mehr auf O₂ übertragen werden, der Elektronentransport stoppt. Es werden keine Protonen mehr gepumpt, der Protonengradient bricht zusammen, die ATP-Synthase bildet kein ATP mehr. Glykolyse allein liefert viel zu wenig ATP.</li>
+      <li><strong>Neurobiologie:</strong> Die Na⁺-K⁺-Pumpe braucht ATP. Fällt sie aus, gleichen sich die Ionenkonzentrationen allmählich an; das Ruhepotenzial bricht zusammen. Ohne Ruhepotenzial und Konzentrationsgradienten können keine Aktionspotenziale mehr gebildet und weitergeleitet werden; auch die Transmitterfreisetzung an Synapsen ist gestört.</li>
+      <li><strong>Verknüpfung:</strong> Nervenzellen haben einen besonders hohen Energiebedarf und kaum Energiereserven – deshalb versagen Gehirn und Herz zuerst.</li>
+      <li>Fachbegriffe korrekt: Atmungskette, Endakzeptor, Protonengradient, ATP-Synthase, Na⁺-K⁺-Pumpe, Ruhepotenzial, Aktionspotenzial</li></ul></div>
+  </div>
+</section>
+
+<!-- ====================== FOLGT ====================== -->
+<section class="card lock" id="folgt">
+  <h2><span class="kicker">Folgt in der Q2.2</span>Evolution</h2>
+  <p>Diese Station wird ergänzt, sobald wir die Evolution im Unterricht behandelt haben. Laut Abiturvorgaben 2027 gehören dazu:</p>
+  <ul>
+    <li><strong>Synthetische Evolutionstheorie:</strong> Mutation, Rekombination, Selektion, Variation, Gendrift, adaptiver Wert von Verhalten, Kosten-Nutzen-Analyse, reproduktive Fitness, Koevolution, Abgrenzung von nicht-naturwissenschaftlichen Vorstellungen</li>
+    <li><strong>Stammbäume und Verwandtschaft:</strong> Artbildung, Biodiversität, populationsgenetischer Artbegriff, Isolation, molekularbiologische Homologien, ursprüngliche und abgeleitete Merkmale</li>
+  </ul>
+</section>
+
+<!-- ====================== ABSCHLUSS ====================== -->
+<section class="card" id="ende">
+  <h2><span class="kicker">Abschluss</span>Selbstcheck und Ergebnisblatt</h2>
+  <h3>Selbstcheck – kreuze an, was du sicher kannst</h3>
+  <ul class="check">
+    <li><input type="checkbox" id="sc1" data-save><label for="sc1">Ich erkenne an den Operatoren, was verlangt ist – vor allem den Unterschied zwischen beschreiben, erklären, beurteilen und bewerten.</label></li>
+    <li><input type="checkbox" id="sc2" data-save><label for="sc2">Ich kann Diagramme beschreiben und auswerten und den limitierenden Faktor bestimmen.</label></li>
+    <li><input type="checkbox" id="sc3" data-save><label for="sc3">Ich kann Variablen eines Experiments benennen, Störgrößen erkennen und eine begründete Hypothese aufstellen.</label></li>
+    <li><input type="checkbox" id="sc4" data-save><label for="sc4">Ich kann Sachaussagen und Werturteile trennen und ein ethisches Urteil begründet gewichten.</label></li>
+    <li><input type="checkbox" id="sc9" data-save><label for="sc9">Ich kann Basiskonzepte zuordnen und die Grenzen von Modellen benennen.</label></li>
+    <li><input type="checkbox" id="sc5" data-save><label for="sc5">Ich kann Ruhepotenzial, Aktionspotenzial, Erregungsleitung und die Vorgänge an der Synapse erklären – auch die Wirkung von Giften.</label></li>
+    <li><input type="checkbox" id="sc6" data-save><label for="sc6">Ich kann Fotosynthese und Zellatmung mit Orten, Bilanzen und dem Prinzip der chemiosmotischen ATP-Bildung erklären.</label></li>
+    <li><input type="checkbox" id="sc7" data-save><label for="sc7">Ich kann Toleranzkurven, ökologische Beziehungen, Nische, Kohlenstoffkreislauf und Energiefluss erklären.</label></li>
+    <li><input type="checkbox" id="sc8" data-save><label for="sc8">Ich kann Replikation, Proteinbiosynthese, Genregulation, Epigenetik und Mutationen erklären und Stammbäume analysieren.</label></li>
+  </ul>
+  <h3>Dein Stand</h3>
+  <ul class="status" id="statusliste"></ul>
+  <div class="btns">
+    <button type="button" class="primary" onclick="druck()">Ergebnisblatt drucken / als PDF sichern</button>
+    <button type="button" onclick="loeschen()">Alle Antworten löschen</button>
+  </div>
+  <div class="savebox">
+    <h4>Speicherstand sichern</h4>
+    <p>Sichere deine Antworten am Ende jeder Sitzung als Datei. Mit „Speicherstand laden“ machst du an jedem Gerät und in jedem Browser weiter, auch auf dem Tablet.</p>
+    <div class="btns">
+      <button type="button" class="primary" onclick="exportStand()">Speicherstand als Datei sichern</button>
+      <button type="button" onclick="importStand()">Speicherstand laden</button>
+    </div>
+    <div class="savemsg" id="savemsg2"></div>
+  </div>
+  <p class="status" style="margin-top:8px">Automatisch werden deine Antworten nur in diesem Browser auf diesem Gerät gespeichert. Die Speicherdatei funktioniert überall.</p>
+  <p class="status">Grundlage: Ministerium für Schule und Bildung NRW, Abiturvorgaben 2027 Biologie (abitur.nrw); Operatorenübersicht Biologie.</p>
+</section>
+
+</div>
+
+<div id="ergebnisblatt"></div>
+<input type="file" id="importfile" accept=".json,.txt,application/json" style="display:none">
+
+<script>
+(function(){
+  "use strict";
+  var KEY = "abitrainer_bio_q2_2027_v1";
+  var TASKS = [
+    ["h1","A1.1 Operatoren"],["h2","A2.1 Diagramm auswerten"],["h3","A3.1 Experiment"],["h4","A4.1 Sachaussage/Werturteil"],["h5","A4.2 Ethisches Urteil Keimbahn"],["h6","A5.1 Basiskonzepte und Modelle"],
+    ["n1","B1.1 Aktionspotenzial"],["n2","B1.2 Ruhepotenzial/Erregungsleitung"],["n3","B1.3 Synapse"],["n4","B1.4 Synapsengifte"],["n5","B1.5 Bau, Messung, Hypothesen"],["n6","B1.6 Erregungsleitung vergleichen"],["n7","B1.7 Schmerzmittel"],
+    ["s1","B2.1 Orte im Stoffwechsel"],["s2","B2.2 Stoff- und Energiebilanz"],["s3","B2.3 Prinzipien des Stoffwechsels"],["s4","B2.4 Angepasstheiten, Kompartimente, Chromatografie"],["s5","B2.5 Nahrungsergänzung"],
+    ["o1","B3.1 Toleranzkurve"],["o2","B3.2 Ökologische Beziehungen"],["o3","B3.3 Kohlenstoff, Energie, Nische"],["o4","B3.4 Bestimmen und Eingriffe"],["o5","B3.5 Bewertung Moor"],
+    ["g1","B4.1 Meselson-Stahl"],["g2","B4.2 Code-Sonne und Mutationen"],["g3","B4.3 Genregulation, Epigenetik, Gentherapie"],["g4","B4.4 Pro- und Eukaryoten"],["g5","B4.5 Stammbaum und Beratung"],["g6","B4.6 Profi-Stammbaum PKU"],
+    ["v1","V1 Vernetzung Cyanid"]
+  ];
+  var done = {};
+  var $ = function(id){ return document.getElementById(id); };
+  var qa = function(sel, root){ return [].slice.call((root || document).querySelectorAll(sel)); };
+
+  qa("select[data-opts]").forEach(function(s){
+    var o = document.createElement("option"); o.value = ""; o.textContent = "– wählen –"; s.appendChild(o);
+    s.getAttribute("data-opts").split("|").forEach(function(v){
+      var op = document.createElement("option"); op.value = v; op.textContent = v; s.appendChild(op);
+    });
+  });
+
+  function sichern(){
+    var d = {f:{}, done:done};
+    qa("[data-save]").forEach(function(el){ d.f[el.id] = el.type === "checkbox" ? el.checked : el.value; });
+    try { localStorage.setItem(KEY, JSON.stringify(d)); } catch(e){}
+  }
+  function standHolen(){
+    var d = {f:{}, done:done};
+    qa("[data-save]").forEach(function(el){ d.f[el.id] = el.type === "checkbox" ? el.checked : el.value; });
+    return d;
+  }
+  function standAnwenden(d){
+    Object.keys(d.f || {}).forEach(function(id){
+      var el = $(id); if(!el) return;
+      if(el.type === "checkbox") el.checked = !!d.f[id]; else el.value = d.f[id];
+    });
+    done = d.done || {};
+  }
+  function savemsg(good, txt){
+    ["savemsg1","savemsg2"].forEach(function(id){ var m = $(id); if(m){ m.className = "savemsg " + (good ? "good" : "bad"); m.textContent = txt; } });
+  }
+  window.exportStand = function(){
+    var d = standHolen();
+    var paket = {app: KEY, gesichert: new Date().toISOString(), daten: d};
+    var jetzt = new Date(), z = function(n){ return (n < 10 ? "0" : "") + n; };
+    var name = "Bio_Trainer_Speicherstand_" + jetzt.getFullYear() + "-" + z(jetzt.getMonth()+1) + "-" + z(jetzt.getDate()) + "_" + z(jetzt.getHours()) + "-" + z(jetzt.getMinutes()) + ".json";
+    try {
+      var blob = new Blob([JSON.stringify(paket)], {type: "application/json"});
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a"); a.href = url; a.download = name;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+      savemsg(true, "Gesichert als „" + name + "“ (meist im Ordner „Downloads“). Bewahre die Datei gut auf.");
+    } catch(e){
+      savemsg(false, "Das Sichern hat nicht geklappt. Nutze stattdessen „Ergebnisblatt drucken / als PDF sichern“.");
+    }
+  };
+  window.importStand = function(){ var i = $("importfile"); i.value = ""; i.click(); };
+  function importDatei(file){
+    if(!file) return;
+    var r = new FileReader();
+    r.onload = function(){
+      var p = null;
+      try { p = JSON.parse(r.result); } catch(e){ p = null; }
+      if(!p || p.app !== KEY || !p.daten){ savemsg(false, "Diese Datei ist kein Speicherstand für diesen Trainer."); return; }
+      var hatAntworten = qa("[data-save]").some(function(el){ return el.type === "checkbox" ? el.checked : el.value.trim() !== ""; });
+      if(hatAntworten && !confirm("Der Speicherstand ersetzt deine aktuellen Antworten auf dieser Seite. Fortfahren?")) return;
+      qa("[data-save]").forEach(function(el){ if(el.type === "checkbox") el.checked = false; else el.value = ""; });
+      standAnwenden(p.daten); sichern(); fortschritt();
+      var t = p.gesichert ? new Date(p.gesichert) : null;
+      savemsg(true, "Speicherstand geladen" + (t && !isNaN(t) ? " (gesichert am " + t.toLocaleDateString("de-DE") + " um " + t.toLocaleTimeString("de-DE", {hour:"2-digit", minute:"2-digit"}) + " Uhr)" : "") + ". Du kannst weitermachen.");
+    };
+    r.onerror = function(){ savemsg(false, "Die Datei konnte nicht gelesen werden."); };
+    r.readAsText(file);
+  }
+  $("importfile").addEventListener("change", function(){ importDatei(this.files && this.files[0]); });
+  (function(){
+    var ok = false;
+    try { localStorage.setItem(KEY + "_test", "1"); ok = localStorage.getItem(KEY + "_test") === "1"; localStorage.removeItem(KEY + "_test"); } catch(e){ ok = false; }
+    if(!ok) $("warnbox").style.display = "block";
+  })();
+  function laden(){
+    var d = null;
+    try { d = JSON.parse(localStorage.getItem(KEY) || "null"); } catch(e){ d = null; }
+    if(!d) return;
+    Object.keys(d.f || {}).forEach(function(id){
+      var el = $(id); if(!el) return;
+      if(el.type === "checkbox") el.checked = !!d.f[id]; else el.value = d.f[id];
+    });
+    done = d.done || {};
+  }
+  document.addEventListener("input", function(e){ if(e.target.hasAttribute && e.target.hasAttribute("data-save")) sichern(); });
+  document.addEventListener("change", function(e){
+    if(e.target.tagName === "SELECT"){ e.target.parentNode.classList.remove("ok","no"); e.target.classList.remove("ok","no"); }
+    if(e.target.hasAttribute && e.target.hasAttribute("data-save")) sichern();
+  });
+
+  function setDone(t){ done[t] = true; fortschritt(); sichern(); }
+  function fortschritt(){
+    var n = TASKS.filter(function(t){ return done[t[0]]; }).length;
+    $("progtext").textContent = n + " von " + TASKS.length;
+    $("progfill").style.width = Math.round(n / TASKS.length * 100) + "%";
+    $("statusliste").innerHTML = TASKS.map(function(t){
+      return "<li>" + t[1] + ": " + (done[t[0]] ? '<span class="done-tag">gelöst</span>' : '<span class="open-tag">noch offen</span>') + "</li>";
+    }).join("");
+  }
+  function fb(el, good, txt){ el.className = "feedback " + (good ? "good" : "bad"); el.textContent = txt; }
+  function mark(sel, good){
+    var p = sel.parentNode;
+    var tgt = (p.tagName === "TD" || p.classList.contains("slot")) ? p : sel;
+    tgt.classList.remove("ok","no"); tgt.classList.add(good ? "ok" : "no");
+  }
+
+  qa(".task").forEach(function(task){
+    var t = task.getAttribute("data-task");
+    var tipBtn = task.querySelector("[data-tipbtn]"), tip = task.querySelector(".reveal.tip");
+    if(tipBtn && tip) tipBtn.addEventListener("click", function(){ tip.classList.toggle("on"); });
+    var solBtn = task.querySelector("[data-solbtn]"), sol = task.querySelector(".reveal.sol");
+    if(solBtn && sol) solBtn.addEventListener("click", function(){ sol.classList.toggle("on"); });
+    var f = task.querySelector(".feedback");
+    var chk = task.querySelector("[data-check]");
+    if(chk) chk.addEventListener("click", function(){
+      var sels = qa("select[data-ans]", task), right = 0;
+      sels.forEach(function(s){ var g = s.value === s.getAttribute("data-ans"); if(g) right++; mark(s, g); });
+      if(right === sels.length){ fb(f, true, "Alles richtig – stark!"); setDone(t); }
+      else fb(f, false, right + " von " + sels.length + " richtig. Überprüfe die rot markierten Felder.");
+      if(solBtn) solBtn.disabled = false;
+    });
+    var fr = task.querySelector("[data-freebtn]");
+    if(fr) fr.addEventListener("click", function(){
+      var ta = task.querySelector("textarea");
+      if(ta.value.trim().length < 150){ fb(f, false, "Schreib zuerst deinen eigenen Text (mindestens einige Sätze) – dann kannst du vergleichen."); return; }
+      sol.classList.add("on");
+      fb(f, true, "Vergleiche deinen Text Punkt für Punkt mit den Erwartungen und ergänze, was fehlt.");
+      setDone(t);
+    });
+  });
+
+
+
+  /* Stammbaum B4.6 */
+  (function(){
+    var R = 17, svg = document.getElementById("pedg6"); if(!svg) return;
+    function Y(g){ return 40 + (g - 1) * 100; }
+    function ln(x1,y1,x2,y2,extra){ return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="#1a1a1a" stroke-width="2"'+(extra||'')+'/>'; }
+    var P = {"I-1":[260,1,"m",0],"I-2":[360,1,"f",0],
+      "II-1":[80,2,"m",0],"II-2":[180,2,"f",0],"II-3":[280,2,"f",1],"II-4":[380,2,"m",0],"II-5":[480,2,"f",0],
+      "III-1":[130,3,"m",0],"III-2":[430,3,"f",0],"IV-1":[280,4,"?",0]};
+    var C = [["I-1","I-2",["II-2","II-3","II-4"]],["II-1","II-2",["III-1"]],["II-4","II-5",["III-2"]],["III-1","III-2",["IV-1"],true]];
+    var o = "";
+    C.forEach(function(c){
+      var a = P[c[0]], b = P[c[1]], y = Y(a[1]), xl = Math.min(a[0],b[0]), xr = Math.max(a[0],b[0]);
+      if(c[3]){ o += ln(xl+R, y-3, xr-R, y-3) + ln(xl+R, y+3, xr-R, y+3); } else { o += ln(xl+R, y, xr-R, y); }
+      var mid = (xl+xr)/2, by = y + 50;
+      o += ln(mid, y + (c[3]?3:0), mid, by);
+      var xs = c[2].map(function(k){ return P[k][0]; }).concat([mid]);
+      o += ln(Math.min.apply(null,xs), by, Math.max.apply(null,xs), by);
+      c[2].forEach(function(k){ o += ln(P[k][0], by, P[k][0], Y(P[k][1]) - R); });
+    });
+    Object.keys(P).forEach(function(id){
+      var q = P[id], x = q[0], y = Y(q[1]), fill = q[3] ? "#1a1a1a" : "#fff";
+      if(q[2] === "m") o += '<rect x="'+(x-R)+'" y="'+(y-R)+'" width="'+(2*R)+'" height="'+(2*R)+'" fill="'+fill+'" stroke="#1a1a1a" stroke-width="2"/>';
+      else if(q[2] === "f") o += '<circle cx="'+x+'" cy="'+y+'" r="'+R+'" fill="'+fill+'" stroke="#1a1a1a" stroke-width="2"/>';
+      else o += '<polygon points="'+x+','+(y-R-3)+' '+(x+R+3)+','+y+' '+x+','+(y+R+3)+' '+(x-R-3)+','+y+'" fill="#fff" stroke="#1a1a1a" stroke-width="2" stroke-dasharray="4 3"/><text x="'+x+'" y="'+(y+6)+'" text-anchor="middle" font-size="17" font-weight="bold" font-family="Calibri,Carlito,Arial,sans-serif">?</text>';
+      o += '<text x="'+x+'" y="'+(y+R+19)+'" text-anchor="middle" font-size="15" fill="#595959" font-family="Calibri,Carlito,Arial,sans-serif">'+id+'</text>';
+    });
+    ["I","II","III","IV"].forEach(function(r,i){ o += '<text x="16" y="'+(Y(i+1)+6)+'" font-size="17" font-weight="bold" font-family="Calibri,Carlito,Arial,sans-serif">'+r+'</text>'; });
+    svg.setAttribute("viewBox","0 0 560 395"); svg.innerHTML = o;
+  })();
+
+  function esc(s){ return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+  function blattBauen(){
+    var n = $("f_name").value || "ohne Namen", k = $("f_kurs").value || "";
+    var h = "<h1>Abitur-Trainer Biologie – Q2 GK</h1><div>" + esc(n) + (k ? " · " + esc(k) : "") + " · " + new Date().toLocaleDateString("de-DE") + "</div>";
+    var gel = TASKS.filter(function(t){ return done[t[0]]; }).length;
+    h += "<h2>Aufgaben (" + gel + " von " + TASKS.length + " gelöst)</h2>";
+    TASKS.forEach(function(t){ h += '<div class="a">' + t[1] + ": " + (done[t[0]] ? "gelöst" : "noch offen") + "</div>"; });
+    h += "<h2>A4.2 – mein ethisches Urteil</h2><div class=\"a\">" + (esc($("h5_txt").value.trim()) || "– nicht bearbeitet –") + "</div>";
+    h += "<h2>B3.5 – meine Bewertung (Moor)</h2><div class=\"a\">" + (esc($("o5_txt").value.trim()) || "– nicht bearbeitet –") + "</div>";
+    h += "<h2>V1 – meine Erklärung</h2><div class=\"a\">" + (esc($("v1_txt").value.trim()) || "– nicht bearbeitet –") + "</div>";
+    h += "<h2>Selbstcheck</h2>";
+    qa(".check li").forEach(function(li){
+      h += '<div class="a">' + (li.querySelector("input").checked ? "☑ " : "☐ ") + esc(li.querySelector("label").textContent) + "</div>";
+    });
+    $("ergebnisblatt").innerHTML = h;
+  }
+  window.druck = function(){ blattBauen(); window.print(); };
+  window.addEventListener("beforeprint", blattBauen);
+  window.loeschen = function(){
+    if(!confirm("Wirklich alle deine Antworten löschen? Das lässt sich nicht rückgängig machen.")) return;
+    try { localStorage.removeItem(KEY); } catch(e){}
+    qa("[data-save]").forEach(function(el){ if(el.type === "checkbox") el.checked = false; else el.value = ""; });
+    qa(".ok,.no").forEach(function(el){ el.classList.remove("ok","no"); });
+    qa(".feedback").forEach(function(el){ el.textContent = ""; });
+    qa(".reveal").forEach(function(el){ el.classList.remove("on"); });
+    done = {}; fortschritt();
+  };
+
+  laden(); fortschritt();
+})();
+</script>
+</body>
+</html>
