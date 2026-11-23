@@ -53,6 +53,10 @@
   figure{margin:14px 0 18px;text-align:center}
   figure svg{max-width:100%;height:auto}
   figcaption{font-size:14px;color:var(--muted);font-style:italic;margin-top:4px}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line, #d9d9d9);border-radius:6px;background:#fff}
+  figure img.klein{max-width:420px}
+  .credit{display:block;font-style:normal;font-size:12px;margin-top:2px}
+  .credit a{color:inherit}
 
   .btns{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 0}
   button{font:inherit;font-size:15px;font-weight:700;border-radius:7px;padding:9px 15px;
@@ -792,6 +796,12 @@
     </ul>
   </div>
 
+  <figure>
+    <img src="bilder/karyogramm.jpg" alt="Karyogramm des Menschen mit 22 Autosomenpaaren und den Geschlechtschromosomen XY bzw. XX" loading="lazy" width="1100" height="620">
+    <figcaption>Abb.: Karyogramm des Menschen – 22 Autosomenpaare (<em>autosomes</em>) und die Gonosomen (<em>sex chromosomes</em>): Mann XY (<em>male</em>), Frau XX (<em>female</em>). Autosomale Erbgänge betreffen die Chromosomen 1–22, X-chromosomale das X-Chromosom.
+      <span class="credit">Bild: NHGRI (National Human Genome Research Institute), gemeinfrei, <a href="https://commons.wikimedia.org/wiki/File:Human_karyotype_diagram_showing_autosomes_and_sex_chromosomes_-_NHGRI.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></span></figcaption>
+  </figure>
+
   <div class="task" data-task="g1">
     <h3>Aufgabe B4.1 – Das Meselson-Stahl-Experiment <span class="afb">AFB II</span></h3>
     <p>Bakterien wachsen lange in einem Medium mit schwerem Stickstoff (¹⁵N) und werden dann in ein Medium mit leichtem Stickstoff (¹⁴N) überführt. Die DNA wird nach jeder Zellteilung durch Dichtegradientenzentrifugation untersucht.</p>
@@ -808,6 +818,11 @@
     <h3>Aufgabe B4.2 – Code-Sonne und Mutationen <span class="afb">AFB II</span></h3>
     <p>Ausschnitt aus der Codetabelle: AUG = Met (Start) · GCU, GCA = Ala · UGG = Trp · AAA, AAG = Lys · GAA = Glu · UAG, UGA = Stopp</p>
     <p>Ausgangs-mRNA: <strong>5'-AUG GCU UGG AAA UAG-3'</strong></p>
+    <figure>
+      <img class="klein" src="bilder/codesonne.png" alt="Codesonne: genetischer Code als Kreisdiagramm, von innen nach außen zu lesen" loading="lazy" width="900" height="900">
+      <figcaption>Abb.: Die Codesonne zum Nachschlagen. Lesen von innen nach außen: 1. Base (5') → 2. Base → 3. Base (3').
+        <span class="credit">Bild: eigene Darstellung</span></figcaption>
+    </figure>
     <div class="item"><span class="t">Welche Aminosäuresequenz entsteht?</span><select id="g2_1" data-save data-opts="Met – Ala – Trp – Lys|Met – Ala – Trp – Glu|Met – Lys – Trp – Ala" data-ans="Met – Ala – Trp – Lys"></select></div>
     <div class="item"><span class="t">Mutation: GCU → GCA</span><select id="g2_2" data-save data-opts="stumme Mutation|Missense-Mutation|Nonsense-Mutation|Rasterschubmutation" data-ans="stumme Mutation"></select></div>
     <div class="item"><span class="t">Mutation: UGG → UGA</span><select id="g2_3" data-save data-opts="stumme Mutation|Missense-Mutation|Nonsense-Mutation|Rasterschubmutation" data-ans="Nonsense-Mutation"></select></div>
@@ -822,6 +837,11 @@
 
   <div class="task" data-task="g3">
     <h3>Aufgabe B4.3 – Genregulation, Epigenetik, Gentherapie <span class="afb">AFB II</span></h3>
+    <figure>
+      <img class="klein" src="bilder/stammzellen.png" alt="Aus einer Stammzelle entstehen durch Differenzierung Muskel-, Fett-, Knochen-, Blut-, Nerven-, Epithel-, Immun- und Keimzellen" loading="lazy" width="900" height="636">
+      <figcaption>Abb.: Aus Stammzellen entstehen durch Differenzierung verschiedene Zelltypen – mit derselben DNA, aber unterschiedlicher Genaktivität.
+        <span class="credit">Bild: Haileyfournier, <a href="https://commons.wikimedia.org/wiki/File:Final_stem_cell_differentiation_(1).svg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" target="_blank" rel="noopener">CC BY-SA 4.0</a>, Beschriftung übersetzt</span></figcaption>
+    </figure>
     <div class="item"><span class="t">Leber- und Hautzellen eines Menschen enthalten dieselben Gene, aber unterschiedliche Gene sind aktiv.</span><select id="g3_1" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
     <div class="item"><span class="t">Transkriptionsfaktoren sind Proteine, die an Promotor- oder Enhancer-Sequenzen binden.</span><select id="g3_2" data-save data-opts="richtig|falsch" data-ans="richtig"></select></div>
     <div class="item"><span class="t">DNA-Methylierung verändert die Basensequenz eines Gens.</span><select id="g3_3" data-save data-opts="richtig|falsch" data-ans="falsch"></select></div>
@@ -850,6 +870,11 @@
   <div class="task" data-task="g5">
     <h3>Aufgabe B4.5 – Vom Stammbaum zur genetischen Beratung <span class="afb">AFB II</span> <span class="fok">KLP</span></h3>
     <div class="sample">Lena ist gesund, ihre Eltern auch; zwei ihrer Geschwister haben Mukoviszidose (autosomal-rezessiv). Ihr Partner Tim ist laut Gentest gesunder Träger (Aa).</div>
+    <figure>
+      <img class="klein" src="bilder/cftr.png" alt="Schema des CFTR-Proteins in der Zellmembran, das Chlorid-Ionen nach außen transportiert" loading="lazy" width="900" height="625">
+      <figcaption>Abb.: Das CFTR-Protein – ein Chloridkanal in der Zellmembran. Bei Mukoviszidose ist das CFTR-Gen mutiert; der Kanal fehlt oder arbeitet nicht, der Schleim in Lunge und Bauchspeicheldrüse wird zäh.
+        <span class="credit">Bild: Armin Kübelbeck (Kuebi), <a href="https://commons.wikimedia.org/wiki/File:CFTR_protein_structure_scheme_02.svg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.de" target="_blank" rel="noopener">CC BY-SA 3.0</a></span></figcaption>
+    </figure>
     <div class="item"><span class="t">Mit welcher Wahrscheinlichkeit ist Lena selbst Trägerin?</span><select id="g5_1" data-save data-opts="1/4|1/2|2/3|1" data-ans="2/3"></select></div>
     <div class="item"><span class="t">Wie groß ist das Risiko, dass ein Kind von Lena und Tim erkrankt?</span><select id="g5_2" data-save data-opts="1/4|1/6|1/3|2/3" data-ans="1/6"></select></div>
     <div class="item"><span class="t">Was könnte ein Gentest bei Lena klären?</span><select id="g5_3" data-save data-opts="ob sie selbst erkrankt|ob sie Trägerin ist – dann läge das Risiko bei 1/4, sonst bei 0|ob ihre Geschwister erkrankt sind" data-ans="ob sie Trägerin ist – dann läge das Risiko bei 1/4, sonst bei 0"></select></div>
@@ -882,6 +907,26 @@
       <p><strong>IV-1</strong>: 1/3 · 1/3 · 1/4 = <strong>1/36</strong> (beide Träger, und beide geben a weiter).</p>
       <p><strong>Verwandtenehe:</strong> Das seltene Allel kann über die gemeinsamen Großeltern I-1/I-2 in beide Familienzweige gelangt sein. Bei einem nicht verwandten Partner aus der Bevölkerung wäre die Wahrscheinlichkeit, ebenfalls Träger zu sein, viel kleiner.</p>
       <p><strong>Zweites Kind:</strong> Ist ein Kind erkrankt, steht fest, dass beide Eltern Aa sind. Das Risiko für jedes weitere Kind beträgt dann <strong>1/4</strong> – unabhängig davon, wie viele Kinder schon erkrankt sind. Ein Trägertest bei III-1 und III-2 könnte die Unsicherheit von vornherein klären.</p></div>
+  </div>
+
+  <div class="task" data-task="g7">
+    <h3>Aufgabe B4.7 – Die Bluterkrankheit in Europas Königshäusern <span class="afb">AFB II</span></h3>
+    <div class="sample">Die Bluterkrankheit (Hämophilie A) wird X-chromosomal-rezessiv vererbt: Bei Betroffenen gerinnt das Blut kaum. Über Königin Victoria von Großbritannien gelangte das Allel in mehrere europäische Herrscherhäuser, unter anderem in die russische Zarenfamilie.</div>
+    <figure>
+      <img src="bilder/haemophilie_stammbaum.png" alt="Stammbaum der Nachkommen von Königin Victoria mit Genotypen; Erkrankte und Konduktorinnen sind umrahmt" loading="lazy" width="946" height="487">
+      <figcaption>Abb.: Stammbaum der Nachkommen Königin Victorias. X = X-Chromosom mit gesundem Allel, x = X-Chromosom mit Hämophilie-Allel, Y = Y-Chromosom; umrahmt = Erkrankte und Konduktorinnen; „?“ = Genotyp unbekannt.
+        <span class="credit">Bild: Matjlav, gemeinfrei, <a href="https://commons.wikimedia.org/wiki/File:Haemophilia_family_tree.GIF" target="_blank" rel="noopener">Wikimedia Commons</a></span></figcaption>
+    </figure>
+    <div class="item"><span class="t">Welchen Genotyp hatte Königin Victoria (Queen Victoria)?</span><select id="g7_1" data-save data-opts="XX – sie war gesund und keine Überträgerin|Xx – sie war Konduktorin (Überträgerin)|xx – sie war selbst erkrankt" data-ans="Xx – sie war Konduktorin (Überträgerin)"></select></div>
+    <div class="item"><span class="t">Warum sind im Stammbaum nur Männer erkrankt?</span><select id="g7_2" data-save data-opts="Männer haben nur ein X-Chromosom – ein Hämophilie-Allel reicht für die Erkrankung.|Das Hämophilie-Allel liegt auf dem Y-Chromosom.|Bei Frauen wird das Allel grundsätzlich nicht abgelesen." data-ans="Männer haben nur ein X-Chromosom – ein Hämophilie-Allel reicht für die Erkrankung."></select></div>
+    <div class="item"><span class="t">Der Zarensohn Alexei war erkrankt. Von wem hat er das Allel geerbt?</span><select id="g7_3" data-save data-opts="von seinem Vater Nikolaus II.|von seiner Mutter Alix|von beiden Eltern" data-ans="von seiner Mutter Alix"></select></div>
+    <div class="item"><span class="t">Victorias Sohn Leopold war erkrankt (xY). Seine Tochter Alice ist Konduktorin. Wäre das bei jeder Tochter Leopolds so?</span><select id="g7_4" data-save data-opts="ja – jede Tochter erhält das x ihres Vaters|nein – nur mit der Wahrscheinlichkeit 1/2|nein – Töchter erben vom Vater das Y-Chromosom" data-ans="ja – jede Tochter erhält das x ihres Vaters"></select></div>
+    <div class="item"><span class="t">Eine Konduktorin (Xx) bekommt mit einem gesunden Mann (XY) einen Sohn. Wie wahrscheinlich ist er erkrankt?</span><select id="g7_5" data-save data-opts="1/4|1/2|1|0" data-ans="1/2"></select></div>
+    <div class="item"><span class="t">Das heutige britische Königshaus stammt von Victorias Sohn Edward VII. ab. Warum ist die Hämophilie dort nicht weitergegeben worden?</span><select id="g7_6" data-save data-opts="Edward VII. war gesund (XY) und gab an seine Söhne nur das Y, an seine Töchter ein gesundes X weiter.|Edward VII. war Konduktor.|Das Allel geht nach drei Generationen verloren." data-ans="Edward VII. war gesund (XY) und gab an seine Söhne nur das Y, an seine Töchter ein gesundes X weiter."></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Ein Sohn bekommt sein X-Chromosom immer von der Mutter, sein Y vom Vater. Eine Tochter bekommt ein X von der Mutter und das einzige X des Vaters. Zeichne für die Fragen 4 und 5 ein kleines Kreuzungsschema.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Xx – Victoria war gesund, hatte aber erkrankte Söhne (Leopold) und Konduktorinnen als Töchter · Männer sind hemizygot: Ihr einziges X entscheidet · von Alix (Konduktorin, Tochter der Konduktorin Alice); der Vater gibt seinem Sohn nur das Y · ja: Leopold kann nur sein x an Töchter weitergeben, alle Töchter sind Konduktorinnen, alle Söhne gesund · 1/2 (Xx × XY → XY, xY: jeder zweite Sohn) · Edward VII. hatte kein Hämophilie-Allel, also konnte er es auch nicht vererben.</p></div>
   </div>
 
 </section>
@@ -963,7 +1008,7 @@
     ["n1","B1.1 Aktionspotenzial"],["n2","B1.2 Ruhepotenzial/Erregungsleitung"],["n3","B1.3 Synapse"],["n4","B1.4 Synapsengifte"],["n5","B1.5 Bau, Messung, Hypothesen"],["n6","B1.6 Erregungsleitung vergleichen"],["n7","B1.7 Schmerzmittel"],
     ["s1","B2.1 Orte im Stoffwechsel"],["s2","B2.2 Stoff- und Energiebilanz"],["s3","B2.3 Prinzipien des Stoffwechsels"],["s4","B2.4 Angepasstheiten, Kompartimente, Chromatografie"],["s5","B2.5 Nahrungsergänzung"],
     ["o1","B3.1 Toleranzkurve"],["o2","B3.2 Ökologische Beziehungen"],["o3","B3.3 Kohlenstoff, Energie, Nische"],["o4","B3.4 Bestimmen und Eingriffe"],["o5","B3.5 Bewertung Moor"],
-    ["g1","B4.1 Meselson-Stahl"],["g2","B4.2 Code-Sonne und Mutationen"],["g3","B4.3 Genregulation, Epigenetik, Gentherapie"],["g4","B4.4 Pro- und Eukaryoten"],["g5","B4.5 Stammbaum und Beratung"],["g6","B4.6 Profi-Stammbaum PKU"],
+    ["g1","B4.1 Meselson-Stahl"],["g2","B4.2 Code-Sonne und Mutationen"],["g3","B4.3 Genregulation, Epigenetik, Gentherapie"],["g4","B4.4 Pro- und Eukaryoten"],["g5","B4.5 Stammbaum und Beratung"],["g6","B4.6 Profi-Stammbaum PKU"],["g7","B4.7 Bluterkrankheit Königshäuser"],
     ["v1","V1 Vernetzung Cyanid"]
   ];
   var done = {};
