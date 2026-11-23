@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Genetik-Grundlagen auffrischen – vom Allel zum Stammbaum</title>
+<style>
+  :root{
+    --ink:#1a1a1a; --muted:#595959; --line:#d9d9d9; --soft:#f2f2f2; --page:#ececec;
+    --ok:#2e7d32; --okbg:#edf7ee; --no:#b3261e; --nobg:#fcecea; --mark:#d08a00;
+    --mum:#b5655f; --dad:#4f7396;
+  }
+  *{box-sizing:border-box;-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--page);color:var(--ink);
+    font-family:Calibri,Carlito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:18px;line-height:1.55}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 16px 80px}
+
+  header.top{background:var(--ink);color:#fff;padding:24px 16px 20px}
+  header.top .inner{max-width:1000px;margin:0 auto}
+  header.top .kick{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#bfbfbf;font-weight:700}
+  header.top h1{margin:4px 0 4px;font-size:28px;line-height:1.2}
+  header.top p{margin:0;color:#d9d9d9;font-size:16px}
+  .idbar{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
+  .idbar label{flex:1 1 200px;font-size:13px;color:#bfbfbf}
+  .idbar input{width:100%;margin-top:4px;padding:9px 10px;border:0;border-radius:6px;font-size:16px;font-family:inherit}
+
+  .bar{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 6px rgba(0,0,0,.06)}
+  .bar .inner{max-width:1000px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .bar a{color:var(--ink);text-decoration:none;font-weight:700;font-size:15px;padding:5px 9px;border-radius:6px}
+  .bar a:hover{background:var(--soft)}
+  .prog{flex:1 1 160px;min-width:140px;display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted);margin-left:8px}
+  .prog .track{flex:1;height:9px;background:#e0e0e0;border-radius:5px;overflow:hidden}
+  .prog .fill{height:100%;width:0;background:var(--ink);transition:width .3s}
+
+  section.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:24px 26px;margin:22px 0}
+  h2{margin:0 0 14px;font-size:24px;line-height:1.25}
+  h2 .kicker{display:block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:4px}
+  h3{margin:26px 0 8px;font-size:19px}
+  h3 .afb{font-size:13px;color:var(--muted);font-weight:400;margin-left:6px}
+  p{margin:0 0 12px}
+  ol,ul{margin:0 0 12px;padding-left:22px}
+  li{margin-bottom:6px}
+
+  .info{background:var(--soft);border-left:6px solid var(--ink);padding:14px 18px;margin:12px 0 18px}
+  .info h4{margin:0 0 8px;font-size:15px;letter-spacing:.1em;text-transform:uppercase}
+  .info p:last-child,.info ul:last-child{margin-bottom:0}
+  .merke{border:2px solid var(--ink);padding:12px 16px;margin:14px 0 18px}
+  .merke b.l{display:block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+  .merke p:last-child{margin-bottom:0}
+  .ziel{color:var(--muted);font-size:16px;margin-bottom:16px}
+
+  figure{margin:14px 0 18px;text-align:center}
+  figure svg{max-width:100%;height:auto}
+  figcaption{font-size:14px;color:var(--muted);font-style:italic;margin-top:4px}
+
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 0}
+  button{font:inherit;font-size:15px;font-weight:700;border-radius:7px;padding:9px 15px;
+    border:2px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer}
+  button:hover{background:var(--soft)}
+  button.primary{background:var(--ink);color:#fff}
+  button.primary:hover{background:#3a3a3a}
+  button:disabled{opacity:.35;cursor:not-allowed}
+
+  .reveal{display:none;margin-top:14px;padding:12px 16px}
+  .reveal.on{display:block}
+  .reveal.tip{border:2px dashed #8c8c8c}
+  .reveal.sol{background:var(--soft);border-left:6px solid var(--ink)}
+  .reveal h4{margin:0 0 6px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .reveal p:last-child,.reveal ul:last-child{margin-bottom:0}
+
+  select{font:inherit;font-size:16px;padding:5px 8px;border:1.5px solid #bdbdbd;border-radius:6px;background:#fff;max-width:100%}
+  .ok>select,select.ok{border-color:var(--ok);background:var(--okbg)}
+  .no>select,select.no{border-color:var(--no);background:var(--nobg)}
+  .feedback{font-weight:700;margin:8px 0 0;min-height:1em}
+  .feedback.good{color:var(--ok)} .feedback.bad{color:var(--no)}
+
+  table.q{border-collapse:collapse;width:100%;margin:8px 0 12px;font-size:17px}
+  table.q th,table.q td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:middle}
+  table.q th{background:var(--soft);font-size:14px}
+  table.q td.ok{background:var(--okbg)} table.q td.no{background:var(--nobg)}
+  .item{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:8px 0;border-bottom:1px solid #ececec}
+  .item .t{flex:1 1 380px}
+
+  .lt{line-height:2.3}
+  .lt span.slot{display:inline-block}
+
+  /* Kombinierer */
+  .komb{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
+  .komb .p{border:1.5px solid var(--line);border-radius:8px;padding:10px 12px}
+  .komb .p b{display:block;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+  .komb .p.m b{color:var(--mum)} .komb .p.v b{color:var(--dad)}
+  .komb button.al{min-width:56px;font-size:20px}
+  .komb button.al.on{background:var(--ink);color:#fff}
+  .kout{background:var(--soft);padding:12px 16px;font-size:17px}
+  .kout .big{font-size:28px;font-weight:700;letter-spacing:.05em}
+  @media (max-width:600px){.komb{grid-template-columns:1fr}}
+
+  /* Punnett */
+  table.pun{border-collapse:collapse;margin:10px 0 12px;font-size:18px}
+  table.pun td,table.pun th{border:2px solid var(--ink);width:120px;height:58px;text-align:center;vertical-align:middle;padding:4px}
+  table.pun th{background:var(--soft);font-weight:700}
+  table.pun th.corner{font-size:13px;font-weight:400;color:var(--muted);line-height:1.25}
+  table.pun .mg{color:var(--mum)} table.pun .vg{color:var(--dad)}
+  .pundemo td{font-size:22px;font-weight:700}
+  .pundemo td.h{color:transparent}
+  .eltern{font-size:19px;margin:6px 0}
+  .eltern .mum{color:var(--mum);font-weight:700} .eltern .dad{color:var(--dad);font-weight:700}
+
+  /* Stammbaum */
+  .ped .pp{cursor:default}
+  .ped.click .pp{cursor:pointer}
+  .ped .ring{display:none}
+  .ped .pp.sel .ring{display:inline}
+  .legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px 18px;margin:10px 0 16px;font-size:16px}
+  .legend div{display:flex;align-items:center;gap:10px}
+
+  textarea{width:100%;border:1.5px solid #bdbdbd;border-radius:6px;padding:9px 11px;font:inherit;font-size:17px;resize:vertical}
+  .check{list-style:none;padding:0}
+  .check li{display:flex;gap:11px;align-items:flex-start;margin-bottom:10px}
+  .check input{width:22px;height:22px;margin-top:3px;flex:0 0 22px}
+  .status{font-size:15px;color:var(--muted)}
+  .status li{margin-bottom:3px}
+  .done-tag{font-weight:700;color:var(--ok)}
+  .open-tag{font-weight:700;color:var(--muted)}
+
+  table.spick{border-collapse:collapse;width:100%;font-size:16px}
+  table.spick td{border-bottom:1px solid var(--line);padding:7px 8px;vertical-align:top}
+  table.spick td:first-child{font-weight:700;white-space:nowrap;width:28%}
+
+  @media (max-width:620px){section.card{padding:18px 15px} header.top h1{font-size:23px}
+    table.pun td,table.pun th{width:86px;height:50px}}
+
+  #ergebnisblatt{display:none}
+  @media print{
+    body{background:#fff;font-size:11pt}
+    body>*{display:none !important}
+    #ergebnisblatt{display:block !important}
+    #ergebnisblatt h1{font-size:16pt;margin:0 0 2mm}
+    #ergebnisblatt h2{font-size:12pt;margin:6mm 0 1mm}
+    #ergebnisblatt .a{margin:0 0 3mm;padding-left:3mm;border-left:2px solid #999}
+    @page{margin:16mm}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <div class="kick">Biologie · Q2 · Genetik</div>
+    <h1>Genetik-Grundlagen auffrischen: vom Allel zum Stammbaum</h1>
+    <p>Selbstlernmodul · ca. 60 Minuten · Du kannst jederzeit unterbrechen – deine Antworten bleiben in diesem Browser gespeichert.</p>
+    <div class="idbar">
+      <label>Dein Name<input type="text" id="f_name" data-save placeholder="Vorname Nachname"></label>
+      <label>Kurs<input type="text" id="f_kurs" data-save placeholder="z. B. Q2 BI GK"></label>
+    </div>
+  </div>
+</header>
+
+<nav class="bar">
+  <div class="inner">
+    <a href="#start">Start</a>
+    <a href="#s1">1 Gene</a>
+    <a href="#s2">2 Allele</a>
+    <a href="#s3">3 Kreuzung</a>
+    <a href="#s4">4 Stammbaum</a>
+    <a href="#s5">5 Erbgang</a>
+    <a href="#ende">Abschluss</a>
+    <div class="prog"><span id="progtext">0 von 12</span><div class="track"><div class="fill" id="progfill"></div></div></div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ====================== START ====================== -->
+<section class="card" id="start">
+  <h2><span class="kicker">So arbeitest du</span>Worum es geht</h2>
+  <p>In der Stammbaumanalyse brauchst du ein paar Begriffe und Werkzeuge, die du in der Mittelstufe gelernt hast – vielleicht ist das aber schon eine Weile her. Dieses Modul frischt sie Schritt für Schritt auf. Jede Station baut auf der vorherigen auf:</p>
+  <ol>
+    <li><strong>Gene und Allele</strong> – was auf unseren Chromosomen liegt</li>
+    <li><strong>Dominant, rezessiv, homozygot, heterozygot</strong> – wie zwei Allele zusammenwirken</li>
+    <li><strong>Das Kreuzungsschema</strong> – welche Kinder zwei Eltern bekommen können</li>
+    <li><strong>Stammbäume lesen</strong> – Symbole, Generationen, Nummern</li>
+    <li><strong>Erbgänge bestimmen</strong> – mit Ausschlussregeln zum Ergebnis</li>
+  </ol>
+  <div class="info">
+    <h4>So funktioniert es</h4>
+    <ul>
+      <li>Lies zuerst den grauen Infokasten. Bearbeite dann die Aufgaben und klicke auf <strong>Prüfen</strong>. Grün heißt richtig, rot heißt: noch einmal überlegen.</li>
+      <li>Wenn du nicht weiterkommst, hol dir einen <strong>Tipp</strong>. Die <strong>Lösung</strong> kannst du erst ansehen, nachdem du selbst geprüft hast.</li>
+      <li>Der Balken oben zeigt, wie viele der 12 Aufgaben du schon gelöst hast. Am Ende kannst du ein Ergebnisblatt drucken oder als PDF sichern.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ====================== STATION 1 ====================== -->
+<section class="card" id="s1">
+  <h2><span class="kicker">Station 1</span>Gene und Allele</h2>
+  <p class="ziel">Ziel: Du kannst erklären, was ein Gen und was ein Allel ist – und warum du von jedem Gen zwei Allele hast.</p>
+
+  <div class="info">
+    <h4>Infotext</h4>
+    <p>In jeder Körperzelle liegen 46 <strong>Chromosomen</strong>, und zwar als 23 Paare. Von jedem Paar stammt ein Chromosom von der <strong>Mutter</strong>, eines vom <strong>Vater</strong>. Die beiden Chromosomen eines Paares tragen dieselben Gene an denselben Stellen.</p>
+    <p>Ein <strong>Gen</strong> ist ein Abschnitt der DNA, der die Information für ein bestimmtes Merkmal enthält – zum Beispiel für ein Kanalprotein wie CFTR. Ein Gen kann aber in leicht unterschiedlichen Versionen vorkommen. Diese Versionen eines Gens heißen <strong>Allele</strong>. Ein Allel kann zum Beispiel ein funktionsfähiges Protein ergeben, ein anderes Allel des gleichen Gens ein defektes.</p>
+    <p>Weil du jedes Chromosom zweimal hast, hast du von jedem Gen auch <strong>zwei Allele</strong>: eines von der Mutter, eines vom Vater. Die beiden können gleich oder verschieden sein.</p>
+    <p>Die Kombination deiner beiden Allele nennt man <strong>Genotyp</strong> (z. B. „Aa“). Das, was man am Ende beobachten oder messen kann – gesund oder krank, Blutgruppe, Augenfarbe –, nennt man <strong>Phänotyp</strong>.</p>
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 520 260" width="520" role="img" aria-label="Chromosomenpaar mit Genort und zwei Allelen">
+      <g font-family="Calibri,Carlito,Arial,sans-serif" font-size="15" fill="#1a1a1a">
+        <!-- Mutter -->
+        <path d="M150 30 q0 -14 14 -14 h12 q14 0 14 14 v62 q0 8 -8 12 q8 4 8 12 v110 q0 14 -14 14 h-12 q-14 0 -14 -14 v-110 q0 -8 8 -12 q-8 -4 -8 -12 z" fill="#b5655f" opacity=".85"/>
+        <!-- Vater -->
+        <path d="M330 30 q0 -14 14 -14 h12 q14 0 14 14 v62 q0 8 -8 12 q8 4 8 12 v110 q0 14 -14 14 h-12 q-14 0 -14 -14 v-110 q0 -8 8 -12 q-8 -4 -8 -12 z" fill="#4f7396" opacity=".85"/>
+        <!-- Genort -->
+        <rect x="148" y="150" width="44" height="18" fill="#1a1a1a"/>
+        <rect x="328" y="150" width="44" height="18" fill="#1a1a1a"/>
+        <line x1="192" y1="159" x2="328" y2="159" stroke="#1a1a1a" stroke-dasharray="5 4"/>
+        <text x="260" y="150" text-anchor="middle">gleicher Genort</text>
+        <text x="260" y="176" text-anchor="middle" fill="#595959" font-size="13">= dasselbe Gen</text>
+        <text x="132" y="165" text-anchor="end" font-size="22" font-weight="bold">A</text>
+        <text x="388" y="165" font-size="22" font-weight="bold">a</text>
+        <text x="132" y="186" text-anchor="end" fill="#595959" font-size="13">Allel A</text>
+        <text x="388" y="186" fill="#595959" font-size="13">Allel a</text>
+        <text x="170" y="252" text-anchor="middle" fill="#b5655f" font-weight="bold">von der Mutter</text>
+        <text x="350" y="252" text-anchor="middle" fill="#4f7396" font-weight="bold">vom Vater</text>
+      </g>
+    </svg>
+    <figcaption>Abb. 1: Ein Chromosomenpaar (vereinfacht). Am gleichen Genort liegt auf beiden Chromosomen dasselbe Gen – hier aber in zwei verschiedenen Allelen. Genotyp dieser Person: Aa.</figcaption>
+  </figure>
+
+  <div class="merke"><b class="l">Merke</b><p><strong>Gen</strong> = der Abschnitt für ein Merkmal. <strong>Allel</strong> = eine Version dieses Gens. Jeder Mensch hat von jedem Gen (auf den Körperchromosomen) <strong>zwei</strong> Allele.</p></div>
+
+  <div class="task" data-task="t11">
+    <h3>Aufgabe 1.1 – Ordne die Begriffe zu <span class="afb">AFB I</span></h3>
+    <div class="item"><span class="t">Ein DNA-Abschnitt mit der Information für ein bestimmtes Merkmal</span><span class="slot"><select id="a11_1" data-save data-opts="Chromosom|Gen|Allel|Genotyp|Phänotyp" data-ans="Gen"></select></span></div>
+    <div class="item"><span class="t">Eine von mehreren möglichen Versionen eines Gens</span><span class="slot"><select id="a11_2" data-save data-opts="Chromosom|Gen|Allel|Genotyp|Phänotyp" data-ans="Allel"></select></span></div>
+    <div class="item"><span class="t">Die Kombination der beiden Allele einer Person, z. B. Aa</span><span class="slot"><select id="a11_3" data-save data-opts="Chromosom|Gen|Allel|Genotyp|Phänotyp" data-ans="Genotyp"></select></span></div>
+    <div class="item"><span class="t">Das beobachtbare Merkmal, z. B. „gesund“ oder „erkrankt“</span><span class="slot"><select id="a11_4" data-save data-opts="Chromosom|Gen|Allel|Genotyp|Phänotyp" data-ans="Phänotyp"></select></span></div>
+    <div class="item"><span class="t">Ein langer, aufgewickelter DNA-Faden mit vielen Genen</span><span class="slot"><select id="a11_5" data-save data-opts="Chromosom|Gen|Allel|Genotyp|Phänotyp" data-ans="Chromosom"></select></span></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Denk an ein Kochbuch: Das ganze Buch ist das Chromosom, ein Rezept (z. B. „Pfannkuchen“) ist ein Gen, und zwei Varianten desselben Rezepts (mit oder ohne Zucker) sind zwei Allele.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Gen · Allel · Genotyp · Phänotyp · Chromosom</p></div>
+  </div>
+
+  <div class="task" data-task="t12">
+    <h3>Aufgabe 1.2 – Richtig oder falsch? <span class="afb">AFB I</span></h3>
+    <div class="item"><span class="t">„Gen“ und „Allel“ bedeuten dasselbe.</span><span class="slot"><select id="a12_1" data-save data-opts="richtig|falsch" data-ans="falsch"></select></span></div>
+    <div class="item"><span class="t">Von den beiden Allelen eines Gens stammt eines von der Mutter und eines vom Vater.</span><span class="slot"><select id="a12_2" data-save data-opts="richtig|falsch" data-ans="richtig"></select></span></div>
+    <div class="item"><span class="t">Die beiden Allele einer Person sind immer gleich.</span><span class="slot"><select id="a12_3" data-save data-opts="richtig|falsch" data-ans="falsch"></select></span></div>
+    <div class="item"><span class="t">„Erkrankt an Mukoviszidose“ beschreibt einen Phänotyp.</span><span class="slot"><select id="a12_4" data-save data-opts="richtig|falsch" data-ans="richtig"></select></span></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Schau dir Abb. 1 noch einmal an: Wie viele Allele hat die Person? Woher kommen sie? Sind sie gleich?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>falsch (ein Gen kann in mehreren Allelen vorkommen) · richtig · falsch (sie können gleich oder verschieden sein) · richtig (man kann es beobachten)</p></div>
+  </div>
+</section>
+
+<!-- ====================== STATION 2 ====================== -->
+<section class="card" id="s2">
+  <h2><span class="kicker">Station 2</span>Dominant und rezessiv, homozygot und heterozygot</h2>
+  <p class="ziel">Ziel: Du kannst die vier Begriffe erklären und zu jedem Genotyp den Phänotyp angeben.</p>
+
+  <div class="info">
+    <h4>Infotext</h4>
+    <p><strong>Homozygot oder heterozygot?</strong> Sind die beiden Allele einer Person <em>gleich</em> (AA oder aa), ist sie <strong>homozygot</strong> („homo“ = gleich). Sind sie <em>verschieden</em> (Aa), ist sie <strong>heterozygot</strong> („hetero“ = verschieden). Diese Begriffe beschreiben also nur den Genotyp.</p>
+    <p><strong>Dominant oder rezessiv?</strong> Bei einem heterozygoten Menschen stellt sich die Frage: Welches der beiden Allele „gewinnt“? Das Allel, das sich durchsetzt, heißt <strong>dominant</strong>. Das andere heißt <strong>rezessiv</strong> – es wirkt sich nur aus, wenn es <em>doppelt</em> vorliegt (aa).</p>
+    <p><strong>Schreibweise:</strong> Das dominante Allel bekommt einen Großbuchstaben (A), das rezessive denselben Buchstaben klein (a).</p>
+    <p><strong>Beispiel Mukoviszidose:</strong> Das Allel für ein intaktes CFTR-Protein (A) ist dominant, das defekte Allel (a) ist rezessiv. Eine Person mit Aa hat genug intaktes Protein und ist gesund – sie trägt das Krankheits-Allel aber in sich und kann es an ihre Kinder weitergeben. Man nennt sie <strong>Trägerin</strong> bzw. <strong>Träger</strong>. Erkrankt ist nur, wer aa hat.</p>
+  </div>
+
+  <h3>Ausprobieren: der Allel-Kombinierer</h3>
+  <p>Wähle aus, welches Allel das Kind von der Mutter und welches es vom Vater bekommt. Beispiel: Mukoviszidose (A = intaktes Allel, dominant; a = defektes Allel, rezessiv).</p>
+  <div class="komb">
+    <div class="p m"><b>Allel von der Mutter</b><button type="button" class="al" data-k="m" data-v="A">A</button> <button type="button" class="al" data-k="m" data-v="a">a</button></div>
+    <div class="p v"><b>Allel vom Vater</b><button type="button" class="al" data-k="v" data-v="A">A</button> <button type="button" class="al" data-k="v" data-v="a">a</button></div>
+  </div>
+  <div class="kout" id="kout">Wähle zwei Allele aus.</div>
+
+  <div class="merke"><b class="l">Merke</b><p>Eine <strong>rezessive</strong> Krankheit bricht nur bei <strong>aa</strong> aus. Heterozygote (Aa) sind gesund, aber <strong>Träger</strong>. Bei einer <strong>dominanten</strong> Krankheit ist das Krankheits-Allel das große A: Dann ist schon <strong>Aa</strong> erkrankt.</p></div>
+
+  <div class="task" data-task="t21">
+    <h3>Aufgabe 2.1 – Fülle die Tabelle aus <span class="afb">AFB I</span></h3>
+    <p>Es geht um eine <strong>rezessiv</strong> vererbte Krankheit wie Mukoviszidose.</p>
+    <table class="q">
+      <tr><th>Genotyp</th><th>homozygot oder heterozygot?</th><th>Phänotyp</th></tr>
+      <tr><td><strong>AA</strong></td><td><select id="a21_1" data-save data-opts="homozygot|heterozygot" data-ans="homozygot"></select></td><td><select id="a21_2" data-save data-opts="gesund|gesund, aber Träger|erkrankt" data-ans="gesund"></select></td></tr>
+      <tr><td><strong>Aa</strong></td><td><select id="a21_3" data-save data-opts="homozygot|heterozygot" data-ans="heterozygot"></select></td><td><select id="a21_4" data-save data-opts="gesund|gesund, aber Träger|erkrankt" data-ans="gesund, aber Träger"></select></td></tr>
+      <tr><td><strong>aa</strong></td><td><select id="a21_5" data-save data-opts="homozygot|heterozygot" data-ans="homozygot"></select></td><td><select id="a21_6" data-save data-opts="gesund|gesund, aber Träger|erkrankt" data-ans="erkrankt"></select></td></tr>
+    </table>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Probier jede Zeile im Allel-Kombinierer oben aus. Frage dich bei der zweiten Spalte nur: Sind die beiden Buchstaben gleich oder verschieden?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>AA: homozygot, gesund · Aa: heterozygot, gesund, aber Träger · aa: homozygot, erkrankt</p></div>
+  </div>
+
+  <div class="task" data-task="t22">
+    <h3>Aufgabe 2.2 – Vervollständige die Sätze <span class="afb">AFB I</span></h3>
+    <p class="lt">Ein Mensch mit dem Genotyp aa ist
+      <span class="slot"><select id="a22_1" data-save data-opts="homozygot|heterozygot" data-ans="homozygot"></select></span>.
+      Bei einer rezessiven Krankheit ist ein Mensch mit dem Genotyp Aa
+      <span class="slot"><select id="a22_2" data-save data-opts="gesund|erkrankt" data-ans="gesund"></select></span>,
+      kann das Krankheits-Allel aber an seine Kinder
+      <span class="slot"><select id="a22_3" data-save data-opts="weitergeben|nicht weitergeben" data-ans="weitergeben"></select></span>.
+      Bei einer dominanten Krankheit wie Chorea Huntington steht das große A für das Krankheits-Allel. Ein Mensch mit dem Genotyp Aa ist dann
+      <span class="slot"><select id="a22_4" data-save data-opts="gesund|erkrankt" data-ans="erkrankt"></select></span>.
+      Ein rezessives Allel wirkt sich nur aus, wenn es
+      <span class="slot"><select id="a22_5" data-save data-opts="einmal|zweimal" data-ans="zweimal"></select></span> vorliegt.</p>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Der Großbuchstabe bedeutet immer „dominant“ – er sagt nichts darüber, ob das Allel gesund oder krank macht. Das hängt von der Krankheit ab.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>homozygot · gesund · weitergeben · erkrankt · zweimal</p></div>
+  </div>
+</section>
+
+<!-- ====================== STATION 3 ====================== -->
+<section class="card" id="s3">
+  <h2><span class="kicker">Station 3</span>Das Kreuzungsschema</h2>
+  <p class="ziel">Ziel: Du kannst ein Kreuzungsschema aufstellen und daraus ablesen, mit welcher Wahrscheinlichkeit ein Kind erkrankt.</p>
+
+  <div class="info">
+    <h4>Infotext</h4>
+    <p>Bei der Bildung von Ei- und Spermienzellen (Meiose) werden die Chromosomenpaare getrennt. Jede <strong>Keimzelle</strong> bekommt deshalb von jedem Gen nur <strong>ein</strong> Allel. Eine Person mit Aa bildet also zur Hälfte Keimzellen mit A und zur Hälfte Keimzellen mit a.</p>
+    <p>Bei der Befruchtung trifft eine Eizelle auf eine Spermienzelle – das Kind hat dann wieder zwei Allele. Welche Kombinationen möglich sind, zeigt ein <strong>Kreuzungsschema</strong> (auch Punnett-Quadrat genannt):</p>
+    <ol>
+      <li>Schreibe die Genotypen der Eltern auf.</li>
+      <li>Schreibe die möglichen Keimzellen der Mutter oben hin, die des Vaters links.</li>
+      <li>Kombiniere in jedem Feld das Allel aus der Spalte mit dem Allel aus der Zeile.</li>
+      <li>Jedes der vier Felder steht für <strong>25 %</strong> Wahrscheinlichkeit.</li>
+    </ol>
+  </div>
+
+  <h3>Beispiel Schritt für Schritt: Zwei gesunde Träger (Aa × Aa)</h3>
+  <p class="eltern">Eltern: <span class="mum">Mutter Aa</span> × <span class="dad">Vater Aa</span></p>
+  <table class="pun pundemo" id="demo">
+    <tr><th class="corner">Keimzellen</th><th class="mg h" data-step="1">A</th><th class="mg h" data-step="1">a</th></tr>
+    <tr><th class="vg h" data-step="1">A</th><td class="h" data-step="2">AA</td><td class="h" data-step="2">Aa</td></tr>
+    <tr><th class="vg h" data-step="1">a</th><td class="h" data-step="2">Aa</td><td class="h" data-step="3">aa</td></tr>
+  </table>
+  <p id="demotext" class="status">Klicke auf „Nächster Schritt“.</p>
+  <div class="btns"><button type="button" class="primary" id="demonext">Nächster Schritt</button><button type="button" id="demoreset">Von vorn</button></div>
+
+  <div class="task" data-task="t32">
+    <h3>Aufgabe 3.1 – Der Kreuzungs-Trainer <span class="afb">AFB II</span></h3>
+    <p>Fülle das Kreuzungsschema aus: erst die Keimzellen, dann die vier Felder, dann die Wahrscheinlichkeit. Es geht um eine <strong>rezessive</strong> Krankheit. Wenn du eine Kreuzung gelöst hast, kannst du mit „Neue Kreuzung“ weiterüben.</p>
+    <p class="eltern" id="tr_eltern"></p>
+    <table class="pun">
+      <tr><th class="corner">Keimzellen</th><th class="mg"><select id="tr_m1" data-opts="A|a"></select></th><th class="mg"><select id="tr_m2" data-opts="A|a"></select></th></tr>
+      <tr><th class="vg"><select id="tr_v1" data-opts="A|a"></select></th><td><select id="tr_c11" data-opts="AA|Aa|aa"></select></td><td><select id="tr_c12" data-opts="AA|Aa|aa"></select></td></tr>
+      <tr><th class="vg"><select id="tr_v2" data-opts="A|a"></select></th><td><select id="tr_c21" data-opts="AA|Aa|aa"></select></td><td><select id="tr_c22" data-opts="AA|Aa|aa"></select></td></tr>
+    </table>
+    <p class="lt">Wahrscheinlichkeit, dass ein Kind erkrankt: <select id="tr_q" data-opts="0 %|25 %|50 %|75 %|100 %"></select></p>
+    <div class="btns"><button type="button" class="primary" id="tr_check">Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" id="tr_solbtn" disabled>Lösung</button><button type="button" id="tr_new">Neue Kreuzung</button></div>
+    <div class="feedback" id="tr_fb"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Teile den Genotyp jedes Elternteils in seine zwei Buchstaben auf – das sind die beiden möglichen Keimzellen. Dann zählst du am Ende, in wie vielen der vier Felder „aa“ steht: Jedes Feld zählt 25 %.</p></div>
+    <div class="reveal sol" id="tr_sol"><h4>Lösung</h4><p id="tr_soltext"></p></div>
+  </div>
+
+  <div class="info">
+    <h4>Sonderfall: Gene auf dem X-Chromosom</h4>
+    <p>Frauen haben zwei X-Chromosomen (XX), Männer ein X und ein Y (XY). Liegt ein Gen auf dem X-Chromosom, schreibt man die Allele an das X: <strong>Xᴬ</strong> und <strong>Xᵃ</strong>. Das Y-Chromosom trägt dieses Gen nicht.</p>
+    <p>Daraus folgt: Ein Mann hat von diesem Gen nur <strong>ein einziges Allel</strong>. Hat er Xᵃ, ist er erkrankt – es gibt kein zweites Allel, das das ausgleichen könnte. Eine Frau mit XᴬXᵃ ist gesund, kann das Allel aber weitergeben. Sie heißt <strong>Konduktorin</strong> (Überträgerin).</p>
+    <p>Wichtig: Ein Sohn bekommt sein X immer von der <strong>Mutter</strong> – vom Vater bekommt er das Y.</p>
+  </div>
+
+  <div class="task" data-task="t33">
+    <h3>Aufgabe 3.2 – Ein X-chromosomales Kreuzungsschema <span class="afb">AFB II</span></h3>
+    <p class="eltern">Eltern: <span class="mum">Mutter XᴬXᵃ (Konduktorin)</span> × <span class="dad">Vater XᴬY (gesund)</span></p>
+    <table class="pun">
+      <tr><th class="corner">Keimzellen</th><th class="mg"><select id="x_m1" data-save data-opts="Xᴬ|Xᵃ|Y"></select></th><th class="mg"><select id="x_m2" data-save data-opts="Xᴬ|Xᵃ|Y"></select></th></tr>
+      <tr><th class="vg"><select id="x_v1" data-save data-opts="Xᴬ|Xᵃ|Y"></select></th><td><select id="x_c11" data-save data-opts="XᴬXᴬ|XᴬXᵃ|XᵃXᵃ|XᴬY|XᵃY"></select></td><td><select id="x_c12" data-save data-opts="XᴬXᴬ|XᴬXᵃ|XᵃXᵃ|XᴬY|XᵃY"></select></td></tr>
+      <tr><th class="vg"><select id="x_v2" data-save data-opts="Xᴬ|Xᵃ|Y"></select></th><td><select id="x_c21" data-save data-opts="XᴬXᴬ|XᴬXᵃ|XᵃXᵃ|XᴬY|XᵃY"></select></td><td><select id="x_c22" data-save data-opts="XᴬXᴬ|XᴬXᵃ|XᵃXᵃ|XᴬY|XᵃY"></select></td></tr>
+    </table>
+    <div class="item"><span class="t">Wie viele der <strong>Söhne</strong> sind voraussichtlich erkrankt?</span><select id="x_q1" data-save data-opts="keiner|die Hälfte|alle"></select></div>
+    <div class="item"><span class="t">Wie viele der <strong>Töchter</strong> sind voraussichtlich erkrankt?</span><select id="x_q2" data-save data-opts="keine|die Hälfte|alle"></select></div>
+    <div class="item"><span class="t">Wie viele der <strong>Töchter</strong> sind voraussichtlich Konduktorinnen?</span><select id="x_q3" data-save data-opts="keine|die Hälfte|alle"></select></div>
+    <div class="btns"><button type="button" class="primary" id="x_check">Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" id="x_solbtn" disabled>Lösung</button></div>
+    <div class="feedback" id="x_fb"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Die Mutter bildet Eizellen mit Xᴬ oder Xᵃ. Der Vater bildet Spermien mit Xᴬ oder Y. Felder mit Y sind Söhne, Felder mit zwei X sind Töchter. Vergleiche nur die Söhne untereinander bzw. nur die Töchter untereinander.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4>
+      <p>Keimzellen der Mutter: Xᴬ und Xᵃ · Keimzellen des Vaters: Xᴬ und Y.<br>Töchter: XᴬXᴬ (gesund) und XᴬXᵃ (Konduktorin). Söhne: XᴬY (gesund) und XᵃY (erkrankt).</p>
+      <p>Also: die Hälfte der Söhne erkrankt, keine Tochter erkrankt, die Hälfte der Töchter ist Konduktorin. Deshalb sind bei X-chromosomal-rezessiven Krankheiten vor allem Männer betroffen.</p></div>
+  </div>
+
+  <div class="task" data-task="t34">
+    <h3>Aufgabe 3.3 – Erkläre in eigenen Worten <span class="afb">AFB II</span></h3>
+    <p>Lena ist gesund, ihre Eltern auch – aber zwei ihrer Geschwister haben Mukoviszidose. <strong>Erkläre</strong>, wie das möglich ist. Verwende die Begriffe <em>rezessiv</em>, <em>heterozygot</em>, <em>Keimzelle</em> und <em>25 %</em>.</p>
+    <textarea id="a34" data-save rows="5" placeholder="Deine Erklärung …"></textarea>
+    <div class="btns"><button type="button" class="primary" id="a34_btn">Mit Musterlösung vergleichen</button></div>
+    <div class="feedback" id="a34_fb"></div>
+    <div class="reveal sol" id="a34_sol"><h4>So könnte deine Antwort aussehen</h4>
+      <p>Mukoviszidose wird <strong>rezessiv</strong> vererbt: Erkrankt ist nur, wer zwei defekte Allele hat (aa). Lenas Eltern sind gesund, müssen aber beide <strong>heterozygot</strong> sein (Aa), also Träger – sonst hätten ihre Kinder nicht aa bekommen können. Jeder Elternteil bildet zur Hälfte <strong>Keimzellen</strong> mit A und zur Hälfte mit a. Treffen zwei Keimzellen mit a aufeinander, ist das Kind erkrankt. Das Kreuzungsschema Aa × Aa zeigt: Die Wahrscheinlichkeit dafür beträgt bei jedem Kind <strong>25 %</strong>.</p>
+      <p>Prüfe: Hast du alle vier Begriffe richtig verwendet? Hast du erklärt, <em>warum</em> die Eltern heterozygot sein müssen?</p></div>
+  </div>
+</section>
+
+<!-- ====================== STATION 4 ====================== -->
+<section class="card" id="s4">
+  <h2><span class="kicker">Station 4</span>Stammbäume lesen</h2>
+  <p class="ziel">Ziel: Du kannst einen Stammbaum lesen und aus ihm erste Genotypen ableiten.</p>
+
+  <div class="info">
+    <h4>Infotext</h4>
+    <p>Ein <strong>Stammbaum</strong> zeigt, wer in einer Familie mit wem verwandt ist und wer ein bestimmtes Merkmal (z. B. eine Krankheit) hat. Humangenetiker:innen nutzen ihn, weil man beim Menschen keine Kreuzungsversuche machen kann. Es gelten feste Regeln:</p>
+    <ul>
+      <li>Männer sind <strong>Quadrate</strong>, Frauen <strong>Kreise</strong>. Ausgefüllte Symbole bedeuten: Die Person ist erkrankt.</li>
+      <li>Eine waagerechte Linie zwischen zwei Personen ist eine <strong>Partnerschaft</strong>. Von ihrer Mitte führt eine senkrechte Linie zu den Kindern.</li>
+      <li>Jede <strong>Generation</strong> steht in einer eigenen Zeile und bekommt eine römische Ziffer (I, II, III …). In jeder Generation wird von links nach rechts gezählt: <strong>II-3</strong> ist die dritte Person der zweiten Generation.</li>
+      <li>Personen ohne Linie nach oben sind in die Familie <strong>eingeheiratet</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="legend" id="legend"></div>
+  <p class="status">Trägerinnen und Träger werden in Aufgaben-Stammbäumen meist nicht markiert – man muss sie selbst erschließen.</p>
+
+  <figure>
+    <svg class="ped" id="ped1" width="520"></svg>
+    <figcaption>Abb. 2: Stammbaum einer Familie mit einer rezessiv vererbten Krankheit (A = gesund, a = krank).</figcaption>
+  </figure>
+
+  <div class="task" data-task="t41">
+    <h3>Aufgabe 4.1 – Lies den Stammbaum <span class="afb">AFB I</span></h3>
+    <div class="item"><span class="t">Wie viele Generationen zeigt der Stammbaum?</span><select id="a41_1" data-save data-opts="2|3|4|8" data-ans="3"></select></div>
+    <div class="item"><span class="t">Welche Person ist in die Familie eingeheiratet?</span><select id="a41_2" data-save data-opts="I-1|II-1|II-2|III-1" data-ans="II-1"></select></div>
+    <div class="item"><span class="t">Wer sind die Eltern von III-2?</span><select id="a41_3" data-save data-opts="I-1 und I-2|II-1 und II-2|II-2 und II-3" data-ans="II-1 und II-2"></select></div>
+    <div class="item"><span class="t">Was erfährst du über II-3?</span><select id="a41_4" data-save data-opts="Frau, gesund|Frau, erkrankt|Mann, gesund|Mann, erkrankt" data-ans="Mann, erkrankt"></select></div>
+    <div class="item"><span class="t">Wie viele Personen sind erkrankt?</span><select id="a41_5" data-save data-opts="1|2|3|4" data-ans="2"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Zähle die Zeilen für die Generationen. Eingeheiratet ist, wer keine senkrechte Linie nach oben hat. Die Eltern eines Kindes findest du, indem du seiner Linie nach oben bis zur Partnerschaftslinie folgst.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>3 Generationen · II-1 · II-1 und II-2 · Mann, erkrankt · 2 (II-3 und III-2)</p></div>
+  </div>
+
+  <div class="task" data-task="t42">
+    <h3>Aufgabe 4.2 – Wer ist sicher Träger? <span class="afb">AFB II</span></h3>
+    <p>Die Krankheit in Abb. 2 wird rezessiv vererbt. Erkrankte haben also aa. <strong>Klicke im Stammbaum alle Personen an, die sicher heterozygot (Aa) sind.</strong> Ein zweiter Klick hebt die Auswahl wieder auf.</p>
+    <p class="status">Ausgewählt: <span id="sel42">niemand</span></p>
+    <div class="btns"><button type="button" class="primary" id="a42_check">Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" id="a42_solbtn" disabled>Lösung</button></div>
+    <div class="feedback" id="a42_fb"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Ein erkranktes Kind (aa) hat von <em>jedem</em> Elternteil ein a bekommen. Wenn diese Eltern selbst gesund sind, haben sie neben dem a also noch ein A. Suche alle gesunden Eltern von erkrankten Kindern. Bei gesunden Kindern kannst du dagegen nicht sicher sagen, ob sie AA oder Aa sind.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>Sicher heterozygot sind <strong>I-1 und I-2</strong> (gesunde Eltern des erkrankten II-3) sowie <strong>II-1 und II-2</strong> (gesunde Eltern der erkrankten III-2). Bei II-4 und III-1 ist AA oder Aa möglich – das lässt sich nicht entscheiden.</p></div>
+  </div>
+</section>
+
+<!-- ====================== STATION 5 ====================== -->
+<section class="card" id="s5">
+  <h2><span class="kicker">Station 5</span>Erbgänge bestimmen</h2>
+  <p class="ziel">Ziel: Du kannst mithilfe von Ausschlussregeln bestimmen, wie ein Merkmal vererbt wird, und deine Entscheidung mit Personennummern begründen.</p>
+
+  <div class="info">
+    <h4>Infotext: die Ausschlussregeln</h4>
+    <p>Um einen Erbgang zu bestimmen, sucht man im Stammbaum nach Stellen, die bestimmte Erbgänge <strong>sicher ausschließen</strong>:</p>
+    <table class="q">
+      <tr><th>Diese Stelle im Stammbaum …</th><th>… schließt sicher aus</th></tr>
+      <tr><td>Zwei gesunde Eltern haben ein erkranktes Kind.</td><td>dominante Erbgänge → das Merkmal ist <strong>rezessiv</strong></td></tr>
+      <tr><td>Zwei erkrankte Eltern haben ein gesundes Kind.</td><td>rezessive Erbgänge → das Merkmal ist <strong>dominant</strong></td></tr>
+      <tr><td>Eine erkrankte Tochter hat einen gesunden Vater.</td><td>X-chromosomal-rezessiv</td></tr>
+      <tr><td>Ein erkrankter Vater hat einen erkrankten Sohn.</td><td>X-chromosomale Erbgänge (der Sohn bekommt vom Vater das Y)</td></tr>
+    </table>
+    <p>Findet man keine solche Stelle, kann man nur sagen, welcher Erbgang <strong>wahrscheinlich</strong> ist. Typisch für X-chromosomal-rezessiv: fast nur Männer erkrankt, das Merkmal „springt“ über eine gesunde Tochter (Konduktorin) vom Großvater zum Enkel.</p>
+    <p><strong>Vorgehen:</strong> (1) Dominant oder rezessiv? (2) Autosomal oder X-chromosomal? (3) Begründen – immer mit Personennummern, z. B. „I-1 × I-2 → II-1“.</p>
+  </div>
+
+  <div class="task" data-task="t51">
+    <h3>Aufgabe 5.1 – Familie mit Albinismus <span class="afb">AFB II</span></h3>
+    <p>Menschen mit Albinismus können in Haut, Haaren und Augen kaum Farbstoff (Melanin) bilden.</p>
+    <figure><svg class="ped" id="ped2" width="520"></svg><figcaption>Abb. 3: Stammbaum einer Familie mit Albinismus.</figcaption></figure>
+    <div class="item"><span class="t">Welche Stelle zeigt, dass das Merkmal <strong>rezessiv</strong> ist?</span><select id="a51_1" data-save data-opts="I-1 × I-2 → II-1|II-3 × II-4 → III-1|I-1 → II-2" data-ans="I-1 × I-2 → II-1"></select></div>
+    <div class="item"><span class="t">Welche Regel schließt dann <strong>X-chromosomal-rezessiv</strong> aus?</span><select id="a51_2" data-save data-opts="Zwei gesunde Eltern haben ein erkranktes Kind.|Eine erkrankte Tochter hat einen gesunden Vater.|Ein erkrankter Vater hat einen erkrankten Sohn." data-ans="Eine erkrankte Tochter hat einen gesunden Vater."></select></div>
+    <div class="item"><span class="t">Erbgang:</span><select id="a51_3" data-save data-opts="autosomal-dominant|autosomal-rezessiv|X-chromosomal-rezessiv" data-ans="autosomal-rezessiv"></select></div>
+    <div class="item"><span class="t">Genotyp von I-1:</span><select id="a51_4" data-save data-opts="AA|Aa|aa|AA oder Aa" data-ans="Aa"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Schau auf II-1: Sie ist erkrankt, ihre Eltern I-1 und I-2 sind gesund. Welche Regeln aus der Tabelle passen zu genau dieser Familie?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>I-1 × I-2 → II-1: Zwei gesunde Eltern haben ein erkranktes Kind, also ist das Merkmal rezessiv. Die erkrankte Tochter II-1 hat einen gesunden Vater I-1 – bei X-chromosomal-rezessiv müsste ihr Vater erkrankt sein (sie hätte XᵃXᵃ und eines der Xᵃ stammt von ihm). Also: <strong>autosomal-rezessiv</strong>. I-1 ist gesund, hat aber ein a an II-1 weitergegeben: <strong>Aa</strong>.</p></div>
+  </div>
+
+  <div class="task" data-task="t52">
+    <h3>Aufgabe 5.2 – Familie mit Polydaktylie <span class="afb">AFB II</span></h3>
+    <p>Menschen mit Polydaktylie haben einen oder mehrere zusätzliche Finger oder Zehen.</p>
+    <figure><svg class="ped" id="ped3" width="520"></svg><figcaption>Abb. 4: Stammbaum einer Familie mit Polydaktylie.</figcaption></figure>
+    <div class="item"><span class="t">Welche Stelle zeigt, dass das Merkmal <strong>dominant</strong> ist?</span><select id="a52_1" data-save data-opts="I-1 × I-2 → II-3|II-1 × II-2 → III-1|I-1 × I-2 → II-4" data-ans="II-1 × II-2 → III-1"></select></div>
+    <div class="item"><span class="t">Welche Regel schließt <strong>X-chromosomale</strong> Erbgänge aus?</span><select id="a52_2" data-save data-opts="Zwei gesunde Eltern haben ein erkranktes Kind.|Eine erkrankte Tochter hat einen gesunden Vater.|Ein erkrankter Vater hat einen erkrankten Sohn." data-ans="Ein erkrankter Vater hat einen erkrankten Sohn."></select></div>
+    <div class="item"><span class="t">Erbgang:</span><select id="a52_3" data-save data-opts="autosomal-dominant|autosomal-rezessiv|X-chromosomal-rezessiv" data-ans="autosomal-dominant"></select></div>
+    <div class="item"><span class="t">Genotyp von II-2 (A = Polydaktylie):</span><select id="a52_4" data-save data-opts="AA|Aa|aa|AA oder Aa" data-ans="Aa"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Suche ein Paar, bei dem <em>beide</em> erkrankt sind, und schau dir ihre Kinder an. Für die Frage nach dem X-Chromosom: Schau, was I-1 an seinen Sohn weitergibt. Beim Genotyp von II-2: Welches Allel muss er von seiner gesunden Mutter I-2 bekommen haben?</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>II-1 × II-2 → III-1: Zwei erkrankte Eltern haben ein gesundes Kind, also ist das Merkmal dominant (beide Eltern müssen Aa sein und je ein a weitergegeben haben). I-1 → II-2: Ein erkrankter Vater hat einen erkrankten Sohn. Der Sohn hat vom Vater aber das Y bekommen, nicht das X – also kann das Gen nicht auf dem X liegen. Erbgang: <strong>autosomal-dominant</strong>. II-2 ist erkrankt (mindestens ein A), hat von seiner gesunden Mutter I-2 (aa) aber ein a bekommen: <strong>Aa</strong>.</p></div>
+  </div>
+
+  <div class="task" data-task="t53">
+    <h3>Aufgabe 5.3 – Familie mit Rot-Grün-Sehschwäche <span class="afb">AFB II–III</span></h3>
+    <p>Menschen mit Rot-Grün-Sehschwäche können Rot- und Grüntöne schlecht unterscheiden.</p>
+    <figure><svg class="ped" id="ped4" width="520"></svg><figcaption>Abb. 5: Stammbaum einer Familie mit Rot-Grün-Sehschwäche.</figcaption></figure>
+    <div class="item"><span class="t">Welche Stelle zeigt, dass das Merkmal <strong>rezessiv</strong> ist?</span><select id="a53_1" data-save data-opts="I-1 × I-2 → II-2|II-1 × II-2 → III-1|I-1 × I-2 → II-3" data-ans="II-1 × II-2 → III-1"></select></div>
+    <div class="item"><span class="t">Was spricht für einen <strong>X-chromosomalen</strong> Erbgang?</span><select id="a53_2" data-save data-opts="Das Merkmal tritt in jeder Generation auf.|Nur Männer sind erkrankt; das Merkmal springt über die gesunde Tochter II-2 vom Großvater I-1 zum Enkel III-1.|Frauen sind häufiger erkrankt als Männer." data-ans="Nur Männer sind erkrankt; das Merkmal springt über die gesunde Tochter II-2 vom Großvater I-1 zum Enkel III-1."></select></div>
+    <div class="item"><span class="t">Wahrscheinlichster Erbgang:</span><select id="a53_3" data-save data-opts="autosomal-dominant|autosomal-rezessiv|X-chromosomal-rezessiv" data-ans="X-chromosomal-rezessiv"></select></div>
+    <div class="item"><span class="t">Genotyp von II-2:</span><select id="a53_4" data-save data-opts="XᴬXᴬ|XᴬXᵃ|XᵃXᵃ|XᴬY|XᵃY" data-ans="XᴬXᵃ"></select></div>
+    <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
+    <div class="feedback"></div>
+    <div class="reveal tip"><h4>Tipp</h4><p>Wer ist hier erkrankt – Männer oder Frauen? Welches X-Chromosom bekommt II-2 von ihrem Vater I-1 ganz sicher? Denk an Aufgabe 3.2.</p></div>
+    <div class="reveal sol"><h4>Lösung</h4><p>II-1 × II-2 → III-1: Zwei gesunde Eltern haben ein erkranktes Kind, also rezessiv. Erkrankt sind nur Männer, und das Merkmal wird vom Großvater I-1 über seine gesunde Tochter II-2 an den Enkel III-1 weitergegeben. Das ist typisch für <strong>X-chromosomal-rezessiv</strong>. II-2 hat von ihrem Vater I-1 (XᵃY) sicher das Xᵃ bekommen, ist aber gesund: <strong>XᴬXᵃ</strong> (Konduktorin).</p>
+      <p>Achtung: Autosomal-rezessiv ist hier nicht <em>sicher</em> ausgeschlossen – dafür müsste aber der eingeheiratete II-1 zufällig Träger sein. Deshalb ist X-chromosomal-rezessiv nur der <em>wahrscheinlichste</em> Erbgang. In der Begründung solltest du diesen Unterschied benennen.</p></div>
+  </div>
+</section>
+
+<!-- ====================== ABSCHLUSS ====================== -->
+<section class="card" id="ende">
+  <h2><span class="kicker">Abschluss</span>Spickzettel, Selbstcheck und Ergebnisblatt</h2>
+
+  <h3>Spickzettel – die wichtigsten Begriffe</h3>
+  <table class="spick">
+    <tr><td>Gen</td><td>DNA-Abschnitt mit der Information für ein Merkmal</td></tr>
+    <tr><td>Allel</td><td>eine Version eines Gens; jeder Mensch hat zwei (eins von der Mutter, eins vom Vater)</td></tr>
+    <tr><td>Genotyp / Phänotyp</td><td>Allelkombination (z. B. Aa) / beobachtbares Merkmal (z. B. gesund)</td></tr>
+    <tr><td>homozygot / heterozygot</td><td>zwei gleiche Allele (AA, aa) / zwei verschiedene Allele (Aa)</td></tr>
+    <tr><td>dominant / rezessiv</td><td>setzt sich bei Aa durch (A) / wirkt sich nur bei aa aus (a)</td></tr>
+    <tr><td>Träger · Konduktorin</td><td>gesund, aber mit einem Krankheits-Allel (Aa) · Frau mit XᴬXᵃ</td></tr>
+    <tr><td>Kreuzungsschema</td><td>Keimzellen der Eltern kombinieren; jedes der vier Felder = 25 %</td></tr>
+    <tr><td>Stammbaum</td><td>□ Mann, ○ Frau, ausgefüllt = erkrankt; Generationen I, II, III …; II-3 = dritte Person der zweiten Generation</td></tr>
+  </table>
+
+  <h3>Selbstcheck – kreuze an, was du jetzt kannst</h3>
+  <ul class="check">
+    <li><input type="checkbox" id="sc1" data-save><label for="sc1">Ich kann erklären, was ein Allel ist und wie es sich von einem Gen unterscheidet.</label></li>
+    <li><input type="checkbox" id="sc2" data-save><label for="sc2">Ich kann die Begriffe dominant, rezessiv, homozygot und heterozygot erklären und richtig anwenden.</label></li>
+    <li><input type="checkbox" id="sc3" data-save><label for="sc3">Ich kann ein Kreuzungsschema aufstellen – auch für ein Gen auf dem X-Chromosom – und Wahrscheinlichkeiten ablesen.</label></li>
+    <li><input type="checkbox" id="sc4" data-save><label for="sc4">Ich kann Symbole, Generationen und Personennummern in einem Stammbaum lesen.</label></li>
+    <li><input type="checkbox" id="sc5" data-save><label for="sc5">Ich kann mit den Ausschlussregeln einen Erbgang bestimmen und mit Personennummern begründen.</label></li>
+  </ul>
+  <p>Was du noch nicht ankreuzen kannst, wiederholst du in der passenden Station – oder du bringst deine Frage in die nächste Stunde mit.</p>
+
+  <h3>Dein Stand</h3>
+  <ul class="status" id="statusliste"></ul>
+
+  <div class="btns">
+    <button type="button" class="primary" onclick="druck()">Ergebnisblatt drucken / als PDF sichern</button>
+    <button type="button" onclick="loeschen()">Alle Antworten löschen</button>
+  </div>
+  <p class="status" style="margin-top:8px">Deine Antworten werden nur in diesem Browser auf diesem Gerät gespeichert.</p>
+</section>
+
+</div>
+
+<div id="ergebnisblatt"></div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY = "stammbaum_grundlagen_q2_v1";
+  var TASKS = [
+    ["t11","1.1 Begriffe zuordnen"],["t12","1.2 Richtig oder falsch"],
+    ["t21","2.1 Tabelle Genotyp/Phänotyp"],["t22","2.2 Lückentext"],
+    ["t32","3.1 Kreuzungs-Trainer"],["t33","3.2 X-chromosomales Kreuzungsschema"],["t34","3.3 Erklärung Mukoviszidose"],
+    ["t41","4.1 Stammbaum lesen"],["t42","4.2 Sichere Träger"],
+    ["t51","5.1 Albinismus"],["t52","5.2 Polydaktylie"],["t53","5.3 Rot-Grün-Sehschwäche"]
+  ];
+  var done = {};
+  var $ = function(id){ return document.getElementById(id); };
+  var qa = function(sel, root){ return [].slice.call((root || document).querySelectorAll(sel)); };
+
+  /* ---------- Selects befüllen ---------- */
+  qa("select[data-opts]").forEach(function(s){
+    var o = document.createElement("option"); o.value = ""; o.textContent = "– wählen –"; s.appendChild(o);
+    s.getAttribute("data-opts").split("|").forEach(function(v){
+      var op = document.createElement("option"); op.value = v; op.textContent = v; s.appendChild(op);
+    });
+  });
+
+  /* ---------- Speichern ---------- */
+  function sichern(){
+    var d = {f:{}, done:done};
+    qa("[data-save]").forEach(function(el){ d.f[el.id] = el.type === "checkbox" ? el.checked : el.value; });
+    d.sel42 = sel42;
+    try { localStorage.setItem(KEY, JSON.stringify(d)); } catch(e){}
+  }
+  function laden(){
+    var d = null;
+    try { d = JSON.parse(localStorage.getItem(KEY) || "null"); } catch(e){ d = null; }
+    if(!d) return;
+    Object.keys(d.f || {}).forEach(function(id){
+      var el = $(id); if(!el) return;
+      if(el.type === "checkbox") el.checked = !!d.f[id]; else el.value = d.f[id];
+    });
+    done = d.done || {};
+    sel42 = d.sel42 || [];
+  }
+  document.addEventListener("input", function(e){ if(e.target.hasAttribute && e.target.hasAttribute("data-save")) sichern(); });
+  document.addEventListener("change", function(e){
+    if(e.target.tagName === "SELECT"){ var p = e.target.parentNode; p.classList.remove("ok","no"); e.target.classList.remove("ok","no"); }
+    if(e.target.hasAttribute && e.target.hasAttribute("data-save")) sichern();
+  });
+
+  function setDone(t, v){ if(v){ done[t] = true; } fortschritt(); sichern(); }
+  function fortschritt(){
+    var n = TASKS.filter(function(t){ return done[t[0]]; }).length;
+    $("progtext").textContent = n + " von " + TASKS.length;
+    $("progfill").style.width = Math.round(n / TASKS.length * 100) + "%";
+    $("statusliste").innerHTML = TASKS.map(function(t){
+      return "<li>" + t[1] + ": " + (done[t[0]] ? '<span class="done-tag">gelöst</span>' : '<span class="open-tag">noch offen</span>') + "</li>";
+    }).join("");
+  }
+  function fb(el, good, txt){ el.className = "feedback " + (good ? "good" : "bad"); el.textContent = txt; }
+  function mark(sel, good){
+    var p = sel.parentNode;
+    var tgt = (p.tagName === "TD" || p.tagName === "TH" || p.classList.contains("slot")) ? p : sel;
+    tgt.classList.remove("ok","no"); tgt.classList.add(good ? "ok" : "no");
+  }
+
+  /* ---------- Generische Aufgaben ---------- */
+  qa(".task").forEach(function(task){
+    var t = task.getAttribute("data-task");
+    var tipBtn = task.querySelector("[data-tipbtn]");
+    var tip = task.querySelector(".reveal.tip");
+    if(tipBtn && tip) tipBtn.addEventListener("click", function(){ tip.classList.toggle("on"); });
+    var solBtn = task.querySelector("[data-solbtn]");
+    var sol = task.querySelector(".reveal.sol");
+    if(solBtn && sol) solBtn.addEventListener("click", function(){ sol.classList.toggle("on"); });
+    var chk = task.querySelector("[data-check]");
+    if(!chk) return;
+    chk.addEventListener("click", function(){
+      var sels = qa("select[data-ans]", task), right = 0;
+      sels.forEach(function(s){ var g = s.value === s.getAttribute("data-ans"); if(g) right++; mark(s, g); });
+      var f = task.querySelector(".feedback");
+      if(right === sels.length){ fb(f, true, "Alles richtig – stark!"); setDone(t, true); }
+      else fb(f, false, right + " von " + sels.length + " richtig. Überprüfe die rot markierten Felder.");
+      if(solBtn) solBtn.disabled = false;
+    });
+  });
+
+  /* ---------- Allel-Kombinierer ---------- */
+  var komb = {m:null, v:null};
+  qa(".komb button.al").forEach(function(b){
+    b.addEventListener("click", function(){
+      var k = b.getAttribute("data-k");
+      komb[k] = b.getAttribute("data-v");
+      qa('.komb button[data-k="' + k + '"]').forEach(function(x){ x.classList.toggle("on", x === b); });
+      kombZeigen();
+    });
+  });
+  function norm(g){ return g.split("").sort(function(x, y){ return x === y ? 0 : (x === "A" ? -1 : 1); }).join(""); }
+  function kombZeigen(){
+    if(!komb.m || !komb.v){ $("kout").textContent = "Wähle noch das zweite Allel aus."; return; }
+    var g = norm(komb.m + komb.v);
+    var zyg = g[0] === g[1] ? "homozygot – zwei gleiche Allele" : "heterozygot – zwei verschiedene Allele";
+    var ph = g === "AA" ? "gesund (kein defektes Allel)" : g === "Aa" ? "gesund, aber Träger: Das dominante A sorgt für genug intaktes Protein, das a kann aber an Kinder weitergegeben werden." : "erkrankt an Mukoviszidose: Das rezessive a liegt doppelt vor, es gibt kein intaktes Protein.";
+    $("kout").innerHTML = '<div class="big">' + g + "</div><div><strong>Genotyp:</strong> " + zyg + "</div><div><strong>Phänotyp:</strong> " + ph + "</div>";
+  }
+
+  /* ---------- Demo Punnett ---------- */
+  var demoStep = 0;
+  var demoTexte = [
+    "Klicke auf „Nächster Schritt“.",
+    "Schritt 1: Jeder Elternteil (Aa) bildet zwei Sorten Keimzellen – mit A oder mit a. Die der Mutter stehen oben, die des Vaters links.",
+    "Schritt 2: In jedem Feld wird das Allel der Spalte mit dem Allel der Zeile kombiniert.",
+    "Schritt 3: Ergebnis: 1 × AA (gesund), 2 × Aa (gesund, Träger), 1 × aa (erkrankt). Jedes Kind erkrankt mit 25 % Wahrscheinlichkeit – obwohl beide Eltern gesund sind."
+  ];
+  function demoZeigen(){
+    qa("#demo [data-step]").forEach(function(c){ c.classList.toggle("h", +c.getAttribute("data-step") > demoStep); });
+    $("demotext").textContent = demoTexte[demoStep];
+    $("demonext").disabled = demoStep >= 3;
+  }
+  $("demonext").addEventListener("click", function(){ if(demoStep < 3){ demoStep++; demoZeigen(); } });
+  $("demoreset").addEventListener("click", function(){ demoStep = 0; demoZeigen(); });
+
+  /* ---------- Kreuzungs-Trainer ---------- */
+  var PAARE = [["Aa","aa"],["Aa","Aa"],["AA","aa"],["Aa","AA"],["aa","Aa"],["AA","Aa"],["aa","aa"]];
+  var trI = 0;
+  var trIds = ["tr_m1","tr_m2","tr_v1","tr_v2","tr_c11","tr_c12","tr_c21","tr_c22","tr_q"];
+  function trZeigen(){
+    var p = PAARE[trI];
+    $("tr_eltern").innerHTML = 'Eltern: <span class="mum">Mutter ' + p[0] + '</span> × <span class="dad">Vater ' + p[1] + "</span>";
+    trIds.forEach(function(id){ var s = $(id); s.value = ""; mark(s, true); s.parentNode.classList.remove("ok","no"); s.classList.remove("ok","no"); });
+    $("tr_fb").textContent = ""; $("tr_sol").classList.remove("on"); $("tr_solbtn").disabled = true;
+    var kinder = [], m = p[0].split(""), v = p[1].split("");
+    v.forEach(function(x){ m.forEach(function(y){ kinder.push(norm(x + y)); }); });
+    var krank = kinder.filter(function(k){ return k === "aa"; }).length;
+    $("tr_soltext").textContent = "Keimzellen der Mutter: " + m.join(" und ") + " · Keimzellen des Vaters: " + v.join(" und ") +
+      ". Kinder: " + kinder.join(", ") + ". In " + krank + " von 4 Feldern steht aa → " + (krank * 25) + " %.";
+  }
+  function multisetGleich(a, b){ return a.slice().sort().join() === b.slice().sort().join(); }
+  $("tr_check").addEventListener("click", function(){
+    var p = PAARE[trI];
+    var mg = [$("tr_m1").value, $("tr_m2").value], vg = [$("tr_v1").value, $("tr_v2").value];
+    var mOk = multisetGleich(mg, p[0].split("")), vOk = multisetGleich(vg, p[1].split(""));
+    mark($("tr_m1"), mOk); mark($("tr_m2"), mOk); mark($("tr_v1"), vOk); mark($("tr_v2"), vOk);
+    $("tr_solbtn").disabled = false;
+    if(!mOk || !vOk){
+      ["tr_c11","tr_c12","tr_c21","tr_c22","tr_q"].forEach(function(id){ $(id).parentNode.classList.remove("ok","no"); $(id).classList.remove("ok","no"); });
+      fb($("tr_fb"), false, "Prüfe zuerst die Keimzellen (rot markiert). Jeder Elternteil gibt eines seiner beiden Allele weiter.");
+      return;
+    }
+    var alle = true, krank = 0;
+    [[0,0,"tr_c11"],[0,1,"tr_c12"],[1,0,"tr_c21"],[1,1,"tr_c22"]].forEach(function(c){
+      var soll = norm(vg[c[0]] + mg[c[1]]);
+      if(soll === "aa") krank++;
+      var g = $(c[2]).value === soll; mark($(c[2]), g); if(!g) alle = false;
+    });
+    var qOk = $("tr_q").value === (krank * 25) + " %"; mark($("tr_q"), qOk);
+    if(alle && qOk){ fb($("tr_fb"), true, "Alles richtig! Probier mit „Neue Kreuzung“ gleich noch eine."); setDone("t32", true); }
+    else if(!alle) fb($("tr_fb"), false, "Die Keimzellen stimmen. Überprüfe die rot markierten Felder im Schema.");
+    else fb($("tr_fb"), false, "Das Schema stimmt! Zähle noch einmal, in wie vielen Feldern aa steht.");
+  });
+  $("tr_solbtn").addEventListener("click", function(){ $("tr_sol").classList.toggle("on"); });
+  $("tr_new").addEventListener("click", function(){ trI = (trI + 1) % PAARE.length; trZeigen(); });
+
+  /* ---------- X-chromosomales Schema ---------- */
+  function xKind(v, m){
+    if(v === "Y") return m + "Y";
+    if(m === "Y") return v + "Y";
+    var s = [v, m].sort(function(x, y){ return x === y ? 0 : (x === "Xᴬ" ? -1 : 1); });
+    return s.join("");
+  }
+  $("x_check").addEventListener("click", function(){
+    var mg = [$("x_m1").value, $("x_m2").value], vg = [$("x_v1").value, $("x_v2").value];
+    var mOk = multisetGleich(mg, ["Xᴬ","Xᵃ"]), vOk = multisetGleich(vg, ["Xᴬ","Y"]);
+    mark($("x_m1"), mOk); mark($("x_m2"), mOk); mark($("x_v1"), vOk); mark($("x_v2"), vOk);
+    $("x_solbtn").disabled = false;
+    var alle = mOk && vOk;
+    if(mOk && vOk){
+      [[0,0,"x_c11"],[0,1,"x_c12"],[1,0,"x_c21"],[1,1,"x_c22"]].forEach(function(c){
+        var g = $(c[2]).value === xKind(vg[c[0]], mg[c[1]]); mark($(c[2]), g); if(!g) alle = false;
+      });
+    }
+    var q = [["x_q1","die Hälfte"],["x_q2","keine"],["x_q3","die Hälfte"]];
+    q.forEach(function(x){ var g = $(x[0]).value === x[1]; mark($(x[0]), g); if(!g) alle = false; });
+    if(alle){ fb($("x_fb"), true, "Alles richtig – genau so funktioniert die X-chromosomale Vererbung!"); setDone("t33", true); }
+    else if(!mOk || !vOk) fb($("x_fb"), false, "Prüfe zuerst die Keimzellen: Welche Chromosomen kann die Mutter weitergeben, welche der Vater?");
+    else fb($("x_fb"), false, "Überprüfe die rot markierten Felder.");
+  });
+  $("x_solbtn").addEventListener("click", function(){ $("x_solbtn").closest(".task").querySelector(".reveal.sol").classList.toggle("on"); });
+
+  /* ---------- Freitext 3.3 ---------- */
+  $("a34_btn").addEventListener("click", function(){
+    var t = $("a34").value.trim();
+    if(t.length < 60){ fb($("a34_fb"), false, "Schreib erst deine eigene Erklärung (mindestens zwei, drei Sätze) – dann kannst du vergleichen."); return; }
+    var fehlt = ["rezessiv","heterozygot","Keimzelle","25"].filter(function(w){ return t.toLowerCase().indexOf(w.toLowerCase()) < 0; });
+    $("a34_sol").classList.add("on");
+    if(fehlt.length) fb($("a34_fb"), false, "Vergleiche mit der Musterlösung. In deinem Text fehlt noch: " + fehlt.join(", ") + ".");
+    else fb($("a34_fb"), true, "Alle vier Begriffe sind drin. Vergleiche jetzt inhaltlich mit der Musterlösung.");
+    setDone("t34", true);
+  });
+
+  /* ---------- Stammbäume zeichnen ---------- */
+  var R = 17;
+  function Y(gen){ return 40 + (gen - 1) * 100; }
+  function symbol(x, y, s, a, c, r){
+    r = r || R;
+    var fill = a ? "#1a1a1a" : "#fff", out = "";
+    if(s === "m") out += '<rect x="' + (x - r) + '" y="' + (y - r) + '" width="' + (2 * r) + '" height="' + (2 * r) + '" fill="' + fill + '" stroke="#1a1a1a" stroke-width="2"/>';
+    else out += '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="' + fill + '" stroke="#1a1a1a" stroke-width="2"/>';
+    if(c) out += '<circle cx="' + x + '" cy="' + y + '" r="' + Math.round(r / 3.4) + '" fill="#1a1a1a"/>';
+    return out;
+  }
+  function line(x1, y1, x2, y2){ return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" stroke="#1a1a1a" stroke-width="2"/>'; }
+  function drawPed(svgId, P){
+    var svg = $(svgId), h = 0, out = "";
+    Object.keys(P.p).forEach(function(id){ h = Math.max(h, Y(P.p[id][1])); });
+    h += R + 34;
+    P.c.forEach(function(c){
+      var a = P.p[c[0]], b = P.p[c[1]], y = Y(a[1]);
+      var xl = Math.min(a[0], b[0]), xr = Math.max(a[0], b[0]);
+      out += line(xl + R, y, xr - R, y);
+      if(c[2] && c[2].length){
+        var mid = (xl + xr) / 2, by = y + 50;
+        out += line(mid, y, mid, by);
+        var xs = c[2].map(function(k){ return P.p[k][0]; }).concat([mid]);
+        out += line(Math.min.apply(null, xs), by, Math.max.apply(null, xs), by);
+        c[2].forEach(function(k){ out += line(P.p[k][0], by, P.p[k][0], Y(P.p[k][1]) - R); });
+      }
+    });
+    Object.keys(P.p).forEach(function(id){
+      var q = P.p[id], x = q[0], y = Y(q[1]);
+      out += '<g class="pp" data-id="' + id + '">';
+      out += '<rect class="ring" x="' + (x - R - 7) + '" y="' + (y - R - 7) + '" width="' + (2 * R + 14) + '" height="' + (2 * R + 14) + '" rx="8" fill="none" stroke="#d08a00" stroke-width="4"/>';
+      out += symbol(x, y, q[2], q[3], q[4]);
+      out += '<text x="' + x + '" y="' + (y + R + 18) + '" text-anchor="middle" font-size="15" fill="#595959" font-family="Calibri,Carlito,Arial,sans-serif">' + id + "</text>";
+      out += '<rect x="' + (x - R - 8) + '" y="' + (y - R - 8) + '" width="' + (2 * R + 16) + '" height="' + (2 * R + 40) + '" fill="transparent"/>';
+      out += "</g>";
+    });
+    var gens = {};
+    Object.keys(P.p).forEach(function(id){ gens[P.p[id][1]] = true; });
+    var roman = ["","I","II","III","IV"];
+    Object.keys(gens).forEach(function(g){ out += '<text x="16" y="' + (Y(+g) + 6) + '" font-size="17" font-weight="bold" fill="#1a1a1a" font-family="Calibri,Carlito,Arial,sans-serif">' + roman[g] + "</text>"; });
+    svg.setAttribute("viewBox", "0 0 520 " + h);
+    svg.setAttribute("role", "img");
+    svg.innerHTML = out;
+  }
+
+  // [x, Generation, m/f, erkrankt, Konduktorin]
+  drawPed("ped1", {p:{
+    "I-1":[220,1,"m",0], "I-2":[320,1,"f",0],
+    "II-1":[100,2,"m",0], "II-2":[200,2,"f",0], "II-3":[300,2,"m",1], "II-4":[400,2,"m",0],
+    "III-1":[100,3,"f",0], "III-2":[200,3,"f",1]
+  }, c:[["I-1","I-2",["II-2","II-3","II-4"]], ["II-1","II-2",["III-1","III-2"]]]});
+
+  drawPed("ped2", {p:{
+    "I-1":[220,1,"m",0], "I-2":[320,1,"f",0],
+    "II-1":[150,2,"f",1], "II-2":[250,2,"m",0], "II-3":[350,2,"f",0], "II-4":[450,2,"m",0],
+    "III-1":[350,3,"m",0], "III-2":[450,3,"f",0]
+  }, c:[["I-1","I-2",["II-1","II-2","II-3"]], ["II-3","II-4",["III-1","III-2"]]]});
+
+  drawPed("ped3", {p:{
+    "I-1":[270,1,"m",1], "I-2":[370,1,"f",0],
+    "II-1":[120,2,"f",1], "II-2":[220,2,"m",1], "II-3":[320,2,"f",0], "II-4":[420,2,"f",1],
+    "III-1":[120,3,"f",0], "III-2":[220,3,"m",1]
+  }, c:[["I-1","I-2",["II-2","II-3","II-4"]], ["II-1","II-2",["III-1","III-2"]]]});
+
+  drawPed("ped4", {p:{
+    "I-1":[220,1,"m",1], "I-2":[320,1,"f",0],
+    "II-1":[120,2,"m",0], "II-2":[220,2,"f",0], "II-3":[320,2,"m",0],
+    "III-1":[70,3,"m",1], "III-2":[170,3,"f",0], "III-3":[270,3,"m",0]
+  }, c:[["I-1","I-2",["II-2","II-3"]], ["II-1","II-2",["III-1","III-2","III-3"]]]});
+
+  /* Legende */
+  var LEG = [["m",0,0,"gesunder Mann"],["f",0,0,"gesunde Frau"],["m",1,0,"erkrankter Mann"],["f",1,0,"erkrankte Frau"],["f",0,1,"Konduktorin / Trägerin"]];
+  $("legend").innerHTML = LEG.map(function(l){
+    return '<div><svg width="34" height="34" viewBox="0 0 34 34">' + symbol(17, 17, l[0], l[1], l[2], 13) + "</svg><span>" + l[3] + "</span></div>";
+  }).join("") +
+    '<div><svg width="70" height="34" viewBox="0 0 70 34">' + symbol(13, 17, "m", 0, 0, 10) + line(23, 17, 47, 17) + symbol(57, 17, "f", 0, 0, 10) + "</svg><span>Partnerschaft</span></div>" +
+    '<div><svg width="70" height="44" viewBox="0 0 70 44">' + line(35, 2, 35, 14) + line(13, 14, 57, 14) + line(13, 14, 13, 24) + line(57, 14, 57, 24) + symbol(13, 33, "m", 0, 0, 9) + symbol(57, 33, "f", 0, 0, 9) + "</svg><span>Geschwister (Kinder eines Paares)</span></div>";
+
+  /* ---------- Aufgabe 4.2: anklicken ---------- */
+  var sel42 = [];
+  var SOLL42 = ["I-1","I-2","II-1","II-2"];
+  function sel42Zeigen(){
+    qa("#ped1 .pp").forEach(function(g){ g.classList.toggle("sel", sel42.indexOf(g.getAttribute("data-id")) >= 0); });
+    $("sel42").textContent = sel42.length ? sel42.slice().sort().join(", ") : "niemand";
+  }
+  $("ped1").classList.add("click");
+  qa("#ped1 .pp").forEach(function(g){
+    g.addEventListener("click", function(){
+      var id = g.getAttribute("data-id"), i = sel42.indexOf(id);
+      if(i >= 0) sel42.splice(i, 1); else sel42.push(id);
+      sel42Zeigen(); sichern();
+    });
+  });
+  $("a42_check").addEventListener("click", function(){
+    var fehlt = SOLL42.filter(function(x){ return sel42.indexOf(x) < 0; }).length;
+    var falsch = sel42.filter(function(x){ return SOLL42.indexOf(x) < 0; });
+    $("a42_solbtn").disabled = false;
+    if(!fehlt && !falsch.length){ fb($("a42_fb"), true, "Genau richtig – alle vier sind sicher heterozygot!"); setDone("t42", true); return; }
+    var t = [];
+    if(falsch.length) t.push(falsch.length + " deiner Personen " + (falsch.length === 1 ? "ist" : "sind") + " nicht sicher heterozygot");
+    if(fehlt) t.push(fehlt + " sichere Träger fehlen noch");
+    fb($("a42_fb"), false, t.join(", und ") + ".");
+  });
+  $("a42_solbtn").addEventListener("click", function(){ $("a42_solbtn").closest(".task").querySelector(".reveal.sol").classList.toggle("on"); });
+
+  /* ---------- Ergebnisblatt ---------- */
+  function esc(s){ return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+  function blattBauen(){
+    var n = $("f_name").value || "ohne Namen", k = $("f_kurs").value || "";
+    var h = "<h1>Genetik-Grundlagen: vom Allel zum Stammbaum</h1><div>" + esc(n) + (k ? " · " + esc(k) : "") + " · " + new Date().toLocaleDateString("de-DE") + "</div>";
+    var gel = TASKS.filter(function(t){ return done[t[0]]; }).length;
+    h += "<h2>Aufgaben (" + gel + " von " + TASKS.length + " gelöst)</h2>";
+    TASKS.forEach(function(t){ h += '<div class="a">' + t[1] + ": " + (done[t[0]] ? "gelöst" : "noch offen") + "</div>"; });
+    h += "<h2>Aufgabe 3.3 – meine Erklärung</h2><div class=\"a\">" + (esc($("a34").value.trim()) || "– nicht bearbeitet –") + "</div>";
+    h += "<h2>Selbstcheck</h2>";
+    qa(".check li").forEach(function(li){
+      h += '<div class="a">' + (li.querySelector("input").checked ? "☑ " : "☐ ") + esc(li.querySelector("label").textContent) + "</div>";
+    });
+    $("ergebnisblatt").innerHTML = h;
+  }
+  window.druck = function(){ blattBauen(); window.print(); };
+  window.addEventListener("beforeprint", blattBauen);
+  window.loeschen = function(){
+    if(!confirm("Wirklich alle deine Antworten löschen? Das lässt sich nicht rückgängig machen.")) return;
+    try { localStorage.removeItem(KEY); } catch(e){}
+    qa("[data-save]").forEach(function(el){ if(el.type === "checkbox") el.checked = false; else el.value = ""; });
+    qa(".ok,.no").forEach(function(el){ el.classList.remove("ok","no"); });
+    qa(".feedback").forEach(function(el){ el.textContent = ""; });
+    qa(".reveal").forEach(function(el){ el.classList.remove("on"); });
+    done = {}; sel42 = []; sel42Zeigen(); fortschritt();
+  };
+
+  laden(); sel42Zeigen(); demoZeigen(); trZeigen(); fortschritt();
+})();
+</script>
+</body>
+</html>
