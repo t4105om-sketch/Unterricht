@@ -538,9 +538,12 @@
 
   <div class="btns">
     <button type="button" class="primary" onclick="druck()">Ergebnisblatt drucken / als PDF sichern</button>
+    <button type="button" onclick="exportieren()">Speicherstand als Datei sichern</button>
+    <button type="button" onclick="document.getElementById('importdatei').click()">Speicherstand laden</button>
     <button type="button" onclick="loeschen()">Alle Antworten löschen</button>
+    <input type="file" id="importdatei" accept=".json,application/json" style="display:none">
   </div>
-  <p class="status" style="margin-top:8px">Deine Antworten werden nur in diesem Browser auf diesem Gerät gespeichert.</p>
+  <p class="status" id="speicherstatus" style="margin-top:8px">Deine Antworten merkt sich dieser Browser automatisch. Sicherer: Am Ende jeder Sitzung „Speicherstand als Datei sichern“ – beim nächsten Mal (auch an einem anderen Gerät) mit „Speicherstand laden“ weitermachen.</p>
 </section>
 
 </div>
@@ -571,15 +574,18 @@
   });
 
   /* ---------- Speichern ---------- */
-  function sichern(){
+  function zustand(){
     var d = {f:{}, done:done};
     qa("[data-save]").forEach(function(el){ d.f[el.id] = el.type === "checkbox" ? el.checked : el.value; });
     d.sel42 = sel42;
-    try { localStorage.setItem(KEY, JSON.stringify(d)); } catch(e){}
+    return d;
   }
-  function laden(){
-    var d = null;
-    try { d = JSON.parse(localStorage.getItem(KEY) || "null"); } catch(e){ d = null; }
+  function sichern(){
+    try { localStorage.setItem(KEY, JSON.stringify(zustand())); } catch(e){}
+  }
+  function laden(dIn){
+    var d = dIn || null;
+    if(!d){ try { d = JSON.parse(localStorage.getItem(KEY) || "null"); } catch(e){ d = null; } }
     if(!d) return;
     Object.keys(d.f || {}).forEach(function(id){
       var el = $(id); if(!el) return;
@@ -876,6 +882,38 @@
     qa(".reveal").forEach(function(el){ el.classList.remove("on"); });
     done = {}; sel42 = []; sel42Zeigen(); fortschritt();
   };
+
+  /* ---------- Speicherstand als Datei ---------- */
+  function status(txt){ $("speicherstatus").textContent = txt; }
+  window.exportieren = function(){
+    var d = zustand(); d.modul = KEY; d.datum = new Date().toISOString();
+    var name = ($("f_name").value || "").trim().replace(/[^A-Za-zÄÖÜäöüß0-9]+/g, "_");
+    var datei = "Speicherstand_Genetik_Grundlagen" + (name ? "_" + name : "") + "_" + new Date().toISOString().slice(0,10) + ".json";
+    var blob = new Blob([JSON.stringify(d)], {type: "application/json"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = datei;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000);
+    status("Speicherstand als „" + datei + "“ gesichert (auf dem iPad: in der App „Dateien“ unter „Downloads“).");
+  };
+  $("importdatei").addEventListener("change", function(e){
+    var f = e.target.files && e.target.files[0]; if(!f) return;
+    var r = new FileReader();
+    r.onload = function(){
+      var d = null;
+      try { d = JSON.parse(r.result); } catch(err){ d = null; }
+      if(!d || typeof d.f !== "object" || (d.modul && d.modul !== KEY)){
+        alert("Diese Datei ist kein Speicherstand für dieses Modul."); return;
+      }
+      qa("[data-save]").forEach(function(el){ if(el.type === "checkbox") el.checked = false; else el.value = ""; });
+      qa(".ok,.no").forEach(function(el){ el.classList.remove("ok","no"); });
+      qa(".feedback").forEach(function(el){ el.textContent = ""; });
+      laden(d); sel42Zeigen(); fortschritt(); sichern();
+      status("Speicherstand geladen – du kannst weitermachen.");
+    };
+    r.readAsText(f);
+    e.target.value = "";
+  });
 
   laden(); sel42Zeigen(); demoZeigen(); trZeigen(); fortschritt();
 })();
