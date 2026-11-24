@@ -71,7 +71,11 @@
 
   select{font:inherit;font-size:16px;padding:5px 8px;border:1.5px solid #bdbdbd;border-radius:6px;background:#fff;max-width:100%}
   .ok>select,select.ok{border-color:var(--ok);background:var(--okbg)}
-  .no>select,select.no{border-color:var(--no);background:var(--nobg)}
+  .no>select,select.no{border-color:var(--no);background:var(--nobg);border-style:dashed;border-width:2.5px}
+  .slot.ok::after,td.ok::after{content:" ✓";color:var(--ok);font-weight:700}
+  .slot.no::after,td.no::after{content:" ✗";color:var(--no);font-weight:700}
+  select.ok{box-shadow:inset 4px 0 0 var(--ok)} select.no{box-shadow:inset 4px 0 0 var(--no)}
+  @media (max-width:560px){table.q{font-size:15px} table.q th,table.q td{padding:6px} table.q select{width:100%;font-size:15px} table.pun td,table.pun th{width:76px!important;font-size:16px;padding:2px} table.pun select{padding:4px 2px;font-size:15px}}
   .feedback{font-weight:700;margin:8px 0 0;min-height:1em}
   .feedback.good{color:var(--ok)} .feedback.bad{color:var(--no)}
 
@@ -204,7 +208,7 @@
 
   <div class="info">
     <h4>Infotext</h4>
-    <p>Die meisten kernhaltigen Körperzellen des Menschen besitzen 46 <strong>Chromosomen</strong>, und zwar als 23 Paare: 22 Paare <strong>Autosomen</strong> (Körperchromosomen) und ein Paar Geschlechtschromosomen (XX oder XY). Von jedem Paar stammt ein Chromosom von der <strong>Mutter</strong>, eines vom <strong>Vater</strong>. Die beiden Chromosomen eines Autosomen-Paares tragen dieselben Gene an denselben Stellen.</p>
+    <p>Die meisten kernhaltigen Körperzellen des Menschen besitzen 46 <strong>Chromosomen</strong>, und zwar als 23 Paare: 22 Paare <strong>Autosomen</strong> (Körperchromosomen) und ein Paar Geschlechtschromosomen (XX oder XY). Von jedem Paar stammt ein Chromosom von der <strong>Mutter</strong>, eines vom <strong>Vater</strong>. Die beiden Chromosomen eines Autosomen-Paares heißen <strong>homologe Chromosomen</strong>: Sie tragen dieselben Gene an denselben Stellen (<strong>Genorten</strong>).</p>
     <p>Ein <strong>Gen</strong> ist ein DNA-Abschnitt, der die Information für ein funktionelles Produkt enthält, etwa für eine RNA oder ein Protein. Das CFTR-Gen enthält zum Beispiel die Information für ein Kanalprotein. Ein Gen kann aber in leicht unterschiedlichen Versionen vorkommen. Diese Versionen eines Gens heißen <strong>Allele</strong>. Ein Allel kann zum Beispiel ein funktionsfähiges Protein ergeben, ein anderes Allel des gleichen Gens ein defektes.</p>
     <p>Weil du jedes Autosom zweimal hast, liegen von einem autosomalen Gen in der Regel <strong>zwei Kopien</strong> vor: eine mütterliche und eine väterliche. Beide können dasselbe Allel oder <strong>unterschiedliche Allele</strong> tragen. (Für Gene auf dem X-Chromosom gilt bei Männern etwas anderes – das kommt in Station 3.)</p>
     <p>Die Kombination deiner beiden Allele nennt man <strong>Genotyp</strong> (z. B. „Aa“). Das, was man am Ende beobachten oder messen kann – gesund oder krank, Blutgruppe, Augenfarbe –, nennt man <strong>Phänotyp</strong>.</p>
@@ -308,7 +312,7 @@
       <span class="slot"><select id="a22_2" data-save data-opts="gesund|erkrankt" data-ans="gesund"></select></span>,
       kann das Krankheits-Allel aber an seine Kinder
       <span class="slot"><select id="a22_3" data-save data-opts="weitergeben|nicht weitergeben" data-ans="weitergeben"></select></span>.
-      Bei einer dominanten Krankheit wie Chorea Huntington steht das große A für das Krankheits-Allel. Ein Mensch mit dem Genotyp Aa ist dann
+      Bei einer dominanten Krankheit wie Chorea Huntington steht das große A für das Krankheits-Allel. Ein Mensch mit dem Genotyp Aa ist dann (meist erst im Erwachsenenalter)
       <span class="slot"><select id="a22_4" data-save data-opts="gesund|erkrankt" data-ans="erkrankt"></select></span>.
       Im hier betrachteten autosomalen Modell tritt der rezessive Phänotyp auf, wenn das Allel a
       <span class="slot"><select id="a22_5" data-save data-opts="einmal|zweimal" data-ans="zweimal"></select></span> vorliegt.</p>
@@ -326,7 +330,7 @@
 
   <div class="info">
     <h4>Infotext</h4>
-    <p>Bei der Bildung von Ei- und Spermienzellen (Meiose) werden die Chromosomenpaare getrennt. Jede <strong>Keimzelle</strong> bekommt deshalb von jedem Gen nur <strong>ein</strong> Allel. Eine Person mit Aa bildet also zur Hälfte Keimzellen mit A und zur Hälfte Keimzellen mit a.</p>
+    <p>Bei der Bildung von Ei- und Spermienzellen (Meiose) werden die homologen Chromosomen voneinander getrennt. Jede <strong>Keimzelle</strong> bekommt deshalb von jedem Gen nur <strong>ein</strong> Allel. Eine Person mit Aa bildet also zur Hälfte Keimzellen mit A und zur Hälfte Keimzellen mit a.</p>
     <p>Bei der Befruchtung trifft eine Eizelle auf eine Spermienzelle – das Kind hat dann wieder zwei Allele. Welche Kombinationen möglich sind, zeigt ein <strong>Kreuzungsschema</strong> (auch Punnett-Quadrat genannt):</p>
     <ol>
       <li>Schreibe die Genotypen der Eltern auf.</li>
@@ -407,7 +411,7 @@
 
   <div class="info">
     <h4>Infotext</h4>
-    <p>Ein <strong>Stammbaum</strong> zeigt, wer in einer Familie mit wem verwandt ist und wer ein bestimmtes Merkmal (z. B. eine Krankheit) hat. Humangenetiker:innen nutzen ihn, weil man beim Menschen keine Kreuzungsversuche machen kann. Es gelten feste Regeln:</p>
+    <p>Ein <strong>Stammbaum</strong> zeigt, wer in einer Familie mit wem verwandt ist und wer ein bestimmtes Merkmal (z. B. eine Krankheit) hat. Humangenetikerinnen und Humangenetiker nutzen ihn, weil man beim Menschen keine Kreuzungsversuche machen kann. Es gelten feste Regeln:</p>
     <ul>
       <li>Männer sind <strong>Quadrate</strong>, Frauen <strong>Kreise</strong>. Ausgefüllte Symbole bedeuten: Die Person ist erkrankt.</li>
       <li>Eine waagerechte Linie zwischen zwei Personen ist eine <strong>Partnerschaft</strong>. Von ihrer Mitte führt eine senkrechte Linie zu den Kindern.</li>
@@ -421,7 +425,7 @@
 
   <figure>
     <svg class="ped" id="ped1" width="520"></svg>
-    <figcaption>Abb. 2: Stammbaum einer Familie mit einer rezessiv vererbten Krankheit (A = gesund, a = krank).</figcaption>
+    <figcaption>Abb. 2: Stammbaum einer Familie mit einer autosomal-rezessiv vererbten Krankheit (A = Allel für „gesund“, a = rezessives Krankheits-Allel).</figcaption>
   </figure>
 
   <div class="task" data-task="t41">
@@ -439,7 +443,7 @@
 
   <div class="task" data-task="t42">
     <h3>Aufgabe 4.2 – Wer ist sicher Träger? <span class="afb">AFB II</span></h3>
-    <p>Die Krankheit in Abb. 2 wird rezessiv vererbt. Erkrankte haben also aa. <strong>Klicke im Stammbaum alle Personen an, die sicher heterozygot (Aa) sind</strong> – oder kreuze sie in der Liste an. Ein zweiter Klick hebt die Auswahl wieder auf.</p>
+    <p>Die Krankheit in Abb. 2 wird autosomal-rezessiv vererbt. Erkrankte haben also aa. <strong>Klicke im Stammbaum alle Personen an, die sicher heterozygot (Aa) sind</strong> – oder kreuze sie in der Liste an. Ein zweiter Klick hebt die Auswahl wieder auf.</p>
     <fieldset class="pick42" id="pick42"><legend>Personen aus Abb. 2:</legend></fieldset>
     <p class="status">Ausgewählt: <span id="sel42">niemand</span></p>
     <div class="btns"><button type="button" class="primary" id="a42_check">Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" id="a42_solbtn" disabled>Lösung</button></div>
@@ -456,15 +460,17 @@
 
   <div class="info">
     <h4>Infotext: die Ausschlussregeln</h4>
-    <p>Um einen Erbgang zu bestimmen, sucht man im Stammbaum nach Stellen, die bestimmte Erbgänge <strong>sicher ausschließen</strong>. Für diese Aufgaben gehen wir von einem monogenen Erbgang mit vollständiger Penetranz und ohne Neumutationen aus.</p>
+    <p>Um einen Erbgang zu bestimmen, sucht man im Stammbaum nach Stellen, die bestimmte Erbgänge <strong>sicher ausschließen</strong>. Für diese Aufgaben gehen wir von einem monogenen Erbgang mit vollständiger Penetranz (jeder Mensch mit dem entsprechenden Genotyp zeigt das Merkmal auch) und ohne Neumutationen aus.</p>
     <table class="q">
       <tr><th>Diese Stelle im Stammbaum …</th><th>… schließt sicher aus</th></tr>
       <tr><td>Zwei gesunde Eltern haben ein erkranktes Kind.</td><td>dominante Erbgänge → das Merkmal ist <strong>rezessiv</strong></td></tr>
       <tr><td>Zwei erkrankte Eltern haben ein gesundes Kind.</td><td>rezessive Erbgänge → das Merkmal ist <strong>dominant</strong></td></tr>
       <tr><td>Eine erkrankte Tochter hat einen gesunden Vater.</td><td>X-chromosomal-rezessiv (die Tochter hätte XᵃXᵃ – ein Xᵃ stammt vom Vater, er müsste also erkrankt sein)</td></tr>
       <tr><td>Ein erkrankter Vater hat eine gesunde Tochter.</td><td>X-chromosomal-dominant (der Vater gibt sein X an jede Tochter weiter)</td></tr>
+      <tr><td>Eine erkrankte Mutter hat einen gesunden Sohn.</td><td>X-chromosomal-rezessiv (die Mutter hätte XᵃXᵃ und gibt jedem Sohn ein Xᵃ)</td></tr>
+      <tr><td>Ein erkrankter Sohn hat eine gesunde Mutter.</td><td>X-chromosomal-dominant (der Sohn hat sein X von der Mutter – sie müsste erkrankt sein)</td></tr>
     </table>
-    <p><strong>Vorsicht, Falle:</strong> Ein erkrankter Vater mit einem erkrankten Sohn schließt X-chromosomale Erbgänge <em>nicht</em> aus. Der Sohn bekommt vom Vater zwar das Y – sein X mit dem Krankheits-Allel kann er aber von der Mutter haben.</p>
+    <p><strong>Vorsicht, Falle:</strong> Dass ein erkrankter Vater einen erkrankten Sohn hat, schließt X-chromosomale Erbgänge <em>für sich allein</em> nicht aus. Der Sohn bekommt vom Vater zwar das Y – sein X mit dem Krankheits-Allel kann er aber von der Mutter haben. Das geht allerdings nur, wenn die Mutter dieses Allel besitzt. Schau deshalb immer auch auf die Mutter (siehe die letzten beiden Zeilen der Tabelle).</p>
     <p>Findet man keine solche Stelle, kann man nur sagen, welcher Erbgang <strong>wahrscheinlich</strong> ist. Typisch für X-chromosomal-rezessiv: fast nur Männer erkrankt, das Merkmal „springt“ über eine gesunde Tochter (Konduktorin) vom Großvater zum Enkel.</p>
     <p><strong>Vorgehen:</strong> (1) Dominant oder rezessiv? (2) Autosomal oder X-chromosomal? (3) Begründen – immer mit Personennummern, z. B. „I-1 × I-2 → II-1“.</p>
   </div>
@@ -473,7 +479,7 @@
     <h3>Aufgabe 5.1 – Familie mit Albinismus <span class="afb">AFB II</span></h3>
     <p>Menschen mit Albinismus können in Haut, Haaren und Augen kaum Farbstoff (Melanin) bilden.</p>
     <figure><svg class="ped" id="ped2" width="520"></svg><figcaption>Abb. 3: Stammbaum einer Familie mit Albinismus.</figcaption></figure>
-    <div class="item"><span class="t">Welche Stelle zeigt, dass das Merkmal <strong>rezessiv</strong> ist?</span><select id="a51_1" data-save data-opts="I-1 × I-2 → II-1|II-3 × II-4 → III-1|I-1 → II-2" data-ans="I-1 × I-2 → II-1"></select></div>
+    <div class="item"><span class="t">Welche Stelle zeigt, dass das Merkmal <strong>rezessiv</strong> ist?</span><select id="a51_1" data-save data-opts="I-1 × I-2 → II-1|II-3 × II-4 → III-1|II-3 × II-4 → III-2" data-ans="I-1 × I-2 → II-1"></select></div>
     <div class="item"><span class="t">Welche Regel schließt dann <strong>X-chromosomal-rezessiv</strong> aus?</span><select id="a51_2" data-save data-opts="Zwei gesunde Eltern haben ein erkranktes Kind.|Eine erkrankte Tochter hat einen gesunden Vater.|Ein erkrankter Vater hat eine gesunde Tochter." data-ans="Eine erkrankte Tochter hat einen gesunden Vater."></select></div>
     <div class="item"><span class="t">Erbgang:</span><select id="a51_3" data-save data-opts="autosomal-dominant|autosomal-rezessiv|X-chromosomal-dominant|X-chromosomal-rezessiv" data-ans="autosomal-rezessiv"></select></div>
     <div class="item"><span class="t">Genotyp von I-1:</span><select id="a51_4" data-save data-opts="AA|Aa|aa|AA oder Aa" data-ans="Aa"></select></div>
@@ -488,7 +494,7 @@
     <p>Menschen mit Polydaktylie haben einen oder mehrere zusätzliche Finger oder Zehen.</p>
     <figure><svg class="ped" id="ped3" width="520"></svg><figcaption>Abb. 4: Stammbaum einer Familie mit Polydaktylie.</figcaption></figure>
     <div class="item"><span class="t">Welche Stelle zeigt, dass das Merkmal <strong>dominant</strong> ist?</span><select id="a52_1" data-save data-opts="I-1 × I-2 → II-3|II-1 × II-2 → III-1|I-1 × I-2 → II-4" data-ans="II-1 × II-2 → III-1"></select></div>
-    <div class="item"><span class="t">Welche Beobachtung schließt einen <strong>X-chromosomal-dominanten</strong> Erbgang aus?</span><select id="a52_2" data-save data-opts="Der erkrankte Vater I-1 hat einen erkrankten Sohn (II-2).|Der erkrankte Vater II-2 hat eine gesunde Tochter (III-1).|Die erkrankte Tochter II-4 hat einen erkrankten Vater (I-1)." data-ans="Der erkrankte Vater II-2 hat eine gesunde Tochter (III-1)."></select></div>
+    <div class="item"><span class="t">Welche Beobachtung schließt einen <strong>X-chromosomal-dominanten</strong> Erbgang aus?</span><select id="a52_2" data-save data-opts="Die erkrankte Mutter II-1 hat einen erkrankten Sohn (III-2).|Der erkrankte Vater II-2 hat eine gesunde Tochter (III-1).|Die erkrankte Tochter II-4 hat einen erkrankten Vater (I-1)." data-ans="Der erkrankte Vater II-2 hat eine gesunde Tochter (III-1)."></select></div>
     <div class="item"><span class="t">Erbgang:</span><select id="a52_3" data-save data-opts="autosomal-dominant|autosomal-rezessiv|X-chromosomal-dominant|X-chromosomal-rezessiv" data-ans="autosomal-dominant"></select></div>
     <div class="item"><span class="t">Genotyp von II-2 (A = Polydaktylie):</span><select id="a52_4" data-save data-opts="AA|Aa|aa|AA oder Aa" data-ans="Aa"></select></div>
     <div class="btns"><button type="button" class="primary" data-check>Prüfen</button><button type="button" data-tipbtn>Tipp</button><button type="button" data-solbtn disabled>Lösung</button></div>
@@ -497,7 +503,8 @@
     <div class="reveal sol"><h4>Lösung</h4><p>II-1 × II-2 → III-1: Zwei erkrankte Eltern haben ein gesundes Kind, also ist das Merkmal dominant (beide Eltern müssen Aa sein und je ein a weitergegeben haben). Damit sind autosomal-rezessiv und X-chromosomal-rezessiv ausgeschlossen.</p>
       <p>II-2 → III-1: Der erkrankte Vater II-2 hat eine gesunde Tochter. Bei X-chromosomal-dominanter Vererbung hätte er XᴬY und müsste sein Xᴬ an jede Tochter weitergeben – III-1 wäre dann erkrankt. Dasselbe zeigt I-1 mit seiner gesunden Tochter II-3. Erbgang: <strong>autosomal-dominant</strong>.</p>
       <p>II-2 ist erkrankt (mindestens ein A), hat von seiner gesunden Mutter I-2 (aa) aber ein a bekommen: <strong>Aa</strong>.</p>
-      <p>Achtung: Dass der erkrankte Vater I-1 einen erkrankten Sohn II-2 hat, schließt X-chromosomale Vererbung <em>nicht</em> aus – der Sohn könnte sein X von der Mutter haben.</p></div>
+      <p>Auch I-1 × I-2 → II-2 schließt X-chromosomal-dominant aus – aber nicht wegen des erkrankten Vaters, sondern wegen der Mutter: Der Sohn II-2 hat sein X von der gesunden Mutter I-2. Bei X-chromosomal-dominant hätte sie kein Krankheits-Allel, II-2 könnte also nicht erkrankt sein. Die Vater-Sohn-Weitergabe <em>allein</em> schließt X-chromosomale Vererbung dagegen nicht aus.</p>
+      <p>Die erkrankte Mutter II-1 mit ihrem erkrankten Sohn III-2 schließt dagegen nichts aus – das passt zu jedem dominanten Erbgang.</p></div>
   </div>
 
   <div class="task" data-task="t53">
@@ -530,6 +537,8 @@
     <tr><td>Träger · Konduktorin</td><td>gesund, aber mit einem Krankheits-Allel (Aa) · Frau mit XᴬXᵃ</td></tr>
     <tr><td>Kreuzungsschema</td><td>Keimzellen der Eltern kombinieren; jedes der vier Felder = 25 %</td></tr>
     <tr><td>Stammbaum</td><td>□ Mann, ○ Frau, ausgefüllt = erkrankt; Generationen I, II, III …; II-3 = dritte Person der zweiten Generation</td></tr>
+    <tr><td>Ausschlussregeln</td><td>gesunde Eltern → krankes Kind: rezessiv · kranke Eltern → gesundes Kind: dominant · kranke Tochter, gesunder Vater: nicht X-rezessiv · kranke Mutter, gesunder Sohn: nicht X-rezessiv · kranker Vater, gesunde Tochter: nicht X-dominant · kranker Sohn, gesunde Mutter: nicht X-dominant</td></tr>
+    <tr><td>Vorgehen</td><td>(1) dominant oder rezessiv? (2) autosomal oder X-chromosomal? (3) mit Personennummern begründen</td></tr>
   </table>
 
   <h3>Selbstcheck – kreuze an, was du jetzt kannst</h3>
@@ -685,7 +694,7 @@
   var demoTexte = [
     "Klicke auf „Nächster Schritt“.",
     "Schritt 1: Jeder Elternteil (Aa) bildet zwei Sorten Keimzellen – mit A oder mit a. Die der Mutter stehen oben, die des Vaters links.",
-    "Schritt 2: In jedem Feld wird das Allel der Spalte mit dem Allel der Zeile kombiniert.",
+    "Schritt 2: In jedem Feld wird das Allel der Spalte mit dem Allel der Zeile kombiniert – hier siehst du drei der vier Felder. Wie sieht das letzte aus?",
     "Schritt 3: Ergebnis: 1 × AA (gesund), 2 × Aa (gesund, Träger), 1 × aa (erkrankt). Jedes Kind erkrankt mit 25 % Wahrscheinlichkeit – obwohl beide Eltern gesund sind."
   ];
   function demoZeigen(){
@@ -750,6 +759,7 @@
     mark($("x_m1"), mOk); mark($("x_m2"), mOk); mark($("x_v1"), vOk); mark($("x_v2"), vOk);
     $("x_solbtn").disabled = false;
     var alle = mOk && vOk;
+    if(!(mOk && vOk)) ["x_c11","x_c12","x_c21","x_c22"].forEach(function(id){ $(id).parentNode.classList.remove("ok","no"); $(id).classList.remove("ok","no"); });
     if(mOk && vOk){
       [[0,0,"x_c11"],[0,1,"x_c12"],[1,0,"x_c21"],[1,1,"x_c22"]].forEach(function(c){
         var g = $(c[2]).value === xKind(vg[c[0]], mg[c[1]]); mark($(c[2]), g); if(!g) alle = false;
@@ -769,7 +779,7 @@
     if(t.length < 60){ fb($("a34_fb"), false, "Schreib erst deine eigene Erklärung (mindestens zwei, drei Sätze) – dann kannst du vergleichen."); return; }
     var fehlt = ["rezessiv","heterozygot","Keimzelle","25"].filter(function(w){ return t.toLowerCase().indexOf(w.toLowerCase()) < 0; });
     $("a34_sol").classList.add("on");
-    if(fehlt.length) fb($("a34_fb"), false, "Vergleiche mit der Musterlösung. In deinem Text fehlt noch: " + fehlt.join(", ") + ".");
+    if(fehlt.length) fb($("a34_fb"), false, "Vergleiche mit der Musterlösung. Diese Begriffe habe ich in deinem Text nicht gefunden: " + fehlt.join(", ") + ".");
     else fb($("a34_fb"), true, "Alle vier Begriffe sind drin. Vergleiche jetzt inhaltlich mit der Musterlösung.");
     // Hier wird nur der Vergleich festgehalten, nicht die inhaltliche Richtigkeit.
     setDone("t34", true);
@@ -818,6 +828,8 @@
     Object.keys(gens).forEach(function(g){ out += '<text x="16" y="' + (Y(+g) + 6) + '" font-size="17" font-weight="bold" fill="#1a1a1a" font-family="Calibri,Carlito,Arial,sans-serif">' + roman[g] + "</text>"; });
     svg.setAttribute("viewBox", "0 0 520 " + h);
     svg.setAttribute("role", "img");
+    var beschr = Object.keys(P.p).map(function(id){ var q = P.p[id]; return id + " " + (q[2] === "m" ? "Mann" : "Frau") + " " + (q[3] ? "erkrankt" : (q[4] ? "Trägerin" : "gesund")); }).join(", ");
+    svg.setAttribute("aria-label", "Stammbaum: " + beschr + ". Eltern-Kind-Beziehungen: " + P.c.map(function(c){ return c[0] + " × " + c[1] + (c[2] && c[2].length ? " → " + c[2].join(", ") : ""); }).join("; ") + ".");
     svg.innerHTML = out;
   }
 
@@ -903,6 +915,17 @@
     });
     $("ergebnisblatt").innerHTML = h;
   }
+  /* ---------- Barrierefreiheit ---------- */
+  qa(".feedback").forEach(function(el){ el.setAttribute("aria-live", "polite"); });
+  qa("select").forEach(function(s){
+    if(s.getAttribute("aria-label") || (s.id && document.querySelector('label[for="' + s.id + '"]'))) return;
+    var it = s.closest(".item"), txt = "";
+    if(it && it.querySelector(".t")) txt = it.querySelector(".t").textContent;
+    else if(s.closest("table.pun")){ var c = s.closest("td, th"), r = c.parentNode; txt = "Kreuzungsschema, Zeile " + (r.rowIndex + 1) + ", Spalte " + (c.cellIndex + 1); }
+    else { var b = s.closest("p, td, th, li"); if(b){ var k = b.cloneNode(true); k.querySelectorAll("select").forEach(function(x){ x.replaceWith(" … "); }); txt = k.textContent.replace(/\s+/g, " ").trim().slice(0, 140); } }
+    if(!txt){ var t = s.closest(".task"); if(t && t.querySelector("h3")) txt = t.querySelector("h3").textContent; }
+    if(txt) s.setAttribute("aria-label", txt);
+  });
   window.druck = function(){ blattBauen(); window.print(); };
   window.addEventListener("beforeprint", blattBauen);
   window.loeschen = function(){
@@ -912,6 +935,7 @@
     qa(".ok,.no").forEach(function(el){ el.classList.remove("ok","no"); });
     qa(".feedback").forEach(function(el){ el.textContent = ""; });
     qa(".reveal").forEach(function(el){ el.classList.remove("on"); });
+    qa("[data-solbtn],#x_solbtn,#a42_solbtn,#tr_solbtn").forEach(function(b){ b.disabled = true; });
     done = {}; sel42 = []; sel42Zeigen(); trI = 0; trZeigen(); fortschritt();
   };
 
@@ -940,6 +964,7 @@
       qa("[data-save]").forEach(function(el){ if(el.type === "checkbox") el.checked = false; else el.value = ""; });
       qa(".ok,.no").forEach(function(el){ el.classList.remove("ok","no"); });
       qa(".feedback").forEach(function(el){ el.textContent = ""; });
+      qa(".reveal").forEach(function(el){ el.classList.remove("on"); });
       laden(d); sel42Zeigen(); trZeigen(true); fortschritt(); sichern();
       status("Speicherstand geladen – du kannst weitermachen.");
     };
