@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wo stehe ich? – Diagnosetest Immunbiologie · Klasse 10</title>
+<style>
+  :root{
+    --ink:#1A1A1A; --grau:#595959; --hell:#F2F2F2; --linie:#BFBFBF; --mittel:#8C8C8C;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family: Calibri, Carlito, "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    color:var(--ink); background:#fff; font-size:18px; line-height:1.45;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:780px;margin:0 auto;padding:28px 20px 60px}
+  .kicker{font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--grau);margin:0 0 18px}
+  h1{font-size:34px;line-height:1.15;margin:0 0 6px;font-weight:700}
+  .unter{color:var(--grau);font-size:19px;margin:0 0 26px}
+  h2{font-size:23px;margin:30px 0 10px}
+  h3{font-size:19px;margin:22px 0 6px}
+  p{margin:0 0 12px}
+  .klein{font-size:14px;color:var(--grau)}
+  .info{background:var(--hell);border-left:6px solid var(--ink);padding:14px 18px;margin:18px 0}
+  .info b.k{display:block;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:4px}
+  .hilfe{border:1.5px dashed var(--mittel);padding:12px 16px;margin:16px 0;color:var(--ink)}
+  .hilfe b.k{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;margin-right:8px}
+  label.feld{display:block;font-weight:700;margin:16px 0 4px}
+  input[type=text]{
+    width:100%;font:inherit;padding:10px 12px;border:1.5px solid var(--linie);border-radius:4px;background:#fff;color:var(--ink)
+  }
+  input[type=text]:focus{outline:none;border-color:var(--ink)}
+  .btn{
+    font:inherit;font-weight:700;border:2px solid var(--ink);background:var(--ink);color:#fff;
+    padding:11px 22px;border-radius:4px;cursor:pointer;-webkit-appearance:none
+  }
+  .btn.zweit{background:#fff;color:var(--ink)}
+  .btn:disabled{opacity:.35;cursor:default}
+  .leiste{display:flex;gap:12px;justify-content:space-between;align-items:center;margin-top:26px;flex-wrap:wrap}
+  .fortschritt{height:6px;background:var(--hell);border-radius:3px;overflow:hidden;margin:8px 0 26px}
+  .fortschritt span{display:block;height:100%;background:var(--ink);width:0;transition:width .25s}
+  .fnr{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--grau)}
+  .frage{font-size:21px;font-weight:700;margin:6px 0 18px}
+  .opt{
+    display:flex;gap:14px;align-items:flex-start;width:100%;text-align:left;font:inherit;color:var(--ink);
+    background:#fff;border:1.5px solid var(--linie);border-radius:6px;padding:13px 15px;margin:0 0 10px;cursor:pointer
+  }
+  .opt .bu{flex:0 0 28px;height:28px;border:1.5px solid var(--mittel);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:var(--grau)}
+  .opt.sel{border:2px solid var(--ink);background:var(--hell);padding:12.5px 14.5px}
+  .opt.sel .bu{background:var(--ink);border-color:var(--ink);color:#fff}
+  .punkte{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 0}
+  .punkte button{width:30px;height:30px;font:inherit;font-size:13px;border:1.5px solid var(--linie);background:#fff;border-radius:4px;cursor:pointer;color:var(--grau);padding:0}
+  .punkte button.ok{background:var(--hell);color:var(--ink);border-color:var(--mittel)}
+  .punkte button.akt{border:2px solid var(--ink);color:var(--ink);font-weight:700}
+  figure{margin:4px 0 18px}
+  figcaption{font-size:13.5px;font-style:italic;color:var(--grau);margin-top:4px}
+  svg{max-width:100%;height:auto}
+  /* Ergebnis */
+  .balken{margin:10px 0 4px}
+  .bzeile{display:grid;grid-template-columns:1fr 64px;gap:4px 12px;align-items:center;margin:0 0 14px}
+  .bname{font-weight:700;font-size:17px}
+  .bwert{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+  .bspur{grid-column:1 / span 2;height:14px;background:var(--hell);border-radius:3px;overflow:hidden}
+  .bspur span{display:block;height:100%;background:var(--mittel)}
+  .bzeile.schwach .bspur span{background:var(--ink)}
+  .bzeile.schwach .bname::after{content:"  ·  schwächster Bereich";font-weight:400;color:var(--grau);font-size:15px}
+  .wahl{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+  .thema{border-left:6px solid var(--ink);background:var(--hell);padding:16px 20px;margin:18px 0}
+  .thema .k{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--grau)}
+  .thema .t{font-size:24px;font-weight:700;line-height:1.2;margin:4px 0 0}
+  ul,ol{margin:4px 0 14px;padding-left:24px}
+  li{margin:0 0 5px}
+  table.krit{border-collapse:collapse;width:100%;margin:8px 0 16px;font-size:16px}
+  table.krit th,table.krit td{text-align:left;padding:8px 10px;border-bottom:1px solid #D9D9D9;vertical-align:top}
+  table.krit th{background:var(--hell);font-weight:700}
+  .beleg{border:2px solid var(--ink);border-radius:6px;padding:16px 18px;margin:20px 0}
+  .beleg .k{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--grau);margin-bottom:8px}
+  .beleg table{border-collapse:collapse;width:100%;font-size:16px}
+  .beleg td{padding:3px 0;vertical-align:top}
+  .beleg td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  details{border:1.5px solid var(--linie);border-radius:6px;padding:10px 14px;margin:0 0 10px}
+  details summary{cursor:pointer;font-weight:700}
+  .rv{margin:12px 0 0;padding:10px 0 0;border-top:1px solid #E3E3E3}
+  .rv .q{font-weight:700;margin-bottom:4px}
+  .rv .a{margin:2px 0}
+  .zeichen{display:inline-block;width:20px;font-weight:700}
+  .fussnote{margin-top:40px;font-size:13px;color:var(--grau)}
+  .linkbtn{background:none;border:none;font:inherit;font-size:13px;color:var(--grau);text-decoration:underline;cursor:pointer;padding:0}
+  .hinweis{font-size:15px;color:var(--grau);margin-top:6px;min-height:20px}
+  @media (max-width:520px){
+    body{font-size:17px} h1{font-size:28px} .frage{font-size:19px}
+  }
+  @media print{
+    .noprint{display:none!important}
+    .wrap{padding-top:0}
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+/* =====================================================================
+   EINSTELLUNGEN FÜR DIE LEHRKRAFT
+   – Bereiche mit aktiv:false werden weder abgefragt noch ausgewertet.
+   – Alle Texte (Fragen, Referatthemen, Anforderungen) lassen sich hier ändern.
+   ===================================================================== */
+const CONFIG = {
+  kicker: "Biologie · Klasse 10 · Immunbiologie",
+  titel: "Wo stehe ich?",
+  untertitel: "Diagnosetest Immunbiologie – und dein Referatthema",
+  resetCode: "immun10",          // Code, mit dem ein abgeschlossener Test zurückgesetzt werden kann
+  abgabe: "",                    // z. B. "Referate ab dem 14.12.2026" – leer lassen, wenn noch offen
+  speicherSchluessel: "diagnosetest_immunbio_kl10_v1",
+  referat: {
+    dauer: "5–7 Minuten",
+    anforderungen: [
+      "Vortrag frei mit Stichwortkarten, Dauer 5–7 Minuten",
+      "Plakat oder kurze Präsentation (höchstens 6 Folien) mit mindestens einer Abbildung, die du selbst erklärst",
+      "Handout für die Klasse (höchstens 1 Seite) mit den 5 wichtigsten Fachbegriffen und ihrer Erklärung",
+      "Drei Quizfragen für die Klasse am Ende deines Referats",
+      "Quellen angeben (Schulbuch, Arbeitsblätter, Internetseiten mit Datum)"
+    ],
+    kriterien: [
+      ["Fachliche Richtigkeit", "Inhalte stimmen, alle Leitfragen sind beantwortet"],
+      ["Fachsprache", "Fachbegriffe werden richtig verwendet und erklärt"],
+      ["Verständlichkeit", "klarer Aufbau, frei gesprochen, an die Klasse gerichtet"],
+      ["Material", "Abbildung, Handout und Quizfragen sind hilfreich und sauber gestaltet"]
+    ]
+  }
+};
+
+const BEREICHE = [
+  { id:"A", aktiv:true, name:"Bakterien und Viren",
+    referat:{
+      titel:"Bakterien und Viren – zwei ganz verschiedene Krankheitserreger",
+      leitfragen:[
+        "Wie ist eine Bakterienzelle gebaut? Erkläre die Aufgaben von Zellwand, Zellmembran, Bakterienchromosom, Plasmiden und Ribosomen.",
+        "Wie ist ein Virus gebaut – und warum ist es keine Zelle?",
+        "Wie vermehren sich Bakterien, wie vermehren sich Viren?",
+        "Woran erkennt man im Labor, ob ein Bakterium oder ein Virus die Krankheit auslöst? (Lichtmikroskop, Nährboden …)",
+        "Sind Viren Lebewesen? Prüfe die Kennzeichen des Lebendigen."
+      ],
+      tipp:"Ein Größenvergleich hilft der Klasse: Ist ein Bakterium so groß wie ein Fußball, ist ein Coronavirus etwa so groß wie eine Murmel."
+    }},
+  { id:"B", aktiv:true, name:"Antibiotika und Resistenzen",
+    referat:{
+      titel:"Superbugs – wie Antibiotika wirken und warum sie ihre Wirkung verlieren",
+      leitfragen:[
+        "Wie wirken Antibiotika (z. B. Penicillin) – und warum schaden sie unseren eigenen Zellen kaum?",
+        "Warum helfen Antibiotika nicht gegen Grippe, Erkältung oder Windpocken?",
+        "Wie entstehen resistente Bakterien? Erkläre Mutation, Plasmide und Selektion.",
+        "Was ist MRSA, und was ist ein Reserveantibiotikum?",
+        "Welche Regeln sollten alle beim Umgang mit Antibiotika beachten – und warum?"
+      ],
+      tipp:"Das Simulationsspiel aus dem Unterricht (weiße und graue Spielsteine) eignet sich gut, um Selektion vorzuführen."
+    }},
+  { id:"C", aktiv:true, name:"Unspezifische Abwehr",
+    referat:{
+      titel:"Die ersten Abwehrlinien – Barrieren, Entzündung und Fresszellen",
+      leitfragen:[
+        "Welche Barrieren hat unser Körper, und wie schützen sie jeweils vor Erregern?",
+        "Was passiert bei einer Entzündung? Erkläre Rötung, Wärme, Schwellung und Schmerz.",
+        "Wie läuft die Phagozytose ab? Stelle die Schritte in der richtigen Reihenfolge dar.",
+        "Was ist Eiter – und welche Aufgabe hat Fieber?",
+        "Warum heißt diese Abwehr „unspezifisch“, und wann reicht sie nicht aus?"
+      ],
+      tipp:"Der Fall „Der Holzsplitter“ ist ein guter Einstieg: Erkläre der Klasse Schritt für Schritt, was in Emmas Finger passiert."
+    }},
+  { id:"D", aktiv:true, name:"Spezifische Abwehr: Zellen und Ablauf",
+    referat:{
+      titel:"Antikörper und Killer-T-Zellen – so läuft die spezifische Abwehr ab",
+      leitfragen:[
+        "Welche Zellen gehören zur spezifischen Abwehr? Stelle Fresszelle, T-Helferzelle, B-Zelle/Plasmazelle, Killer-T-Zelle und Gedächtniszelle mit ihrer Aufgabe vor.",
+        "Wie läuft die spezifische Abwehr in fünf Schritten ab (Erkennen – Alarm – Vermehren – Bekämpfen – Erinnern)?",
+        "Was genau machen Antikörper – und was können sie nicht?",
+        "Warum braucht man zusätzlich Killer-T-Zellen?",
+        "Warum schwellen bei einer Infektion oft die Lymphknoten an?"
+      ],
+      tipp:"Ein Ablaufschema mit Pfeilen (z. B. als Plakat) macht die fünf Schritte für die Klasse übersichtlich. Lenas Grippe eignet sich als roter Faden."
+    }},
+  { id:"E", aktiv:true, name:"Antigene und Immungedächtnis",
+    referat:{
+      titel:"Einmal krank – für immer geschützt? Antigene und das Immungedächtnis",
+      leitfragen:[
+        "Was ist ein Antigen, und was ist der Unterschied zum Antikörper?",
+        "Was bedeutet das Schlüssel-Schloss-Prinzip in der Immunabwehr?",
+        "Warum wird man beim ersten Kontakt mit einem Erreger krank, beim zweiten oft nicht? Erkläre dazu das Diagramm zur Antikörpermenge.",
+        "Warum bekommt man Windpocken meist nur einmal, Grippe aber immer wieder?",
+        "Ausblick: Wie könnte man Gedächtniszellen bekommen, ohne vorher krank zu werden?"
+      ],
+      tipp:"Zeichne das Diagramm zur Antikörpermenge (1. und 2. Kontakt) groß an die Tafel oder auf ein Plakat und erkläre es Schritt für Schritt."
+    }},
+  { id:"F", aktiv:false, name:"Impfung",       // auf true setzen, sobald das Impfen behandelt wurde
+    referat:{
+      titel:"Impfen – Schutz, ohne krank zu werden",
+      leitfragen:[
+        "Wie funktioniert eine aktive Impfung? Was passiert danach im Körper?",
+        "Was ist eine passive Impfung, und wann setzt man sie ein?",
+        "Vergleiche aktive und passive Impfung (Wirkungseintritt, Dauer, Gedächtnis).",
+        "Warum braucht man bei manchen Impfungen eine Auffrischung?",
+        "Was ist Herdenschutz (Herdenimmunität), und wen schützt er besonders?"
+      ],
+      tipp:"Verwende Fakten von seriösen Seiten wie impfen-info.de (BZgA) oder dem Robert Koch-Institut und gib die Quellen an."
+    }}
+];
+
+/* Die erste Antwort ist jeweils die richtige – die Reihenfolge wird beim Start gemischt. */
+const FRAGEN = [
+  /* ---------- A: Bakterien und Viren ---------- */
+  {b:"A", f:"Welche Aussage trifft auf Bakterien zu, aber NICHT auf Viren?",
+   o:["Sie besitzen eigene Ribosomen und haben einen eigenen Stoffwechsel.","Sie enthalten Erbgut.","Sie können Krankheiten auslösen.","Sie tragen Proteine an ihrer Oberfläche."],
+   e:"Bakterien sind vollständige Zellen mit Ribosomen und eigenem Stoffwechsel. Erbgut, Oberflächenproteine und die Fähigkeit, krank zu machen, haben auch Viren."},
+  {b:"A", f:"Wie vermehren sich Viren?",
+   o:["Nur in einer Wirtszelle: Die Zelle stellt nach dem Bauplan des Virus neue Viren her.","Durch Zweiteilung, unter günstigen Bedingungen etwa alle 20 Minuten.","Durch Sporen, die über die Luft verbreitet werden.","Sie teilen sich selbstständig im Blut."],
+   e:"Viren haben keinen eigenen Stoffwechsel. Sie schleusen ihr Erbgut in eine Wirtszelle ein, die dann mit ihren eigenen Ribosomen neue Viren baut. Zweiteilung ist typisch für Bakterien."},
+  {b:"A", f:"Joghurtbakterien konntet ihr im Lichtmikroskop sehen, Grippeviren dagegen nicht. Warum?",
+   o:["Viren sind 10- bis 100-mal kleiner als Bakterien und nur im Elektronenmikroskop sichtbar.","Viren sind durchsichtig, Bakterien nicht.","Viren bewegen sich zu schnell, um sie scharfzustellen.","Viren sind nur sichtbar, solange sie in einer Zelle stecken."],
+   e:"Viren sind nur 20 bis 300 nm groß, Bakterien meist 1 bis 10 µm. Für Viren reicht die Auflösung des Lichtmikroskops nicht aus."},
+  {b:"A", f:"Was sind Plasmide?",
+   o:["Kleine DNA-Ringe von Bakterien, auf denen oft Resistenzgene liegen und die Bakterien austauschen können.","Die Proteinhülle, die das Erbgut eines Virus schützt.","Der Zellkern einer Bakterienzelle.","Kurze Fortsätze, mit denen sich Bakterien an Oberflächen heften."],
+   e:"Plasmide sind zusätzliche, kleine DNA-Ringe. Bakterien haben keinen Zellkern; die kurzen Fortsätze heißen Pili."},
+  {b:"A", f:"Wie heftet sich ein Coronavirus an Zellen der Atemwege?",
+   o:["Seine Spike-Proteine passen wie ein Schlüssel ins Schloss zu Rezeptoren auf unseren Zellen.","Mit einer langen Geißel bohrt es sich in die Zelle.","Mit seiner festen Zellwand klebt es an der Zellmembran.","Mit Pili hält es sich an anderen Viren fest."],
+   e:"Die Spike-Proteine in der Virushülle passen genau zu bestimmten Rezeptoren. Geißel, Pili und Zellwand besitzen nur Bakterien."},
+  {b:"A", f:"Welche dieser Krankheiten wird von Bakterien ausgelöst?",
+   o:["Mandelentzündung durch Streptokokken","Grippe","Windpocken","Erkältung (Schnupfen)"],
+   e:"Grippe (Influenzaviren), Windpocken (Varizella-Zoster-Virus) und Erkältungen (z. B. Rhinoviren) sind Viruserkrankungen – wie in der „Notaufnahme“."},
+
+  /* ---------- B: Antibiotika und Resistenzen ---------- */
+  {b:"B", f:"Wie wirkt das Antibiotikum Penicillin?",
+   o:["Es verhindert, dass Bakterien ihre Zellwand aufbauen.","Es zerstört das Erbgut von Viren.","Es macht die Fresszellen stärker.","Es senkt das Fieber und lindert so die Krankheit."],
+   e:"Penicillin greift den Aufbau der bakteriellen Zellwand an. Andere Antibiotika blockieren die Ribosomen der Bakterien."},
+  {b:"B", f:"Warum schaden Antibiotika unseren eigenen Körperzellen kaum?",
+   o:["Unsere Zellen haben keine Zellwand wie Bakterien und andere Ribosomen.","Unsere Zellen sind größer und deshalb widerstandsfähiger.","Das Immunsystem schützt unsere Zellen vor dem Antibiotikum.","Antibiotika wirken nur im Darm, nicht im übrigen Körper."],
+   e:"Antibiotika greifen Strukturen an, die es nur bei Bakterien gibt (Zellwand) oder die dort anders gebaut sind (Ribosomen)."},
+  {b:"B", f:"Lenas Mutter möchte gegen Lenas Grippe ein Antibiotikum. Warum hilft es nicht?",
+   o:["Viren haben weder Zellwand noch Ribosomen – das Antibiotikum findet keinen Angriffspunkt.","Grippeviren sind gegen alle Antibiotika resistent geworden.","Das Antibiotikum wirkt erst nach zwei Wochen, dann ist die Grippe schon vorbei.","Antibiotika helfen nur bei Kindern unter zehn Jahren."],
+   e:"Viren sind keine Zellen. Ohne Zellwand, Ribosomen und Stoffwechsel gibt es nichts, was ein Antibiotikum angreifen könnte. Mit Resistenz hat das nichts zu tun."},
+  {b:"B", f:"Wie entsteht ein resistentes Bakterium ursprünglich?",
+   o:["Durch eine zufällige Mutation beim Kopieren der DNA – auch ohne Antibiotikum.","Das Bakterium gewöhnt sich mit der Zeit an das Antibiotikum.","Das Antibiotikum verändert die DNA des Bakteriums gezielt.","Der Mensch wird resistent und gibt das an seine Bakterien weiter."],
+   e:"Mutationen entstehen zufällig bei der Zweiteilung. Das Antibiotikum verursacht die Resistenz nicht, es sortiert nur aus (Selektion). Auch nicht der Mensch, sondern das Bakterium ist resistent."},
+  {b:"B", f:"Was versteht man unter Selektion bei Antibiotikaresistenz?",
+   o:["Das Antibiotikum tötet die empfindlichen Bakterien; die resistenten überleben und vermehren sich.","Ärztinnen und Ärzte wählen das passende Antibiotikum aus.","Bakterien suchen sich gezielt einen Wirt ohne Antibiotika.","Resistente Bakterien töten die empfindlichen Bakterien ab."],
+   e:"Selektion bedeutet Auslese: Unter Antibiotikum haben resistente Bakterien plötzlich Platz und Nährstoffe und vermehren sich – ihr Anteil steigt."},
+  {b:"B", f:"Herr D. hat seine Antibiotika-Tabletten nach drei Tagen abgesetzt, weil es ihm besser ging. Warum ist das problematisch?",
+   o:["Die widerstandsfähigsten Bakterien überleben und können sich vermehren – Resistenzen werden gefördert.","Sein Körper gewöhnt sich an das Antibiotikum, sodass es beim nächsten Mal nicht mehr wirkt.","Die restlichen Tabletten verlieren ihre Wirkung und müssen weggeworfen werden.","Ohne Antibiotikum verwandeln sich die Bakterien in Viren."],
+   e:"Wird zu früh abgesetzt, überleben gerade die Bakterien, die am wenigsten empfindlich sind. Resistent wird nicht der Körper, sondern die Bakterien."},
+
+  /* ---------- C: Unspezifische Abwehr ---------- */
+  {b:"C", f:"Was kennzeichnet die unspezifische Abwehr?",
+   o:["Sie wirkt sofort und gegen alle Erreger auf die gleiche Weise – ohne Gedächtnis.","Sie wirkt erst nach einigen Tagen, dafür ganz gezielt gegen einen Erreger.","Sie bildet Gedächtniszellen, die den Erreger beim nächsten Mal erkennen.","Sie wirkt nur gegen Viren, nicht gegen Bakterien."],
+   e:"Barrieren, Entzündung und Fresszellen sind sofort da und unterscheiden nicht zwischen Erregern. Gezielte Abwehr und Gedächtnis gehören zur spezifischen Abwehr."},
+  {b:"C", f:"Tränen und Speichel enthalten das Enzym Lysozym. Was bewirkt es?",
+   o:["Es zerstört die Zellwand von Bakterien – ähnlich wie Penicillin.","Es macht die Haut sauer (Säureschutzmantel).","Es bildet Antikörper gegen die Erreger.","Es befördert Schleim aus den Atemwegen nach oben."],
+   e:"Lysozym greift die bakterielle Zellwand an. Den Säureschutzmantel bilden Schweiß und Talg, Schleim wird von Flimmerhärchen befördert."},
+  {b:"C", f:"Welche Aufgabe haben die Flimmerhärchen in der Luftröhre?",
+   o:["Sie befördern Schleim mit festklebenden Erregern und Staub nach oben zum Rachen.","Sie fressen eingedrungene Bakterien.","Sie stellen das Enzym Lysozym her.","Sie erwärmen die eingeatmete Luft, damit Erreger absterben."],
+   e:"An den Schleim kleben Erreger und Staub. Die Flimmerhärchen schieben ihn zum Rachen, wo er verschluckt wird."},
+  {b:"C", f:"Emmas Finger ist nach dem Holzsplitter gerötet und warm. Wie kommt es dazu?",
+   o:["Botenstoffe wie Histamin erweitern die Blutgefäße – es fließt mehr warmes Blut ins Gewebe.","Die Bakterien produzieren Wärme, wenn sie sich teilen.","Die Haut wird an dieser Stelle dünner, deshalb sieht man das Blut.","Die Fresszellen sind rot gefärbt und sammeln sich in der Wunde."],
+   e:"Die erweiterten Blutgefäße führen mehr warmes Blut heran. Durchlässigere Gefäßwände sorgen zusätzlich für die Schwellung."},
+  {b:"C", f:"Woraus besteht Eiter?",
+   o:["Aus abgestorbenen Fresszellen, toten Erregern und Geweberesten.","Aus Antikörpern, die die Wunde verschließen.","Aus lebenden Bakterien, die sich in der Wunde vermehren.","Aus Blutplättchen, die die Blutung stoppen."],
+   e:"Eiter zeigt, dass die Fresszellen gekämpft haben – viele von ihnen sterben dabei."},
+  {b:"C", f:"In welcher Reihenfolge läuft die Phagozytose ab?",
+   o:["Erreger erkennen → mit der Zellmembran umfließen → im Bläschen einschließen → mit Enzymen verdauen → Reste abgeben",
+      "Erreger umfließen → erkennen → Reste abgeben → im Bläschen verdauen → einschließen",
+      "Mit Enzymen verdauen → erkennen → umfließen → im Bläschen einschließen → Reste abgeben",
+      "Erreger erkennen → Antikörper bilden → Erreger verklumpen → Reste abgeben → Gedächtniszelle bilden"],
+   e:"Die Fresszelle erkennt den Erreger an Oberflächenmerkmalen, umfließt ihn, schließt ihn in ein Bläschen ein, verdaut ihn mit Enzymen und gibt unverdauliche Reste ab. Antikörper bilden Fresszellen nicht."},
+
+  /* ---------- D: Spezifische Abwehr: Zellen und Ablauf ---------- */
+  {b:"D", f:"Welche Zellen bilden Antikörper?",
+   o:["Plasmazellen, die aus aktivierten B-Zellen entstehen","Fresszellen","T-Helferzellen","Killer-T-Zellen"],
+   e:"Aus B-Zellen werden Plasmazellen – jede bildet bis zu 2000 Antikörper pro Sekunde. Fresszellen bilden keine Antikörper (Bens Fehler bei „Lenas Grippe“)."},
+  {b:"D", f:"Welche Aufgabe hat die T-Helferzelle?",
+   o:["Sie erkennt das vorgezeigte Antigen und aktiviert mit Botenstoffen die passenden B-Zellen und Killer-T-Zellen.","Sie frisst Erreger und zeigt deren Bruchstücke vor.","Sie tötet Körperzellen ab, in denen Viren stecken.","Sie bildet Antikörper, die Erreger verklumpen."],
+   e:"Die T-Helferzelle ist die „Einsatzleitung“: Sie löst den Alarm aus. Vorzeigen macht die Fresszelle, töten die Killer-T-Zelle, Antikörper bilden Plasmazellen."},
+  {b:"D", f:"Viele Grippeviren stecken bereits in Lenas Körperzellen. Wie werden sie bekämpft?",
+   o:["Killer-T-Zellen erkennen die infizierten Zellen an Virus-Antigenen und töten sie samt den Viren ab.","Antikörper wandern in die Körperzellen und töten die Viren dort ab.","Plasmazellen fressen die infizierten Zellen.","Gar nicht – Viren in Körperzellen sind für das Immunsystem unerreichbar."],
+   e:"Antikörper erreichen Viren in Zellen nicht. Infizierte Zellen zeigen aber Virus-Antigene an ihrer Oberfläche – daran erkennen Killer-T-Zellen sie."},
+  {b:"D", f:"Was bewirken Antikörper?",
+   o:["Sie binden an die Antigene der Erreger, verklumpen sie und verhindern das Andocken von Viren; Fresszellen beseitigen die Klumpen.","Sie dringen in Bakterien ein und zerstören deren Ribosomen.","Sie erweitern die Blutgefäße und lösen so eine Entzündung aus.","Sie wandeln sich nach der Infektion in Gedächtniszellen um."],
+   e:"Antikörper sind Y-förmige Proteine mit zwei Bindungsstellen. Sie machen Erreger unschädlich, die Beseitigung übernehmen Fresszellen."},
+  {b:"D", f:"In welcher Reihenfolge laufen die fünf Schritte der spezifischen Abwehr ab?",
+   o:["Erkennen → Alarm → Vermehren → Bekämpfen → Erinnern","Alarm → Erkennen → Bekämpfen → Vermehren → Erinnern","Erkennen → Bekämpfen → Alarm → Erinnern → Vermehren","Vermehren → Erkennen → Alarm → Erinnern → Bekämpfen"],
+   e:"Fresszelle zeigt Antigen (Erkennen) → T-Helferzelle aktiviert (Alarm) → B- und T-Zellen teilen sich (Vermehren) → Antikörper und Killer-T-Zellen (Bekämpfen) → Gedächtniszellen (Erinnern)."},
+  {b:"D", f:"Lenas Lymphknoten am Hals sind dick geschwollen. Was passiert dort?",
+   o:["Dort werden Lymphozyten aktiviert und vermehren sich stark.","Dort sammelt sich Eiter aus abgestorbenen Fresszellen.","Dort vermehren sich die Grippeviren besonders schnell.","Dort wird das Fieber erzeugt."],
+   e:"In den Lymphknoten zeigen Fresszellen die Antigene vor; passende Lymphozyten werden aktiviert und teilen sich immer wieder – der Lymphknoten schwillt an."},
+
+  /* ---------- E: Antigene und Immungedächtnis ---------- */
+  {b:"E", f:"Was ist ein Antigen?",
+   o:["Ein Merkmal auf der Oberfläche eines Erregers, z. B. ein Spike-Protein.","Ein Abwehrstoff, den der Körper gegen Erreger bildet.","Ein Medikament gegen Viren.","Eine Abwehrzelle der spezifischen Abwehr."],
+   e:"Antigene sitzen auf dem Erreger. Der Abwehrstoff, der genau daran bindet, ist der Antikörper – die beiden werden oft verwechselt."},
+  {b:"E", f:"Was bedeutet das Schlüssel-Schloss-Prinzip bei der Immunabwehr?",
+   o:["Ein Antikörper oder Lymphozyt bindet nur an das Antigen, dessen Form genau zu ihm passt.","Ein Antikörper passt zu jedem beliebigen Erreger.","Abwehrzellen schließen Erreger in Bläschen ein.","Der Körper schließt Erreger durch Barrieren aus."],
+   e:"Jeder Lymphozyt und jeder Antikörper passt nur zu einem bestimmten Antigen. Deshalb heißt diese Abwehr „spezifisch“."},
+  {b:"E", f:"Pauls Mutter pflegt ihren Sohn mit Windpocken und steckt sich nicht an. Sie hatte als Kind selbst Windpocken. Warum bleibt sie gesund?",
+   o:["Ihre Gedächtniszellen erkennen das Windpocken-Virus sofort und lösen eine schnelle, starke Abwehr aus.","Erwachsene können sich grundsätzlich nicht mit Windpocken anstecken.","Seit ihrer Kindheit sind ständig große Mengen Antikörper in ihrem Blut, die jedes Virus abfangen.","Ihre Haut ist dicker als die eines Kindes, deshalb kommen die Viren nicht hinein."],
+   e:"Gedächtniszellen bleiben oft jahrzehntelang erhalten. Beim zweiten Kontakt laufen die ersten Schritte viel schneller ab – der Erreger ist beseitigt, bevor man krank wird."},
+  {b:"E", svg:true, f:"Die Abbildung zeigt die Menge an Antikörpern im Blut bei einem ersten und einem zweiten Kontakt mit demselben Erreger. Welche Aussage ist richtig?",
+   o:["Beim 2. Kontakt steigt die Antikörpermenge schneller und viel höher an als beim 1. Kontakt.","Beim 2. Kontakt werden weniger Antikörper gebildet, weil der Körper den Erreger schon kennt.","Beim 2. Kontakt dauert es länger als beim 1. Kontakt, bis Antikörper gebildet werden.","Nach dem 1. Kontakt bleibt die Antikörpermenge dauerhaft auf ihrem Höchstwert."],
+   e:"Dank der Gedächtniszellen werden beim zweiten Kontakt in kurzer Zeit sehr viele Antikörper gebildet. Nach dem ersten Kontakt sinkt die Menge wieder – der Schutz beruht auf den Gedächtniszellen."},
+  {b:"E", f:"Lena hatte letzten Winter Grippe. Im nächsten Winter bekommt sie trotzdem wieder Grippe. Wie ist das möglich?",
+   o:["Grippeviren verändern ihr Erbgut schnell durch Mutationen; ihre Antigene ändern sich, und die Gedächtniszellen passen nicht mehr.","Ihre Gedächtniszellen sind nach einem Jahr alle abgestorben.","Sie hat beim ersten Mal zu wenig Antibiotika genommen.","Gegen Viren bildet der Körper grundsätzlich keine Gedächtniszellen."],
+   e:"Nach dem Schlüssel-Schloss-Prinzip erkennen Gedächtniszellen nur die alten Antigene. Ein mutiertes Virus hat ein „neues Schloss“."},
+  {b:"E", f:"Warum wird man beim ersten Kontakt mit einem Erreger trotz spezifischer Abwehr meist krank?",
+   o:["Bis sich die wenigen passenden Lymphozyten ausreichend vermehrt haben, vergehen einige Tage – so lange breitet sich der Erreger aus.","Die spezifische Abwehr arbeitet nur beim zweiten Kontakt.","Beim ersten Kontakt werden nur Fresszellen und keine Lymphozyten aktiviert.","Die Antikörper müssen erst über die Nahrung aufgenommen werden."],
+   e:"Für fast jedes Antigen gibt es nur wenige passende Lymphozyten. Ihre Vermehrung braucht Zeit – in dieser Zeit wird man krank."},
+
+  /* ---------- F: Impfung (optional, siehe BEREICHE) ---------- */
+  {b:"F", f:"Was passiert bei einer aktiven Impfung?",
+   o:["Abgeschwächte oder abgetötete Erreger bzw. ihre Antigene werden verabreicht; der Körper bildet selbst Antikörper und Gedächtniszellen.","Fertige Antikörper werden gespritzt, die sofort wirken.","Es wird ein Antibiotikum gespritzt, das lange im Körper bleibt.","Gedächtniszellen eines anderen Menschen werden übertragen."],
+   e:"Bei der aktiven Impfung lernt das Immunsystem den Erreger kennen, ohne dass man krank wird – es entstehen eigene Gedächtniszellen."},
+  {b:"F", f:"Was kennzeichnet eine passive Impfung?",
+   o:["Fertige Antikörper werden gespritzt: Der Schutz wirkt sofort, hält aber nur einige Wochen, ohne Gedächtniszellen.","Der Schutz wirkt erst nach einigen Wochen, hält dafür viele Jahre.","Der Körper bildet nach der Impfung besonders viele Gedächtniszellen.","Man wird absichtlich krank, damit der Körper immun wird."],
+   e:"Die gespritzten Antikörper werden nach einiger Zeit abgebaut. Weil der Körper selbst nichts „lernt“, entstehen keine Gedächtniszellen."},
+  {b:"F", f:"Ein Mann ohne Tetanus-Impfschutz tritt in einen rostigen Nagel. Welche Impfung bietet ihm sofort Schutz?",
+   o:["Eine passive Impfung, weil fertige Antikörper sofort wirken.","Eine aktive Impfung, weil sie sofort Gedächtniszellen bereitstellt.","Keine – gegen Tetanus hilft nur ein Antibiotikum.","Eine Auffrischimpfung, weil er schon einmal Tetanus hatte."],
+   e:"Bei akuter Gefahr hilft nur die passive Impfung sofort. Meist wird gleichzeitig aktiv geimpft, damit ein dauerhafter Schutz entsteht."},
+  {b:"F", f:"Warum braucht man bei manchen Impfungen nach einigen Jahren eine Auffrischung?",
+   o:["Die Zahl der Gedächtniszellen und Antikörper nimmt mit der Zeit ab; die Auffrischung verstärkt das Immungedächtnis wieder.","Der Impfstoff wird im Körper zu Viren, die man wieder entfernen muss.","Der Körper wird gegen den Impfstoff resistent.","Die Auffrischung ersetzt die Antibiotika, die man sonst nehmen müsste."],
+   e:"Erneuter Kontakt mit dem Antigen aktiviert die Gedächtniszellen und erneuert den Schutz."},
+  {b:"F", f:"Was versteht man unter Herdenschutz (Herdenimmunität)?",
+   o:["Sind sehr viele Menschen geimpft, kann sich ein Erreger kaum ausbreiten – so sind auch Menschen geschützt, die nicht geimpft werden können.","Alle Menschen einer Gruppe erkranken gleichzeitig und sind danach immun.","Geimpfte Menschen geben ihre Antikörper an Ungeimpfte weiter.","Tiere werden geimpft, damit sie keine Krankheiten auf Menschen übertragen."],
+   e:"Wenn kaum jemand den Erreger weitergeben kann, profitieren z. B. Säuglinge oder Menschen mit geschwächtem Immunsystem."},
+  {b:"F", f:"Nach einer Impfung ist die Einstichstelle gerötet, und man fühlt sich einen Tag schlapp. Wie ist das zu deuten?",
+   o:["Meist ein Zeichen, dass das Immunsystem auf den Impfstoff reagiert – das klingt in der Regel nach kurzer Zeit ab.","Ein sicheres Zeichen, dass die Impfung nicht gewirkt hat.","Man ist nun an der Krankheit erkrankt, gegen die geimpft wurde.","Ein Hinweis darauf, dass man ein Antibiotikum nehmen sollte."],
+   e:"Rötung, leichtes Fieber oder Abgeschlagenheit sind häufige, harmlose Impfreaktionen: Die Abwehr arbeitet. Bei starken Beschwerden fragt man die Ärztin oder den Arzt."}
+];
+
+/* =====================================================================
+   PROGRAMM – ab hier muss nichts geändert werden
+   ===================================================================== */
+const aktiveBereiche = BEREICHE.filter(b => b.aktiv);
+const aktivIds = aktiveBereiche.map(b => b.id);
+const bereichVon = id => BEREICHE.find(b => b.id === id);
+const app = document.getElementById("app");
+let S = null;   // Zustand
+
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function mischen(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function speichern(){try{localStorage.setItem(CONFIG.speicherSchluessel,JSON.stringify(S));}catch(e){}}
+function laden(){try{const x=localStorage.getItem(CONFIG.speicherSchluessel);return x?JSON.parse(x):null;}catch(e){return null;}}
+function loeschen(){try{localStorage.removeItem(CONFIG.speicherSchluessel);}catch(e){}}
+function kopf(){return `<p class="kicker">${esc(CONFIG.kicker)}</p>`;}
+
+/* ---------- Startseite ---------- */
+function start(){
+  const n = FRAGEN.filter(q=>aktivIds.includes(q.b)).length;
+  app.innerHTML = `${kopf()}
+    <h1>${esc(CONFIG.titel)}</h1>
+    <p class="unter">${esc(CONFIG.untertitel)}</p>
+    <div class="info"><b class="k">So funktioniert es</b>
+      Du beantwortest ${n} Fragen zur ganzen Reihe – von Bakterien und Viren bis zur spezifischen Abwehr.
+      Zu jeder Frage gibt es genau <b>eine</b> richtige Antwort. Am Ende siehst du, wie gut du in den
+      ${aktiveBereiche.length} Themenbereichen bist. <b>In deinem schwächsten Bereich hältst du ein Referat</b> –
+      so wirst du dort zur Expertin oder zum Experten für die Klasse.
+    </div>
+    <p>Bearbeite den Test allein und ohne Hilfsmittel. Nur dann bekommst du das Thema, bei dem du am meisten dazulernst.
+    Du brauchst etwa 20 Minuten.</p>
+    <label class="feld" for="nm">Dein Name</label>
+    <input type="text" id="nm" autocomplete="off" placeholder="Vorname Nachname">
+    <label class="feld" for="kl">Klasse</label>
+    <input type="text" id="kl" autocomplete="off" placeholder="z. B. 10d">
+    <div class="hinweis" id="hw"></div>
+    <div class="leiste"><span></span><button class="btn" id="go">Test starten</button></div>
+    <p class="fussnote">Die Themenbereiche werden erst am Ende angezeigt. Deine Antworten werden nur auf diesem Gerät zwischengespeichert.</p>`;
+  document.getElementById("go").onclick = ()=>{
+    const name = document.getElementById("nm").value.trim();
+    const klasse = document.getElementById("kl").value.trim();
+    if(name.length<2){document.getElementById("hw").textContent="Bitte gib deinen Namen ein.";return;}
+    const fr = mischen(FRAGEN.map((q,i)=>i).filter(i=>aktivIds.includes(FRAGEN[i].b)));
+    S = { name, klasse, start:Date.now(), reihenfolge:fr,
+          optionen: fr.map(i=>mischen(FRAGEN[i].o.map((_,k)=>k))),
+          antworten: fr.map(()=>null), pos:0, fertig:false, gewaehlt:null };
+    speichern(); frage();
+  };
+}
+
+/* ---------- Diagramm (Frage zum Immungedächtnis) ---------- */
+function diagramm(){
+  return `<figure><svg viewBox="0 0 560 250" role="img" aria-label="Antikörpermenge bei erstem und zweitem Kontakt">
+    <line x1="60" y1="20" x2="60" y2="205" stroke="#1A1A1A" stroke-width="1.5"/>
+    <line x1="60" y1="205" x2="540" y2="205" stroke="#1A1A1A" stroke-width="1.5"/>
+    <polygon points="60,14 55,26 65,26" fill="#1A1A1A"/><polygon points="546,205 534,200 534,210" fill="#1A1A1A"/>
+    <text x="22" y="115" transform="rotate(-90 22 115)" text-anchor="middle" font-size="14" fill="#1A1A1A">Menge an Antikörpern im Blut</text>
+    <text x="300" y="242" text-anchor="middle" font-size="14" fill="#1A1A1A">Zeit (Wochen)</text>
+    <path d="M60,203 L110,203 C130,203 135,200 145,190 C160,172 170,160 180,160 C195,160 205,180 225,192 C245,200 265,199 300,198
+             L320,198 C330,198 333,180 340,120 C348,55 355,40 365,40 C380,40 395,80 420,115 C450,150 490,160 535,162"
+          fill="none" stroke="#1A1A1A" stroke-width="3"/>
+    <line x1="110" y1="30" x2="110" y2="205" stroke="#8C8C8C" stroke-width="1.5" stroke-dasharray="5 5"/>
+    <line x1="320" y1="30" x2="320" y2="205" stroke="#8C8C8C" stroke-width="1.5" stroke-dasharray="5 5"/>
+    <text x="114" y="40" font-size="14" fill="#595959">1. Kontakt</text>
+    <text x="324" y="40" font-size="14" fill="#595959" text-anchor="start" dx="50">2. Kontakt</text>
+    <g font-size="12" fill="#595959" text-anchor="middle">
+      <text x="110" y="222">0</text><text x="180" y="222">1</text><text x="250" y="222">2</text>
+      <text x="320" y="222">0</text><text x="390" y="222">1</text><text x="460" y="222">2</text><text x="530" y="222">3</text>
+    </g>
+  </svg><figcaption>Abb.: Menge an Antikörpern im Blut bei erstem und zweitem Kontakt mit demselben Erreger (vereinfacht, eigene Darstellung)</figcaption></figure>`;
+}
+
+/* ---------- Fragenseite ---------- */
+function frage(){
+  const N = S.reihenfolge.length, p = S.pos, q = FRAGEN[S.reihenfolge[p]];
+  const opts = S.optionen[p];
+  const beantw = S.antworten.filter(a=>a!==null).length;
+  app.innerHTML = `${kopf()}
+    <div class="fnr">Frage ${p+1} von ${N}  ·  ${beantw} beantwortet</div>
+    <div class="fortschritt"><span style="width:${(beantw/N*100).toFixed(1)}%"></span></div>
+    ${q.svg?diagramm():""}
+    <div class="frage">${esc(q.f)}</div>
+    <div id="opts">${opts.map((k,i)=>`<button class="opt${S.antworten[p]===k?" sel":""}" data-k="${k}">
+        <span class="bu">${"ABCD"[i]}</span><span>${esc(q.o[k])}</span></button>`).join("")}</div>
+    <div class="leiste">
+      <button class="btn zweit" id="zur" ${p===0?"disabled":""}>Zurück</button>
+      ${p<N-1?`<button class="btn" id="wei">Weiter</button>`:`<button class="btn" id="abg">Test abgeben</button>`}
+    </div>
+    <div class="punkte noprint" aria-label="Fragenübersicht">${S.reihenfolge.map((_,i)=>
+      `<button data-i="${i}" class="${S.antworten[i]!==null?"ok":""}${i===p?" akt":""}">${i+1}</button>`).join("")}</div>
+    <div class="hinweis" id="hw"></div>`;
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+    S.antworten[p]=+b.dataset.k; speichern();
+    app.querySelectorAll(".opt").forEach(x=>x.classList.toggle("sel",x===b));
+    app.querySelector(`.punkte button[data-i="${p}"]`).classList.add("ok");
+  });
+  document.getElementById("zur").onclick=()=>{S.pos--;speichern();frage();};
+  const w=document.getElementById("wei"); if(w) w.onclick=()=>{S.pos++;speichern();frage();};
+  const a=document.getElementById("abg"); if(a) a.onclick=abgeben;
+  app.querySelectorAll(".punkte button").forEach(b=>b.onclick=()=>{S.pos=+b.dataset.i;speichern();frage();});
+  window.scrollTo(0,0);
+}
+
+function abgeben(){
+  const offen = S.antworten.map((a,i)=>a===null?i+1:null).filter(x=>x);
+  if(offen.length){
+    const ok = confirm(`Du hast ${offen.length} Frage(n) noch nicht beantwortet (Nr. ${offen.join(", ")}).\nUnbeantwortete Fragen zählen als falsch. Trotzdem abgeben?`);
+    if(!ok) return;
+  } else if(!confirm("Test jetzt abgeben? Danach kannst du nichts mehr ändern.")) return;
+  S.fertig=true; S.ende=Date.now(); speichern(); ergebnis();
+}
+
+/* ---------- Auswertung ---------- */
+function auswerten(){
+  const w = {}; aktivIds.forEach(id=>w[id]={r:0,n:0});
+  S.reihenfolge.forEach((fi,p)=>{const q=FRAGEN[fi]; w[q.b].n++; if(S.antworten[p]===0) w[q.b].r++;});
+  aktivIds.forEach(id=>w[id].pz=w[id].n?Math.round(w[id].r/w[id].n*100):0);
+  const minPz = Math.min(...aktivIds.map(id=>w[id].pz));
+  const schwach = aktivIds.filter(id=>w[id].pz===minPz);
+  const gesamtR = aktivIds.reduce((s,id)=>s+w[id].r,0), gesamtN = aktivIds.reduce((s,id)=>s+w[id].n,0);
+  return {w,schwach,gesamtR,gesamtN};
+}
+
+function datum(ts){const d=new Date(ts);return d.toLocaleDateString("de-DE")+", "+d.toLocaleTimeString("de-DE",{hour:"2-digit",minute:"2-digit"})+" Uhr";}
+
+function ergebnis(){
+  const A = auswerten();
+  if(!S.gewaehlt && A.schwach.length===1){S.gewaehlt=A.schwach[0]; speichern();}
+  const balken = aktiveBereiche.map(b=>{
+    const x=A.w[b.id];
+    return `<div class="bzeile${A.schwach.includes(b.id)?" schwach":""}">
+      <div class="bname">${esc(b.name)}</div><div class="bwert">${x.r}/${x.n}</div>
+      <div class="bspur"><span style="width:${x.pz}%"></span></div></div>`;
+  }).join("");
+
+  let teil2 = "";
+  if(!S.gewaehlt){
+    const alleGleich = A.schwach.length===aktivIds.length;
+    teil2 = `<h2>Wähle dein Referatthema</h2>
+      <p>${alleGleich?"Du hast in allen Bereichen gleich viele Punkte erreicht. Wähle einen Bereich, in dem du dich am unsichersten fühlst."
+        :"Du hast in mehreren Bereichen gleich wenige Punkte. Wähle einen davon – am besten den, in dem du dich selbst am unsichersten fühlst."}</p>
+      <div class="wahl">${A.schwach.map(id=>`<button class="opt" data-id="${id}"><span class="bu">${id}</span><span><b>${esc(bereichVon(id).name)}</b><br>${esc(bereichVon(id).referat.titel)}</span></button>`).join("")}</div>
+      <p class="klein">Die Wahl kann danach nicht mehr geändert werden.</p>`;
+  } else {
+    teil2 = referatTeil(S.gewaehlt, A);
+  }
+
+  app.innerHTML = `${kopf()}
+    <h1>Dein Ergebnis</h1>
+    <p class="unter">${esc(S.name)}${S.klasse?" · "+esc(S.klasse):""} · ${A.gesamtR} von ${A.gesamtN} Punkten</p>
+    <h2>Deine Themenbereiche</h2>
+    <div class="balken">${balken}</div>
+    ${teil2}
+    <h2>Deine Antworten im Überblick</h2>
+    <p>Hier siehst du zu jedem Bereich, welche Fragen du falsch beantwortet hast – mit Erklärung. Das ist auch ein guter Startpunkt für dein Referat.</p>
+    ${rueckblick(A)}
+    <div class="leiste noprint">
+      <button class="linkbtn" id="rs">Test zurücksetzen (nur mit Code der Lehrkraft)</button>
+    </div>`;
+
+  app.querySelectorAll(".wahl .opt").forEach(b=>b.onclick=()=>{
+    const id=b.dataset.id;
+    if(!confirm(`Referatthema „${bereichVon(id).name}“ verbindlich wählen?`)) return;
+    S.gewaehlt=id; speichern(); ergebnis();
+  });
+  const kb=document.getElementById("kopie"); if(kb) kb.onclick=kopieren;
+  const pb=document.getElementById("druck"); if(pb) pb.onclick=()=>window.print();
+  document.getElementById("rs").onclick=()=>{
+    const c=prompt("Code der Lehrkraft eingeben, um den Test zurückzusetzen:");
+    if(c===null) return;
+    if(c.trim()===CONFIG.resetCode){loeschen();S=null;start();window.scrollTo(0,0);} else alert("Der Code ist nicht richtig.");
+  };
+  window.scrollTo(0,0);
+}
+
+function referatTeil(id, A){
+  const b = bereichVon(id), r = b.referat, x = A.w[id];
+  return `<div class="thema"><div class="k">Dein Referatthema · Bereich ${esc(b.name)}</div>
+      <div class="t">${esc(r.titel)}</div></div>
+    ${CONFIG.abgabe?`<p><b>Termin:</b> ${esc(CONFIG.abgabe)}</p>`:""}
+    <h3>Diese Leitfragen beantwortest du in deinem Referat</h3>
+    <ol>${r.leitfragen.map(l=>`<li>${esc(l)}</li>`).join("")}</ol>
+    <div class="hilfe"><b class="k">Tipp</b>${esc(r.tipp)}</div>
+    <h3>Anforderungen</h3>
+    <ul>${CONFIG.referat.anforderungen.map(a=>`<li>${esc(a)}</li>`).join("")}</ul>
+    <h3>Darauf achte ich bei der Bewertung</h3>
+    <table class="krit"><tr><th>Kriterium</th><th>Das bedeutet</th></tr>
+      ${CONFIG.referat.kriterien.map(k=>`<tr><td><b>${esc(k[0])}</b></td><td>${esc(k[1])}</td></tr>`).join("")}</table>
+    <div class="beleg" id="beleg"><div class="k">Ergebnisbeleg</div>
+      <table>
+        <tr><td>Name</td><td><b>${esc(S.name)}</b></td></tr>
+        ${S.klasse?`<tr><td>Klasse</td><td>${esc(S.klasse)}</td></tr>`:""}
+        <tr><td>Abgegeben</td><td>${datum(S.ende||Date.now())}</td></tr>
+        ${aktiveBereiche.map(bb=>`<tr><td>${esc(bb.name)}</td><td>${A.w[bb.id].r}/${A.w[bb.id].n}</td></tr>`).join("")}
+        <tr><td><b>Gesamt</b></td><td><b>${A.gesamtR}/${A.gesamtN}</b></td></tr>
+        <tr><td><b>Referatthema</b></td><td><b>${esc(r.titel)}</b></td></tr>
+      </table>
+    </div>
+    <p class="noprint"><b>Wichtig:</b> Mache einen Screenshot vom Ergebnisbeleg oder kopiere dein Ergebnis und schicke es deiner Lehrkraft.</p>
+    <div class="leiste noprint" style="justify-content:flex-start">
+      <button class="btn" id="kopie">Ergebnis kopieren</button>
+      <button class="btn zweit" id="druck">Drucken / als PDF</button>
+    </div>
+    <div class="hinweis" id="hw"></div>`;
+}
+
+function ergebnisText(){
+  const A=auswerten(), r=bereichVon(S.gewaehlt).referat;
+  return [`Diagnosetest Immunbiologie – Ergebnis`,
+    `Name: ${S.name}${S.klasse?" ("+S.klasse+")":""}`,
+    `Abgegeben: ${datum(S.ende||Date.now())}`,
+    ...aktiveBereiche.map(b=>`${b.name}: ${A.w[b.id].r}/${A.w[b.id].n}`),
+    `Gesamt: ${A.gesamtR}/${A.gesamtN}`,
+    `Referatthema: ${r.titel}`].join("\n");
+}
+function kopieren(){
+  const t=ergebnisText(), hw=document.getElementById("hw");
+  const fertig=()=>{hw.textContent="Ergebnis kopiert – du kannst es jetzt z. B. in eine Nachricht einfügen.";};
+  const alt=()=>{const ta=document.createElement("textarea");ta.value=t;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";
+    document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,99999);
+    try{document.execCommand("copy");fertig();}catch(e){hw.textContent="Kopieren hat nicht geklappt – bitte mache einen Screenshot.";}
+    document.body.removeChild(ta);};
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(fertig,alt);} else alt();
+}
+
+function rueckblick(A){
+  return aktiveBereiche.map(b=>{
+    const eintraege = S.reihenfolge.map((fi,p)=>({q:FRAGEN[fi],a:S.antworten[p],nr:p+1})).filter(e=>e.q.b===b.id);
+    const falsch = eintraege.filter(e=>e.a!==0);
+    return `<details${b.id===S.gewaehlt?" open":""}><summary>${esc(b.name)} – ${A.w[b.id].r}/${A.w[b.id].n} richtig</summary>
+      ${falsch.length?falsch.map(e=>`<div class="rv">
+        <div class="q">Frage ${e.nr}: ${esc(e.q.f)}</div>
+        <div class="a"><span class="zeichen">✗</span>Deine Antwort: ${e.a===null?"<i>nicht beantwortet</i>":esc(e.q.o[e.a])}</div>
+        <div class="a"><span class="zeichen">✓</span><b>Richtig: ${esc(e.q.o[0])}</b></div>
+        <div class="a klein">${esc(e.q.e)}</div></div>`).join("")
+        :`<div class="rv">Alle Fragen in diesem Bereich richtig.</div>`}
+    </details>`;
+  }).join("");
+}
+
+/* ---------- Start ---------- */
+(function init(){
+  const g = laden();
+  if(g && g.reihenfolge && g.reihenfolge.every(i=>FRAGEN[i] && aktivIds.includes(FRAGEN[i].b))){
+    S=g; if(S.fertig) ergebnis(); else frage();
+  } else { if(g) loeschen(); start(); }
+})();
+</script>
+</body>
+</html>
