@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wo stehe ich? – Diagnosetest Evolution · Klasse 9</title>
+<style>
+  :root{
+    --ink:#1A1A1A; --grau:#595959; --hell:#F2F2F2; --linie:#BFBFBF; --mittel:#8C8C8C;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family: Calibri, Carlito, "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    color:var(--ink); background:#fff; font-size:18px; line-height:1.45;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:780px;margin:0 auto;padding:28px 20px 60px}
+  .kicker{font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--grau);margin:0 0 18px}
+  h1{font-size:34px;line-height:1.15;margin:0 0 6px;font-weight:700}
+  .unter{color:var(--grau);font-size:19px;margin:0 0 26px}
+  h2{font-size:23px;margin:30px 0 10px}
+  h3{font-size:19px;margin:22px 0 6px}
+  p{margin:0 0 12px}
+  .klein{font-size:14px;color:var(--grau)}
+  .info{background:var(--hell);border-left:6px solid var(--ink);padding:14px 18px;margin:18px 0}
+  .info b.k{display:block;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:4px}
+  .hilfe{border:1.5px dashed var(--mittel);padding:12px 16px;margin:16px 0;color:var(--ink)}
+  .hilfe b.k{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;margin-right:8px}
+  label.feld{display:block;font-weight:700;margin:16px 0 4px}
+  input[type=text]{
+    width:100%;font:inherit;padding:10px 12px;border:1.5px solid var(--linie);border-radius:4px;background:#fff;color:var(--ink)
+  }
+  input[type=text]:focus{outline:none;border-color:var(--ink)}
+  .btn{
+    font:inherit;font-weight:700;border:2px solid var(--ink);background:var(--ink);color:#fff;
+    padding:11px 22px;border-radius:4px;cursor:pointer;-webkit-appearance:none
+  }
+  .btn.zweit{background:#fff;color:var(--ink)}
+  .btn:disabled{opacity:.35;cursor:default}
+  .leiste{display:flex;gap:12px;justify-content:space-between;align-items:center;margin-top:26px;flex-wrap:wrap}
+  .fortschritt{height:6px;background:var(--hell);border-radius:3px;overflow:hidden;margin:8px 0 26px}
+  .fortschritt span{display:block;height:100%;background:var(--ink);width:0;transition:width .25s}
+  .fnr{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--grau)}
+  .frage{font-size:21px;font-weight:700;margin:6px 0 18px}
+  .opt{
+    display:flex;gap:14px;align-items:flex-start;width:100%;text-align:left;font:inherit;color:var(--ink);
+    background:#fff;border:1.5px solid var(--linie);border-radius:6px;padding:13px 15px;margin:0 0 10px;cursor:pointer
+  }
+  .opt .bu{flex:0 0 28px;height:28px;border:1.5px solid var(--mittel);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:var(--grau)}
+  .opt.sel{border:2px solid var(--ink);background:var(--hell);padding:12.5px 14.5px}
+  .opt.sel .bu{background:var(--ink);border-color:var(--ink);color:#fff}
+  .punkte{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 0}
+  .punkte button{width:30px;height:30px;font:inherit;font-size:13px;border:1.5px solid var(--linie);background:#fff;border-radius:4px;cursor:pointer;color:var(--grau);padding:0}
+  .punkte button.ok{background:var(--hell);color:var(--ink);border-color:var(--mittel)}
+  .punkte button.akt{border:2px solid var(--ink);color:var(--ink);font-weight:700}
+  figure{margin:4px 0 18px}
+  figcaption{font-size:13.5px;font-style:italic;color:var(--grau);margin-top:4px}
+  svg{max-width:100%;height:auto}
+  /* Ergebnis */
+  .balken{margin:10px 0 4px}
+  .bzeile{display:grid;grid-template-columns:1fr 64px;gap:4px 12px;align-items:center;margin:0 0 14px}
+  .bname{font-weight:700;font-size:17px}
+  .bwert{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+  .bspur{grid-column:1 / span 2;height:14px;background:var(--hell);border-radius:3px;overflow:hidden}
+  .bspur span{display:block;height:100%;background:var(--mittel)}
+  .bzeile.schwach .bspur span{background:var(--ink)}
+  .bzeile.schwach .bname::after{content:"  ·  schwächster Bereich";font-weight:400;color:var(--grau);font-size:15px}
+  .wahl{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+  .thema{border-left:6px solid var(--ink);background:var(--hell);padding:16px 20px;margin:18px 0}
+  .thema .k{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--grau)}
+  .thema .t{font-size:24px;font-weight:700;line-height:1.2;margin:4px 0 0}
+  ul,ol{margin:4px 0 14px;padding-left:24px}
+  li{margin:0 0 5px}
+  table.krit{border-collapse:collapse;width:100%;margin:8px 0 16px;font-size:16px}
+  table.krit th,table.krit td{text-align:left;padding:8px 10px;border-bottom:1px solid #D9D9D9;vertical-align:top}
+  table.krit th{background:var(--hell);font-weight:700}
+  .beleg{border:2px solid var(--ink);border-radius:6px;padding:16px 18px;margin:20px 0}
+  .beleg .k{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--grau);margin-bottom:8px}
+  .beleg table{border-collapse:collapse;width:100%;font-size:16px}
+  .beleg td{padding:3px 0;vertical-align:top}
+  .beleg td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  details{border:1.5px solid var(--linie);border-radius:6px;padding:10px 14px;margin:0 0 10px}
+  details summary{cursor:pointer;font-weight:700}
+  .rv{margin:12px 0 0;padding:10px 0 0;border-top:1px solid #E3E3E3}
+  .rv .q{font-weight:700;margin-bottom:4px}
+  .rv .a{margin:2px 0}
+  .zeichen{display:inline-block;width:20px;font-weight:700}
+  .fussnote{margin-top:40px;font-size:13px;color:var(--grau)}
+  .linkbtn{background:none;border:none;font:inherit;font-size:13px;color:var(--grau);text-decoration:underline;cursor:pointer;padding:0}
+  .hinweis{font-size:15px;color:var(--grau);margin-top:6px;min-height:20px}
+  @media (max-width:520px){
+    body{font-size:17px} h1{font-size:28px} .frage{font-size:19px}
+  }
+  @media print{
+    .noprint{display:none!important}
+    .wrap{padding-top:0}
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+/* =====================================================================
+   EINSTELLUNGEN FÜR DIE LEHRKRAFT
+   – Bereiche mit aktiv:false werden weder abgefragt noch ausgewertet.
+   – Alle Texte (Fragen, Übungstipps) lassen sich hier ändern.
+   ===================================================================== */
+const CONFIG = {
+  kicker: "Biologie · Klasse 9 · Evolution",
+  titel: "Wo stehe ich?",
+  untertitel: "Diagnosetest zur Reihe „Entstehung des Lebens“ – von der Ursuppe bis an Land",
+  resetCode: "evo9",             // Code, mit dem ein abgeschlossener Test zurückgesetzt werden kann
+  speicherSchluessel: "diagnosetest_evolution_kl9_v1"
+};
+
+const BEREICHE = [
+  { id:"A", aktiv:true, name:"Die junge Erde und die chemische Evolution",
+    ueben:{ material:"Arbeitsblatt „Wie ist das Leben auf der Erde entstanden?“ (M1–M3)",
+      begriffe:["Uratmosphäre","Miller-Experiment","chemische Evolution","RNA-Welt / Ribozym","Protobiont"],
+      tipp:"Erkläre jemandem in fünf Sätzen, wie aus Gasen, Energie und Wasser die erste Vorstufe einer Zelle werden konnte. Wo du stockst, liest du nach." }},
+  { id:"B", aktiv:true, name:"Erste Zellen und der Sauerstoff",
+    ueben:{ material:"Arbeitsblatt „Von der ersten Zelle zum Sauerstoff“ (M1–M2)",
+      begriffe:["LUCA","Stromatolith","Cyanobakterien","Bändereisenerz","Große Sauerstoffkatastrophe","Ozonschicht"],
+      tipp:"Zeichne einen Zeitstrahl von 4,6 Milliarden Jahren bis heute und trage die Ereignisse aus dem Arbeitsblatt ein." }},
+  { id:"C", aktiv:true, name:"Landgang der Pflanzen",
+    ueben:{ material:"„Vom Wasser an Land“ (M1 und Stammbaum in M2)",
+      begriffe:["Cuticula","Spaltöffnung","Lignin","Leitbündel","Spore, Pollen, Samen","Bedecktsamer","adaptive Radiation"],
+      tipp:"Lege eine Tabelle an: Problem an Land – Angepasstheit – so hilft sie. Ohne Blick ins Material, danach vergleichen." }},
+  { id:"D", aktiv:true, name:"Vom Einzeller zum Vielzeller",
+    ueben:{ material:"„Vom Einzeller zum Vielzeller“ (Volvox-Reihe und Experiment)",
+      begriffe:["Einzeller","Kolonie","Vielzeller","Arbeitsteilung","Modellreihe","Kontrolle"],
+      tipp:"Ordne Chlamydomonas, Gonium, Eudorina, Pleodorina und Volvox den Begriffen Einzeller, Kolonie und Vielzeller zu – und begründe jede Zuordnung." }},
+  { id:"E", aktiv:true, name:"Leben im Urmeer: Ediacara und Kambrium",
+    ueben:{ material:"„Wettrüsten im Urmeer“ (M1 und die Steckbriefe A–H)",
+      begriffe:["Ediacara-Zeit","Kambrium","Kambrische Explosion","Räuber und Beute","Wettrüsten","Lebendrekonstruktion"],
+      tipp:"Nimm dir drei Steckbriefe vor und erkläre bei jedem, woran man erkennt, ob das Tier aus der Ediacara-Zeit oder aus dem Kambrium stammt." }},
+  { id:"F", aktiv:true, name:"Landgang der Wirbeltiere",
+    ueben:{ material:"„Der Fisch in uns“ (M1 Tiktaalik und M2 Übergangsformen)",
+      begriffe:["Tiktaalik","Übergangsform / Mosaik","Oberarmknochen, Elle, Speiche","Acanthostega","Devon"],
+      tipp:"Taste deinen Arm ab und vergleiche ihn noch einmal mit der Flosse von Tiktaalik (Abb. 2). Erkläre dann, warum es Beine schon vor dem Landgang gab." }},
+  { id:"G", aktiv:false, name:"Archaeopteryx und die Vögel",   // auf true setzen, sobald Archaeopteryx behandelt wurde
+    ueben:{ material:"„Halb Vogel, halb Reptil?“ (M1 Archaeopteryx und M2 Dinosaurier mit Federn)",
+      begriffe:["Archaeopteryx","Mosaikform","Gabelbein","gefiederte Dinosaurier","Funktionswechsel"],
+      tipp:"Schreibe die Merkmale von Archaeopteryx in zwei Spalten: Vogel und Reptil. Erkläre dann, warum Vögel heute als Dinosaurier gelten." }},
+  { id:"M", aktiv:true, name:"Wie Evolution funktioniert",
+    ueben:{ material:"Kästen „Wie entstehen neue Arten?“ (Vom Wasser an Land) und „Warum an Land?“ (Der Fisch in uns)",
+      begriffe:["Variation","Selektion","Vererbung","Evolution hat kein Ziel","gemeinsame Vorfahren"],
+      tipp:"Übe den Satzbau: „Durch zufällige Veränderungen im Erbgut gab es Tiere mit … Diese hatten einen Vorteil, weil … Sie überlebten häufiger und hatten mehr Nachkommen …“. Formuliere so drei Beispiele aus der Reihe." }}
+];
+
+/* Die erste Antwort ist jeweils die richtige – die Reihenfolge wird beim Start gemischt. */
+const FRAGEN = [
+  /* ---------- A: Die junge Erde und die chemische Evolution ---------- */
+  {b:"A", f:"Wie war die Uratmosphäre der jungen Erde zusammengesetzt?",
+   o:["Wasserdampf, Kohlenstoffdioxid und Stickstoff, vermutlich auch Methan und Ammoniak – aber praktisch kein freier Sauerstoff.","Vor allem Stickstoff und Sauerstoff, ganz ähnlich wie heute.","Fast nur Sauerstoff, deshalb gab es eine besonders dicke Ozonschicht.","Sie bestand nur aus Wasserdampf – andere Gase gab es noch nicht."],
+   e:"Die Uratmosphäre enthielt praktisch keinen freien Sauerstoff. Deshalb gab es auch keine Ozonschicht, und die UV-Strahlung traf ungebremst auf die Erde."},
+  {b:"A", f:"Warum war das Fehlen von Sauerstoff für die Entstehung des Lebens eher günstig als ein Hindernis?",
+   o:["Sauerstoff hätte die empfindlichen organischen Moleküle zerstört.","Ohne Sauerstoff war es auf der Erde angenehm kühl.","Die ersten Lebewesen konnten ohne Sauerstoff schneller atmen.","Sauerstoff hätte Blitze und Vulkanausbrüche verhindert."],
+   e:"Sauerstoff ist sehr reaktionsfreudig und greift organische Moleküle an. Ohne ihn – und ohne Lebewesen, die sie hätten fressen können – blieben die Moleküle erhalten."},
+  {b:"A", f:"Was zeigte das Experiment von Stanley Miller (1953)?",
+   o:["Aus einfachen Gasen entstehen mit Energiezufuhr (Funken) Aminosäuren – ganz ohne Lebewesen.","Im Glaskolben entstand nach einer Woche eine lebende Zelle.","Leben kann nur aus Leben entstehen.","Aminosäuren entstehen nur, wenn viel Sauerstoff vorhanden ist."],
+   e:"Miller wies im braun gefärbten Wasser Aminosäuren nach, z. B. Glycin und Alanin – Bausteine der Proteine. Eine Zelle ist dabei nicht entstanden."},
+  {b:"A", f:"Warum vermutet die Forschung, dass am Anfang des Lebens RNA stand und nicht DNA („RNA-Welt“)?",
+   o:["RNA kann Information speichern und gleichzeitig wie ein Enzym Reaktionen beschleunigen.","RNA ist viel stabiler als DNA.","RNA kommt heute nur noch in Bakterien vor.","RNA kann auch ohne Wasser entstehen."],
+   e:"Bei heutigen Zellen braucht die DNA Proteine, um abgelesen zu werden – ein Henne-Ei-Problem. RNA kann beides: Information speichern und als Ribozym Reaktionen beschleunigen."},
+  {b:"A", f:"Was ist ein Protobiont?",
+   o:["Ein Fettbläschen, das RNA einschließt – eine Vorstufe der Zelle mit eigenem Innenmilieu.","Das erste Bakterium mit Zellkern.","Ein Gestein, das von Bakterienmatten aufgebaut wurde.","Ein Gasgemisch aus der Uratmosphäre."],
+   e:"Fettähnliche Moleküle bilden im Wasser von selbst Bläschen. Schließt so ein Bläschen RNA ein, ist es abgegrenzt – ab hier kann Selektion wirken. Eine echte Zelle ist es noch nicht."},
+
+  /* ---------- B: Erste Zellen und der Sauerstoff ---------- */
+  {b:"B", f:"Was ist LUCA?",
+   o:["Der letzte gemeinsame Vorfahre aller heute lebenden Lebewesen.","Das allererste Lebewesen der Erde überhaupt.","Das älteste bekannte Fossil, ein Stromatolith.","Die erste Pflanze, die an Land wuchs."],
+   e:"LUCA war nicht das erste Leben: Es gab vermutlich weitere frühe Zellen, deren Nachkommen aber ausgestorben sind. LUCA ist die Zelle, von der alles heutige Leben abstammt."},
+  {b:"B", f:"Bakterium, Pilz, Buche und Mensch sehen völlig verschieden aus. Was spricht trotzdem für einen gemeinsamen Vorfahren?",
+   o:["Alle speichern Information in DNA, nutzen denselben genetischen Code, bauen Proteine an Ribosomen und nutzen ATP.","Alle Lebewesen brauchen Sauerstoff zum Leben.","Alle Lebewesen haben einen Zellkern.","Alle Lebewesen betreiben Fotosynthese."],
+   e:"Dass sich diese vier Merkmale mehrfach unabhängig in genau derselben Form entwickelt haben, ist sehr unwahrscheinlich. Einfacher ist die Erklärung: Alle haben sie von einem gemeinsamen Vorfahren geerbt."},
+  {b:"B", f:"Was sind Stromatolithen?",
+   o:["Von Bakterienmatten aufgebaute Gesteinsschichten – der älteste anerkannte Nachweis von Leben (ca. 3,5 Mrd. Jahre).","Gestreifte Gesteine aus Rost, die bei der Fotosynthese entstanden.","Die ersten Landpflanzen.","Meteoriten, in denen man Aminosäuren gefunden hat."],
+   e:"Stromatolithen aus Westaustralien sind rund 3,5 Milliarden Jahre alt. Solche Bakterienmatten wachsen bis heute, z. B. in der Shark Bay."},
+  {b:"B", f:"Cyanobakterien setzten bei der Fotosynthese Sauerstoff frei. Warum gelangte er zunächst nicht in die Luft?",
+   o:["Er reagierte mit dem im Meer gelösten Eisen zu Rost, der als Bändereisenerz zu Boden sank.","Die Cyanobakterien verbrauchten ihn sofort wieder selbst.","Sauerstoff ist schwerer als Wasser und blieb deshalb am Meeresboden.","Die Ozonschicht hielt den Sauerstoff im Wasser fest."],
+   e:"Erst als das gelöste Eisen weitgehend aufgebraucht war, reicherte sich der Sauerstoff im Wasser und dann in der Luft an – vor etwa 2,4 Milliarden Jahren."},
+  {b:"B", f:"Die Große Sauerstoffkatastrophe vor etwa 2,4 Milliarden Jahren: Für wen war sie eine Katastrophe – und welche Chance bot sie?",
+   o:["Für die anaeroben Bakterien war sie tödlich; langfristig ermöglichten Ozonschicht und Zellatmung größere, komplexere Lebewesen.","Für die Cyanobakterien war sie tödlich; die anaeroben Bakterien profitierten davon.","Für die Dinosaurier war sie tödlich; danach konnten sich die Säugetiere ausbreiten.","Für alle Lebewesen war sie tödlich; danach musste das Leben ganz neu entstehen."],
+   e:"Die meisten anaeroben Bakterien starben. Aus Sauerstoff entstand aber die Ozonschicht, die das Land bewohnbar machte, und die Zellatmung liefert viel mehr Energie – Voraussetzung für alle Vielzeller."},
+
+  /* ---------- C: Landgang der Pflanzen ---------- */
+  {b:"C", f:"Von welchen Lebewesen stammen alle Landpflanzen ab?",
+   o:["Von Grünalgen aus dem Süßwasser, die am Rand von Tümpeln lebten, die immer wieder trockenfielen.","Von Meeresalgen aus dem offenen Ozean.","Von Cyanobakterien, die an Land gespült wurden.","Von Pilzen, die schon vorher an Land lebten."],
+   e:"Am Rand austrocknender Tümpel überlebten vor allem Algen, die Trockenphasen besser überstanden. Im offenen Meer gab es diesen Selektionsdruck nie."},
+  {b:"C", f:"Welche Angepasstheit schützt Landpflanzen vor dem Austrocknen?",
+   o:["Eine wasserdichte Wachsschicht auf der Oberfläche (Cuticula).","Spaltöffnungen in den Blättern.","Der Holzstoff Lignin in den Zellwänden.","Sporen mit einer festen Hülle."],
+   e:"Die Cuticula verringert die Verdunstung. Spaltöffnungen dienen dem Gasaustausch, Lignin der Stabilität, Sporen der Verbreitung."},
+  {b:"C", f:"Wozu dienen Spaltöffnungen?",
+   o:["Sie lassen Kohlenstoffdioxid hinein und Sauerstoff hinaus und lassen sich bei Trockenheit schließen.","Sie nehmen Wasser aus dem Boden auf.","Sie machen die Zellwände stabil, damit die Pflanze aufrecht wachsen kann.","Durch sie schwimmen die männlichen Keimzellen zur Eizelle."],
+   e:"Die Wachsschicht hält auch Gase zurück. Spaltöffnungen lösen dieses neue Problem – und schließen sich, wenn zu viel Wasser verloren gehen würde."},
+  {b:"C", f:"Welches neue Merkmal machte die Befruchtung bei Pflanzen unabhängig vom Wasser?",
+   o:["Pollen und Samen der Samenpflanzen","Leitbündel mit Lignin","Sporen mit fester Hülle","Die Wachsschicht"],
+   e:"Bei Moosen und Farnen müssen die Keimzellen durch einen Wasserfilm schwimmen. Pollen bringt sie mit dem Wind zur Eizelle; Samen überstehen Trockenheit und Kälte."},
+  {b:"C", f:"Rund neun von zehn heutigen Landpflanzenarten sind Bedecktsamer (Blütenpflanzen). Wie kam es zu dieser Vielfalt?",
+   o:["Blüten und Früchte erschlossen neue Lebensräume, und die Bestäubung durch Insekten förderte die Bildung neuer Arten (adaptive Radiation).","Bedecktsamer sind die ältesten Landpflanzen und hatten am meisten Zeit.","Bedecktsamer brauchen weder Licht noch Wasser.","Bedecktsamer vermehren sich nur über Sporen, die überallhin fliegen."],
+   e:"Bedecktsamer gibt es erst seit gut 130 Millionen Jahren. Nach dem neuen Merkmal Blüte/Frucht entstanden in kurzer Zeit sehr viele neue Arten."},
+
+  /* ---------- D: Vom Einzeller zum Vielzeller ---------- */
+  {b:"D", f:"Was unterscheidet den Vielzeller Volvox von der Kolonie Eudorina?",
+   o:["Bei Volvox sind die Zellen spezialisiert und aufeinander angewiesen; bei Eudorina kann jede Zelle allein eine neue Kolonie bilden.","Volvox-Zellen haben mehr Geißeln als Eudorina-Zellen.","Bei Eudorina gibt es Körperzellen und Fortpflanzungszellen, bei Volvox nicht.","Volvox lebt im Meer, Eudorina im Süßwasser."],
+   e:"In einer Kolonie sind alle Zellen gleich und selbstständig. Bei Volvox herrscht Arbeitsteilung: Eine einzelne Körperzelle kann sich allein nicht fortpflanzen."},
+  {b:"D", f:"Was bedeutet Arbeitsteilung bei Volvox?",
+   o:["Viele kleine Körperzellen sorgen für Bewegung und Fotosynthese, wenige große Fortpflanzungszellen bilden Tochterkugeln.","Jede Zelle übernimmt abwechselnd alle Aufgaben.","Die Zellen teilen sich die Nahrung gleichmäßig untereinander auf.","Die Kugel teilt sich in zwei gleich große Hälften."],
+   e:"Spezialisierte Zellen erledigen ihre Aufgabe besonders gut – der Preis: Die Körperzellen sterben ab, sobald die Tochterkugeln freigesetzt sind."},
+  {b:"D", f:"Die Volvox-Reihe (Chlamydomonas – Gonium – Eudorina – Pleodorina – Volvox) ist eine Modellreihe. Was bedeutet das?",
+   o:["Die Algen leben heute nebeneinander und zeigen mögliche Schritte zur Vielzelligkeit – sie stammen nicht voneinander ab.","Volvox ist aus Pleodorina entstanden, Pleodorina aus Eudorina und so weiter.","Die Algen der Reihe gibt es nur als Modelle, nicht in der Natur.","Chlamydomonas ist der jüngste Vertreter der Reihe."],
+   e:"Keine der heute lebenden Algen kann die Vorfahrin einer anderen sein. Sie sind verwandt und haben gemeinsame Vorfahren."},
+  {b:"D", f:"Im Experiment von Herron bildeten Algen mit Pantoffeltierchen nach 750 Generationen Zellverbände, ohne Pantoffeltierchen nicht. Wie ist das zu erklären?",
+   o:["Zufällig entstandene Zellverbände waren zu groß zum Fressen, überlebten häufiger und vermehrten sich stärker.","Die Algen schlossen sich absichtlich zusammen, um sich vor den Pantoffeltierchen zu schützen.","Die Pantoffeltierchen klebten die Algen zusammen.","Die Nährlösung ließ die Algen zusammenwachsen."],
+   e:"Variation und Selektion: Die Fressfeinde sortierten die Einzeller aus. Die Kontrollkulturen ohne Pantoffeltierchen zeigen, dass die Nährlösung allein keine Zellverbände hervorbringt."},
+  {b:"D", f:"Welche Aussage beschreibt einen NACHTEIL der Vielzelligkeit?",
+   o:["Ein Vielzeller muss erst wachsen, bevor er sich fortpflanzen kann.","Große Zellverbände werden von vielen Fressfeinden nicht mehr gefressen.","Spezialisierte Zellen können ihre Aufgabe besonders gut erledigen.","Große Volvox-Kugeln schwimmen schneller zum Licht."],
+   e:"Einzeller können sich sehr schnell vermehren. Deshalb sind sie in vielen Lebensräumen bis heute erfolgreicher – die anderen drei Aussagen sind Vorteile."},
+
+  /* ---------- E: Leben im Urmeer ---------- */
+  {b:"E", f:"Was ist neu im Kambrium im Vergleich zur Ediacara-Zeit?",
+   o:["Augen, Beine, harte Panzer und Stacheln – und zum ersten Mal Räuber, die andere Tiere jagen.","Die ersten großen Vielzeller überhaupt, alle weich und flach.","Die ersten Tiere, die an Land leben.","Die ersten Fische mit Lungen."],
+   e:"In der Ediacara-Zeit lebten weiche, oft festsitzende Vielzeller auf Bakterienmatten. Mit dem Kambrium beginnt das Fressen und Gefressenwerden."},
+  {b:"E", f:"Ein Fossil: flach, oval und weich, mit Rippenmuster, ohne Kopf, Augen oder Beine; lag auf Bakterienmatten am Meeresboden. Aus welcher Zeit stammt es am ehesten?",
+   o:["Aus der Ediacara-Zeit","Aus dem Kambrium","Aus dem Devon","Aus der Zeit der Dinosaurier"],
+   e:"Das ist Dickinsonia. Weich, ohne Augen und Beine, auf Bakterienmatten – das passt zur Ediacara-Zeit vor rund 560 Millionen Jahren."},
+  {b:"E", f:"Was versteht man unter der Kambrischen Explosion?",
+   o:["In nur rund 20 Millionen Jahren tauchen die Vorfahren fast aller heutigen Tiergruppen auf.","Einen Meteoriteneinschlag, der fast alles Leben im Meer auslöschte.","Einen Vulkanausbruch, der die Ozonschicht zerstörte.","Die plötzliche Entstehung der ersten Zelle."],
+   e:"„Explosion“ meint die schnelle Entstehung vieler neuer Formen – in erdgeschichtlichen Maßstäben gemessen."},
+  {b:"E", f:"Hallucigenia wurde 1977 falsch herum rekonstruiert: Stacheln wurden für Beine gehalten. Was zeigt diese Geschichte?",
+   o:["Lebendrekonstruktionen sind Hypothesen, die durch neue Funde überprüft und korrigiert werden.","Fossilien sind meistens Fälschungen.","Aus Fossilien kann man nichts Sicheres ableiten.","Hallucigenia lief tatsächlich auf Stelzen."],
+   e:"Neue, besser erhaltene Funde zeigten, wo oben und unten (und später vorne und hinten) ist. So funktioniert Wissenschaft: Annahmen werden an Belegen geprüft."},
+
+  /* ---------- F: Landgang der Wirbeltiere ---------- */
+  {b:"F", f:"Warum gilt Tiktaalik als Mosaik zwischen Fisch und Vierbeiner?",
+   o:["Er hatte Schuppen, Kiemen und Flossen wie ein Fisch – aber auch einen Hals, einen flachen Kopf mit Augen oben und kräftige Rippen.","Er hatte Federn und Zähne.","Er hatte vier Beine mit Fingern, aber keine Kiemen mehr.","Er hatte einen harten Panzer und Facettenaugen."],
+   e:"Tiktaalik vereint Fisch- und Vierbeiner-Merkmale. Solche Übergangsformen zeigen, dass beide Gruppen gemeinsame Vorfahren haben."},
+  {b:"F", f:"Das Team um Neil Shubin suchte gezielt in 375 Millionen Jahre alten Flussablagerungen. Warum?",
+   o:["Das Alter liegt zwischen Eusthenopteron (Fisch, 385 Mio.) und Acanthostega (Vierbeiner, 365 Mio.), und der Übergang fand vermutlich in flachen Gewässern statt.","Ältere Gesteine gibt es auf der Erde nicht.","In der Tiefsee entstehen grundsätzlich keine Fossilien.","Dort hatte man schon viele Dinosaurier gefunden."],
+   e:"Aus der Evolutionstheorie ließ sich vorhersagen, wann und wo Übergangsformen gelebt haben sollten. Die Vorhersage traf zu – 2004 fand das Team Tiktaalik."},
+  {b:"F", f:"Welche Knochen stecken in der Brustflosse von Tiktaalik?",
+   o:["Ein Oberarmknochen, zwei Unterarmknochen (Elle und Speiche) und Handwurzelknochen – wie in unserem Arm.","Nur dünne Flossenstrahlen, keine Knochen.","Fünf lange Finger mit Krallen.","Ein einziger langer Knochen."],
+   e:"Die Abfolge ein Knochen – zwei Knochen – viele kleine Knochen findet sich bei Tiktaalik und bei uns: ein Hinweis auf gemeinsame Vorfahren."},
+  {b:"F", f:"Acanthostega hatte vier Beine mit je acht Fingern – lebte aber im Wasser. Was folgt daraus?",
+   o:["Beine gab es schon, bevor die Tiere an Land gingen; sie waren zuerst im Wasser nützlich.","Acanthostega lebte an Land und ging nur zum Trinken ins Wasser.","Beine entstehen erst, wenn ein Tier an Land geht.","Acanthostega hatte seine Beine wieder zurückgebildet."],
+   e:"Ein Merkmal kann schon vorhanden sein, bevor es für eine neue Aufgabe genutzt wird – zum Abstützen zwischen Pflanzen und im seichten Wasser."},
+  {b:"F", f:"Die flachen Flüsse und Sümpfe des Devons waren warm, voller Pflanzen und oft sauerstoffarm. Welches Merkmal brachte dort einen Vorteil?",
+   o:["Den Kopf aus dem Wasser heben und Luft atmen zu können.","Eine lange Schwanzflosse für schnelles Schwimmen in der Tiefsee.","Ein harter Panzer gegen Trilobiten.","Federn zum Warmhalten."],
+   e:"Wer Luft atmen konnte, war im sauerstoffarmen Wasser im Vorteil. Hals und Lunge waren deshalb schon im Wasser nützlich."},
+
+  /* ---------- G: Archaeopteryx (optional, siehe BEREICHE) ---------- */
+  {b:"G", f:"Welche Merkmale von Archaeopteryx sind Vogelmerkmale, welche Reptilienmerkmale?",
+   o:["Vogel: Federn, Flügel, Gabelbein – Reptil: Zähne, Krallenfinger, lange Schwanzwirbelsäule.","Vogel: Zähne und Krallen – Reptil: Federn und Flügel.","Er hatte nur Vogelmerkmale und war ein ganz normaler Vogel.","Vogel: Hornschnabel – Reptil: Kiemen und Schuppen."],
+   e:"Archaeopteryx vereint Merkmale beider Gruppen – genau die Zwischenform, die Darwins Kritiker gefordert hatten."},
+  {b:"G", f:"Was ist eine Mosaikform?",
+   o:["Ein Lebewesen, das Merkmale zweier Tiergruppen nebeneinander besitzt.","Ein Fossil, das aus vielen Bruchstücken zusammengesetzt wurde.","Ein Tier mit buntem Federkleid.","Ein Lebewesen, das zu keiner bekannten Gruppe passt."],
+   e:"Archaeopteryx (Reptil/Vogel) und Tiktaalik (Fisch/Vierbeiner) sind Mosaikformen. Sie belegen gemeinsame Vorfahren."},
+  {b:"G", f:"Wofür nutzten Dinosaurier ihre Federn, bevor geflogen wurde?",
+   o:["Zum Warmhalten, zum Beeindrucken von Partnern und beim Brüten.","Gar nicht – Federn entstanden erst, als die Tiere fliegen wollten.","Zum schnelleren Schwimmen.","Als Panzer gegen Räuber."],
+   e:"Wie bei den Beinen von Tiktaalik: Ein Merkmal war schon vorhanden und nützlich, bevor es eine neue Aufgabe übernahm."},
+  {b:"G", f:"Von welchen Tieren stammen die Vögel ab?",
+   o:["Von kleinen, zweibeinigen Raubdinosauriern","Von Flugsauriern","Von Fledermäusen","Von fliegenden Fischen"],
+   e:"Vögel sind die einzigen Dinosaurier, die das Massenaussterben vor 66 Millionen Jahren überlebt haben. Flugsaurier sind eine eigene Reptiliengruppe."},
+  {b:"G", f:"„Archaeopteryx ist der Vorfahr aller heutigen Vögel.“ Was ist richtig?",
+   o:["Er ist ein naher Verwandter der Vorfahren; gefiederte Dinosaurier wie Anchiornis lebten schon früher – ein direkter Vorfahr ist er nicht nachgewiesen.","Die Aussage stimmt genau so.","Archaeopteryx lebte erst nach den heutigen Vögeln.","Archaeopteryx war ein Flugsaurier und mit Vögeln nicht verwandt."],
+   e:"Der Stammbaum ist ein verzweigter Busch, keine Kette. Es gab viele Arten mit Übergangsmerkmalen."},
+
+  /* ---------- M: Wie Evolution funktioniert ---------- */
+  {b:"M", f:"Was versteht man unter Variation?",
+   o:["Die Individuen einer Art unterscheiden sich zufällig, z. B. durch Veränderungen im Erbgut.","Ein Lebewesen passt sich im Laufe seines Lebens an seine Umwelt an.","Alle Individuen einer Art sind genau gleich gebaut.","Die Umwelt wählt die am besten angepassten Tiere aus."],
+   e:"Variation ist der Rohstoff der Evolution. Die letzte Antwort beschreibt Selektion."},
+  {b:"M", f:"Was versteht man unter Selektion?",
+   o:["Besser angepasste Varianten überleben häufiger und haben mehr Nachkommen.","Lebewesen suchen sich den Lebensraum aus, der ihnen am besten gefällt.","Lebewesen verändern sich, weil sie es wollen.","Starke Tiere töten die schwachen Tiere ihrer Art."],
+   e:"Selektion heißt Auslese durch die Umwelt – z. B. durch Fressfeinde, Trockenheit oder Sauerstoffmangel."},
+  {b:"M", f:"In einem Video heißt es: „Die Fische wollten an Land. Deshalb wuchsen ihnen Beine.“ Was ist daran falsch?",
+   o:["Evolution hat kein Ziel: Merkmale entstehen zufällig, und die Umwelt entscheidet, welche sich durchsetzen.","Nichts – genau so ist es abgelaufen.","Fische können niemals Beine entwickeln.","Falsch ist nur, dass es Fische waren – es waren Reptilien."],
+   e:"Kein Lebewesen „will“ sich verändern. Typischer Fehler, der auch bei Pflanzen („wollten größer werden“) und Panzern („bauten sich einen Panzer“) vorkommt."},
+  {b:"M", f:"„Die Farne haben sich aus den Moosen entwickelt.“ Was ist richtig?",
+   o:["Moose und Farne haben gemeinsame Vorfahren, stammen aber nicht voneinander ab.","Die Aussage stimmt: Heutige Moose sind die Vorfahren der Farne.","Moose haben sich aus Farnen entwickelt.","Moose und Farne sind überhaupt nicht miteinander verwandt."],
+   e:"Heute lebende Gruppen stehen nebeneinander an den Enden der Äste im Stammbaum. Wie bei der Volvox-Reihe gilt: verwandt, aber nicht voneinander abstammend."},
+  {b:"M", f:"Wann kann sich ein neues Merkmal in einer Population über viele Generationen durchsetzen?",
+   o:["Wenn es erblich ist und seinen Trägern mehr überlebende Nachkommen bringt.","Wenn ein Tier es im Laufe seines Lebens trainiert.","Wenn es besonders auffällig aussieht.","Wenn alle Tiere der Population es gleichzeitig bekommen."],
+   e:"Nur Erbliches wird weitergegeben. Im Herron-Experiment blieben die Zellverbände auch ohne Fressfeinde erhalten – die Eigenschaft war erblich."}
+];
+
+/* =====================================================================
+   PROGRAMM – ab hier muss nichts geändert werden
+   ===================================================================== */
+const aktiveBereiche = BEREICHE.filter(b => b.aktiv);
+const aktivIds = aktiveBereiche.map(b => b.id);
+const bereichVon = id => BEREICHE.find(b => b.id === id);
+const app = document.getElementById("app");
+let S = null;   // Zustand
+
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function mischen(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function speichern(){try{localStorage.setItem(CONFIG.speicherSchluessel,JSON.stringify(S));}catch(e){}}
+function laden(){try{const x=localStorage.getItem(CONFIG.speicherSchluessel);return x?JSON.parse(x):null;}catch(e){return null;}}
+function loeschen(){try{localStorage.removeItem(CONFIG.speicherSchluessel);}catch(e){}}
+function kopf(){return `<p class="kicker">${esc(CONFIG.kicker)}</p>`;}
+
+/* ---------- Startseite ---------- */
+function start(){
+  const n = FRAGEN.filter(q=>aktivIds.includes(q.b)).length;
+  app.innerHTML = `${kopf()}
+    <h1>${esc(CONFIG.titel)}</h1>
+    <p class="unter">${esc(CONFIG.untertitel)}</p>
+    <div class="info"><b class="k">So funktioniert es</b>
+      Du beantwortest ${n} Fragen zur ganzen Reihe – von der jungen Erde bis zu den ersten Vierbeinern.
+      Zu jeder Frage gibt es genau <b>eine</b> richtige Antwort. Am Ende siehst du, wie sicher du in den
+      ${aktiveBereiche.length} Themenbereichen bist und was du in deinen schwächsten Bereichen üben kannst.
+      Der Test wird <b>nicht benotet</b>.
+    </div>
+    <p>Bearbeite den Test allein und ohne Hilfsmittel – nur dann zeigt er dir ehrlich, was du noch kannst.
+    Du brauchst etwa 20 Minuten.</p>
+    <label class="feld" for="nm">Dein Name</label>
+    <input type="text" id="nm" autocomplete="off" placeholder="Vorname Nachname">
+    <label class="feld" for="kl">Klasse</label>
+    <input type="text" id="kl" autocomplete="off" placeholder="z. B. 9a">
+    <div class="hinweis" id="hw"></div>
+    <div class="leiste"><span></span><button class="btn" id="go">Test starten</button></div>
+    <p class="fussnote">Die Themenbereiche werden erst am Ende angezeigt. Deine Antworten werden nur auf diesem Gerät zwischengespeichert.</p>`;
+  document.getElementById("go").onclick = ()=>{
+    const name = document.getElementById("nm").value.trim();
+    const klasse = document.getElementById("kl").value.trim();
+    if(name.length<2){document.getElementById("hw").textContent="Bitte gib deinen Namen ein.";return;}
+    const fr = mischen(FRAGEN.map((q,i)=>i).filter(i=>aktivIds.includes(FRAGEN[i].b)));
+    S = { name, klasse, start:Date.now(), reihenfolge:fr,
+          optionen: fr.map(i=>mischen(FRAGEN[i].o.map((_,k)=>k))),
+          antworten: fr.map(()=>null), pos:0, fertig:false };
+    speichern(); frage();
+  };
+}
+
+/* ---------- Fragenseite ---------- */
+function frage(){
+  const N = S.reihenfolge.length, p = S.pos, q = FRAGEN[S.reihenfolge[p]];
+  const opts = S.optionen[p];
+  const beantw = S.antworten.filter(a=>a!==null).length;
+  app.innerHTML = `${kopf()}
+    <div class="fnr">Frage ${p+1} von ${N}  ·  ${beantw} beantwortet</div>
+    <div class="fortschritt"><span style="width:${(beantw/N*100).toFixed(1)}%"></span></div>
+    <div class="frage">${esc(q.f)}</div>
+    <div id="opts">${opts.map((k,i)=>`<button class="opt${S.antworten[p]===k?" sel":""}" data-k="${k}">
+        <span class="bu">${"ABCD"[i]}</span><span>${esc(q.o[k])}</span></button>`).join("")}</div>
+    <div class="leiste">
+      <button class="btn zweit" id="zur" ${p===0?"disabled":""}>Zurück</button>
+      ${p<N-1?`<button class="btn" id="wei">Weiter</button>`:`<button class="btn" id="abg">Test abgeben</button>`}
+    </div>
+    <div class="punkte noprint" aria-label="Fragenübersicht">${S.reihenfolge.map((_,i)=>
+      `<button data-i="${i}" class="${S.antworten[i]!==null?"ok":""}${i===p?" akt":""}">${i+1}</button>`).join("")}</div>
+    <div class="hinweis" id="hw"></div>`;
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+    S.antworten[p]=+b.dataset.k; speichern();
+    app.querySelectorAll(".opt").forEach(x=>x.classList.toggle("sel",x===b));
+    app.querySelector(`.punkte button[data-i="${p}"]`).classList.add("ok");
+  });
+  document.getElementById("zur").onclick=()=>{S.pos--;speichern();frage();};
+  const w=document.getElementById("wei"); if(w) w.onclick=()=>{S.pos++;speichern();frage();};
+  const a=document.getElementById("abg"); if(a) a.onclick=abgeben;
+  app.querySelectorAll(".punkte button").forEach(b=>b.onclick=()=>{S.pos=+b.dataset.i;speichern();frage();});
+  window.scrollTo(0,0);
+}
+
+function abgeben(){
+  const offen = S.antworten.map((a,i)=>a===null?i+1:null).filter(x=>x);
+  if(offen.length){
+    const ok = confirm(`Du hast ${offen.length} Frage(n) noch nicht beantwortet (Nr. ${offen.join(", ")}).\nUnbeantwortete Fragen zählen als falsch. Trotzdem abgeben?`);
+    if(!ok) return;
+  } else if(!confirm("Test jetzt abgeben? Danach kannst du nichts mehr ändern.")) return;
+  S.fertig=true; S.ende=Date.now(); speichern(); ergebnis();
+}
+
+/* ---------- Auswertung ---------- */
+function auswerten(){
+  const w = {}; aktivIds.forEach(id=>w[id]={r:0,n:0});
+  S.reihenfolge.forEach((fi,p)=>{const q=FRAGEN[fi]; w[q.b].n++; if(S.antworten[p]===0) w[q.b].r++;});
+  aktivIds.forEach(id=>w[id].pz=w[id].n?Math.round(w[id].r/w[id].n*100):0);
+  const minPz = Math.min(...aktivIds.map(id=>w[id].pz));
+  const schwach = minPz===100 ? [] : aktivIds.filter(id=>w[id].pz===minPz);
+  const gesamtR = aktivIds.reduce((s,id)=>s+w[id].r,0), gesamtN = aktivIds.reduce((s,id)=>s+w[id].n,0);
+  return {w,schwach,gesamtR,gesamtN};
+}
+
+function datum(ts){const d=new Date(ts);return d.toLocaleDateString("de-DE")+", "+d.toLocaleTimeString("de-DE",{hour:"2-digit",minute:"2-digit"})+" Uhr";}
+
+function stufe(pz){ return pz>=80?"sicher":pz>=50?"teilweise sicher":"noch unsicher"; }
+
+function ergebnis(){
+  const A = auswerten();
+  const balken = aktiveBereiche.map(b=>{
+    const x=A.w[b.id];
+    return `<div class="bzeile${A.schwach.includes(b.id)?" schwach":""}">
+      <div class="bname">${esc(b.name)}</div><div class="bwert">${x.r}/${x.n}</div>
+      <div class="bspur"><span style="width:${x.pz}%"></span></div></div>`;
+  }).join("");
+
+  // Übungsbereiche: die (bis zu drei) schwächsten unter 80 %, sonst der/die schwächste(n)
+  let ueb = aktivIds.filter(id=>A.w[id].pz<80);
+  if(!ueb.length) ueb = A.schwach.slice();
+  ueb.sort((a,b)=>A.w[a].pz-A.w[b].pz);
+  ueb = ueb.slice(0,3);   // höchstens drei Übungsempfehlungen
+  const uebTeil = ueb.length ? `<h2>Das kannst du jetzt üben</h2>
+    <p>${ueb.length>1?"In diesen Bereichen lohnt sich Wiederholen am meisten – fang oben an.":"In diesem Bereich lohnt sich Wiederholen am meisten."}</p>
+    ${ueb.map(id=>{const b=bereichVon(id), u=b.ueben;
+      return `<div class="thema"><div class="k">${esc(b.name)} · ${A.w[id].r}/${A.w[id].n} · ${stufe(A.w[id].pz)}</div>
+        <p style="margin:8px 0 6px"><b>Material:</b> ${esc(u.material)}</p>
+        <p style="margin:0 0 6px"><b>Diese Fachbegriffe solltest du erklären können:</b> ${u.begriffe.map(esc).join(" · ")}</p>
+        <p style="margin:0"><b>Übungstipp:</b> ${esc(u.tipp)}</p></div>`;}).join("")}`
+    : `<div class="info"><b class="k">Stark!</b>Du hast alle Fragen richtig beantwortet. Du kannst anderen in der Klasse beim Wiederholen helfen.</div>`;
+
+  app.innerHTML = `${kopf()}
+    <h1>Dein Ergebnis</h1>
+    <p class="unter">${esc(S.name)}${S.klasse?" · "+esc(S.klasse):""} · ${A.gesamtR} von ${A.gesamtN} Punkten</p>
+    <h2>Deine Themenbereiche</h2>
+    <div class="balken">${balken}</div>
+    <p class="klein">Ab 80 % bist du in einem Bereich sicher, ab 50 % teilweise sicher, darunter noch unsicher.</p>
+    ${uebTeil}
+    <div class="beleg" id="beleg"><div class="k">Ergebnisbeleg</div>
+      <table>
+        <tr><td>Name</td><td><b>${esc(S.name)}</b></td></tr>
+        ${S.klasse?`<tr><td>Klasse</td><td>${esc(S.klasse)}</td></tr>`:""}
+        <tr><td>Abgegeben</td><td>${datum(S.ende||Date.now())}</td></tr>
+        ${aktiveBereiche.map(bb=>`<tr><td>${esc(bb.name)}</td><td>${A.w[bb.id].r}/${A.w[bb.id].n}</td></tr>`).join("")}
+        <tr><td><b>Gesamt</b></td><td><b>${A.gesamtR}/${A.gesamtN}</b></td></tr>
+      </table>
+    </div>
+    <p class="noprint"><b>Wichtig:</b> Mache einen Screenshot vom Ergebnisbeleg oder kopiere dein Ergebnis und schicke es deiner Lehrkraft.</p>
+    <div class="leiste noprint" style="justify-content:flex-start">
+      <button class="btn" id="kopie">Ergebnis kopieren</button>
+      <button class="btn zweit" id="druck">Drucken / als PDF</button>
+    </div>
+    <div class="hinweis" id="hw"></div>
+    <h2>Deine Antworten im Überblick</h2>
+    <p>Hier siehst du zu jedem Bereich, welche Fragen du falsch beantwortet hast – mit Erklärung.</p>
+    ${rueckblick(A, ueb)}
+    <div class="leiste noprint">
+      <button class="linkbtn" id="rs">Test zurücksetzen (nur mit Code der Lehrkraft)</button>
+    </div>`;
+
+  document.getElementById("kopie").onclick=kopieren;
+  document.getElementById("druck").onclick=()=>window.print();
+  document.getElementById("rs").onclick=()=>{
+    const c=prompt("Code der Lehrkraft eingeben, um den Test zurückzusetzen:");
+    if(c===null) return;
+    if(c.trim()===CONFIG.resetCode){loeschen();S=null;start();window.scrollTo(0,0);} else alert("Der Code ist nicht richtig.");
+  };
+  window.scrollTo(0,0);
+}
+
+function ergebnisText(){
+  const A=auswerten();
+  return [`Diagnosetest Evolution Kl. 9 – Ergebnis`,
+    `Name: ${S.name}${S.klasse?" ("+S.klasse+")":""}`,
+    `Abgegeben: ${datum(S.ende||Date.now())}`,
+    ...aktiveBereiche.map(b=>`${b.name}: ${A.w[b.id].r}/${A.w[b.id].n}`),
+    `Gesamt: ${A.gesamtR}/${A.gesamtN}`].join("\n");
+}
+function kopieren(){
+  const t=ergebnisText(), hw=document.getElementById("hw");
+  const fertig=()=>{hw.textContent="Ergebnis kopiert – du kannst es jetzt z. B. in eine Nachricht einfügen.";};
+  const alt=()=>{const ta=document.createElement("textarea");ta.value=t;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";
+    document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,99999);
+    try{document.execCommand("copy");fertig();}catch(e){hw.textContent="Kopieren hat nicht geklappt – bitte mache einen Screenshot.";}
+    document.body.removeChild(ta);};
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(fertig,alt);} else alt();
+}
+
+function rueckblick(A, ueb){
+  return aktiveBereiche.map(b=>{
+    const eintraege = S.reihenfolge.map((fi,p)=>({q:FRAGEN[fi],a:S.antworten[p],nr:p+1})).filter(e=>e.q.b===b.id);
+    const falsch = eintraege.filter(e=>e.a!==0);
+    return `<details${ueb[0]===b.id?" open":""}><summary>${esc(b.name)} – ${A.w[b.id].r}/${A.w[b.id].n} richtig</summary>
+      ${falsch.length?falsch.map(e=>`<div class="rv">
+        <div class="q">Frage ${e.nr}: ${esc(e.q.f)}</div>
+        <div class="a"><span class="zeichen">✗</span>Deine Antwort: ${e.a===null?"<i>nicht beantwortet</i>":esc(e.q.o[e.a])}</div>
+        <div class="a"><span class="zeichen">✓</span><b>Richtig: ${esc(e.q.o[0])}</b></div>
+        <div class="a klein">${esc(e.q.e)}</div></div>`).join("")
+        :`<div class="rv">Alle Fragen in diesem Bereich richtig.</div>`}
+    </details>`;
+  }).join("");
+}
+
+/* ---------- Start ---------- */
+(function init(){
+  const g = laden();
+  if(g && g.reihenfolge && g.reihenfolge.every(i=>FRAGEN[i] && aktivIds.includes(FRAGEN[i].b))
+       && g.reihenfolge.length===FRAGEN.filter(q=>aktivIds.includes(q.b)).length){
+    S=g; if(S.fertig) ergebnis(); else frage();
+  } else { if(g) loeschen(); start(); }
+})();
+</script>
+</body>
+</html>
